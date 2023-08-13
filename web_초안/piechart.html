@@ -67,6 +67,8 @@
 
 		</div>
 	</header>
+
+
 <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 <section id="main">
     <div class="inner">
@@ -77,78 +79,76 @@
 
  <!-- Table -->
  <section>
-    <h3>소득공제 계산결과</h3>
-    <h4>예상 적용 세율 </h4>
-    <h3>0 %</h3>
-    <h4>아낄 수 있는 세금(예상액) </h4>
-    <h3>0 %</h3>
-    <p>*본 금액은 환급액이 아니며 실제 환급액은 기존 납입 세금에 따라 달라집니다</p>
-    <div class="table-wrapper">
-        
-    
-    <div class="table-wrapper">
-        <table class="alt">
-            <thead>
-            <tr>
-                <th>구분</th>
-                <th>사용금액</th>
-                <th>공제가능금액</th>
-                <th>공제율</th>
-                <th>공제액</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>신용카드</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-                <td>29.99</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>체크/직불/선불카드</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-                <td>29.99</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>현금영수증</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-                <td>29.99</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>도서및공연</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-                <td>29.99</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>전통시장</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-                <td>29.99</td>
-                <td>29.99</td>
-            </tr>
-            <tr>
-                <td>대중교통</td>
-                <td>Ante turpis integer aliquet porttitor.</td>
-                <td>29.99</td>
-                <td>29.99</td>
-                <td>29.99</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="2"></td>
-                <td>100.00</td>
-            </tr>
-            </tfoot>
-        </table>
+    <div id="minwon-bar" class="progress-bar">
+        <div class="progress"> </div>
+    </div>
+    <div class="progress-bar2"></div>
+    <div class="progress-bar3"></div>
+    <div class="donut-container">
+        <div class="donut"> </div>
+    </div>
+    <div class="donut-container">
+        <div class="donut"> </div>
     </div>
 </section>
 
+
+<style>
+.progress-bar {
+  width: 100%;
+  height: 30px;
+  background-color: #dedede;
+  font-weight: 600;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+}
+
+.progress-bar2,
+.progress-bar3 {
+  width: 100%;
+  height: 30px;
+  font-weight: 600;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+}
+
+.progress-bar .progress {
+  width: 0;
+  height: 30px;
+  padding: 0;
+  text-align: center;
+  background-color: #4F98FF;
+  color: #111;
+}
+
+.donut {
+  width: calc(100% - 16px);
+  padding-bottom: calc(100% - 16px);
+  margin: 0 auto;
+  border-radius: 50%;
+  position: relative;
+  text-align: center;
+}
+
+.donut::before {
+  color: #fff;
+  width: 70%;
+  background: #264057;
+  border-radius: 50%;
+  position: absolute;
+  left: 15%;
+  top: 15%;
+  display: block;
+  content: attr(data-percent)'%';
+  transform: skew(-0.03deg);
+  margin: auto;
+  font-weight: 800;
+  font-size: 2vw;
+  padding: calc(35% - 1.3vw) 0;
+}
+.donut-container {
+  margin: 0 40vw 1rem 40vw;
+}
+
+</style>
 

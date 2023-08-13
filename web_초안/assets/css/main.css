@@ -1959,7 +1959,7 @@
 			/* background-color: transparent; */
 			/* box-shadow: inset 0 0 0 2px #e5474b; */
 			/* color: #e5474b !important; */
-			background-color: #439a97;
+			background-color: #a3c7ba;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.212);
 			/* box-shadow: outset 0 0 0 2px #020505; */
 			color: #fffdfe !important;
@@ -1970,7 +1970,8 @@
 			input[type="button"].alt:hover,
 			button.alt:hover,
 			.button.alt:hover {
-				background: #fceced;
+				/* background: #fceced; */
+				background: #084430;
 			}
 
 			input[type="submit"].alt:active,
@@ -3145,15 +3146,17 @@
 			padding: 0;
 			position: absolute;
 			top: 0;
-			color: #e5474b;
-			font-size: 1.75em;
+			color: #13373e;
+			/* color: #e5474b; */
+			font-size: 1.5em;
+			/* font-size: 1.75em; */
 			text-transform: none;
 			font-weight: normal;
 			padding: 0;
 		}
 
 			#header .logo:hover {
-				color: rgba(229, 71, 75, 0.75);
+				color: rgba(14, 105, 135, 0.75);
 			}
 
 		#header a {
@@ -3171,7 +3174,7 @@
 		}
 
 			#header a:hover {
-				color: rgba(255, 255, 255, 0.75);
+				color: #009692;
 			}
 
 			#header a:last-child {
@@ -3195,6 +3198,75 @@
 	}
 
 /* Menu */
+
+/* 메뉴 스타일 */
+.menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+  }
+  
+  .menu > li {
+	display: inline-block;
+	position: relative;
+	margin-right: 20px;
+  }
+  
+  .menu > li > a {
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	padding: 10px;
+	display: block;
+  }
+  
+  /* 서브메뉴 스타일 */
+.submenu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background-color: #fafafb;
+	width: 150px; /* 서브메뉴 너비 조절 */
+	border: 1px solid #ddd; /* 서브메뉴 테두리 추가 */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 서브메뉴 그림자 효과 */
+	padding: 0; /* 내부 패딩 제거 */
+}
+
+/* 메뉴에 마우스 오버시 서브메뉴 표시 */
+.menu > li:hover > .submenu {
+	display: block;
+}
+
+/* 서브메뉴 항목 스타일 */
+.submenu > li {
+	margin: 0;
+	padding: 0px 20px; /* 상하 5px 패딩, 좌우 패딩 없음 */
+	list-style: none;
+}
+
+.submenu > li:last-child {
+	border-bottom: none; /* 마지막 항목에 실선 제거 */
+}
+
+.submenu > li > a {
+	display: block;
+	padding: 10px; /* 항목 내용의 상하 패딩 조절 */
+	text-align: center; /* 가운데 정렬 추가 */
+	color: #333;
+	text-decoration: none;
+	font-weight: normal;
+	border-bottom: 1px solid #ddd; /* 실선을 넣어줌 */
+}
+
+.submenu > li > a:hover {
+	background-color: #ddd;
+}
+
+  
+
+
+
 
 	#nav {
 		display: inline-block;
@@ -3226,7 +3298,7 @@
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
-			color: #fff;
+			color: #4a3333;
 			display: block;
 			font-size: 16px;
 			height: 2.25em;
@@ -3478,7 +3550,7 @@
 			#banner button.special,
 			#banner .button.special {
 				background-color: #ffffff;
-				color: #036c63 !important;
+				color: #3876c7 !important;
 			}
 
 		#banner:after {
@@ -3585,6 +3657,26 @@
 				}
 
 		}
+
+/*Slide  */
+		@keyframes slide01 {
+			0%{left}
+			23%{}
+			25%{}
+			48%{}
+			50%{}
+			73%{}
+			98%{}
+			100%{}
+		}
+
+			0%{}
+			0%{}
+			0%{}
+			0%{}
+			0%{}
+			0%{}
+
 
 /* Main */
 
@@ -3753,9 +3845,153 @@
 
 		}
 
+		/* home-card */
+		.image-section {
+			flex: 1;
+			margin-right: 1em;
+		}
+		
+		.mydata-section {
+			flex: 0.5;
+			padding: 2em;
+			background-color: #f8f8f8;
+			text-align: center;
+		}
+		
+		.image-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		
+		.card1 {
+			flex: 1;
+			margin-right: 20px;
+		}
+		
+		.image-container img {
+			width: 180px;
+			height: auto;
+			margin-right: 30px;
+		}
+		
+		.mydata-section h3 {
+			font-size: 1.2em;
+		}
+		
+		.mydata-section p {
+			margin-top: 1em;
+		}
+		
+		.mydata-section .button {
+			margin-top: 1em;
+		}
+		
+		
+		
 /* Footer */
+/* 푸터 */
+.BankFooter {
+	background-color: #f7f7f7;
+	padding: 20px;
+	text-align: center;
+}
 
-	#footer {
+.BankFooterContent {
+	max-width: 800px;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-left: -50px;
+}
+
+.FooterLinks {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+.FooterLinks li {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.FooterLinks li:last-child {
+	margin-right: 0;
+}
+
+.FooterLinks a {
+	color: #333;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.FooterDescription {
+	color: #666;
+	font-size: 12px;
+}
+
+.ContactItem {
+	width: 250px;
+	height: 40px;
+	position: absolute;
+	margin-right: 150px;
+	right: 0;
+}
+
+.ContactTitle {
+	width: 50px;
+	height: 20px;
+	text-align: right;
+	color: #009591;
+	font-size: 14px;
+	font-family: Noto Sans KR;
+	font-weight: 350;
+	line-height: 10px; /* Increase line-height to add spacing */
+	word-wrap: break-word;
+	position: absolute;
+	top: 2px;
+	right: 30px;
+}
+
+.ContactNumber {
+	width: 122.17px;
+	height: 36px;
+	text-align: right;
+	color: #333333;
+	font-size: 24px;
+	font-family: Noto Sans KR;
+	font-weight: 350;
+	line-height: 24px;
+	word-wrap: break-word;
+	position: absolute;
+	top: 19px;
+}
+
+.ContactNumber.Strong15881111 {
+	left: 0;
+	right: 30px;
+}
+
+.ContactSeparator {
+	width: 9.12px;
+	height: 36px;
+	text-align: right;
+	color: #DDDDDD;
+	font-size: 24px;
+	font-family: Noto Sans KR;
+	font-weight: 350;
+	line-height: 24px;
+	word-wrap: break-word;
+	position: absolute;
+	top: 19px;
+	left: 124.68px;
+}
+
+.ContactNumber.Strong15991111 {
+	left: 105px;
+}
+}
+	/* #footer {
 		background-color: #e5474b;
 		color: #f2a3a5;
 		padding: 4em 0 2em 0;
@@ -3979,4 +4215,4 @@
 				padding: 2em 0 0.1em 0;
 			}
 
-		}
+		} */
