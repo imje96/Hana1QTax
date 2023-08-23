@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <!-- resources/mapper/taxInfoMapper.xml -->
+    <mapper namespace="com.spring.OneQTax.tax.model.DAO.TaxInfoMapper">
+        <select id="getTaxInfoById" parameterType="int" resultType="com.spring.OneQTax.tax.model.DTO.TaxInfoDTO">
+            SELECT * FROM total_amount
+            WHERE here customerId = #{id}
+        </select>
+    </mapper>
