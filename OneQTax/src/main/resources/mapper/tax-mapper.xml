@@ -6,6 +6,6 @@
     <mapper namespace="com.spring.OneQTax.tax.model.DAO.TaxInfoMapper">
         <select id="getTaxInfoById" parameterType="int" resultType="com.spring.OneQTax.tax.model.DTO.TaxInfoDTO">
             SELECT * FROM total_amount
-            WHERE here customerId = #{id}
+            WHERE customerId = #{id}
         </select>
     </mapper>

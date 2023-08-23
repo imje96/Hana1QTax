@@ -1,11 +1,14 @@
 package com.spring.OneQTax.tax.model.DTO;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+@Data
 @Getter
 @Setter
 public class TaxInfoDTO {
+    private int memberId;
     private int totalIncome;
     private int creditTotal;
     private int debitTotal;
@@ -25,8 +28,20 @@ public class TaxInfoDTO {
         this.minimumAmount = (int) (totalIncome * 0.25);
     }
 
-    public int getMinimumAmount() {
-        return minimumAmount;
+    @Override
+    public String toString() {
+        return "TaxInfoDTO{" +
+                "memberId=" + memberId +
+                ", totalIncome=" + totalIncome +
+                ", creditTotal=" + creditTotal +
+                ", debitTotal=" + debitTotal +
+                ", cashTotal=" + cashTotal +
+                ", cultureTotal=" + cultureTotal +
+                ", marketTotal=" + marketTotal +
+                ", transportTotal=" + transportTotal +
+                ", minimumAmount=" + minimumAmount +
+                ", basicLimit=" + basicLimit +
+                ", additionalLimit=" + additionalLimit +
+                '}';
     }
-
 }

@@ -4,7 +4,9 @@ import com.spring.OneQTax.tax.model.DAO.TaxInfoMapper;
 import com.spring.OneQTax.tax.model.DTO.TaxInfoDTO;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TaxCalculationService {
 
     private final TaxInfoMapper taxInfoMapper;
@@ -12,6 +14,10 @@ public class TaxCalculationService {
     @Autowired
     public TaxCalculationService(TaxInfoMapper taxInfoMapper) {
         this.taxInfoMapper = taxInfoMapper;
+    }
+
+    public TaxInfoDTO getIaxInfoById(int id) {
+        return taxInfoMapper.getTaxInfoById(id);
     }
 
     public void calculateLimits(@NotNull TaxInfoDTO taxInfoDTO) {
@@ -38,7 +44,7 @@ public class TaxCalculationService {
         taxInfoDTO.setAdditionalLimit(additionalLimit);
     }
 
-
+    // 추가공제액 계산
     public double calculateAdditionalDeduction(int id) {
         TaxInfoDTO taxInfo = taxInfoMapper.getTaxInfoById(id);
 

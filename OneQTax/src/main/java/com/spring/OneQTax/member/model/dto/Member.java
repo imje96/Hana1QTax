@@ -4,19 +4,19 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
+
 @Getter
 @Setter
 public class Member {
-    private memberId;
-    private name;
-    private indentityNumber;
-    private sex;
-    private email;
-    private password;
-    private phone;
-    private address;
-    private regDate;
+    private int memberId;
+    private String name;
+    private int indentityNumber;
+    private String sex;
+    private String email;
+    private String password;
+    private String phone;
+    private String address;
+    private String regDate;
 
     // 기본생성자
     public Member(){
