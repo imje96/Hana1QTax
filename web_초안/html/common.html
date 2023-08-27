@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>header</title>
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div id="headerLogo">
+        <div id="logo">
+            <img class="imgLogo" src="../../resources/img/logo.png" height="60">
+            <a class="nameLogo" href="/">하나카드</a>
+        </div>
+
+        <!-- Dynamic Welcome Message and Log Out button would be here -->
+
+        <span id="welcomeMessage">
+            <span>사용자이름 님 환영합니다</span>
+            <a href="/logout"><button id="logoutBtn">로그아웃</button></a>
+        </span>
+
+        <div id="loginout">
+            <button id="loginBtn" onclick="window.location.href='/login'">로그인</button>
+            <button id="joinBtn" onclick="window.location.href='/join'">회원가입</button>
+        </div>
+
+    </div>
+    <nav>
+        <div class="navbar">
+            <a href="/service/selffds">안심카드설정</a>
+
+            <div class="dropdown">
+                <button class="dropbtn">고객센터
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/lostcard">분실/도난 신고</a>
+                    <a href="#">부정사용신고</a>
+                    <a href="#">카드재발급</a>
+                </div>
+            </div>
+            <a href="/mypage">마이페이지</a>
+            <a href="/payment/paymentPage">결제</a>
+            <a href="/payment/drawChartex">차트</a>
+        </div>
+    </nav>
+</header>
+</body>
+</html>
