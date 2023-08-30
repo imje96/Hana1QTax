@@ -1,5 +1,6 @@
 @charset"utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 /* 글꼴 */
 @font-face {
@@ -61,19 +62,21 @@ body {font-family: 'Hana-bold', serif; font-size: 14px; color:#333;}
 .en {font-family: 'Hana-medium', cursive}
 
 /*header*/
-header {width: 100%; position: fixed; z-index: 100; background: rgb(227, 224, 224);}
-/* .innerheader {padding: 0 60px; height: 90px; transition: all 0.3s;} */
+header {width: 100%; position: fixed; z-index: 100; background: #fff;}
+/* 
+.innerheader {padding: 0 60px; height: 90px; transition: all 0.3s;}
 .innerheader {padding: 0 60px; height: 90px; transition: all 0.3s; display: flex; align-items: center; justify-content: space-between;}
-/* .innerheader .logo {width: 200px; height: 36px; float: left; margin-top: 28px; transition: all 0.3s;} */
-.innerheader .gnb .logo {width: 200px; height: 36px; margin-top: 0; transition: all 0.3s; display: flex; align-items: center; justify-content: center;}
+
+.innerheader .logo {width: 200px; height: 36px; float: left; margin-top: 28px; transition: all 0.3s;} */
+/* .innerheader .gnb .logo {width: 200px; height: 36px; margin-top: 0; transition: all 0.3s; display: flex; align-items: center; justify-content: center;}
 .innerheader .gnb .logo a {display: block; width: 100%; }
-.innerheader .gnb .logo a img {width: 80%; height: auto; display: block; margin: 0 auto;}
+.innerheader .gnb .logo a img {width: 80%; height: auto; display: block; margin: 0 auto;} */
 
 
 #headerLogo {
     align-items: center;
     justify-content: center;
-    margin-left: 150px;
+    margin-left: 100px;
     margin-right: 150px;
 }
 #headerLogo{
@@ -82,6 +85,21 @@ header {width: 100%; position: fixed; z-index: 100; background: rgb(227, 224, 22
     justify-content: space-between;
     align-items: center;
 }
+
+/* .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* headerlist1  erlist -nav 윗부분 */
+.headerlist { overflow: hidden; }
+.headerlist .list1 { float: left; }
+.headerlist .list1 li { float: left; }
+.headerlist .list2 { float: right; }
+.headerlist .list2 li { float: left; } */
+
+
 
 /* 기본 스타일 */
 #logo {
@@ -115,9 +133,7 @@ header {width: 100%; position: fixed; z-index: 100; background: rgb(227, 224, 22
 }
 
 /* Additional styles for the child elements */
-#welcomeMessage > span {
-    margin-right: 10px;
-}
+.welcomeMessage { margin-right: 0px;}
 
 #loginBtn{
     margin-right: 10px;
@@ -126,12 +142,12 @@ header {width: 100%; position: fixed; z-index: 100; background: rgb(227, 224, 22
 #loginBtn, #joinBtn, #logoutBtn {
     display: inline-block;
     color: black; /* 글자색 변경 */
-    padding: 10px 20px; /* 패딩 */
+    padding: 8px 20px; /* 패딩 */
     border: none; /* 테두리 없음 */
     border-radius: 5px; /* 둥근 모서리 */
     text-align: center;
     text-decoration: none;
-    font-size: 12px; /* 폰트 크기 변경 */
+    font-size: 10px; /* 폰트 크기 변경 */
     cursor: pointer;
     background-color: #ffffff; /* 배경색 추가 */
     transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 추가 */
@@ -179,8 +195,12 @@ header {width: 100%; position: fixed; z-index: 100; background: rgb(227, 224, 22
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
+    transition: all 0.3s ease;
 }
 
+.dropdown .dropbtn:hover {
+    transform: scale(1.2);
+}
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
@@ -210,57 +230,215 @@ header {width: 100%; position: fixed; z-index: 100; background: rgb(227, 224, 22
 }
 
 
+/* 임시 */
 
-/* gnb */
-/* .gnb {position: absolute; left: 50%; transform: translateX(-50%); width: 800px;} */
-.gnb {width: 800px; margin: 0 auto; display: flex; justify-content: space-around;}
-.gnb >li { display: block; width: 20%; height: 90px; line-height: 90px; position: relative; transition: all 0.3s; color: black;}
-.gnb >li > a {display: block; width: 100%; height: 100px; text-align: center; color: black; font-size: 18px; font-weight: 500;}
-.gnb >li > a:before {position: absolute; content:''; background: #fb922f; width: 75%; height: 100%; z-index: -1; left: 50%; transform: translateX(-50%);
-top: -90px; opacity: 0; transition: all 0.3s;}
-.gnb li:hover > a::before, .gnb li > a:focus::before {opacity: 1; top: 90px;}
+/* userinfo-box 스타일 */
+.userinfo-box {
+    width: 400px;
+    height: 400px;
 
-/* sub-menu 관련 스타일 (hover 됐을 때만 보이게 설정) */
-.gnb ul .inner{ display: none; position: absolute; top: 80px; left: 12%; width: 160px; background: #433d3d; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); padding: 0; line-height: 50px;
-box-sizing: border-box; line-height: 0; opacity: 0; transition: opacity 0.5s, top 0.5s; overflow: hidden;}
-.gnb > li:hover ul.inner {display: block;}
+    padding: 20px; /* 테두리 안쪽 여백을 추가합니다. */
+}
 
-.gnb ul .inner.on {top: 90px; padding: 10px 25px; line-height: 50px; opacity: 1;}
-.gnb ul.inner a {display: block; width: 100%; height: 100px; font-size: 17px;} 
-.gnb ul.inner a span {display: inline-block; position: relative;}
-.gnb ul.inner a span::after {content: ''; width: 0; height: 2px; backface-visibility: #fb922f; position: absolute; left: 0; bottom: 8px; transition: all 0.3s;}
-.gnb ul.inner a:hover span::after, .gnb ul.inner a:focus span:after {width: 100%; padding-right: 10px;}
+/* 유저영역 - 로그인 전 */
+.login-wrap {
+    padding: 130px 26px 0 26px;
+    text-align: center;
+    background: url('/imag') center top 60px no-repeat;
+    border: 1px solid #e2e5eb;
+    border-radius: 20px;
+    box-shadow: 10px 10px 27px rgba(0, 0, 0, 0.06);
+    margin-top: 30px;
+    padding-bottom: 50px;
 
-/* fixHeader */
-header.on .innerHeader {height: 60px; transition: all 0.4s;}
-header.on .innerHeader .logo {margin-top: 14px; transition: all 0.4s;}
-header.on .innerHeader .logo a img {opacity: 0;}
-header.on .gnb > li {height: 60px; line-height: 60px; transition: all 0.4s;}
-header.on .gnb ul.inner.on {top: 60px;}
+}
+
+.login-wrap .login-info p.tit {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.login-wrap .login-info a.btn-login {
+    margin: 40px 0 0;
+    display: block;
+    width: 100%;
+    height: 52px;
+    line-height: 52px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    background: #3382e9;
+    border-radius: 8px;
+}
+
+.login-wrap .join-find-wrap a {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 22px;
+    color: #666;
+}
+
+.login-wrap .join-find-wrap a:hover {
+    text-decoration: underline;
+}
+
+.login-wrap .join-find-wrap a:focus {
+    border: 1px solid #111;
+}
+
+.login-wrap .join-find-wrap span.bar {
+    display: inline-block;
+    margin: 0 8px;
+    width: 1px;
+    height: 10px;
+    background: #ddd;
+}
+
+/* media query 스타일 추가 */
+@media screen and (max-width: 1280px) {
+    /* 1280px 이하의 화면 크기에 대한 스타일 조정 */
+    .userinfo-box {
+        width: 100%;
+        height: auto;
+        margin: 30px 0 0;
+    }
+    /* 나머지 요소들에 대한 스타일 조정 */
+    /* ... */
+    .memory-box {
+        display: none;
+    }
+}
 
 
-/* 아래는 이미 주석 */
-/* header {width: 100%; position: fixed; top:0; left: 0; z-index: 100;background: #213135; padding: 40px 0 25px; color: #fff;font-family: 'Montserrat', sans-serif; font-weight: bold; text-align: center; text-transform: uppercase;}
-header .inner {width: 90%; margin: 0 auto;}
-header .inner .logo {display: inline-block;  font-size: 25px; letter-spacing: 1px;}
-header .inner .gnbBtn { display: block; float: left;  width: 32px; height: 12px; position: relative; margin-top: 15px;}
-header .inner .gnbBtn span {background: #fff; width: 100%; height: 3px; display: block; position: absolute; left: 0;}
-header .inner .gnbBtn span.a {top:0;}
-header .inner .gnbBtn span.b {bottom:0;}
-header .inner .contact {display: block; float: right; margin-top: 10px;} */
+
+
+
+
 
 /*contents*/
-.contents {background: #fff;position: relative; z-index: 1;margin-bottom: 200px;}
-.contents .visual {width: 100vw;  height: 100vh; position: relative;}
-.contents .visual .waves {width: 100vw; height: 100vh; object-fit: cover; position: absolute; left: 0; top:0;}
-/*object-fit : imgë‚˜ videoë“±ì˜ ì½˜í…ì¸ í¬ê¸° ë§žì¶”ëŠ” ë°©ì‹ : coverëŠ” ê°€ë¡œ ì„¸ë¡œë¹„ë¥¼ ìœ ì§€í•˜ë©´ì„œ ìš”ì†Œì½˜í…ì¸ ë°•ìŠ¤ë¥¼ ê°€ë“ì±„ì›€, ê°€ë¡œì„¸ë¡œë¹„ê°€ ë§žì§€ ì•Šì„ ê²½ìš° ê°ì²´ì¼ë¶€ê°€ ìž˜ë ¤ë‚˜ê°*/
+.contents {background: #fff; position: relative; z-index: 1; margin-bottom: 200px; margin-top: 50px;     justify-content: center; 
+    align-items: center; }
+
+.visual {  
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* 추가 */
+    width: 100%;
+} 
+    .visual i{
+        top: 50%;
+        height: 44px;
+        width: 44px;
+        color: #343F4F;
+        cursor: pointer;
+        font-size: 1.15rem;
+        position: relative;
+        margin-top: 50px;
+        text-align: center;
+        line-height: 44px;
+        background: #fff;
+        border-radius: 50%;
+        /* transform: translateY(-50%); */
+        transition: transform 0.1s linear;
+        /* 추가 */
+        display: flex;           /* Flexbox를 활성화합니다 */
+        align-items: center;     /* 세로축 중앙 정렬 */
+        justify-content: center; /* 가로축 중앙 정렬 */
+      }
+      .visual i:active{
+        transform: translateY(-50%) scale(0.9);
+      }
+      .visual i:hover{
+        background: #f2f2f2;
+      }
+      .visual i:first-child{
+        left: -22px;
+        display: none;
+      }
+      .visual i:last-child{
+        right: -22px;
+      }
+      .visual .carousel{
+        font-size: 0px;
+        cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+        text-align: center; 
+        justify-content: center; /* 가로축을 기준으로 중앙 정렬 */
+        border-radius: 10px;
+        /* 추가 */
+        max-width: 1700px;
+        padding-left: 50px;
+        padding-right: 50px;
+
+        
+      }
+      
+      .carousel.dragging{
+        cursor: grab;
+        scroll-behavior: auto;
+      }
+      .carousel.dragging img{
+        pointer-events: none;
+      }
+
+      .carousel-item {
+        /* display: block; */
+        display: inline-block;
+        height: 400px;
+        user-select: none;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        margin-left: 1%;
+        margin-right: 1%;
+        width: calc(100% / 3);
+        text-align: center;
+        position: relative; /* title과 img를 포함하기 위해 */
+        overflow: hidden; /* 이미지가 영역 밖으로 나가지 않도록 */
+        border-radius: 10px; /* 둥글게 만드는 부분 */
+        /* 추가 */
+        width: 100%; /* 각 배너가 전체 영역을 차지하도록 width 설정 */
+        scroll-snap-align: start; /* 스냅 스크롤 정렬 설정 */
+
+    }
+    
+      .carousel img{
+        /* height: 340px; */
+        height: auto;
+        object-fit: cover;
+        user-select: none;
+        margin-left: 14px;
+        width: calc(100% / 3); */
+        text-align: center; 
+        
+      }
+      .carousel img:first-child{
+        margin-left: 0px;
+      }
+      @media screen and (max-width: 900px) {
+        .carousel img{
+          width: calc(100% / 2);
+        }
+      }
+      @media screen and (max-width: 550px) {
+        .carousel img{
+          width: 100%;
+        }
+      }
+
 
 .contents .visual .title {width: 100%; position: absolute; left: 0; top:50%; transform: translateY(-50%); font-family: 'Montserrat', sans-serif; font-weight: bold; text-align: center; color:#fff; font-size: 70px; text-shadow: 0 0 10px rgba(0,0,0,0.3); }
 
-/*.inner => ì „ì²´ ë ˆì´ì•„ì›ƒ ë„“ì´ ê³µí†µë¶€ë¶„*/
+/*.inner */
 .inner {width: 1400px; margin: 0 auto;}
 
-/*.text => í…ìŠ¤íŠ¸ ê³µí†µ*/
+/*.text */
 .text .title {font-family:'Montserrat', sans-serif;font-size: 15px; letter-spacing: 1px;text-transform: uppercase; font-weight: bold;}
 .text p {font-size: 35px; line-height: 1.2; margin: 40px 0;}
 .text a {display: inline-block;  padding: 5px 15px;  border:1px solid #333; border-radius: 20px; font-size: 12px;font-family:'Montserrat', sans-serif; font-weight: bold;letter-spacing: 1px;text-transform: uppercase; transition: all 0.2s;}
@@ -373,7 +551,7 @@ section.journal .list.motion li:nth-child(4){animation-duration: 0.8;}
 }
 
 /*footer*/
-footer {position: fixed; left: 0; bottom: 0; width: 100%; height: 200px; background: #213135;color:#fff; padding: 75px 0; box-sizing: border-box; z-index: -1; }
+footer {position: relative; left: 0; bottom: 0; width: 100%; height: 200px; background: #213135;color:#fff; padding: 75px 0; box-sizing: border-box; z-index: -1; }
 footer .inner {display: flex; justify-content: space-between;font-family: 'Montserrat',sans-serif;}
 footer .inner .footerLogo {font-size: 30px; margin-top: 5px; text-transform: uppercase; font-weight: bold;}
 footer .inner .contact {width: 30%; line-height: 1.4;margin-top: 10px; }
@@ -381,9 +559,6 @@ footer .inner .footerlist {display: flex; margin-top: 20px;}
 footer .inner .footerlist li {margin:0 40px; font-size: 12px;}
 footer .inner .sns {display: flex; margin-top: 20px;}
 footer .inner .sns li {margin:0 40px; font-weight: bold; font-size: 17px;}
-
-
-
 
 
 

@@ -1,0 +1,84 @@
+@charset"utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* 글꼴 */
+@font-face {
+    font-family: 'Hana-light';
+    font-weight: 300;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.eot?#iefix') format('embedded-opentype'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaLight.ttf') format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hana-medium';
+    font-weight: 500;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.eot?#iefix') format('embedded-opentype'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaMedium.ttf') format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hana-bold';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.eot?#iefix') format('embedded-opentype'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/webfontworld/hana/HanaBold.ttf') format("truetype");
+    font-display: swap;
+}
+
+* {
+    font-family: 'Hana-medium';
+    text-decoration-line: none;
+}
+
+
+/*reset*/
+*{padding: 0; margin: 0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a {color:inherit; text-decoration: none;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:hover {text-decoration: none; color: inherit;}
+
+/*font-family: 'Montserrat', sans-serif;*/
+body {font-family: 'Hana-bold', serif; font-size: 14px; color:#333;}
+.wrap {width: 100%; overflow: hidden;}
+.en {font-family: 'Hana-medium', cursive}
+
+
+/*.inner */
+.inner {width: 1400px; margin: 0 auto;}
+
+/*.text */
+.text .title {font-family:'Montserrat', sans-serif;font-size: 15px; letter-spacing: 1px;text-transform: uppercase; font-weight: bold;}
+.text p {font-size: 35px; line-height: 1.2; margin: 40px 0;}
+.text a {display: inline-block;  padding: 5px 15px;  border:1px solid #333; border-radius: 20px; font-size: 12px;font-family:'Montserrat', sans-serif; font-weight: bold;letter-spacing: 1px;text-transform: uppercase; transition: all 0.2s;}
+.text a:hover,.text a:focus {border:1px solid transparent; border-bottom: 1px solid #333; border-radius: 0; padding: 5px 18px; transition: all 0.2s; background: #f2f0eb;} 
+
+
+
+/*footer*/
+footer {position: relative; left: 0; bottom: 0; width: 100%; height: 200px; background: #213135;color:#fff; padding: 75px 0; box-sizing: border-box; z-index: -1; }
+footer .inner {display: flex; justify-content: space-between;font-family: 'Montserrat',sans-serif;}
+footer .inner .footerLogo {font-size: 30px; margin-top: 5px; text-transform: uppercase; font-weight: bold;}
+footer .inner .contact {width: 30%; line-height: 1.4;margin-top: 10px; }
+footer .inner .footerlist {display: flex; margin-top: 20px;}
+footer .inner .footerlist li {margin:0 40px; font-size: 12px;}
+footer .inner .sns {display: flex; margin-top: 20px;}
+footer .inner .sns li {margin:0 40px; font-weight: bold; font-size: 17px;}
