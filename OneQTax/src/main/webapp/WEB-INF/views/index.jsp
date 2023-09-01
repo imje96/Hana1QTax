@@ -1,237 +1,312 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
-<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+
 <head>
-    <title>Introspect by TEMPLATED</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>HanaOneQTax</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../resources/css/main.css">
+    <!--script-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../../resources/js/scrolla.jquery.min.js"></script>
+    <script src="../../resources/js/main.js"></script>
+
+
+    <!-- font awseom -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 </head>
-
 <body>
-<!-- Header -->
-<header id="header">
-    <div class="inner">
-        <a href="index.html" class="logo">
-            <img src="images/하나카드.svg" alt="Logo" style="width: 100px; height: auto;">
-            1QTAX
-        </a>
-        <nav id="nav">
-            <ul class="menu">
-                <li>
-                    <a href="index.html">연말정산</a>
-                    <ul class="submenu">
-                        <li><a href="result_detail.html"
-                               style="padding-left: 0;">공제현황보기</a></li>
-                        <li><a href="#"
-                               style="padding-left: 0;">달성률</a></li>
-                        <li><a href="#"
-                               style="padding-left: 0;">리포트</a></li>
-                        <li><a href="#"
-                               style="padding-left: 0;">우리집돈관리</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="generic.html">카드관리</a>
-                    <ul class="submenu">
-                        <li><a href="#">마이데이터</a></li>
-                        <li><a href="#">내혜택조회</a></li>
-                        <li><a href="#">사용내역조회</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="elements.html">카드추천</a>
-                    <ul class="submenu">
-                        <li><a href="#">카드 한눈에 보기</a></li>
-                        <li><a href="#">추천카드</a></li>
-                        <li><a href="#">카드안내</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="community.html">커뮤니티</a>
-                    <ul class="submenu">
-                        <li><a href="#">세테크Tip</a></li>
-                        <li><a href="#">절세방</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="community.html">로그인</a>
-                </li>
-            </ul>
+<div class="wrap">
+    <!--header-->
+    <header>
+        <div id="headerLogo">
+            <!-- Dynamic Welcome Message and Log Out button would be here -->
+
+            <h4>하나카드 홈페이지</h4>
+            <div id="welcomeMessage">
+                <span>사용자이름 님 환영합니다</span>
+                |
+                <button id="hdbnt" onclick="window.location.href='/logout'">로그아웃</button>
+
+            </div>
+            <div id="loginout">
+                <button id="hdtn" onclick="window.location.href='/join'">로그인</button>
+                <button id="hdBtn" onclick="window.location.href='/join'">회원가입</button>
+                <!-- <a href="/login">로그인</a>
+            |
+            <a href="/join">회원가입</a> -->
+            </div>
+            <!-- <div id="loginout">
+            <button id="loginBtn" onclick="window.location.href='/login'">로그인</button>
+            <button id="joinBtn" onclick="window.location.href='/join'">회원가입</button>
+        </div> -->
+
+        </div>
+
+        <nav>
+            <div class="navbar">
+                <div id="logo">
+                    <img class="imgLogo" src="../../../resources/img/logo.png" height="50">
+                </div>
+                <div class="dropdown">
+
+                    <button class="dropbtn">연말정산
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">공제현황보기</a>
+                        <a href="#">리포트</a>
+                        <a href="#">우리집돈관리</a>
+                    </div>
+                </div>
+
+
+                <div class="dropdown">
+                    <button class="dropbtn">마이데이터
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">카드관리</a>
+                        <a href="#">사용내역</a>
+                        <a href="#">내혜택확인</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">카드추천
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">카드한눈에보기</a>
+                        <a href="#">추천카드</a>
+                        <a href="#">카드안내</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">커뮤니티
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">세테크tip</a>
+                        <a href="#">절세게시판</a>
+                    </div>
+                </div>
+
+            </div>
         </nav>
+    </header>
 
-    </div>
-</header>
-<!-- <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a> -->
 
-<!-- Banner -->
-<section id="banner">
-    <div class="inner">
-        <h1>소비<span>로 누리는 즐거움,</span><br />
-            환급<span>으로 누리는 행복</span></h1>
-        <h5>카드소득공제 혜택관리 서비스</h5>
+    <!--contents-->
+    <div class="contents">
+        <div style="overflow: hidden;">
 
-        <!-- <h4>소비습관을 기반으로 최적의 카드를 추천받고,<br />
-                    더 큰 환급을 경험하세요</span></h4> -->
-        소비습관을 기반으로 최적의 카드를 추천받고<br />
-        더 큰 환급을 경험하세요!<br />
-        <h5> </h5>
-        <h5> </h5>
-        <ul class="actions">
-            <li><a href="#" class="button alt">시작하기</a></li>
-        </ul>
-    </div>
-</section>
+            <section class="visual">
 
-<!-- One -->
-<section id="one">
-    <div class="inner">
-        <header>
-            <h2>카드추천 서비스</h2>
-        </header>
+                <div class="inner">
+                    <!-- <h2 class="title">Crew a la mode</h2> -->
+                    <div class="slideshow-container">
+                        <div class="Slidesbackground">
+                            <div class="mySlides fade">
+                                <img src="../../../resources/img/banner1-3.png" class="slideshow-image">
+                            </div>
+                            <div class="mySlides fade">
+                                <img src="../../../resources/img/banner2-1.png" class="slideshow-image">
+                            </div>
+                            <div class="mySlides fade">
+                                <img src="../../../resources/img/banner3-3.png" class="slideshow-image">
+                            </div>
+                        </div>
+                    </div>
 
-        <h5>추천카드</h5>
-        <div class="image-container" style="display: flex;">
-            <div style="flex: 1;">
-                <a href="index.html" class="card1">
-                    <img src="images/travel.gif" style="width: 180px; height: auto; margin-right: 30px">
-                    <h6>국내외 전 가맹점 1% 적립</h6>
-                </a>
-            </div>
-            <div style="flex: 1;">
+                    <div class="userinfo-box">
 
-                <a href="index.html" class="card1">
-                    <img src="images/mywaycard.gif" style="width: 180px; height: auto; margin-right: 30px">
-                    <h6>대중교통,커피,편의점<br />건당 300원 할인 </h6>
-                </a>
+                        <div class="login-wrap">
+                            <div class="login-info">
+                                <p class="tit">내게 필요한 카드/절세/혜택<br>정보를 확인하세요.</p>
+                                <img class="iconimg" src="../../../resources/img/icon1.png " style="height: 150px" >
 
-            </div>
-            <div style="flex: 1;  margin-right: 30px;">
+                                <a href="/nlogin?regType=ctab" class="btn-login">로그인</a>
+                            </div>
+                            <div class="join-find-wrap">
+                                <div class="left">
+                                    <a href="/nlogin/findUsrId">아이디찾기</a>
+                                    <span class="bar"></span>
+                                    <a href="/nlogin/findUsrPwd">비밀번호찾기</a>
+                                </div>
+                                <div class="right">
+                                    <a href="/nlogin/usr?Mcode=10004">회원가입</a>
+                                </div>
+                            </div>
+                        </div>
 
-                <a href="index.html" class="card1">
-                    <img src="images/anycard.gif" style="width: 180px; height: auto; margin-right: 30px">
-                    <h6>디지털 구독 50% 청구할인</h6>
-                </a>
+                    </div>
+<%--                        보류--%>
+<%--                    <div class="noticeicon">--%>
+<%--                        <p class="tit">내게 필요한 카드/절세/혜택<br>정보를 확인하세요.</p>--%>
+<%--                        <div class="icons">--%>
+<%--                            <div class="icon1">--%>
+<%--                                <img class="iconimg" src="../../../resources/img/icon1.png " >--%>
+<%--                            </div>--%>
+<%--                            <div class="icon2">--%>
+<%--                                <img class="iconimg" src="../../../resources/img/icon2.png " >--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-            </div>
-            <div style="flex: 2; margin-right: 20px;">
-                <div class="mydata">
-                    <a href="index.html" class="card1">
-                        <h3>마이데이터 연동하기</h3>
-                        <p style="margin-bottom: 0;">마이데이터 서비스를 통해 카드와 홈택스를 연동하고 <br />소득공제에 유리한 카드를 추천받아보세요.</p>
-                    </a>
-                    <ul class="actions">
-                        <li><a href="index.html" class="button alt">연동하기</a></li>
+
+<%--                    </div>--%>
+                </div>
+            </section>
+
+
+<%--            <section class="about">--%>
+<%--                <div class="inner">--%>
+<%--                    <p class="tit">이런 서비스 어떠세요</p>--%>
+<%--                </div>--%>
+<%--            </section>--%>
+
+
+<%--            <section class="approach">--%>
+<%--                <div class="inner">--%>
+<%--                    <ul class="list">--%>
+<%--                        <li><a href="#"><img src="../../../resources/img/approach_1.jpg" alt="">--%>
+<%--                            <span><b>CREW</b>made</span>--%>
+<%--                        </a></li>--%>
+<%--                        <li><a href="#"><img src="../../../resources/img/approach_1.jpg" alt="">--%>
+<%--                            <span><b>CREW</b>Ready</span>--%>
+<%--                        </a></li>--%>
+<%--                        <li><a href="#"><img src="../../../resources/img/approach_3.jpg" alt="">--%>
+<%--                            <span><b>CREW</b>made</span>--%>
+<%--                        </a></li>--%>
+<%--                        <li><a href="#"><img src="../../../resources/img/approach_4.jpg" alt="">--%>
+<%--                            <span><b>CREW</b>made</span>--%>
+<%--                        </a></li>--%>
+<%--                    </ul>--%>
+<%--                    <div class="fix">--%>
+<%--                        <div class="text">--%>
+<%--                            <h2 class="title">about us</h2>--%>
+<%--                            <p>The apparel & lifestyle agency.<br>--%>
+<%--                                A decade of unrivalled experience.<br>--%>
+<%--                                Trusted by the worlds most luxurious<br>--%>
+<%--                                yachts.</p>--%>
+<%--                            <a href="#">explore</a>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </section>--%>
+            <section class="sectors">
+                <div class="inner">
+                    <div class="text animate" data-animate="motion">
+<%--                        <p class="tit">이런 서비스 어떠세요</p>--%>
+                        <h1 class="title">이런 서비스 어떠세요</h1>
+<%--                        <p>Luxury crew apparel curated across oceans,<br>--%>
+<%--                            in private residences and at altitude.</p>--%>
+                        <br><br>
+<%--                            버튼--%>
+<%--                          <a href="#">explore</a>--%>
+                    </div>
+                    <ul class="list animate" data-animate="motion">
+                        <li><a href="#">
+                            <h3>연말정산1</h3>
+                            <img class="iconimg" src="../../../resources/img/tax.png" alt="">
+
+                        </a></li>
+                        <li><a href="#">
+                            <h3>마이데이터</h3>
+                            <img class="iconimg" src="../../../resources/img/tax3.png" alt="">
+
+                        </a></li>
+                        <li><a href="#">
+                            <h3>카드추천</h3>
+                            <img class="iconimg" src="../../../resources/img/tax3.png" alt="">
+
+                        </a></li>
+
                     </ul>
                 </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- Two -->
-<section id="two">
-    <div class="inner">
-        <article>
-            <div class="content">
-                <header>
-                    <h3>Pellentesque adipis</h3>
-                </header>
-                <div class="image fit">
-                    <img src="images/pic01.jpg" alt="" />
+            </section>
+            <section class="service">
+                <div class="inner">
+                    <div class="img animate" data-animate="motion"><img src="../../../resources/img/service.jpg" alt="">
+                    </div>
+                    <div class="text">
+                        <h2 class="title animate" data-animate="motion">service</h2>
+                        <p>Crew à la Mode specialise in all<br>
+                            your needs, from to storage<br>
+                            solutions to graphic design,<br>
+                            brand sourcing, customisation<br>
+                            and much more.</p>
+                        <a href="#">explore</a>
+                    </div>
                 </div>
-                <p>Cumsan mollis eros. Pellentesque a diam sit amet mi magna ullamcorper vehicula. Integer adipiscin
-                    sem. Nullam quis massa sit amet lorem ipsum feugiat tempus.</p>
-            </div>
-        </article>
-        <article class="alt">
-            <div class="content">
-                <header>
-                    <h3>Morbi interdum mol</h3>
-                </header>
-                <div class="image fit">
-                    <img src="images/pic02.jpg" alt="" />
+            </section>
+            <section class="journal">
+                <div class="inner">
+                    <h2>journal</h2>
+                    <ul class="list animate" data-animate="motion">
+                        <li><a href="#">
+                            <p class="img"><img src="../../../resources/img/journal_1.jpg" alt=""></p>
+                            <h3>cocktails</h3>
+                            <p>New Year’s Eve is all about celebrating in style.With that in mind, we asked
+                                Daniel Hooper, Co-Founder of YesMore drinks-marketing agency (and former
+                                superyacht crew member) to share with us his recommendations.</p>
+                        </a></li>
+                        <li><a href="#">
+                            <p class="img"><img src="../../../resources/img/journal_2.jpg" alt=""></p>
+                            <h3>eco coffee</h3>
+                            <p>Some small brands that are worth the switch to enjoy a cup of coffee that little
+                                bit more.
+                                For many of us, the need for a quick fix coffee in our busy day-to-day lives
+                                sees the use of coffee capsules at home, onboard or in the workplace as a
+                                much-used product. Convenient as they are, only a small percentage can actually
+                                be recycled, meaning a vast majority will end up in our oceans and landfills for
+                                up to 500 yrs.</p>
+                        </a></li>
+                        <li><a href="#">
+                            <p class="img"><img src="../../../resources/img/journal_3.jpg" alt=""></p>
+                            <h3>arboremtum</h3>
+                            <p>London is seeing a new genre of private independent member’s clubs emerging,
+                                offering luxurious leisure and dining facilities, alongside unique working
+                                environment and, most importantly an emphasis on environmental and social
+                                change.</p>
+                        </a></li>
+                        <li><a href="#">
+                            <p class="img"><img src="../../../resources/img/journal_1.jpg" alt=""></p>
+                            <h3>protected species</h3>
+                            <p>Iconic British design with contemporary rainwear technology
+                                At Crew à la Mode, we are passionate about sustainability, timeless style and
+                                performance-led design and we are always looking for brands who share our ethos
+                                and goals, in order to either work with them or recommend them to our clients.
+                            </p>
+                        </a></li>
+                    </ul>
                 </div>
-                <p>Cumsan mollis eros. Pellentesque a diam sit amet mi magna ullamcorper vehicula. Integer adipiscin
-                    sem. Nullam quis massa sit amet lorem ipsum feugiat tempus.</p>
-            </div>
-        </article>
-    </div>
-</section>
-
-<!-- Three -->
-<section id="three">
-    <div class="inner">
-        <article>
-            <div class="content">
-                <span class="icon fa-laptop"></span>
-                <header>
-                    <h3>Tempus Feugiat</h3>
-                </header>
-                <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna lorem ullamcorper laoreet,
-                    lectus arcu.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button alt">Learn More</a></li>
-                </ul>
-            </div>
-        </article>
-        <article>
-            <div class="content">
-                <span class="icon fa-diamond"></span>
-                <header>
-                    <h3>Aliquam Nulla</h3>
-                </header>
-                <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh
-                    sed.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button alt">Learn More</a></li>
-                </ul>
-            </div>
-        </article>
-        <article>
-            <div class="content">
-                <span class="icon fa-laptop"></span>
-                <header>
-                    <h3>Sed Magna</h3>
-                </header>
-                <p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper
-                    vehicula.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button alt">Learn More</a></li>
-                </ul>
-            </div>
-        </article>
-    </div>
-</section>
-
-<!-- Footer -->
-
-<footer class="BankFooter">
-    <div class="BankFooterContent">
-        <ul class="FooterLinks">
-            <li><a href="#">이용약관</a></li>
-            <li><a href="#">개인정보처리방침</a></li>
-            <li><a href="#">보안정책</a></li>
-            <li><a href="#">고객센터</a></li>
-        </ul>
-        <div class="ContactItem">
-            <div class="ContactTitle">고객센터</div>
-            <div class="ContactNumber Strong15881111">1588-1111</div>
-            <div class="ContactSeparator">/</div>
-            <div class="ContactNumber Strong15991111">1599-1111</div>
+            </section>
         </div>
-
-        <p class="FooterDescription">하나카드입니다.</p>
     </div>
 
-</footer>
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
 
+    <!--footer-->
+    <footer>
+        <div class="inner">
+            <h1 class="footerLogo">하나카드</h1>
+            <ul class="contact">
+                <li>고객센터(유료) 국내 1800-1111 /</li>
+                <li>해외 82-1800-1111</li>
+            </ul>
+            <ul class="footerlist">
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">위치서비스기반 이용약관</a></li>
+                <li><a href="#">전자민원접수</a></li>
+            </ul>
+            <ul class="sns">
+                <li><a href="#">하나금융그룹</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
 </body>
 
+
 </html>
+

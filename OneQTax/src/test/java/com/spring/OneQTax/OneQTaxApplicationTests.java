@@ -1,10 +1,10 @@
-package com.spring.OneQTax;
+package com.spring.oneqtax;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OneQTaxApplicationTests {
+class OneqtaxApplicationTests {
 
 	@Test
 	void contextLoads() {

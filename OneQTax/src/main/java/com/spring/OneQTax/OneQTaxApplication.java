@@ -1,13 +1,13 @@
-package com.spring.OneQTax;
+package com.spring.oneqtax;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OneQTaxApplication {
+public class OneqtaxApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OneQTaxApplication.class, args);
+		SpringApplication.run(OneqtaxApplication.class, args);
 	}
 
 }
