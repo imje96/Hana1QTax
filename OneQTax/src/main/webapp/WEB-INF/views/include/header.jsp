@@ -15,20 +15,25 @@
         <div id="headerLogo">
             <!-- Dynamic Welcome Message and Log Out button would be here -->
 
-            <!-- <h4>하나카드 홈페이지</h4> -->
-            <div id="welcomeMessage">
-                <span>사용자이름 님 환영합니다</span>
-                |
-                <button id="hdbnt" onclick="window.location.href='/logout'">로그아웃</button>
-
-            </div>
-            <div id="loginout">
-                <button id="hdtn" onclick="window.location.href='/join'">로그인</button>
-                <button id="hdBtn" onclick="window.location.href='/join'">회원가입</button>
-                <!-- <a href="/login">로그인</a>
-            |
-            <a href="/join">회원가입</a> -->
-            </div>
+            <h4>하나카드 홈페이지</h4>
+            <c:if test="${empty currentUser}">
+                <div id="loginout">
+                    <a href="${pageContext.request.contextPath}/login">
+                        <button id="hdtn" type="button">로그인</button>
+                    </a>
+                    <a href="${pageContext.request.contextPath}/join">
+                        <button id="hdBtn" type="button">회원가입</button>
+                    </a>
+                </div>
+            </c:if>
+            <c:if test="${not empty currentUser }">
+                <div id="welcomeMessage">
+                    <span>사용자이름 님 환영합니다</span>
+                    |
+                    <a href="${pageContext.request.contentPath}/logout">
+                        <button id="hdBtn" type="button">로그아웃</button>
+                </div>
+            </c:if>
             <!-- <div id="loginout">
             <button id="loginBtn" onclick="window.location.href='/login'">로그인</button>
             <button id="joinBtn" onclick="window.location.href='/join'">회원가입</button>

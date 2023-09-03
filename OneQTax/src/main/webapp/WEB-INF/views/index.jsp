@@ -24,19 +24,27 @@
             <!-- Dynamic Welcome Message and Log Out button would be here -->
 
             <h4>하나카드 홈페이지</h4>
+
+                <c:if test="${empty currentUser}">
+                    <div id="loginout">
+                        <a href="${pageContext.request.contextPath}/login">
+                            <button id="hdtn" type="button">로그인</button>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/join">
+                            <button id="hdBtn" type="button">회원가입</button>
+                        </a>
+                    </div>
+                </c:if>
+                <c:if test="${not empty currentUser }">
             <div id="welcomeMessage">
                 <span>사용자이름 님 환영합니다</span>
                 |
-                <button id="hdbnt" onclick="window.location.href='/logout'">로그아웃</button>
+                <a href="${pageContext.request.contentPath}/logout">
+                    <button id="hdBtn" type="button">로그아웃</button>
+            </div>
+                </c:if>
 
-            </div>
-            <div id="loginout">
-                <button id="hdtn" onclick="window.location.href='/join'">로그인</button>
-                <button id="hdBtn" onclick="window.location.href='/join'">회원가입</button>
-                <!-- <a href="/login">로그인</a>
-            |
-            <a href="/join">회원가입</a> -->
-            </div>
+
             <!-- <div id="loginout">
             <button id="loginBtn" onclick="window.location.href='/login'">로그인</button>
             <button id="joinBtn" onclick="window.location.href='/join'">회원가입</button>
@@ -49,13 +57,14 @@
                 <div id="logo">
                     <img class="imgLogo" src="../../../resources/img/logo.png" height="50">
                 </div>
+                <div class="drops">
                 <div class="dropdown">
-
                     <button class="dropbtn">연말정산
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
                         <a href="#">공제현황보기</a>
+
                         <a href="#">리포트</a>
                         <a href="#">우리집돈관리</a>
                     </div>
@@ -93,6 +102,7 @@
                 </div>
 
             </div>
+                </div>
         </nav>
     </header>
 
@@ -198,7 +208,7 @@
                 <div class="inner">
                     <div class="text animate" data-animate="motion">
 <%--                        <p class="tit">이런 서비스 어떠세요</p>--%>
-                        <h1 class="title">이런 서비스 어떠세요</h1>
+                        <h1 class="title">이런 서비스는 어떠세요</h1>
 <%--                        <p>Luxury crew apparel curated across oceans,<br>--%>
 <%--                            in private residences and at altitude.</p>--%>
                         <br><br>
@@ -207,18 +217,28 @@
                     </div>
                     <ul class="list animate" data-animate="motion">
                         <li><a href="#">
-                            <h3>연말정산1</h3>
+                            <div class="add">
+                                <p>증요한 순간, 나를 증명해야 할 때</p><br>
+                                <h3>연말정산</h3>
+                            </div>
                             <img class="iconimg" src="../../../resources/img/tax.png" alt="">
 
                         </a></li>
                         <li><a href="#">
-                            <h3>마이데이터</h3>
-                            <img class="iconimg" src="../../../resources/img/tax3.png" alt="">
+                            <div class="add">
+                                <p>내 전체 사용내역은 얼마일까</p> <br>
+                                <h3>마이데이터</h3>
+                            </div>
+                            <img class="iconimg" src="../../../resources/img/data4.png" alt="">
 
                         </a></li>
                         <li><a href="#">
+                            <div class="add">
+                                <p>연말정산에 유리한 카드 추천</p><br>
                             <h3>카드추천</h3>
-                            <img class="iconimg" src="../../../resources/img/tax3.png" alt="">
+
+                            </div>
+                            <img class="iconimg" src="../../../resources/img/card8.png" alt="">
 
                         </a></li>
 
@@ -263,7 +283,7 @@
                                 up to 500 yrs.</p>
                         </a></li>
                         <li><a href="#">
-                            <p class="img"><img src="../../../resources/img/journal_3.jpg" alt=""></p>
+                            <p class="img"><img src="../../../resources/img/hanatv1.jpg" alt=""></p>
                             <h3>arboremtum</h3>
                             <p>London is seeing a new genre of private independent member’s clubs emerging,
                                 offering luxurious leisure and dining facilities, alongside unique working
@@ -271,7 +291,7 @@
                                 change.</p>
                         </a></li>
                         <li><a href="#">
-                            <p class="img"><img src="../../../resources/img/journal_1.jpg" alt=""></p>
+                            <p class="img"><img src="../../../resources/img/hanatv2.jpg" alt=""></p>
                             <h3>protected species</h3>
                             <p>Iconic British design with contemporary rainwear technology
                                 At Crew à la Mode, we are passionate about sustainability, timeless style and

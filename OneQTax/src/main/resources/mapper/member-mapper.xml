@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="oneqtax.member.model.dao.MemberDAO">
 
-
-<mapper namespace="com.spring.SpringbootRecord.customer.model.DAO.CustomerDAO">
-    <!-- 전체회원조회 -->
-    <select id="selectAllCustomerList" resultType="com.spring.SpringbootRecord.customer.model.DTO.CustomerDTO">
+    <select id="loginMember" parameterType="com.spring.oneqtax.member.model.vo.LoginVO" resultType="com.spring.oneqtax.member.model.vo.MemberVO">
         SELECT *
-        FROM customer_hana
+        FROM member
+        WHERE email = #{email}
+          AND password = #{password}
+    </select>
+
+    <!-- 회원 전체 조회 -->
+    <select id="getAllMember" parameterType="com.spring.oneqtax.member.model.vo.MemberVO"
+            resultType="com.spring.oneqtax.member.model.vo.MemberVO">
+        SELECT *
+        FROM member
     </select>
 
     <!-- 로그인 -->
-    <select id="login" parameterType="HashMap" resultType="com.spring.SpringbootRecord.customer.model.DTO.CustomerDTO">
-        SELECT
-            *
-        FROM customer_hana
-        where customerId = #{id}
-          and password = #{password}
-    </select>
+<!--    <select id="loginMember" parameterType="com.spring.oneqtax.member.model.vo.LoginVO" resultType="com.spring.oneqtax.member.model.vo.MemberVO">-->
+<!--        SELECT-->
+<!--            *-->
+<!--        FROM member-->
+<!--        where EMAIL = #{email}-->
+<!--          and PASSWORD = #{password}-->
+<!--    </select>-->
 
-    <!-- 고객 정보 불러오기 (id) -->
-    <select id="selectIdOfCustomer" parameterType="String" resultType="com.spring.SpringbootRecord.customer.model.DTO.CustomerDTO">
+
+
+    <select id="selectNameOfMember" parameterType="String" resultType="com.spring.oneqtax.member.model.vo.MemberVO">
         SELECT *
-        FROM customer_hana
-        where customerId = #{id}
+        FROM member
+        where EMAIL = #{email}
     </select>
 
-    <!-- 고객 정보 수정 -->
-    <update id="updateCustomer" parameterType="com.spring.SpringbootRecord.customer.model.DTO.CustomerDTO">
-        UPDATE customer_hana
-        SET password = #{password}, name = #{name}, phoneNumber = #{phoneNumber}, email = #{email}, address = #{address}
-        WHERE customerId = #{customerId}
-    </update>
+
+<!--    <insert id="insertMember" parameterType="com.spring.oneqtax.member.model.dto.Member">-->
+<!--        INSERT INTO MEMBER (MEMBER_IDEMAIL, NAME, PASSWORD, PHONE,gender,ADDRESS,IDENTITYNUM)-->
+<!--        VALUES (#{email}, #{name},#{password}, #{phone},#{gender},#{address},#{identityNum})-->
+<!--    </insert>-->
+
+<!--    <update id="updateMember" parameterType="com.spring.oneqtax.member.model.dto.Member">-->
+<!--        UPDATE member-->
+<!--        SET password = #{password}, name = #{name}, phone = #{phone}-->
+<!--        WHERE EMAIL = #{email}-->
+<!--    </update>-->
+
+<!--    <delete id="deleteMember" parameterType="String">-->
+<!--        DELETE FROM member WHERE EMAIL = #{email}-->
+<!--    </delete>-->
+
+
+
 
 </mapper>

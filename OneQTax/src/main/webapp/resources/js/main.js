@@ -82,7 +82,7 @@ $(document).ready(function() {
         var container = document.querySelector('.Slidesbackground');
 
         if (container) {  // 만약 container가 존재한다면
-            container.style.transform = `translateX(-${slideIndex * 1200}px)`;
+            container.style.transform = `translateX(-${slideIndex * 1000}px)`;
 
             slideIndex++;
 
@@ -90,7 +90,7 @@ $(document).ready(function() {
                 slideIndex = 0;
             }
 
-            setTimeout(showSlides, 4000);
+            setTimeout(showSlides, 40000);
         }
     }
 });

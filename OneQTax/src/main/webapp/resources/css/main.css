@@ -188,17 +188,11 @@ header {
 
 
 #headerLogo {
-    align-items: center;
-    justify-content: center;
-    margin-left: 100px;
-    margin-right: 150px;
-}
-
-#headerLogo {
-    padding: 5px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    padding: 8px 50px;
+    justify-content: space-around;
+
 }
 
 /* .clearfix::after {
@@ -315,13 +309,17 @@ header {
 .navbar {
     overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: #edf0f0;
     height: 70px;
+    padding: 0 50px;
 
 }
 
+.navbar .drops{
+    display: flex;
+}
 /* Links inside the navbar */
 .navbar a {
     font-size: 16px;
@@ -395,7 +393,7 @@ section.visual {
     width: 100%; */
     /*padding-left: 200px;*/
     /*padding-right: 200px;*/
-    padding-top: 20px;
+    padding: 40px 0;
 }
 
 .visual .inner {
@@ -410,11 +408,12 @@ section.visual {
 
 .contents .visual .title {
     width: 100%;
+    height: 80%;
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'hana-medium' , serif;
     font-weight: bold;
     text-align: center;
     color: #fff;
@@ -426,24 +425,23 @@ section.visual {
 .Slidesbackground {
     margin: 0;
     padding: 0;
-    width: 2400px;
+    width: 3000px;
     display: flex;
     position: relative;
     /* 슬라이드 애니메이션을 위한 기준점 */
     transition: transform 1.5s;
     /* 부드러운 슬라이드 효과 */
-
 }
 
 .slideshow-image {
-    width: 1200px;
+    width: 100%;
     /* 여기의 너비를 slideshow-container의 너비와 동일하게 설정 */
     height: auto;
     overflow: hidden;
 }
 
 .mySlides {
-    width: 1200px;
+    width: 1000px;
     height: 350px;
     display: flex;
     justify-content: center;
@@ -456,7 +454,7 @@ section.visual {
 
 .slideshow-container {
 
-    width: 1200px;
+    width: 1000px;
     /* 한 이미지의 너비에 맞춰서 설정. */
     overflow: hidden;
     /* 넘치는 부분 감춤 */
@@ -466,7 +464,6 @@ section.visual {
     /* userinfo-box와의 간격 */
     border-radius: 5%;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.09);
-    /*margin-top: 30px*/
 }
 
 @keyframes fade {
@@ -649,13 +646,12 @@ section.visual {
 /*.text */
 .text .title {
     font-family: 'hana-bold', serif;
-    font-size: 20px;
+    font-size: 22px;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: bold;
-    padding-left: 30px;
-    padding-top: 20px;
-    margin-bottom: 50px;
+    padding: 20px 10px;
+    margin-bottom: 10px;
 }
 
 .text p {
@@ -714,6 +710,7 @@ section.approach .inner .list {
 
 section.approach .inner .list li {
     margin-bottom: 30px;
+
 }
 
 section.approach .inner .list li:last-child {
@@ -725,6 +722,7 @@ section.approach .inner .list li a {
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
 }
@@ -788,7 +786,7 @@ section.approach .inner .list li a.on span {
 
 /*section.sectors*/
 section.sectors {
-    background: #f2f0eb;
+    background: #ffffff;
     padding: 10px 0 50px;
     position: relative;
     margin-bottom: 100px;
@@ -799,7 +797,7 @@ section.sectors {
 
 section.sectors .list {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     position: absolute;
     width: 1400px;
     left: 50%;
@@ -815,32 +813,43 @@ section.sectors .list li {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #d5d2cb;
+    background: #f6f3f3;
 }
 
 section.sectors .list li a {
-    display: block;
+    display: flex;
     position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
 section.sectors .list li a img {
     max-width: 30%;
     height: auto;
-    img-align: right;
+    /*img-align: right;*/
     transition: all 0.4s;
+    /*display: block;*/
+    margin-left: 20px;
+}
+
+section.sectors .list li a.add{
+    display: flex;
+    flex-direction: column;
+
 }
 
 section.sectors .list li a h3 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    color: #fff;
-    transform: translate(-50%, -50%);
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 50%;*/
+    color: black;
+    /*transform: translate(-50%, -50%);*/
     font-size: 25px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'hana-bold', serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.4s;
+    /*text-align: center;*/
 }
 
 /* section.setors  모션 */
@@ -913,7 +922,7 @@ section.service .text {
 
 /* section.servcie  모션 */
 section.service .img.motion {
-    animation-duration: service;
+    animation-name: service;
     animation-duration: 1s;
 }
 
@@ -1002,14 +1011,17 @@ section.journal .list.motion li {
 }
 
 section.journal .list.motion li:nth-child(2) {
+    animation-name: jornal;
     animation-duration: 0.6;
 }
 
 section.journal .list.motion li:nth-child(3) {
+    animation-name: jornal;
     animation-duration: 0.7;
 }
 
 section.journal .list.motion li:nth-child(4) {
+    animation-name: jornal;
     animation-duration: 0.8;
 }
 

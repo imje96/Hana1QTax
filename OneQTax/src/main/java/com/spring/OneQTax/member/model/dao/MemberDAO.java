@@ -1,12 +1,10 @@
-package com.spring.oneqtax.member.service;
+package com.spring.oneqtax.member.model.dao;
 
 import com.spring.oneqtax.member.model.vo.LoginVO;
 import com.spring.oneqtax.member.model.vo.MemberVO;
 
-public interface MemberService {
-
+public interface MemberDAO {
     public MemberVO login(LoginVO loginVO);
 
-    public void join(MemberVO memberVO);
-
+    public MemberVO join(MemberVO memberVO);
 }
