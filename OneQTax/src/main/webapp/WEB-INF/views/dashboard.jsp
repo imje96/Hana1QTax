@@ -22,7 +22,7 @@
 <div class="wrap">
 
     <header>
-        <%@ include file="include/header.jsp" %>
+        <%@ include file="common/header.jsp" %>
     </header>
 
     <!-- <div class="section1">
@@ -738,7 +738,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <footer>
-        <%@ include file="include/footer.jsp" %>
+        <%@ include file="common/footer.jsp" %>
 
     </footer>
     </body>

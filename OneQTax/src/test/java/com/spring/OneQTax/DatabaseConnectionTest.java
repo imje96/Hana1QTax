@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 
 
-//@SpringBootTest
+@SpringBootTest
 public class DatabaseConnectionTest {
 
     @Autowired

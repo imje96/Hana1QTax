@@ -177,6 +177,9 @@ header {
     background: #fff;
 }
 
+p {
+    font-size: 15px;
+}
 /*
 .innerheader {padding: 0 60px; height: 90px; transition: all 0.3s;}
 .innerheader {padding: 0 60px; height: 90px; transition: all 0.3s; display: flex; align-items: center; justify-content: space-between;}
@@ -190,8 +193,9 @@ header {
 #headerLogo {
     display: flex;
     align-items: center;
-    padding: 8px 50px;
+    padding: 10px 250px;
     justify-content: space-around;
+    font-size: 18px;
 
 }
 
@@ -222,7 +226,7 @@ header {
     float: left;
 }
 
-*/
+
 
 /* 기본 스타일 */
 #logo {
@@ -313,7 +317,7 @@ header {
     align-items: center;
     background-color: #edf0f0;
     height: 70px;
-    padding: 0 50px;
+    padding: 10px 50px;
 
 }
 
@@ -322,7 +326,7 @@ header {
 }
 /* Links inside the navbar */
 .navbar a {
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
     padding: 12px 0px;
     text-decoration: none;
@@ -336,7 +340,7 @@ header {
 /* Dropdown button */
 .dropdown .dropbtn {
     color: rgb(16, 15, 15);
-    font-size: 16px;
+    font-size: 22px;
     border: none;
     outline: none;
     padding: 12px 40px;
@@ -402,7 +406,7 @@ section.visual {
     justify-content: space-between;
     align-items: center;
     width: 1400px;
-    padding-top: 80px;
+    padding-top: 120px;
     margin: 20px 0;
 }
 
@@ -575,7 +579,7 @@ section.visual {
 
 .login-wrap .login-info p.tit {
     margin-top: 30px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: #333;
 }
@@ -646,7 +650,7 @@ section.visual {
 /*.text */
 .text .title {
     font-family: 'hana-bold', serif;
-    font-size: 22px;
+    font-size: 25px;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: bold;
@@ -777,7 +781,7 @@ section.approach .inner .list li a.on span {
 section.approach .inner .list li a:hover span,
 section.approach .inner .list li a.on span {
     font-family: 'Monserrat', sans-serif;
-    font-size: normal;
+    font-size: 20px;
 }
 
 /* section.approach .inner .list li a.on:after , section.approach .inner .list li a:hover:after {content: ''; width: 100%;
@@ -1012,17 +1016,17 @@ section.journal .list.motion li {
 
 section.journal .list.motion li:nth-child(2) {
     animation-name: jornal;
-    animation-duration: 0.6;
+    animation-duration: 0.6s;
 }
 
 section.journal .list.motion li:nth-child(3) {
     animation-name: jornal;
-    animation-duration: 0.7;
+    animation-duration: 0.7s;
 }
 
 section.journal .list.motion li:nth-child(4) {
     animation-name: jornal;
-    animation-duration: 0.8;
+    animation-duration: 0.8s;
 }
 
 @keyframes journal {

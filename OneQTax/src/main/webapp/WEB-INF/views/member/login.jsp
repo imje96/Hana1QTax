@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <style>
-    .login{
+    .login {
         margin-top: 120px;
         display: inline-block;
         color: black; /* 글자색 변경 */
@@ -70,58 +70,96 @@
     }
 
 
-
 </style>
 
 <body>
-<%@ include file="../include/header.jsp" %>
-<div class="container">
-    <div class="formsize">
-        <img src="../../resources/img/payment.gif" height="250" class="imgLoginForm">
-        <div id="rowinput">
-            <label for="email">이메일</label>
-            <input type="text" id="email" name="email">
-        </div>
-        <div id="rowinput">
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password">
-        </div>
-        <button id="loginBtn" onclick="loginFormFunc()">로그인</button>
-        <%--    <input type="button" class="button" value="회원가입" onclick="joinFunc(); return false;">--%>
-        <a href="/selectAll">회원목록</a>
+
+<h2>Login</h2>
+<form action="/login" method="post">
+    <div>
+        <label>Email:</label>
+        <input type="text" name="email" required>
     </div>
-</div>
-<%--<%@ include file="include/footer.jsp" %>--%>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password" required>
+    </div>
+    <div>
+        <input type="submit" value="Login">
+    </div>
+</form>
+
+<c:if test="${not empty msg}">
+    <p style="color: red;">${msg}</p>
+</c:if>
+
 </body>
-<script>
-    function loginFormFunc() {
-        var email = $("#email").val();
-        var password = $("#password").val();
+</html>
 
-        console.log("email:", email); // 아이디 확인
-        console.log("Password:", password); // 비밀번호 확인
 
-        $.ajax({
-            type: "POST",
-            url: "${pageContext.request.contextPath}/login",
-            data: JSON.stringify({
-                email: email,
-                password: password
-            }),
-            contentType: 'application/json',
-            error: function (xhr, status, error) {
-                alert(error + "error");
-            },
-            success: function (response) {
-                if (response === "로그인 성공") {
-                    alert("로그인 성공");
-                    location.href = "../../..";
-                } else {
-                    console.error("로그인 실패");
-                }
-            }
-        });
-    }
+<%--<%@ include file="../common/header.jsp" %>--%>
 
-</script>
+<%--<h1><spring:message code="label.title"></spring:message></h1>--%>
+<%--<div align="left">--%>
+<%--    <form:form action="${pageContext.request.contextPath }/login"--%>
+<%--               method="post" modelAttribute="loginVO">--%>
+<%--        id: <form:input path="id"/>--%>
+<%--        <form:errors path="id"/><br>--%>
+<%--        password: <input type="text" name="password">--%>
+<%--        <form:errors path="password"/><br>--%>
+<%--        <input type="submit" value="로그인">--%>
+<%--    </form:form>--%>
+<%--</div>--%>
+
+
+<%--<div class="container">--%>
+<%--    <div class="formsize">--%>
+<%--        <img src="../../resources/img/bank1.jpg" height="250" class="imgLoginForm">--%>
+<%--        <div id="rowinput">--%>
+<%--            <label for="email">이메일</label>--%>
+<%--            <input type="text" id="email" name="email">--%>
+<%--        </div>--%>
+<%--        <div id="rowinput">--%>
+<%--            <label for="password">비밀번호</label>--%>
+<%--            <input type="password" id="password" name="password">--%>
+<%--        </div>--%>
+<%--        <button id="loginBtn" onclick="loginFormFunc()">로그인</button>--%>
+<%--        &lt;%&ndash;    <input type="button" class="button" value="회원가입" onclick="joinFunc(); return false;">&ndash;%&gt;--%>
+<%--        <a href="/selectAll">회원목록</a>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<%@ include file="../common/footer.jsp" %>--%>
+<%--</body>--%>
+<%--<script>--%>
+<%--    function loginFormFunc() {--%>
+<%--        var email = $("#email").val();--%>
+<%--        var password = $("#password").val();--%>
+
+<%--        console.log("email:", email); // 아이디 확인--%>
+<%--        console.log("Password:", password); // 비밀번호 확인--%>
+
+<%--        $.ajax({--%>
+<%--            type: "POST",--%>
+<%--            url: "${pageContext.request.contextPath}/login",--%>
+<%--            data: JSON.stringify({--%>
+<%--                email: email,--%>
+<%--                password: password--%>
+<%--            }),--%>
+<%--            contentType: 'application/json',--%>
+<%--            error: function (xhr, status, error) {--%>
+<%--                alert(error + "error");--%>
+<%--            },--%>
+<%--            success: function (response) {--%>
+<%--                if (response === "로그인 성공") {--%>
+<%--                    alert("로그인 성공");--%>
+<%--                    location.href = "../../..";--%>
+<%--                } else {--%>
+<%--                    console.error("로그인 실패");--%>
+<%--                }--%>
+<%--            }--%>
+<%--        });--%>
+<%--    }--%>
+
+<%--</script>--%>
+
 </html>

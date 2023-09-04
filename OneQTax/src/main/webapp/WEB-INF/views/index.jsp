@@ -23,11 +23,11 @@
         <div id="headerLogo">
             <!-- Dynamic Welcome Message and Log Out button would be here -->
 
-            <h4>하나카드 홈페이지</h4>
+            <h2>하나카드 홈페이지</h2>
 
                 <c:if test="${empty currentUser}">
                     <div id="loginout">
-                        <a href="${pageContext.request.contextPath}/login">
+                        <a href="${pageContext.request.contextPath}/member/login">
                             <button id="hdtn" type="button">로그인</button>
                         </a>
                         <a href="${pageContext.request.contextPath}/join">
@@ -37,9 +37,9 @@
                 </c:if>
                 <c:if test="${not empty currentUser }">
             <div id="welcomeMessage">
-                <span>사용자이름 님 환영합니다</span>
-                |
-                <a href="${pageContext.request.contentPath}/logout">
+                <span>${currentUser.name} 님 환영합니다</span>
+                <span class="bar"></span>
+                <a href="${pageContext.request.contextPath}/logout">
                     <button id="hdBtn" type="button">로그아웃</button>
             </div>
                 </c:if>
@@ -55,7 +55,7 @@
         <nav>
             <div class="navbar">
                 <div id="logo">
-                    <img class="imgLogo" src="../../../resources/img/logo.png" height="50">
+                    <img class="imgLogo" src="../../../resources/img/logo.png" height="65">
                 </div>
                 <div class="drops">
                 <div class="dropdown">
@@ -133,16 +133,16 @@
 
                         <div class="login-wrap">
                             <div class="login-info">
-                                <p class="tit">내게 필요한 카드/절세/혜택<br>정보를 확인하세요.</p>
+                                <p class="tit">내게 필요한 카드/절세/혜택<br><br>정보를 확인하세요.</p>
                                 <img class="iconimg" src="../../../resources/img/icon1.png " style="height: 150px" >
 
-                                <a href="/nlogin?regType=ctab" class="btn-login">로그인</a>
+                                <a href="${pageContext.request.contextPath}/member/login" class="btn-login">로그인</a>
                             </div>
                             <div class="join-find-wrap">
                                 <div class="left">
-                                    <a href="/nlogin/findUsrId">아이디찾기</a>
-                                    <span class="bar"></span>
-                                    <a href="/nlogin/findUsrPwd">비밀번호찾기</a>
+<%--                                    <a href="/nlogin/findUsrId">아이디찾기</a>--%>
+<%--                                    <span class="bar"></span>--%>
+<%--                                    <a href="/nlogin/findUsrPwd">비밀번호찾기</a>--%>
                                 </div>
                                 <div class="right">
                                     <a href="/nlogin/usr?Mcode=10004">회원가입</a>
