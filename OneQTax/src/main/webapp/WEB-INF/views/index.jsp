@@ -27,7 +27,7 @@
 
                 <c:if test="${empty currentUser}">
                     <div id="loginout">
-                        <a href="${pageContext.request.contextPath}/member/login">
+                        <a href="${pageContext.request.contextPath}/login">
                             <button id="hdtn" type="button">로그인</button>
                         </a>
                         <a href="${pageContext.request.contextPath}/join">
@@ -133,11 +133,19 @@
 
                         <div class="login-wrap">
                             <div class="login-info">
+
+                            <c:if test="${empty currentUser}">
                                 <p class="tit">내게 필요한 카드/절세/혜택<br><br>정보를 확인하세요.</p>
                                 <img class="iconimg" src="../../../resources/img/icon1.png " style="height: 150px" >
-
-                                <a href="${pageContext.request.contextPath}/member/login" class="btn-login">로그인</a>
-                            </div>
+                                <a href="${pageContext.request.contextPath}/login" class="btn-login">로그인</a>
+                            </c:if>
+                            <c:if test="${not empty currentUser }">
+                                <p class="tit">${currentUser.name} 님 환영합니다.</p>
+                                <img class="iconimg" src="../../../resources/img/icon1.png " style="height: 150px" >
+                                <h2></h2>
+                                <a href="${pageContext.request.contextPath}/logout" class="btn-login">로그아웃</a>
+                            </c:if>
+                                </div>
                             <div class="join-find-wrap">
                                 <div class="left">
 <%--                                    <a href="/nlogin/findUsrId">아이디찾기</a>--%>
@@ -145,12 +153,15 @@
 <%--                                    <a href="/nlogin/findUsrPwd">비밀번호찾기</a>--%>
                                 </div>
                                 <div class="right">
-                                    <a href="/nlogin/usr?Mcode=10004">회원가입</a>
+                                    <a href="${pageContext.request.contextPath}/member/login">회원가입</a>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
+
+
 <%--                        보류--%>
 <%--                    <div class="noticeicon">--%>
 <%--                        <p class="tit">내게 필요한 카드/절세/혜택<br>정보를 확인하세요.</p>--%>
@@ -216,7 +227,7 @@
 <%--                          <a href="#">explore</a>--%>
                     </div>
                     <ul class="list animate" data-animate="motion">
-                        <li><a href="#">
+                        <li><a href="${pageContext.request.contextPath}/taxInfo">
                             <div class="add">
                                 <p>증요한 순간, 나를 증명해야 할 때</p><br>
                                 <h3>연말정산</h3>

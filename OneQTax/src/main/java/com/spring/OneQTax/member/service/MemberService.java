@@ -1,11 +1,6 @@
 package com.spring.oneqtax.member.service;
 
-import com.spring.oneqtax.member.model.vo.LoginVO;
-import com.spring.oneqtax.member.model.vo.MemberVO;
-
-import java.lang.reflect.Member;
-import java.util.HashMap;
-import java.util.List;
+import com.spring.oneqtax.member.domain.MemberVO;
 
 public interface MemberService {
 

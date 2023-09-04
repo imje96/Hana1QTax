@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-    <!-- resources/mapper/taxInfoMapper.xml -->
-    <mapper namespace="com.spring.OneQTax.tax.model.DAO.TaxInfoMapper">
-        <select id="getTaxInfoById" parameterType="int" resultType="com.spring.OneQTax.tax.model.DTO.TaxInfoDTO">
-            SELECT * FROM total_amount
-            WHERE customerId = #{id}
+<mapper namespace="com.spring.oneqtax.tax.repository.TaxMapper">
+
+<!--    parameterType="com.spring.oneqtax.tax.domain.TaxInfoVO"-->
+
+        <select id="getAllTaxInfo" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
+            SELECT *
+            FROM deduction_calc
         </select>
-    </mapper>
+
+        <select id="getTaxInfoByMemberId" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
+            SELECT calculation_id, member_id, total_income
+            FROM deduction_calc
+            WHERE member_id = #{member_id}
+        </select>
+
+
+
+</mapper>

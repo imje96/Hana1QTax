@@ -2,30 +2,30 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.spring.oneqtax.member.model.dao.MemberMapper">
+<mapper namespace="com.spring.oneqtax.member.repository.MemberMapper">
 
     <!-- 로그인 -->
-<!--    <select id="loginMember" parameterType="HashMap" resultType="com.spring.oneqtax.member.model.vo.MemberVO">-->
+<!--    <select id="loginMember" parameterType="HashMap" resultType="com.spring.oneqtax.member.domain.MemberVO">-->
 <!--        SELECT *-->
 <!--        FROM member-->
 <!--        WHERE email = #{email}-->
 <!--          AND password = #{password}-->
 <!--    </select>-->
 
-    <select id="loginMember" resultType="com.spring.oneqtax.member.model.vo.MemberVO">
+    <select id="loginMember" resultType="com.spring.oneqtax.member.domain.MemberVO">
         select * from member
         where email=#{email} and password=#{password}
     </select>
 
     <!-- 회원 전체 조회 -->
-<!--    <select id="getAllMember" parameterType="com.spring.oneqtax.member.model.vo.MemberVO"-->
-<!--            resultType="com.spring.oneqtax.member.model.vo.MemberVO">-->
+<!--    <select id="getAllMember" parameterType="com.spring.oneqtax.member.domain.MemberVO"-->
+<!--            resultType="com.spring.oneqtax.member.domain.MemberVO">-->
 <!--        SELECT *-->
 <!--        FROM member-->
 <!--    </select>-->
 
 
-<!--    <select id="selectNameOfMember" parameterType="String" resultType="com.spring.oneqtax.member.model.vo.MemberVO">-->
+<!--    <select id="selectNameOfMember" parameterType="String" resultType="com.spring.oneqtax.member.domain.MemberVO">-->
 <!--        SELECT *-->
 <!--        FROM member-->
 <!--        where EMAIL = #{email}-->
