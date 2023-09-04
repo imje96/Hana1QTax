@@ -12,7 +12,7 @@
         </select>
 
         <select id="getTaxInfoByMemberId" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
-            SELECT calculation_id, member_id, total_income
+            SELECT *
             FROM deduction_calc
             WHERE member_id = #{member_id}
         </select>

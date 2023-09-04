@@ -12,7 +12,7 @@ public class MemberVO {
 
     private int member_id;
     private String name;
-    private String indentification_nm;
+    private String identification_nm;
     private String email;
     private String password;
     private String phone;
@@ -24,7 +24,7 @@ public class MemberVO {
         return "memberVO{" +
                 "member_id=" + member_id +
                 ", name='" + name + '\'' +
-                ", indentification_nm='" + indentification_nm + '\'' +
+                ", indentification_nm='" + identification_nm + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +

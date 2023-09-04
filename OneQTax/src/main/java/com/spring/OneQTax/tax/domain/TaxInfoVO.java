@@ -4,15 +4,17 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Data
 @Getter
 @Setter
 public class TaxInfoVO {
-    private String calculation_id;
+    private int calculation_id;
     private int member_id;
-    private int total_income;
-    private int minimun_amount;
-    private int deduction_rate;
-    private int basic_limit;
-    private int additional_limit;
+    private BigDecimal total_income;
+    private BigDecimal minimum_amount;
+    private BigDecimal deduction_rate;
+    private BigDecimal basic_limit;
+    private BigDecimal additional_limit;
 }
