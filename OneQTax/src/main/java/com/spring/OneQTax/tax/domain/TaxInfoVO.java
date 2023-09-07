@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 public class TaxInfoVO {
     private int calculation_id;
     private int member_id;
-    private BigDecimal total_income;
-    private BigDecimal minimum_amount;
-    private BigDecimal deduction_rate;
-    private BigDecimal basic_limit;
-    private BigDecimal additional_limit;
+    private double total_income;
+    private double minimum_amount;
+    private double deduction_rate;
+    private double basic_limit;
+    private double additional_limit;
 }

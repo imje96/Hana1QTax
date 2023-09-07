@@ -33,5 +33,27 @@
     </tr>
 </table>
 
-
+<table>
+    <tr>
+        <th>Total ID</th>
+        <th>Member ID</th>
+        <th>Credit Total</th>
+        <th>Debit Total</th>
+        <th>Cash Total</th>
+        <th>Culture Total</th>
+        <th>Market Total</th>
+        <th>Transport Total</th>
+    </tr>
+    <tr>
+        <td>${transaction.total_id}</td>
+        <td>${transaction.member_id}</td>
+        <td>${transaction.credit_total}</td>
+        <td>${transaction.debit_total}</td>
+        <td>${transaction.cash_total}</td>
+        <td>${transaction.culture_total}</td>
+        <td>${transaction.market_total}</td>
+        <td>${transaction.transport_total}</td>
+    </tr>
+</table>
 </body>
+

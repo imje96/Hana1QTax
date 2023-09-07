@@ -28,10 +28,10 @@
                 <c:if test="${empty currentUser}">
                     <div id="loginout">
                         <a href="${pageContext.request.contextPath}/login">
-                            <button id="hdtn" type="button">로그인</button>
+                            <button id="btn-login" type="button">로그인</button>
                         </a>
                         <a href="${pageContext.request.contextPath}/join">
-                            <button id="hdBtn" type="button">회원가입</button>
+                            <button id="btn-login" type="button">회원가입</button>
                         </a>
                     </div>
                 </c:if>
@@ -40,7 +40,7 @@
                 <span>${currentUser.name} 님 환영합니다</span>
                 <span class="bar"></span>
                 <a href="${pageContext.request.contextPath}/logout">
-                    <button id="hdBtn" type="button">로그아웃</button>
+                    <button id="btn-login" type="button"  class="btn-login">로그아웃</button>
             </div>
                 </c:if>
 
@@ -54,7 +54,7 @@
 
         <nav>
             <div class="navbar">
-                <div id="logo">
+                <div id="lognavbaro">
                     <img class="imgLogo" src="../../../resources/img/logo.png" height="65">
                 </div>
                 <div class="drops">

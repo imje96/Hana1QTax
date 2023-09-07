@@ -11,7 +11,8 @@
 
 <body>
 <div class="wrap">
-    <!--header-->
+    <!--footer-->
+<footer>
 
             <div class="inner">
                 <h1 class="footerLogo">하나카드</h1>
@@ -29,5 +30,6 @@
                 </ul>
             </div>
 
+</footer>
 </body>
 </html>

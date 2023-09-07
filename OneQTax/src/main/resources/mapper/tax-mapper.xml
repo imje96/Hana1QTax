@@ -17,6 +17,16 @@
             WHERE member_id = #{member_id}
         </select>
 
+        <select id="getTransactionByMemberId" resultType="com.spring.oneqtax.tax.domain.TransactionVO">
+            SELECT *
+            FROM total_amount
+            WHERE member_id = #{member_id}
+        </select>
 
+        <select id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.DeductionResultVO">
+            INSERT INTO deduction_result (deduction_id, calculation_id, credit_deductible, credit_deduction, debit_deductible,
+                                          debit_deduction, cash_deductible, cash_deduction, basic_deduction, additional_deduction, reducing_tax)
+            VALUES
+        </select>
 
 </mapper>
