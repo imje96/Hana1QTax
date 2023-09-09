@@ -24,9 +24,10 @@
         </select>
 
         <select id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.DeductionResultVO">
-            INSERT INTO deduction_result (deduction_id, calculation_id, credit_deductible, credit_deduction, debit_deductible,
-                                          debit_deduction, cash_deductible, cash_deduction, basic_deduction, additional_deduction, reducing_tax)
-            VALUES
+            INSERT INTO deduction_result (calculation_id, credit_deductible, credit_deduction, debit_deductible,
+                                          debit_deduction, cash_deductible, cash_deduction, basic_deduction, additional_deduction, total_deduction, reducing_tax)
+            VALUES (#{deduction_id}, #{calculation_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
+                    #{debit_deduction}, #{cash_deductible}, #{cash_deduction}, #{basic_deduction},  #{additional_deduction}, #{total_deduction},  #{reducing_tax})
         </select>
 
 </mapper>

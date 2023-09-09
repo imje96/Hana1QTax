@@ -28,6 +28,7 @@ public class TaxServiceImpl implements TaxService {
         return taxMapper.getTransactionByMemberId(member_id);
     }
 
+
     @Override
     public DeductionResultVO calculateAdditionalDeduction(int member_id) {
         TaxInfoVO taxInfo = taxMapper.getTaxInfoByMemberId(member_id);
@@ -98,6 +99,40 @@ public class TaxServiceImpl implements TaxService {
         // 추가 공제액 계산 로직
         double tempMin;
         if (totalIncome <= 70000000) {
+            if (creditTotal >= minimumAmount) {
+                creditDeductible = creditTotal - minimumAmount;
+                debitDeductible = debitTotal;
+                cashDeductible = cashTotal;
+
+                creditDeduction = Math.min(creditDeductible * 0.15, basicLimit);
+                debitDeduction = Math.min(debitDeductible * 0.3, basicLimit - creditDeduction);
+                cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
+
+                basicDeduction = creditDeduction + debitDeduction + cashDeduction;
+
+            } else if (minimumAmount <= (creditTotal + debitTotal)) {
+                creditDeductible = 0;
+                debitDeductible = (debitTotal + creditTotal) - minimumAmount;
+                cashDeductible = cashTotal;
+
+                creditDeduction = Math.min(creditTotal * 0.15, basicLimit);
+                debitDeduction = Math.min(debitDeductible * 0.3, basicLimit - creditDeduction);
+                cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
+
+                basicDeduction = creditDeduction + debitDeduction + cashDeduction;
+
+            } else if (creditTotal + debitTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal) {
+                creditDeductible = 0;
+                debitDeductible = 0;
+                cashDeductible = (creditTotal + debitTotal + cashTotal) - minimumAmount;
+
+                creditDeduction = Math.min(creditTotal * 0.15, basicLimit);
+                debitDeduction = Math.min(debitTotal * 0.3, basicLimit - creditDeduction);
+                cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
+
+                basicDeduction = creditDeduction + debitDeduction + cashDeduction;
+            }
+
             if (minimumAmount <= creditTotal + debitTotal + cashTotal) {
                 additionalDeduction = Math.min((cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4), additionalLimit);
             } else if (creditTotal + debitTotal + cashTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + cultureTotal) {
@@ -162,7 +197,7 @@ public class TaxServiceImpl implements TaxService {
 
         DeductionResultVO resultVO = new DeductionResultVO();
 
-
+        resultVO.setCalculation_id(taxInfo.getCalculation_id());  // 이 부분 추가
         resultVO.setCredit_deductible(creditDeductible);
         resultVO.setCredit_deduction(creditDeduction);
         resultVO.setDebit_deductible(debitDeductible);
