@@ -4,9 +4,6 @@ import com.spring.oneqtax.tax.domain.DeductionResultVO;
 import com.spring.oneqtax.tax.domain.TaxInfoVO;
 import com.spring.oneqtax.tax.domain.TransactionVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 @Mapper
 public interface TaxMapper {
@@ -17,5 +14,9 @@ public interface TaxMapper {
 
     TransactionVO getTransactionByMemberId(int member_id);
 
-    DeductionResultVO insertDeductionResult(DeductionResultVO result);
+    // 공제계산결과를 저장
+    void insertDeductionResult(DeductionResultVO result);
+
+    // 저장된 공제계산결과를 출력
+    DeductionResultVO getDeductionResult(int calculationId);
 }

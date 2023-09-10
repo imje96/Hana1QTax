@@ -5,6 +5,7 @@ import com.spring.oneqtax.tax.domain.DeductionResultVO;
 import com.spring.oneqtax.tax.domain.TaxInfoVO;
 import com.spring.oneqtax.tax.domain.TransactionVO;
 import com.spring.oneqtax.tax.repository.TaxMapper;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,23 +18,47 @@ public class TaxServiceImpl implements TaxService {
 
 
     @Override
-    public TaxInfoVO getTaxInfoByMemberId(int member_id){
+    public TaxInfoVO getTaxInfoByMemberId(int member_id) {
         System.out.println("서비스: " + member_id);
         return taxMapper.getTaxInfoByMemberId(member_id);
     }
 
     @Override
-    public TransactionVO getTransactionByMemberId(int member_id){
+    public TransactionVO getTransactionByMemberId(int member_id) {
         System.out.println("서비스2: " + member_id);
         return taxMapper.getTransactionByMemberId(member_id);
     }
 
+    @Override
+    public DeductionResultVO processDeductionForMember(int memberId) {
+            // TaxInfoVO와 TransactionVO 호출이 누락되어 있어서 다시 추가합니다.
+            TaxInfoVO taxInfoVO = taxMapper.getTaxInfoByMemberId(memberId);
+            TransactionVO transactionVO = taxMapper.getTransactionByMemberId(memberId);
+
+            // 기존에 계산한 정보를 가져오는 로직
+            DeductionResultVO existingResult = getDeductionResult(taxInfoVO.getCalculation_id());
+
+        // 여기서 필요한 경우, taxInfoVO나 transactionVO의 null 체크 등을 추가할 수 있습니다.
+
+
+            DeductionResultVO result = calculateDeduction(taxInfoVO, transactionVO);
+
+            // 결과를 데이터베이스에 저장
+            insertDeductionResult(result);
+
+            // 저장된 결과를 반환 (또는 저장 당시의 객체를 반환)
+            return result;
+        }
+
 
     @Override
-    public DeductionResultVO calculateAdditionalDeduction(int member_id) {
-        TaxInfoVO taxInfo = taxMapper.getTaxInfoByMemberId(member_id);
-        TransactionVO transaction = taxMapper.getTransactionByMemberId(member_id);
+    public DeductionResultVO calculateDeduction(@NotNull TaxInfoVO taxInfo, TransactionVO transaction) {
+//        TaxInfoVO taxInfo = taxMapper.getTaxInfoByMemberId(memberId);
+//        TransactionVO transaction = taxMapper.getTransactionByMemberId(memberId);
+//
+//
 
+        // ResultVO에 넣을 변수 초기화
         double creditDeductible = 0, debitDeductible = 0, cashDeductible = 0;
         double creditDeduction = 0;
         double debitDeduction = 0;
@@ -41,9 +66,10 @@ public class TaxServiceImpl implements TaxService {
         double basicDeduction = 0;
         double additionalDeduction = 0;
         double totalDeduction = 0;
-        double reducing_tax = 0;
+        double reducing_tax = 0; // 아끼는 세금
 
         // 합산금액
+
         double creditTotal = transaction.getCredit_total();
         double debitTotal = transaction.getDebit_total();
         double cashTotal = transaction.getCash_total();
@@ -62,7 +88,7 @@ public class TaxServiceImpl implements TaxService {
         double totalDeductible = creditTotal * 0.15 + (debitTotal + cashTotal + cultureTotal) * 0.3 + ((marketTotal + transportTotal) * 0.4);
         // 공제 제외액
         double except1 = minimumAmount * 0.15;
-        double except2 =  creditTotal * 0.15 + (minimumAmount - creditTotal) * 0.3;
+        double except2 = creditTotal * 0.15 + (minimumAmount - creditTotal) * 0.3;
         double except3 = creditTotal * 0.15 + (debitTotal + cashTotal + cultureTotal) * 0.3 + (minimumAmount - creditTotal - debitTotal - cashTotal - cultureTotal) * 0.4;
 
         // 추가공제가능액(additional deductible) 계산
@@ -70,94 +96,44 @@ public class TaxServiceImpl implements TaxService {
         double result2 = 0;
         double result3 = 0;
 
-        // 공제가능액 result 계산
-
-//        result 1)
-        result1 = (creditTotal)*0.15+(debitTotal+cashTotal+cultureTotal)*0.3+(marketTotal+transportTotal)*0.4 - minimumAmount*0.15;
-
-//        result 2)
-        result2 = (debitTotal+cashTotal+cultureTotal)*0.3+(marketTotal+transportTotal)*0.4 - (minimumAmount-creditTotal)*0.3;
-
-//        result 3)
-        result3 = (marketTotal+transportTotal)*0.4 - ((minimumAmount-creditTotal-debitTotal-cashTotal-cultureTotal))*0.4;
-
-
-
-        result1 = totalDeductible - except1;
-        if (result1 < 0) {
-            result1 = 0;
+        // 임시 계산 tempD = 공제가능금액-공제한도 = result1 - basicLimit
+        double tempD1 = result1 - basicLimit;
+        double tempD2 = result2 - basicLimit;
+        double tempD3 = result3 - basicLimit;
+        // 만약 tempD 가 음수이면 0으로 초기화
+        if (tempD1 < 0){
+            tempD1 = 0;
         }
-        result2 = totalDeductible - except2;
-        if (result2 < 0) {
-            result2 = 0;
+        if (tempD2 < 0){
+            tempD2 = 0;
         }
-        result3 = totalDeductible - except3;
-        if (result3 < 0) {
-            result3 = 0;
+        if (tempD3 < 0){
+            tempD3 = 0;
+        }
+        // Math.min 을 위한 변수. 3가지 이상을 비교해야 할 때, 앞 에 두 개 비교-> tempMin에 저장 + tempMin과 나머지로 다시 비교
+        double tempMin = 0;
+
+        // 연봉이 7천만원 초과이면 도서문화비 제외
+        if (totalIncome > 70000000) {
+            cultureTotal = 0;
         }
 
-        // 추가 공제액 계산 로직
-        double tempMin;
-        if (totalIncome <= 70000000) {
-            if (creditTotal >= minimumAmount) {
-                creditDeductible = creditTotal - minimumAmount;
-                debitDeductible = debitTotal;
-                cashDeductible = cashTotal;
+        // 공제가능금액 result 계산
 
-                creditDeduction = Math.min(creditDeductible * 0.15, basicLimit);
-                debitDeduction = Math.min(debitDeductible * 0.3, basicLimit - creditDeduction);
-                cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
+        //  result 1 : 신용카드금액 >= 최저사용금액
+        result1 = (creditTotal) * 0.15 + (debitTotal + cashTotal + cultureTotal) * 0.3 + (marketTotal + transportTotal) * 0.4 - minimumAmount * 0.15;
 
-                basicDeduction = creditDeduction + debitDeduction + cashDeduction;
+        //  result 2 : 신용카드 + 체크카드+ 현금영수증 + 도서문화 >= 최저사용금액
+        result2 = (debitTotal + cashTotal + cultureTotal) * 0.3 + (marketTotal + transportTotal) * 0.4 - (minimumAmount - creditTotal) * 0.3;
 
-            } else if (minimumAmount <= (creditTotal + debitTotal)) {
-                creditDeductible = 0;
-                debitDeductible = (debitTotal + creditTotal) - minimumAmount;
-                cashDeductible = cashTotal;
-
-                creditDeduction = Math.min(creditTotal * 0.15, basicLimit);
-                debitDeduction = Math.min(debitDeductible * 0.3, basicLimit - creditDeduction);
-                cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
-
-                basicDeduction = creditDeduction + debitDeduction + cashDeduction;
-
-            } else if (creditTotal + debitTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal) {
-                creditDeductible = 0;
-                debitDeductible = 0;
-                cashDeductible = (creditTotal + debitTotal + cashTotal) - minimumAmount;
-
-                creditDeduction = Math.min(creditTotal * 0.15, basicLimit);
-                debitDeduction = Math.min(debitTotal * 0.3, basicLimit - creditDeduction);
-                cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
-
-                basicDeduction = creditDeduction + debitDeduction + cashDeduction;
-            }
-
-            if (minimumAmount <= creditTotal + debitTotal + cashTotal) {
-                additionalDeduction = Math.min((cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4), additionalLimit);
-            } else if (creditTotal + debitTotal + cashTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + cultureTotal) {
-                tempMin = Math.min(result2, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
-                additionalDeduction = Math.min(tempMin, additionalLimit);
-            } else if (creditTotal + debitTotal + cashTotal + cultureTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + cultureTotal + marketTotal + transportTotal) {
-                tempMin = Math.min(result3, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
-                additionalDeduction = Math.min(tempMin, additionalLimit);
-            }
-        } else {
-            if (minimumAmount <= creditTotal + debitTotal + cashTotal) {
-                additionalDeduction = Math.min((cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4), additionalLimit);
-            } else if (creditTotal + debitTotal + cashTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + cultureTotal) {
-                tempMin = Math.min(result2, (marketTotal * 0.4 + transportTotal * 0.4));
-                additionalDeduction = Math.min(tempMin, additionalLimit);
-            } else if (creditTotal + debitTotal + cashTotal + cultureTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + cultureTotal + marketTotal + transportTotal) {
-                tempMin = Math.min(result3, (marketTotal * 0.4 + transportTotal * 0.4));
-                additionalDeduction = Math.min(tempMin, additionalLimit);
-            }
-        }
+        //  result 3 : 신용카드 + 체크카드+ 현금영수증 + 도서문화 + 전통시장 + 대중교통 >= 최저사용금액
+        result3 = (marketTotal + transportTotal) * 0.4 - (minimumAmount - creditTotal - debitTotal - cashTotal - cultureTotal) * 0.4;
 
 
+        // 기본 공제액 & 추가 공제액 계산 1~3번은 기본공제액 각 항목별로 계산 가능, 4~5번은 각 항목별로 계산 불가
 
+        // 1) 신용카드 사용금액이 최저사용금액(총급여*25%)을 넘길 때,
 
-        // 기본공제액
         if (creditTotal >= minimumAmount) {
             creditDeductible = creditTotal - minimumAmount;
             debitDeductible = debitTotal;
@@ -169,30 +145,72 @@ public class TaxServiceImpl implements TaxService {
 
             basicDeduction = creditDeduction + debitDeduction + cashDeduction;
 
+            // 추가공제액 연봉이 7천만원 이하 -> additionalLimit이 300
+            // 추가공제액 연봉이 7천만원 초과 -> additionalLimit이 200 (db에 저장됨)
+
+            tempMin = Math.min(tempD1, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
+            additionalDeduction = Math.min(tempMin, additionalLimit);
+
+        // 2) 신용카드+체크카드 합산금액이 최저사용금액을 넘길 때
         } else if (minimumAmount <= (creditTotal + debitTotal)) {
             creditDeductible = 0;
-            debitDeductible = (debitTotal + creditTotal) - minimumAmount;
+            debitDeductible = debitTotal - minimumAmount;
             cashDeductible = cashTotal;
 
-            creditDeduction = Math.min(creditTotal * 0.15, basicLimit);
-            debitDeduction = Math.min(debitDeductible * 0.3, basicLimit - creditDeduction);
-            cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
+            creditDeduction = 0;
+            debitDeduction = Math.min(debitDeductible * 0.3, basicLimit);
+            cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - debitDeduction);
 
             basicDeduction = creditDeduction + debitDeduction + cashDeduction;
 
+            // 추가공제액 계산
+            tempMin = Math.min(tempD2, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
+            additionalDeduction = Math.min(tempMin, additionalLimit);
+
+        // 3) 기본공제(신카+체카+현금영수증) 항목 합산금액이 최저사용금액을 넘길 때
         } else if (creditTotal + debitTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal) {
             creditDeductible = 0;
             debitDeductible = 0;
-            cashDeductible = (creditTotal + debitTotal + cashTotal) - minimumAmount;
+            cashDeductible = cashTotal - minimumAmount;
 
-            creditDeduction = Math.min(creditTotal * 0.15, basicLimit);
-            debitDeduction = Math.min(debitTotal * 0.3, basicLimit - creditDeduction);
-            cashDeduction = Math.min(cashDeductible * 0.3, basicLimit - creditDeduction - debitDeduction);
+            creditDeduction = 0;
+            debitDeduction = 0;
+            cashDeduction = Math.min(cashDeductible * 0.3, basicLimit);
 
             basicDeduction = creditDeduction + debitDeduction + cashDeduction;
+
+            // 추가공제액 계산
+            tempMin = Math.min(tempD2, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
+            additionalDeduction = Math.min(tempMin, additionalLimit);
+
+        // 4) 기본공제 항목 + 도서문화 항목 합산금액이 최저사용금액을 넘길 때 (항목별 계산 불가)
+        } else if (creditTotal + debitTotal + cashTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + cultureTotal) {
+            creditDeductible = 0;
+            debitDeductible = 0;
+            cashDeductible = 0;
+
+            basicDeduction = Math.min(result2, basicLimit);
+
+            // 추가공제액 계산
+            tempMin = Math.min(tempD2, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
+            additionalDeduction = Math.min(tempMin, additionalLimit);
+
+        // 5) 모든 항목을 다 합친 금액이 최저사용금액을 넘길 때 (항목별 계산불가)
+        } else {
+            creditDeductible = 0;
+            debitDeductible = 0;
+            cashDeductible = 0;
+
+            basicDeduction = Math.min(result3, basicLimit);
+
+            // 추가공제액 계산
+            tempMin = Math.min(tempD3, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
+            additionalDeduction = Math.min(tempMin, additionalLimit);
         }
 
-        totalDeduction = basicDeduction+ additionalDeduction;
+        // 전체 공제금액
+        totalDeduction = basicDeduction + additionalDeduction;
+        // 아끼는 세금 = 전체공제금액 * 세금공제율
         reducing_tax = totalDeduction * deduction_rate;
 
         DeductionResultVO resultVO = new DeductionResultVO();
@@ -211,8 +229,13 @@ public class TaxServiceImpl implements TaxService {
         return resultVO;
     }
 
-    public DeductionResultVO insertDeductionResult(DeductionResultVO result) {
-        return taxMapper.insertDeductionResult(result);
+
+    public void insertDeductionResult(DeductionResultVO result) {
+        taxMapper.insertDeductionResult(result);
     }
 
+    @Override
+    public DeductionResultVO getDeductionResult(int calculationId) {
+        return taxMapper.getDeductionResult(calculationId);
+    }
 }

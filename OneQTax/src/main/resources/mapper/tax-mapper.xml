@@ -23,11 +23,21 @@
             WHERE member_id = #{member_id}
         </select>
 
-        <select id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.DeductionResultVO">
-            INSERT INTO deduction_result (calculation_id, credit_deductible, credit_deduction, debit_deductible,
+        <insert id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.DeductionResultVO">
+            INSERT INTO DEDUCTION_RESULT (deduction_id, calculation_id, total_id, credit_deductible, credit_deduction, debit_deductible,
                                           debit_deduction, cash_deductible, cash_deduction, basic_deduction, additional_deduction, total_deduction, reducing_tax)
-            VALUES (#{deduction_id}, #{calculation_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
+            VALUES (#{deduction_id}, #{calculation_id}, #{total_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
                     #{debit_deduction}, #{cash_deductible}, #{cash_deduction}, #{basic_deduction},  #{additional_deduction}, #{total_deduction},  #{reducing_tax})
+        </insert>
+
+        <select id="getDeductionResult" resultType="com.spring.oneqtax.tax.domain.DeductionResultVO">
+            SELECT *
+            FROM DEDUCTION_RESULT
+            WHERE calculation_id IN (SELECT calculation_id FROM DEDUCTION_CALC WHERE member_id = #{member_id})
+            ORDER BY calculation_id DESC
+                FETCH FIRST 1 ROWS ONLY
         </select>
+
+
 
 </mapper>

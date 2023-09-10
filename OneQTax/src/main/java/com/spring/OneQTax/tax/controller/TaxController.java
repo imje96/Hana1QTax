@@ -2,13 +2,19 @@ package com.spring.oneqtax.tax.controller;
 
 import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.member.service.MemberService;
+import com.spring.oneqtax.tax.domain.DeductionResultVO;
 import com.spring.oneqtax.tax.domain.TaxInfoVO;
 import com.spring.oneqtax.tax.domain.TransactionVO;
 import com.spring.oneqtax.tax.service.TaxService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Member;
@@ -73,5 +79,33 @@ public class TaxController {
     }
 
     // 다른 핸들러 메서드 등 필요한 코드 추가
+
+
+    @PostMapping("/calculateAndInsertDeduction")
+    public ResponseEntity<DeductionResultVO> calculateAndInsertDeduction(HttpSession session) {
+       // member_id 먼저 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // 401 Unauthorized 응답
+        }
+
+        int memberId = currentUser.getMember_id();
+
+        // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
+        DeductionResultVO result = taxService.processDeductionForMember(memberId);
+
+
+        if (result == null) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    // 세션에서 member_id 가져오기
+    private MemberVO getCurrentUser(HttpSession session) {
+        return (MemberVO) session.getAttribute("currentUser");
+    }
 }
 

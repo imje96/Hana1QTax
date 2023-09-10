@@ -57,3 +57,11 @@
 </table>
 </body>
 
+<form action="/calculateAndInsertDeduction" method="post">
+    <!-- 필요한 입력 필드들을 여기에 추가합니다. 예를 들면, -->
+
+    <!-- 제출 버튼 -->
+    <input type="submit" value="제출" />
+</form>
+
+</html>
