@@ -9,6 +9,12 @@
 </head>
 
 <body>
+<%--<header>--%>
+<%--    <jsp:include page="/WEB-INF/views/common/header.jsp" />--%>
+<%--</header>--%>
+<div class="contents">
+
+    <section class="visual">
 
 <h1>소득공제 계산 전 정보</h1>
 <br/>
@@ -55,8 +61,8 @@
         <td>${transaction.transport_total}</td>
     </tr>
 </table>
-</body>
-
+    </section>
+    <section class="visual">
 <form action="/calculateAndInsertDeduction" method="post">
     <!-- 필요한 입력 필드들을 여기에 추가합니다. 예를 들면, -->
 
@@ -67,5 +73,12 @@
 
 
 <a href="${pageContext.request.contextPath}/getLatestDeductionResult">결과보기</a>
+<br/>
+<a href="${pageContext.request.contextPath}/taxMain">소득공제 메인화면으로 이동</a>
+</section>
+</div>
+</body>
 
 </html>
+
+

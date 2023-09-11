@@ -12,7 +12,7 @@
 <body>
 <div class="wrap">
     <!--footer-->
-<footer>
+<%--<footer>--%>
 
             <div class="inner">
                 <h1 class="footerLogo">하나카드</h1>
@@ -30,6 +30,6 @@
                 </ul>
             </div>
 
-</footer>
+<%--</footer>--%>
 </body>
 </html>

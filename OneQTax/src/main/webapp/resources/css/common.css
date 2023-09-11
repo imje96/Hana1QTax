@@ -116,14 +116,19 @@ td {
 }
 
 h1,
-h2,
+h2
+{
+    font-weight: 700;
+    font-size: 30px;
+}
+
 h3,
 h4,
 h5,
-h6 {
+h6
+{
     font-weight: 700;
-    font-size: 30px;
-    /*font-size: inherit;*/
+    font-size: inherit;
 }
 
 a {
@@ -156,7 +161,7 @@ a:hover {
 
 body {
     font-family: 'Hana-bold', serif;
-    font-size: 14px;
+    font-size: 20px;
     color: #333;
 }
 
@@ -193,8 +198,9 @@ p {
 #headerLogo {
     display: flex;
     align-items: center;
+    width: 1400px;
     padding: 10px 250px;
-    justify-content: space-around;
+    justify-content: space-between;
     font-size: 18px;
 
 }
@@ -272,9 +278,9 @@ p {
     margin-right: 10px;
 }
 
-#loginBtn,
-#joinBtn,
-#logoutBtn {
+a.loginBtn,
+a.joinBtn,
+a.logoutBtn {
     display: inline-block;
     color: black;
     /* 글자색 변경 */
@@ -286,7 +292,7 @@ p {
     /* 둥근 모서리 */
     text-align: center;
     text-decoration: none;
-    font-size: 10px;
+    font-size: 15px;
     /* 폰트 크기 변경 */
     cursor: pointer;
     background-color: #ffffff;
@@ -297,9 +303,9 @@ p {
     /* 그림자 추가 */
 }
 
-#loginBtn:hover,
-#joinBtn:hover,
-#logoutBtn:hover {
+a.loginBtn:hover,
+a.joinBtn:hover,
+a.logoutBtn:hover {
     background-color: #00857F;
     /* hover 시 배경색 변경 */
     transform: scale(1.05);
@@ -307,6 +313,9 @@ p {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     /* hover 시 그림자 약간 강화 */
 }
+
+
+
 
 
 
@@ -383,6 +392,8 @@ p {
     display: block;
 }
 
+
+
 /*footer*/
 footer {
     position: relative;
@@ -392,7 +403,7 @@ footer {
     height: 200px;
     background: #e7e4e4;
     color: black;
-    padding: 75px 0;
+    /*padding: 75px 0;*/
     box-sizing: border-box;
     z-index: -1;
 }

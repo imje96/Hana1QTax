@@ -18,6 +18,14 @@
     <!--Font-aweome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        @media (min-width:1200px) {
+            .container{
+                max-width:60%;
+            }
+        }
+
+    </style>
     <!--Custom Css-->
 </head>
 <body>
@@ -161,93 +169,7 @@
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>
-<%--<style>--%>
-<%--    .login {--%>
-<%--        margin-top: 120px;--%>
-<%--        display: inline-block;--%>
-<%--        color: black; /* 글자색 변경 */--%>
-<%--        padding: 7px 20px; /* 패딩 */--%>
-<%--        border: none; /* 테두리 없음 */--%>
-<%--        border-radius: 5px; /* 둥근 모서리 */--%>
-<%--        text-align: center;--%>
-<%--        text-decoration: none;--%>
-<%--        font-size: 12px; /* 폰트 크기 변경 */--%>
-<%--        cursor: pointer;--%>
-<%--        background-color: #ffffff; /* 배경색 추가 */--%>
-<%--        transition: background-color 0.3s, transform 0.3s; /* 부드러운 전환 효과 추가 */--%>
-<%--        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */--%>
-<%--        display: flex;--%>
-<%--        flex-direction: row;--%>
-<%--        justify-content: space-between;--%>
-<%--        align-items: center;--%>
-<%--    }--%>
 
-<%--    .login > * {--%>
-<%--        margin-right: 20px; /* 각 요소의 오른쪽에 마진 추가 */--%>
-<%--    }--%>
-
-<%--    #loginForm {--%>
-
-<%--        width: 250px;--%>
-<%--        margin: 50px auto;--%>
-<%--        padding: 20px;--%>
-<%--        border: 1px solid #ddd;--%>
-<%--        border-radius: 5px;--%>
-<%--        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);--%>
-<%--    }--%>
-
-<%--    #loginForm div {--%>
-<%--        margin-bottom: 20px;--%>
-<%--    }--%>
-
-<%--    label {--%>
-<%--        display: block;--%>
-<%--        margin-bottom: 5px;--%>
-<%--        font-weight: bold;--%>
-<%--    }--%>
-
-<%--    input[type="text"],--%>
-<%--    input[type="password"] {--%>
-<%--        width: 100%;--%>
-<%--        padding: 10px;--%>
-<%--        border: 1px solid #ccc;--%>
-<%--        border-radius: 4px;--%>
-<%--        font-size: 14px;--%>
-<%--    }--%>
-
-
-<%--    #rowinput {--%>
-<%--        display: flex;--%>
-<%--        flex-direction: column;--%>
-<%--        align-items: flex-start; /* 아이템을 왼쪽으로 정렬 */--%>
-<%--        margin-bottom: 20px;--%>
-<%--    }--%>
-
-
-<%--</style>--%>
-
-<%--<body>--%>
-
-<%--<h2>Login</h2>--%>
-<%--<form action="/login" method="post">--%>
-<%--    <div>--%>
-<%--        <label>Email:</label>--%>
-<%--        <input type="text" name="email" required>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <label>Password:</label>--%>
-<%--        <input type="password" name="password" required>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <input type="submit" value="Login">--%>
-<%--    </div>--%>
-<%--</form>--%>
-
-<%--<c:if test="${not empty msg}">--%>
-<%--    <p style="color: red;">${msg}</p>--%>
-<%--</c:if>--%>
-
-<%--</body>--%>
 </html>
 
 

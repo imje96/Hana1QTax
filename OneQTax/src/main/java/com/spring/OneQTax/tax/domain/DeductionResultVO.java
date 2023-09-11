@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class DeductionResultVO {
+
+
     private int deduction_id;
     private int calculation_id;
     private int total_id;

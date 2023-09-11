@@ -78,13 +78,32 @@ public class TaxController {
         return "tax/taxInfo";
     }
 
+    // taxMain으로 이동
+    @GetMapping("/taxMain")
+    public  String taxMain(HttpSession session, Model model) {
+
+        MemberVO currentUser = (MemberVO) session.getAttribute("currentUser");
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+
+        return  "tax/taxMain";
+    }
 
     // 가장 최근의 계산결과 가져오기
     @GetMapping("/getLatestDeductionResult")
     public String getLatestDeductionResult(HttpSession session, Model model) {
+
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
         int memberId = currentUser.getMember_id();
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
 
         DeductionResultVO result = taxService.getDeductionResult(memberId);
 

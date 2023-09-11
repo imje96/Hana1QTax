@@ -43,8 +43,14 @@ public class MemberController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
+        return "redirect:/";
+    }
+
+    //    메인으로 이동
+    @GetMapping("/main")
+    public String main() {
         return "redirect:/";
     }
 
