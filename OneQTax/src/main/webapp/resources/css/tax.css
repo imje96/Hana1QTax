@@ -266,3 +266,7 @@ section.service .img.motion {
 .section {
     width: 1200px;
 }
+
+.section.container2.chart {
+    width: 600px;
+}

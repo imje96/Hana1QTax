@@ -15,6 +15,9 @@
     <link href="../../../resources/css/tax.css" rel="stylesheet">
     <link href="../../../resources/css/main.css" rel="stylesheet">
 
+    <%--    chartjs 추가--%>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <link
             href="${ pageContext.request.contextPath }/resources/img/favicon.ico"
@@ -66,7 +69,7 @@
                 <h3 style="color: #018c8d; margin-bottom: 15px;">카드황금비율계산</h3>
                 <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <h6 style="color: black;">소득공제 안내</h6>
+                    <div style="color: grey; margin-bottom: 15px;">소득공제 안내</div></a>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/taxInfo" style="display: block; margin-bottom: 20px;">
@@ -76,7 +79,7 @@
                     <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div></a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div></a>
+                    <h6 style="color: black; margin-bottom: 15px;">카드황금비율 결과</h6></a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div></a>
@@ -131,13 +134,32 @@
                         <td>${result.result_date}</td>
                     </tr>
                 </table>
+                <div class="container2">
+                    <div class="chart">
 
+                    <canvas id="deductionChart"></canvas>
+
+                    <script src="../../resources/js/deductionChart.js"></script>
+                    </div>
+                </div>
 
             </div>
             <%--            </div>--%>
         </div>
+
     </section>
 </div>
+
+
+
+<script>
+    window.creditDeduction = ${creditDeduction};
+    window.debitDeduction = ${debitDeduction};
+    window.cashDeduction = ${cashDeduction};
+    window.remainingDeduction = ${remainingDeduction};
+</script>
+
+
 <!-- footer-wrapper -->
 <footer>
 

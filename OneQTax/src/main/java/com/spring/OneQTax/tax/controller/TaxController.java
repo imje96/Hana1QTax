@@ -98,19 +98,36 @@ public class TaxController {
 
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
-        int memberId = currentUser.getMember_id();
 
         if (currentUser == null) {
             // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
+        int memberId = currentUser.getMember_id();
+
+        // total_income 가져오기
+        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+        double totalIncome = taxInfoVO.getTotal_income();
 
         DeductionResultVO result = taxService.getDeductionResult(memberId);
+
+//        추가
+        double total1 = (totalIncome > 70000000) ? 3000000 : 2500000;
+
+        // 각 항목의 퍼센트를 계산
+        double totalDeductions = result.getCredit_deduction() + result.getDebit_deduction() + result.getCash_deduction();
+        double remain_deduction = total1 - totalDeductions; // 나머지 금액 계산
+
+        model.addAttribute("creditDeduction", result.getCredit_deduction());
+        model.addAttribute("debitDeduction", result.getDebit_deduction());
+        model.addAttribute("cashDeduction", result.getCash_deduction());
+        model.addAttribute("remainingDeduction", remain_deduction);
 
         System.out.println("서비스 결과 (컨트롤러): " + result);
         // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
         model.addAttribute("result", result);
-        return  "tax/taxResult";
+//        return  "tax/taxResult";
+            return "tax/taxResult";
     }
 
     // 공제 계산하기

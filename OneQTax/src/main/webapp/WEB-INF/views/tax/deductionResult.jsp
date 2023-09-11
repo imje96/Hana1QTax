@@ -9,6 +9,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+<%--    chartjs 추가--%>
+    <title>Deduction Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <%--    common.css--%>
     <link href="../../../resources/css/common.css" rel="stylesheet">
@@ -122,22 +125,22 @@
                         <th>Reducing Tax</th>
                         <th>Result Date</th>
                     </tr>
-                    <tr>
-                        <td>${result.deduction_id}</td>
-                        <td>${result.calculation_id}</td>
-                        <td>${result.total_id}</td>
-                        <td>${result.credit_deductible}</td>
-                        <td>${result.credit_deduction}</td>
-                        <td>${result.debit_deductible}</td>
-                        <td>${result.cash_deductible}</td>
-                        <td>${result.debit_deduction}</td>
-                        <td>${result.cash_deduction}</td>
-                        <td>${result.basic_deduction}</td>
-                        <td>${result.additional_deduction}</td>
-                        <td>${result.total_deduction}</td>
-                        <td>${result.reducing_tax}</td>
-                        <td>${result.result_date}</td>
-                    </tr>
+<%--                    <tr>--%>
+<%--                        <td>${result.deduction_id}</td>--%>
+<%--                        <td>${result.calculation_id}</td>--%>
+<%--                        <td>${result.total_id}</td>--%>
+<%--                        <td>${result.credit_deductible}</td>--%>
+<%--                        <td>${result.credit_deduction}</td>--%>
+<%--                        <td>${result.debit_deductible}</td>--%>
+<%--                        <td>${result.cash_deductible}</td>--%>
+<%--                        <td>${result.debit_deduction}</td>--%>
+<%--                        <td>${result.cash_deduction}</td>--%>
+<%--                        <td>${result.basic_deduction}</td>--%>
+<%--                        <td>${result.additional_deduction}</td>--%>
+<%--                        <td>${result.total_deduction}</td>--%>
+<%--                        <td>${result.reducing_tax}</td>--%>
+<%--                        <td>${result.result_date}</td>--%>
+<%--                    </tr>--%>
                 </table>
 
 
@@ -145,7 +148,23 @@
             <%--            </div>--%>
         </div>
     </section>
+    <section class="graph">
+        <canvas id="deductionChart"></canvas>
+
+        <script src="../../resources/js/deductionChart.js"></script>
+
+
+
+    </section>
+
 </div>
+
+<script>
+    window.creditPercentage = ${creditPercentage};
+    window.debitPercentage = ${debitPercentage};
+    window.cashPercentage = ${cashPercentage};
+</script>
+
 <!-- footer-wrapper -->
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
