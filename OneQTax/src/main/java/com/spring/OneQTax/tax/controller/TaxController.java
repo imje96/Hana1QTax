@@ -41,11 +41,11 @@ public class TaxController {
 
         System.out.println(currentUser);
 
-        int member_id = currentUser.getMember_id();
-        System.out.println("id " + member_id);
+        int memberId = currentUser.getMember_id();
+        System.out.println("id " + memberId);
 
-        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(member_id);
-        TransactionVO transactionVO = taxService.getTransactionByMemberId(member_id);
+        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+        TransactionVO transactionVO = taxService.getTransactionByMemberId(memberId);
 
         System.out.println("서비스결과 (컨트롤러) : " + taxInfoVO);
         System.out.println("서비스결과2 (컨트롤러) : " + transactionVO);
@@ -78,9 +78,23 @@ public class TaxController {
         return "tax/taxInfo";
     }
 
-    // 다른 핸들러 메서드 등 필요한 코드 추가
 
+    // 가장 최근의 계산결과 가져오기
+    @GetMapping("/getLatestDeductionResult")
+    public String getLatestDeductionResult(HttpSession session, Model model) {
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+        int memberId = currentUser.getMember_id();
 
+        DeductionResultVO result = taxService.getDeductionResult(memberId);
+
+        System.out.println("서비스 결과 (컨트롤러): " + result);
+        // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
+        model.addAttribute("result", result);
+        return  "tax/taxResult";
+    }
+
+    // 공제 계산하기
     @PostMapping("/calculateAndInsertDeduction")
     public ResponseEntity<DeductionResultVO> calculateAndInsertDeduction(HttpSession session) {
        // member_id 먼저 가져오기
@@ -91,6 +105,8 @@ public class TaxController {
         }
 
         int memberId = currentUser.getMember_id();
+
+
 
         // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
         DeductionResultVO result = taxService.processDeductionForMember(memberId);

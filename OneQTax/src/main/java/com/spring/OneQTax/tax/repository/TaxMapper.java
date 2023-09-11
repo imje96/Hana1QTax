@@ -10,13 +10,13 @@ public interface TaxMapper {
 
 //    List<TaxInfoVO> getAllTaxInfo();
 
-    TaxInfoVO getTaxInfoByMemberId(int member_id);
+    TaxInfoVO getTaxInfoByMemberId(int memberId);
 
-    TransactionVO getTransactionByMemberId(int member_id);
+    TransactionVO getTransactionByMemberId(int memberId);
 
     // 공제계산결과를 저장
     void insertDeductionResult(DeductionResultVO result);
 
     // 저장된 공제계산결과를 출력
-    DeductionResultVO getDeductionResult(int calculationId);
+    DeductionResultVO getDeductionResult(int memberId);
 }

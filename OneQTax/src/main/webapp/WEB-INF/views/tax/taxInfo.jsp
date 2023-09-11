@@ -10,8 +10,8 @@
 
 <body>
 
-<h1>Tax Information</h1>
-
+<h1>소득공제 계산 전 정보</h1>
+<br/>
 <table>
     <tr>
         <th>Calculation ID</th>
@@ -61,7 +61,11 @@
     <!-- 필요한 입력 필드들을 여기에 추가합니다. 예를 들면, -->
 
     <!-- 제출 버튼 -->
-    <input type="submit" value="제출" />
+    <input type="submit" value="계산하기" />
 </form>
+
+
+
+<a href="${pageContext.request.contextPath}/getLatestDeductionResult">결과보기</a>
 
 </html>

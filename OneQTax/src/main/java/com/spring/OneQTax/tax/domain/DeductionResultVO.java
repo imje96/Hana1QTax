@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 public class DeductionResultVO {
     private int deduction_id;
     private int calculation_id;
+    private int total_id;
     private double credit_deductible;
     private double credit_deduction;
     private double debit_deductible;

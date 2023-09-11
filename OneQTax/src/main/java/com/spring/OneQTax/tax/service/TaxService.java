@@ -6,15 +6,14 @@ import com.spring.oneqtax.tax.domain.TransactionVO;
 
 public interface TaxService {
 
-    TaxInfoVO getTaxInfoByMemberId(int member_id);
-    TransactionVO getTransactionByMemberId(int member_id);
-
+    TaxInfoVO getTaxInfoByMemberId(int memberId);
+    public TransactionVO getTransactionByMemberId(int memberId);
 
     DeductionResultVO processDeductionForMember(int memberId);
 
     DeductionResultVO calculateDeduction(TaxInfoVO taxInfo, TransactionVO transaction);
 
-    void insertDeductionResult(DeductionResultVO result);
+    void insertDeductionResult(DeductionResultVO result, int memberId);
 
-    DeductionResultVO getDeductionResult(int calculationId);
+    DeductionResultVO getDeductionResult(int memberId);
 }

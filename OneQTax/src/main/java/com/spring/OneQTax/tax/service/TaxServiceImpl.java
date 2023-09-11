@@ -18,15 +18,15 @@ public class TaxServiceImpl implements TaxService {
 
 
     @Override
-    public TaxInfoVO getTaxInfoByMemberId(int member_id) {
-        System.out.println("서비스: " + member_id);
-        return taxMapper.getTaxInfoByMemberId(member_id);
+    public TaxInfoVO getTaxInfoByMemberId(int memberId) {
+        System.out.println("서비스: " + memberId);
+        return taxMapper.getTaxInfoByMemberId(memberId);
     }
 
     @Override
-    public TransactionVO getTransactionByMemberId(int member_id) {
-        System.out.println("서비스2: " + member_id);
-        return taxMapper.getTransactionByMemberId(member_id);
+    public TransactionVO getTransactionByMemberId(int memberId) {
+        System.out.println("서비스2: " + memberId);
+        return taxMapper.getTransactionByMemberId(memberId);
     }
 
     @Override
@@ -38,16 +38,19 @@ public class TaxServiceImpl implements TaxService {
             // 기존에 계산한 정보를 가져오는 로직
             DeductionResultVO existingResult = getDeductionResult(taxInfoVO.getCalculation_id());
 
-        // 여기서 필요한 경우, taxInfoVO나 transactionVO의 null 체크 등을 추가할 수 있습니다.
+            if(existingResult != null) {
+                return existingResult;  // 기존의 결과를 반환
+            } else {
 
+                // 없을 경우 계산 로직 수행
+                DeductionResultVO result = calculateDeduction(taxInfoVO, transactionVO);
 
-            DeductionResultVO result = calculateDeduction(taxInfoVO, transactionVO);
+                // 결과를 데이터베이스에 저장
+                insertDeductionResult(result, memberId);
 
-            // 결과를 데이터베이스에 저장
-            insertDeductionResult(result);
-
-            // 저장된 결과를 반환 (또는 저장 당시의 객체를 반환)
-            return result;
+                // 저장된 결과를 반환 (또는 저장 당시의 객체를 반환)
+                return result;
+            }
         }
 
 
@@ -230,12 +233,23 @@ public class TaxServiceImpl implements TaxService {
     }
 
 
-    public void insertDeductionResult(DeductionResultVO result) {
+
+
+    public void insertDeductionResult(DeductionResultVO result, int memberId) {
+        // TransactionVO에서 total_id를 가져오기
+        TaxInfoVO taxInfoVO = taxMapper.getTaxInfoByMemberId(memberId);
+        TransactionVO transactionVO = taxMapper.getTransactionByMemberId(memberId);
+
+        if (transactionVO != null) {
+            result.setCalculation_id(taxInfoVO.getCalculation_id());
+            result.setTotal_id(transactionVO.getTotal_id());
+        }
+        // DeductionResultVO를 데이터베이스에 저장
         taxMapper.insertDeductionResult(result);
     }
 
     @Override
-    public DeductionResultVO getDeductionResult(int calculationId) {
-        return taxMapper.getDeductionResult(calculationId);
+    public DeductionResultVO getDeductionResult(int memberId) {
+        return taxMapper.getDeductionResult(memberId);
     }
 }
