@@ -12,11 +12,11 @@
 
     <%--    common.css--%>
     <link href="../../../resources/css/common.css" rel="stylesheet">
-    <link href="../../../resources/css/tax.css" rel="stylesheet">
     <link href="../../../resources/css/main.css" rel="stylesheet">
 
     <%--    chartjs 추가--%>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="../../../resources/css/tax.css" rel="stylesheet">
 
 
     <link
@@ -63,26 +63,36 @@
     <section class="main">
 
 
-
         <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
+            <br/>
+            <br/>
+            <br/>
             <div style="padding-left: 30px;">
                 <h3 style="color: #018c8d; margin-bottom: 15px;">카드황금비율계산</h3>
                 <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">소득공제 안내</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">소득공제 안내</div>
+                </a>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/taxInfo" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 계산</div></a>
+                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 계산</div>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
                     <h6 style="color: black; margin-bottom: 15px;">카드황금비율 결과</h6></a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
+                </a>
                 <hr style="width: 200px;">
             </div>
         </div>
@@ -94,68 +104,155 @@
                 <h6 class="text-primary">
                     Hana 1QTax <span style="color: #ff328b;">연말정산</span>
                 </h6>
-                <h2 class="mb-4">카드황금비율 계산 결과</h2>
+                <h2 class="mb-4">카드황금비율 계산 결과💰</h2>
             </div>
-            <div class="container1">
 
 
-                <br/>
-                <table>
-                    <tr>
-                        <th>Deduction ID</th>
-                        <th>Calculation ID</th>
-                        <th>Total ID</th>
-                        <th>Credit Deductible</th>
-                        <th>Credit Deduction</th>
-                        <th>Debit Deductible</th>
-                        <th>Debit Deduction</th>
-                        <th>Cash Deductible</th>
-                        <th>Cash Deduction</th>
-                        <th>Basic Deduction</th>
-                        <th>Additional Deduction</th>
-                        <th>Total Deduction</th>
-                        <th>Reducing Tax</th>
-                        <th>Result Date</th>
-                    </tr>
-                    <tr>
-                        <td>${result.deduction_id}</td>
-                        <td>${result.calculation_id}</td>
-                        <td>${result.total_id}</td>
-                        <td>${result.credit_deductible}</td>
-                        <td>${result.credit_deduction}</td>
-                        <td>${result.debit_deductible}</td>
-                        <td>${result.cash_deductible}</td>
-                        <td>${result.debit_deduction}</td>
-                        <td>${result.cash_deduction}</td>
-                        <td>${result.basic_deduction}</td>
-                        <td>${result.additional_deduction}</td>
-                        <td>${result.total_deduction}</td>
-                        <td>${result.reducing_tax}</td>
-                        <td>${result.result_date}</td>
-                    </tr>
-                </table>
-                <div class="container2">
-                    <div class="chart">
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="container1">
+                        <span class="close">&times;</span>
+                        <table class="table-fill">
+                            <thead>
+                            <tr>
+                                <th class="text-left">항목</th>
+                                <th class="text-left">사용금액</th>
+                                <th class="text-left">공제가능금액</th>
+                                <th class="text-left">공제율</th>
+                                <th class="text-left">공제액</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-hover">
+                            <tr>
+                                <td class="text-left">신용카드</td>
+                                <td class="text-left">${credit_total}원</td> <!--사용금액-->
+                                <td class="text-left">${credit_deductible}원</td> <!-- 공제가능 금액-->
+                                <td class="text-left">15%</td>
+                                <td class="text-left">${credit_deduction}원</td> <!-- 공제액 금액-->
+                            </tr>
+                            <tr>
+                                <td class="text-left">체크카드</td>
+                                <td class="text-left">${debit_total}원</td> <!--사용금액-->
+                                <td class="text-left">${debit_deductible}원</td> <!-- 공제가능 금액-->
+                                <td class="text-left">30%</td>
+                                <td class="text-left">${debit_deduction}원</td> <!-- 공제액 금액-->
+                            </tr>
+                            <tr>
+                                <td class="text-left">현금영수증</td>
+                                <td class="text-left">${cash_total}원</td> <!--사용금액-->
+                                <td class="text-left">${cash_deductible}원</td> <!-- 공제가능 금액-->
+                                <td class="text-left">30%</td>
+                                <td class="text-left">${cash_deduction}원</td> <!-- 공제액 금액-->
+                            </tr>
+                            <%--                        <tr>--%>
+                            <%--                            <td class="text-left">일반 공제액</td>--%>
+                            <%--                            <td class="text-left">${basic_deduction}원</td>--%>
+                            <%--                        </tr>--%>
+                            <%--                        <tr>--%>
+                            <%--                            <td class="text-left">추가 공제액</td>--%>
+                            <%--                            <td class="text-left">${additional_deduction}원</td>--%>
+                            <%--                        </tr>--%>
+                            <%--                        <tr>--%>
+                            <%--                            <td class="text-left">공제액 합계</td>--%>
+                            <%--                            <td class="text-left">${total_deduction}원</td>--%>
+                            <%--                        </tr>--%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="container1">
+                        <table class="table-fill">
+                            <h3>급여별 총 한도액</h3><br/>
+                            <thead>
+                            <tr>
+                                <th class="text-left"></th>
+                                <th class="text-left">기본 공제 한도</th>
+                                <th class="text-left">추가 공제 한도</th>
 
-                    <canvas id="deductionChart"></canvas>
+                            </tr>
+                            </thead>
+                            <tbody class="table-hover">
+                            <tr>
+                                <td class="text-left">7천만 원 이하</td>
+                                <td class="text-left">300만 원</td>
+                                <td class="text-left">300만 원</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">7천만 원 초과</td>
+                                <td class="text-left">250만 원</td>
+                                <td class="text-left">200만 원</td>
+                            </tr>
 
-                    <script src="../../resources/js/deductionChart.js"></script>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container2">
+                <div class="comment-box">
+                    <div class="result-tax">
+                        <h6>2023년 카드 등 소득공제 공제액</h6>
+                        <br/>
+                        <h2>${total_deduction}원</h2>
+                        <br/>
+                        남은 최대 공제액 ${remainingDeduction}원
+                    </div>
+                    <div class="comment-info">
+                        <h6> 2023년 카드소득공제 공제액</h6>
+                    </div>
+                    <div>
+                        <button id="openModalBtn" class="modalBtn"><h6>계산 결과 상세보기</h6></button>
                     </div>
                 </div>
 
+                <div class="chart-box">
+                    <div class="chart">
+                    <canvas id="deductionChart"></canvas>
+                    <script src="../../resources/js/deductionChart.js"></script>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-item">일반공제액: <span>${basic_deduction}원</span></div>
+                        <div class="info-item">추가공제액: <span>${additional_deduction}원</span></div>
+                        <div class="info-item">공제액합계: <span>${total_deduction}원</span></div>
+                        <div class="info-item">공제가능액: <span>${total}</span></div>
+                    </div>
+
+                </div>
             </div>
-            <%--            </div>--%>
+
         </div>
 
     </section>
 </div>
 
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModalBtn");
+    var span = document.getElementsByClassName("close")[0];
 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+</script>
 
 <script>
-    window.creditDeduction = ${creditDeduction};
-    window.debitDeduction = ${debitDeduction};
-    window.cashDeduction = ${cashDeduction};
+    window.creditDeduction = ${credit_deduction};
+    window.debitDeduction = ${debit_deduction};
+    window.cashDeduction = ${cash_deduction};
+    window.additional = ${additional_deduction};
+    window.total = ${total};
     window.remainingDeduction = ${remainingDeduction};
 </script>
 
@@ -163,7 +260,7 @@
 <!-- footer-wrapper -->
 <footer>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
 
 

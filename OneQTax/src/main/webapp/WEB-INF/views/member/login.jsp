@@ -4,8 +4,9 @@
 <head>
     <title>Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/common.css" rel="stylesheet">
     <link href="../../../resources/css/login.css" rel="stylesheet">
+    <link href="../../../resources/css/common.css" rel="stylesheet">
+    <link href="../../../resources/css/main.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <meta name="keywords" content="Login">
@@ -31,9 +32,9 @@
 <body>
 
 
-    <header>
-        <%@ include file="../common/header.jsp" %>
-    </header>
+<header>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+</header>
 
 <section class="login_section">
     <div class="container outer_container accounts_container">
@@ -97,7 +98,8 @@
 <!--login_section-->
 
     <footer>
-        <%@ include file="../common/footer.jsp" %>
+
+        <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
     </footer>
 <script>
 

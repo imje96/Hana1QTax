@@ -16,12 +16,12 @@ body{
     width:100%;
     background-color:var(--background-theme);
 }
-h1{
-    font-size: 3.2rem;
-}
-p{
-    font-size: 1.2rem;
-}
+/*h1{*/
+/*    font-size: 3.2rem;*/
+/*}*/
+/*p{*/
+/*    font-size: 1.2rem;*/
+/*}*/
 /* Sections */
 .login_section{
     min-height: 100vh;

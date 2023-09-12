@@ -278,9 +278,9 @@ p {
     margin-right: 10px;
 }
 
-a.loginBtn,
-a.joinBtn,
-a.logoutBtn {
+.loginBtn,
+.joinBtn,
+.logoutBtn{
     display: inline-block;
     color: black;
     /* 글자색 변경 */
@@ -295,7 +295,7 @@ a.logoutBtn {
     font-size: 15px;
     /* 폰트 크기 변경 */
     cursor: pointer;
-    background-color: #ffffff;
+    background-color: #ece9e9;
     /* 배경색 추가 */
     transition: background-color 0.3s, transform 0.3s;
     /* 부드러운 전환 효과 추가 */
@@ -303,9 +303,9 @@ a.logoutBtn {
     /* 그림자 추가 */
 }
 
-a.loginBtn:hover,
-a.joinBtn:hover,
-a.logoutBtn:hover {
+.loginBtn:hover,
+.joinBtn:hover,
+.logoutBtn:hover {
     background-color: #00857F;
     /* hover 시 배경색 변경 */
     transform: scale(1.05);
