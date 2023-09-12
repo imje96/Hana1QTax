@@ -316,6 +316,14 @@ section.service .img.motion {
     align-items: center;
 }
 
+.comment-info {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .result-tax {
     background-color: #8062D6;
     display: flex;
@@ -333,6 +341,10 @@ section.service .img.motion {
 }
 
 /* 버튼 */
+.btn-container{
+    margin-top: 10px;
+}
+
 .modalBtn {
     display: inline-block;
     color: #3d19ab;

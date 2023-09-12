@@ -199,10 +199,25 @@
                         남은 최대 공제액 ${remainingDeduction}원
                     </div>
                     <div class="comment-info">
-                        <h6> 2023년 카드소득공제 공제액</h6>
+                        <c:choose>
+                            <c:when test="${total > 0}">
+                                신용카드 대신 체크카드, 현금을 쓰면 0만원 더 돌려받을 수 있어요
+                                <br/>문화관련, 전통시장, 대중교통은 신용카드 혜택이 좋아요
+
+
+                            </c:when>
+                            <c:when test="${remainingDeduction == 0}">
+                                이미 최대 환급을 받고 있으니<br/>
+                                혜택이 큰 신용카드를 사용해볼까요?
+                            </c:when>
+                        </c:choose>
+                        <img class="imgLogo" src="../../../resources/img/card8.png" height="150">
                     </div>
-                    <div>
+                    <div class="btn-container">
                         <button id="openModalBtn" class="modalBtn"><h6>계산 결과 상세보기</h6></button>
+                        <br/>
+                        <br/>
+                        <button id="recommendBtn" class="modalBtn"><h6>내게 맞는 카드 추천받기</h6></button>
                     </div>
                 </div>
 
