@@ -113,19 +113,19 @@ public class TaxController {
 
 //        추가
         double total1 = (totalIncome > 70000000) ? 4500000 : 6000000;
+        double total2 = (totalIncome > 70000000) ? 2500000 : 3000000;
 
         // 각 항목의 퍼센트를 계산
         double totalDeductions = result.getCredit_deduction() + result.getDebit_deduction() + result.getCash_deduction() + result.getAdditional_deduction();
-        double remain_deduction = total1 - totalDeductions; // 나머지 금액 계산
+        double remain_deduction1 = total1 - totalDeductions; // 나머지 금액 계산
+        double remain_deduction2 = total2 - result.getBasic_deduction();
 
         // 그래프를 위한 값
 
-//        model.addAttribute("creditDeduction", (int) result.getCredit_deduction());
-//        model.addAttribute("debitDeduction", (int) result.getDebit_deduction());
-//        model.addAttribute("cashDeduction", (int) result.getCash_deduction());
-//        model.addAttribute("additional", (int) result.getAdditional_deduction());
         model.addAttribute("total", (int) total1);
-        model.addAttribute("remainingDeduction", (int) remain_deduction);
+        model.addAttribute("basicTotal", (int) total2);
+        model.addAttribute("remainingDeduction", (int) remain_deduction1);
+        model.addAttribute("remainingDeduction2", (int) remain_deduction2);
 
         model.addAttribute("credit_deductible", (int) result.getCredit_deductible());
         model.addAttribute("credit_deduction", (int) result.getCredit_deduction());

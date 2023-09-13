@@ -90,7 +90,7 @@ $(document).ready(function() {
                 slideIndex = 0;
             }
 
-            setTimeout(showSlides, 40000);
+            setTimeout(showSlides, 5000);
         }
     }
 });
