@@ -72,8 +72,10 @@
                     </div>
 
                     <div class="dropdown">
-                        <button class="dropbtn">연말정산계산기
-                        </button>
+                        <a href="${pageContext.request.contextPath}/taxRefund">
+                            <button class="dropbtn">연말정산계산기
+                            </button>
+                        </a>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">마이데이터

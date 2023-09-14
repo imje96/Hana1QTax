@@ -72,7 +72,7 @@ public class TaxController {
         return "tax/taxInfo";
     }
 
-    // taxMain으로 이동
+    // 소득공제 안내 페이지 taxMain으로 이동
     @GetMapping("/taxMain")
     public String taxMain(HttpSession session, Model model) {
 
@@ -137,6 +137,7 @@ public class TaxController {
         model.addAttribute("additional_deduction", (int) result.getAdditional_deduction());
         model.addAttribute("total_deduction", (int) result.getTotal_deduction());
         model.addAttribute("reducing_tax", (int) result.getReducing_tax());
+        model.addAttribute("deduction_date", result.getResult_date());
 
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
@@ -144,6 +145,7 @@ public class TaxController {
         model.addAttribute("culture_total", (int) transaction.getCulture_total());
         model.addAttribute("market_total", (int) transaction.getMarket_total());
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
+
 
         System.out.println("서비스 결과 (컨트롤러): " + result);
         // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
@@ -177,8 +179,62 @@ public class TaxController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    // 소비 문턱넘기기 페이지로 이동
+    @GetMapping("/taxThreshold")
+    public String taxThreshold(HttpSession session, Model model) {
+
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+
+        // total_income 가져오기
+        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+        double totalIncome = taxInfoVO.getTotal_income();
+
+        TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
+        DeductionResultVO result = taxService.getDeductionResult(memberId);
+
+        // 기본항목 총합 & 추가항목 총합
+        double basicTotal = transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total();
+        double additionalTotal =  transaction.getCulture_total() + transaction.getMarket_total() + transaction.getTransport_total();
+        double transactionTotal = basicTotal + additionalTotal;
+        double remainingThreshold = taxInfoVO.getMinimum_amount() - basicTotal;
+
+        // 그래프를 위한 값
+
+        model.addAttribute("credit_total", (int) transaction.getCredit_total());
+        model.addAttribute("debit_total", (int) transaction.getDebit_total());
+        model.addAttribute("cash_total", (int) transaction.getCash_total());
+        model.addAttribute("culture_total", (int) transaction.getCulture_total());
+        model.addAttribute("market_total", (int) transaction.getMarket_total());
+        model.addAttribute("transport_total", (int) transaction.getTransport_total());
+        // 최저사용액
+        model.addAttribute("minimum_amount",(int)taxInfoVO.getMinimum_amount());
+        model.addAttribute("basicTotal", (int) basicTotal);
+        model.addAttribute("additionalTotal", (int) additionalTotal);
+        model.addAttribute("transactionTotal", (int) transactionTotal);
+        model.addAttribute("remainingThreshold", (int) remainingThreshold);
+
+
+
+        model.addAttribute("result", result);
+        model.addAttribute("transaction", transaction);
+
+        return "tax/taxThreshold";
+    }
     // 세션에서 member_id 가져오기
     private MemberVO getCurrentUser(HttpSession session) {
         return (MemberVO) session.getAttribute("currentUser");
+    }
+
+    @GetMapping("/taxRefund")
+    public String taxRefund(HttpSession session, Model model){
+
+        return "tax/taxRefund";
     }
 }

@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.cashDeduction,
                     window.remainingDeduction2,
                 ],
-                backgroundColor: ['#ffeb9b', '#b5f2ff', '#c5f2ba','#efecec'],
-                borderColor: ['#ffeb9b', '#b5f2ff', '#c5f2ba', '#efecec'],
+                backgroundColor: ['#fdbebe', '#9ae7d7', '#dac3ee','#efecec'],
+                borderColor: ['#f1f2f5', '#f1f2f5', '#f1f2f5', '#f1f2f5'],
                 circumference: 180,
                 rotation: 270,
             }]
@@ -22,7 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
         options: {
             plugins: {
                 legend: {
-                    position: 'bottom' // 여기를 추가
+                    position: 'bottom',
+                    labels: {
+                        usePointStyle: true,
+                    },
+                 },
+                layout: {
+                    padding: {
+                        top: 10, // 그래프 영역의 위쪽 여백 조절
+                    }
                 },
                 tooltips: {
                     callbacks: {
@@ -38,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+
     var deductionChart1 = new Chart(ctx1, {
         type: 'bar',
         data: {
@@ -45,20 +54,20 @@ document.addEventListener('DOMContentLoaded', function() {
             datasets: [{
                 label: '기본공제액',
                 data: [window.basicDeduction],
-                backgroundColor: ['#ffeb9b'],
-                borderColor: ['#ffeb9b'],
+                backgroundColor: ['#9ae7d7'],
+                borderColor: ['#ffffff'],
             },
                 {
                     label: '추가공제액',
                     data: [window.additionalDeduction],
                     backgroundColor: ['#b5f2ff'],
-                    borderColor: ['#b5f2ff'],
+                    borderColor: ['#ffffff'],
                 },
                 {
                     label: '남은공제액',
                     data: [window.total - window.basicDeduction - window.additionalDeduction],
                     backgroundColor: ['#edebeb'],
-                    borderColor: ['#edebeb'],
+                    borderColor: ['#ffffff'],
                 }
             ]
         },
@@ -69,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             maintainAspectRatio: false,
             scales: {
                 x: {
-                    display: true,
+                    display: false,
                     stacked: true,
                     grid: {
                         display: false,
@@ -77,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         drawBorder: false      // x축의 경계선도 제거합니다.
                     },
                     ticks: {
-                        display: true,
+                        display: false,
                         maxRotation: 0, // 레이블을 바르게 만들기 위한 설정
                         autoSkip: false, // 레이블을 건너뛰지 않도록 설정
                         callback: function(value, index, values) {
@@ -103,16 +112,19 @@ document.addEventListener('DOMContentLoaded', function() {
             plugins: {
                 legend: {
                     display: true,
-                    position: 'bottom'
+                    position: 'bottom',
+                    labels: {
+                        usePointStyle: true, // 이 설정을 사용하여 원 모양 이미지를 활성화
+                    }
                 },
-                datalabels: {
-                    color: 'black',
-                    formatter: function(value, context) {
-                        return ((value / totalDeductions) * 100).toFixed(2) + '%';
-                    },
-                    anchor: 'end',
-                    align: 'top',
-                }
+                // datalabels: {
+                //     color: 'black',
+                //     formatter: function(value, context) {
+                //         return ((value / totalDeductions) * 100).toFixed(2) + '%';
+                //     },
+                //     anchor: 'end',
+                //     align: 'top',
+                // }
             }
         }
     });

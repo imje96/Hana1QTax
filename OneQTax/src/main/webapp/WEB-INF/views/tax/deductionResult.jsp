@@ -125,22 +125,7 @@
                         <th>Reducing Tax</th>
                         <th>Result Date</th>
                     </tr>
-<%--                    <tr>--%>
-<%--                        <td>${result.deduction_id}</td>--%>
-<%--                        <td>${result.calculation_id}</td>--%>
-<%--                        <td>${result.total_id}</td>--%>
-<%--                        <td>${result.credit_deductible}</td>--%>
-<%--                        <td>${result.credit_deduction}</td>--%>
-<%--                        <td>${result.debit_deductible}</td>--%>
-<%--                        <td>${result.cash_deductible}</td>--%>
-<%--                        <td>${result.debit_deduction}</td>--%>
-<%--                        <td>${result.cash_deduction}</td>--%>
-<%--                        <td>${result.basic_deduction}</td>--%>
-<%--                        <td>${result.additional_deduction}</td>--%>
-<%--                        <td>${result.total_deduction}</td>--%>
-<%--                        <td>${result.reducing_tax}</td>--%>
-<%--                        <td>${result.result_date}</td>--%>
-<%--                    </tr>--%>
+
                 </table>
 
 

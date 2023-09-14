@@ -79,7 +79,7 @@
                 <a href="${pageContext.request.contextPath}/taxInfo" style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">카드황금비율 계산</div></a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
+                <a href="${pageContext.request.contextPath}/taxThreshold" style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div></a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">

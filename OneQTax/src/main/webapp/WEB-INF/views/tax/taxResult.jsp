@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--숫자를 원화로 포맷팅--%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--localTimestamp 초 까지만 출력--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,8 +27,6 @@
     <link
             href="${ pageContext.request.contextPath }/resources/img/favicon.ico"
             rel="icon">
-
-
     <!-- Template Stylesheet -->
     <link
             href="${ pageContext.request.contextPath }/resources/css/style.css"
@@ -81,7 +82,7 @@
                     <div style="color: grey; margin-bottom: 15px;">카드황금비율 계산</div>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                <a href="${pageContext.request.contextPath}/taxThreshold"
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div>
                 </a>
@@ -106,6 +107,8 @@
                     Hana 1QTax <span style="color: #ff328b;">연말정산</span>
                 </h6>
                 <h2 class="mb-4">카드황금비율 계산 결과💰</h2>
+                <br/>
+                <h3>소득공제액을 미리 확인하고 관리하세요!</h3>
             </div>
 
 
@@ -205,7 +208,14 @@
                 </div>
             </div>
 
+                <div class="time" style="text-align: right">
+                     <c:set var="formattedTimestamp" value="${fn:substring(deduction_date, 0, 19)}" />
+                    ${formattedTimestamp}
+                    <a href="#" onclick="window.location.reload(); return false;"><img src="../../../resources/img/refresh.png" height="30"></a>
+                </div>
             <div class="container2">
+<%--                <p>${deduction_date}</p>--%>
+
                 <div class="comment-box">
                     <div class="result-tax">
                         <h6>2023년 카드 등 소득공제 공제액</h6>
@@ -249,14 +259,23 @@
                     <%--                        <canvas id="deductionChart2"></canvas>--%>
                     <%--                        <script src="../../resources/js/deductionChart2.js"></script>--%>
                     <%--                    </div>--%>
-                    <div class="chart1">
+                        <h5>전체 카드소득공제 현황</h5><br/>
+                        <span style="color: #106e69;">
+                            <p>달성금액 : <fmt:formatNumber value="${total_deduction}" groupingUsed="true"/>/<fmt:formatNumber value="${total}" groupingUsed="true"/>원</p></span>
+                        <div class="chart1">
+
                         <canvas id="deductionChart1"></canvas>
                     </div>
                     <div class="info-box">
+
                         <div class="info-item">일반공제액:&nbsp;<fmt:formatNumber value="${basic_deduction}" groupingUsed="true"/>원</div>
                         <div class="info-item">추가공제액:&nbsp;<fmt:formatNumber value="${additional_deduction}" groupingUsed="true"/>원</div>
-                        <div class="info-item">공제가능액:&nbsp;<fmt:formatNumber value="${total}" groupingUsed="true"/>원</div>
+                        <div class="info-item">남은 공제가능액:&nbsp;<fmt:formatNumber value="${remainingDeduction}" groupingUsed="true"/>원</div>
                     </div>
+                        <br/>
+                        <h5>일반 카드소득공제 현황</h5><br/>
+                        <span style="color: #106e69;">
+                            <p>달성금액 : <fmt:formatNumber value="${basic_deduction}" groupingUsed="true"/>/<fmt:formatNumber value="${basicTotal}" groupingUsed="true"/>원</p></span>
                     <div class="chart2">
                         <canvas id="deductionChart2"></canvas>
                     </div>
@@ -264,7 +283,7 @@
                         <div class="info-item">신용카드공제액:&nbsp;<fmt:formatNumber value="${credit_deduction}" groupingUsed="true"/>원</div>
                         <div class="info-item">체크카드공제액:&nbsp;<fmt:formatNumber value="${debit_deduction}" groupingUsed="true"/>원</div>
                         <div class="info-item">현금영수증공제액:&nbsp;<fmt:formatNumber value="${cash_deduction}" groupingUsed="true"/>원</div>
-                        <div class="info-item">남은 공제가능액:&nbsp;<fmt:formatNumber value="${remaingDeduction2}" groupingUsed="true"/>원</div>
+                        <div class="info-item">남은 공제가능액:&nbsp;<fmt:formatNumber value="${remainingDeduction2}" groupingUsed="true"/>원</div>
                     </div>
                     <script src="../../resources/js/deductionChart.js"></script>
                 </div>
