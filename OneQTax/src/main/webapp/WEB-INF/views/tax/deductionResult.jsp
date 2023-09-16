@@ -73,14 +73,14 @@
 
         <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
             <div style="padding-left: 30px;">
-                <h3 style="color: #018c8d; margin-bottom: 15px;">카드황금비율계산</h3>
+                <h3 style="color: #018c8d; margin-bottom: 15px;">카드황금비율관리</h3>
                 <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
                     <h6 style="color: black;">소득공제 안내</h6>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/taxInfo" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 계산</div></a>
+                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 플래너</div></a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div></a>

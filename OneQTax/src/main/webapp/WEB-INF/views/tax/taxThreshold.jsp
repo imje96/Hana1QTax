@@ -281,9 +281,7 @@
     </div>
 
   </section>
-  <section>
-    <h1>test1</h1>
-  </section>
+
 </div>
 
 <script>

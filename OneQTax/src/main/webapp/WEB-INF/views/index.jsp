@@ -58,7 +58,7 @@
                 <div class="drops">
                     <div class="dropdown">
                         <a href="${pageContext.request.contextPath}/taxInfo">
-                            <button class="dropbtn">카드황금비율계산
+                            <button class="dropbtn">카드황금비율관리
 <%--                                                        <i class="fa fa-caret-down"></i>--%>
                             </button>
                         </a>
@@ -71,9 +71,10 @@
                     </div>
 
                     <div class="dropdown">
-                        <button class="dropbtn">연말정산계산기
-                            <i class="fa fa-caret-down"></i>
-                        </button>
+                        <a href="${pageContext.request.contextPath}/taxRefund">
+                            <button class="dropbtn">연말정산플래너
+                            </button>
+                        </a>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn">마이데이터

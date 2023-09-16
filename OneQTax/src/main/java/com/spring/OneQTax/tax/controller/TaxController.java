@@ -237,4 +237,10 @@ public class TaxController {
 
         return "tax/taxRefund";
     }
+
+    @GetMapping("/taxTest")
+    public String taxResult(HttpSession session, Model model){
+
+        return "tax/taxTest";
+    }
 }
