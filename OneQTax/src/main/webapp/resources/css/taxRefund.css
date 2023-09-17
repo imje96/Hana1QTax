@@ -95,14 +95,21 @@
     text-transform: uppercase;
     margin: 15px 0;
 }
+/* p태그 글자 크기 */
 .section-content p {
-    font-size: 15px;
+    font-size: 20px;
     line-height: 1.8rem;
     color: #777;
 }
 
 .section-content p2 {
-    font-size: 20px;
+    font-size: 17px;
+    line-height: 1.8rem;
+    color: #777;
+}
+
+.section-content p3 {
+    font-size: 15px;
     line-height: 1.8rem;
     color: #777;
 }
@@ -430,6 +437,13 @@ p {
 
 .modal-amount-money {
 
+}
+
+.modal-amount-explanation {
+    background: #f5f5f5;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
 }
 
 /*fieldset*/

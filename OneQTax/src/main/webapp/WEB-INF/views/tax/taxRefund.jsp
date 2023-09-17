@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -226,7 +226,7 @@
                                         <span> </span>
                                         <h5>&gt&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +244,7 @@
                                         <span> </span>
                                         <h5>&gt&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +262,7 @@
                                         <span> </span>
                                         <h5>&gt&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +280,7 @@
                                         <span> </span>
                                         <h5>&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -298,7 +298,7 @@
                                         <span> </span>
                                         <h5>&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -316,7 +316,7 @@
                                         <span> </span>
                                         <h5>&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -334,7 +334,7 @@
                                         <span> </span>
                                         <h5>&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -352,7 +352,7 @@
                                         <span> </span>
                                         <h5>&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -370,7 +370,7 @@
                                         <span> </span>
                                         <h5>&gt;</h5>
                                         <br/>
-                                        <p2>1,000,000원</p2>
+                                        <p1>1,000,000원</p1>
                                     </div>
                                 </div>
                             </div>
@@ -403,12 +403,13 @@
     </div>
 </section>
 
-<div class="modal" id="detailsModal1">a
+<div class="modal" id="detailsModal1">
     <div class="modal-content">
 
         <span class="close">&times;</span>
-        <h3>연금보험료</h3>
-        <p>근로자 4대 보험 이외 개인연금저축 납입현황을 확인해주세요.</p>
+        <form id="updateForm" action="/update" method="post" >
+            <h3>연금보험료</h3>
+            <p>근로자 4대 보험 이외 개인연금저축 납입현황을 확인해주세요.</p>
         <br/>
         <p>기준일</p>
         <br/>
@@ -418,39 +419,42 @@
                 <h5>소득 공제 금액</h5>
             </div>
             <div class="modal-amount-money">
-                <p2>5,170,000원</p2><br/>
+                <span id="totalPension">${totalPensionValue}원</span><br/>
                 <p2>5,170,000원</p2>
             </div>
         </div>
             <hr>
         <div class="modal-amount-box">
             <div class="modal-amount-text">
-                <h5>건강보험료 납입공제</h5>
-                <h5>고용보험료 납입공제</h5>
-                <h5>국민연금 납입공제</h5>
-                <h5>개인연금저축 보험</h5>
-                <h5>기타 납입연금</h5>
+<%--                <h5>건강보험료 납입공제</h5>--%>
+<%--                <h5>고용보험료 납입공제</h5>--%>
+<%--                <h5>국민연금 납입공제</h5>--%>
+<%--                <h5>개인연금저축 보험</h5>--%>
+<%--                <h5>기타 납입연금</h5>--%>
+    <label for="healthInsurance">건강보험료 납입공제:</label>
+    <input type="text" id="healthInsurance" name="health_insurance" value="${info.health_insurance}">
+    <label for="employmentInsurance">고용보험료 납입공제:</label>
+    <input type="text" id="employmentInsurance" name="employment_insurance" value="${info.employment_insurance}">
+    <label for="nationalPension">국민연금 납입공제:</label>
+    <input type="text" id="nationalPension" name="national_pension" value="${info.national_pension}">
+
             </div>
             <div class="modal-amount-money">
-                <p2>2,200,000원</p2><br/>
-                <p2>495,000원</p2><br/>
-                <p2>2,475,000원</p2><br/>
-                <p2>0원</p2><br/>
-                <p2>0원</p2>
+<%--                <p1>${info.health_insurance}원</p1><br/>--%>
+<%--                <p1>${info.employment_insurance}원</p1><br/>--%>
+<%--                <p1>${info.national_pension}원</p1><br/>--%>
+<%--                <p1>0원</p1><br/>--%>
+<%--                <p1>0원</p1>--%>
             </div>
         </div>
             <div class="modal-amount-explanation">
                 <p2>기타 납입연금?</p2>
-                <p>	&#183; 공무원 연금, 군인연금 </p>
+                <br/>
+                <p>	&#183; 공무원 연금, 군인연금, 사립학교 교직원 연금, 별정 우체국 연금 등 납입한 연금보험료 공제</p>
             </div>
-
-    </div>
-        <ul>
-            <li>조건1: <span id="condition1Amount">0원</span></li>
-            <li>조건2: <span id="condition2Amount">0원</span></li>
-            <li>조건3: <span id="condition3Amount">0원</span></li>
-            <!-- ... 다른 조건들 ... -->
-        </ul>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
+            <input type="button" id="pensionBtn" value="Update">
+        </form>
     </div>
 </div>
 
@@ -469,6 +473,15 @@
 
 
 </div>
+
+
+
+<footer>
+
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
+
+
 
 <%--progress bar--%>
 <script>
@@ -554,12 +567,53 @@
 
 </script>
 
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('pensionBtn').addEventListener('click', updateTotalPension);
 
-<footer>
+        updateTotalPension();
+    });
 
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-</footer>
+    function updateTotalPension() {
+        const healthInsurance = parseInt(document.getElementById('healthInsurance').value.replace(/,/g, '').replace('원', ''));
+        const employmentInsurance = parseInt(document.getElementById('employmentInsurance').value.replace(/,/g, '').replace('원', ''));
+        const nationalPension = parseInt(document.getElementById('nationalPension').value.replace(/,/g, '').replace('원', ''));
 
 
+        const totalValue = healthInsurance + employmentInsurance + nationalPension;
+        const totalPensionSpan = document.getElementById('totalPension');
+        totalPensionSpan.textContent = new Intl.NumberFormat('ko-KR').format(totalValue) + '원';
+
+        const data = {
+            totalInfoVO: {
+                health_insurance: healthInsurance,
+                employment_insurance: employmentInsurance,
+                national_pension: nationalPension
+                // private_pension: privatePension,
+                // other_pension: otherPension
+            }
+        };
+
+        fetch("/update", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('totalPension').textContent = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(data.health_insurance + data.employment_insurance + data.national_pension);
+            });
+    }
+
+
+</script>
 </body>
+
 </html>

@@ -1,8 +1,10 @@
 package com.spring.oneqtax.tax.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.service.TaxService;
+import com.spring.oneqtax.tax.service.TotalTaxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,18 +12,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 public class TaxController {
 
     private final TaxService taxService;
+    @Autowired
+    private TotalTaxService totalTaxService;
+    // ObjectMapper 인스턴스 생성
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     public TaxController(TaxService taxService) {
         this.taxService = taxService;
     }
+
 
     @GetMapping("/taxInfo")
     public String calculation(HttpSession session, Model model) {
@@ -50,27 +61,6 @@ public class TaxController {
         return "tax/taxInfo";
     }
 
-    // @GetMapping("/taxInfo")
-    public String getTaxInfo(HttpSession session, Model model) {
-
-        MemberVO currentUser = (MemberVO) session.getAttribute("currentUser");
-        System.out.println(currentUser);
-
-
-        int member_id = currentUser.getMember_id();
-        System.out.println("id " + member_id);
-        TaxInfoVO taxInfo = taxService.getTaxInfoByMemberId(member_id);
-
-        System.out.println("서비스 결과 (컨트롤러): " + taxInfo);
-        // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
-        model.addAttribute("taxInfo", taxInfo);
-
-        // TODO: TaxService를 호출하여 계산 수행
-//        taxService.performCalculation(taxInfoList);
-
-        // 뷰 이름 반환
-        return "tax/taxInfo";
-    }
 
     // 소득공제 안내 페이지 taxMain으로 이동
     @GetMapping("/taxMain")
@@ -104,7 +94,7 @@ public class TaxController {
         double totalIncome = taxInfoVO.getTotal_income();
 
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
-        DeductionResultVO result = taxService.getDeductionResult(memberId);
+        TaxResultVO result = taxService.getDeductionResult(memberId);
 
         // Transform the VO objects
 //        DeductionResultVO2 transformedTransaction = transformTransaction(transaction);
@@ -157,7 +147,7 @@ public class TaxController {
 
     // 공제 계산하기
     @PostMapping("/calculateAndInsertDeduction")
-    public ResponseEntity<DeductionResultVO> calculateAndInsertDeduction(HttpSession session) {
+    public ResponseEntity<TaxResultVO> calculateAndInsertDeduction(HttpSession session) {
         // member_id 먼저 가져오기
         MemberVO currentUser = getCurrentUser(session);
 
@@ -169,7 +159,7 @@ public class TaxController {
 
 
         // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
-        DeductionResultVO result = taxService.processDeductionForMember(memberId);
+        TaxResultVO result = taxService.processDeductionForMember(memberId);
 
 
         if (result == null) {
@@ -197,11 +187,11 @@ public class TaxController {
         double totalIncome = taxInfoVO.getTotal_income();
 
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
-        DeductionResultVO result = taxService.getDeductionResult(memberId);
+        TaxResultVO result = taxService.getDeductionResult(memberId);
 
         // 기본항목 총합 & 추가항목 총합
         double basicTotal = transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total();
-        double additionalTotal =  transaction.getCulture_total() + transaction.getMarket_total() + transaction.getTransport_total();
+        double additionalTotal = transaction.getCulture_total() + transaction.getMarket_total() + transaction.getTransport_total();
         double transactionTotal = basicTotal + additionalTotal;
         double remainingThreshold = taxInfoVO.getMinimum_amount() - basicTotal;
 
@@ -214,12 +204,11 @@ public class TaxController {
         model.addAttribute("market_total", (int) transaction.getMarket_total());
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
         // 최저사용액
-        model.addAttribute("minimum_amount",(int)taxInfoVO.getMinimum_amount());
+        model.addAttribute("minimum_amount", (int) taxInfoVO.getMinimum_amount());
         model.addAttribute("basicTotal", (int) basicTotal);
         model.addAttribute("additionalTotal", (int) additionalTotal);
         model.addAttribute("transactionTotal", (int) transactionTotal);
         model.addAttribute("remainingThreshold", (int) remainingThreshold);
-
 
 
         model.addAttribute("result", result);
@@ -227,20 +216,91 @@ public class TaxController {
 
         return "tax/taxThreshold";
     }
+
     // 세션에서 member_id 가져오기
     private MemberVO getCurrentUser(HttpSession session) {
         return (MemberVO) session.getAttribute("currentUser");
     }
 
+    // 연말정산 계산
     @GetMapping("/taxRefund")
-    public String taxRefund(HttpSession session, Model model){
+    public String taxRefund(HttpSession session, Model model) {
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
 
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+
+        // total_income 가져오기
+        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+        double totalIncome = taxInfoVO.getTotal_income();
+
+        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
+
+        model.addAttribute("totalIncome", totalIncome);
+        model.addAttribute("info", totalInfoVO);
         return "tax/taxRefund";
     }
+    @PostMapping(value = "/update", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> updateTotalInfo(@RequestBody Map<String, Object> requestData, HttpSession session) {
+        MemberVO currentUser = getCurrentUser(session);
+
+        // 세션에서 사용자를 찾을 수 없으면 로그인 정보 없음을 JSON으로 반환
+        if (currentUser == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "User not logged in."));
+        }
+
+        try {
+            // requestData에서 totalInfoVO를 추출하고 TotalInfoVO 객체로 변환
+
+            int memberId = currentUser.getMember_id();
+            TotalInfoVO totalInfoVO = objectMapper.convertValue(requestData.get("totalInfoVO"), TotalInfoVO.class);
+            TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+            double totalIncome = taxInfoVO.getTotal_income();
+            // requestData에서 totalIncome을 추출하고 double로 변환
+            totalIncome = Double.parseDouble(requestData.get("totalIncome").toString());
+
+            // taxInfoVO에서 calculation_id 가져와서 totalInfoVO에 설정
+            totalInfoVO.setCalculation_id(taxInfoVO.getCalculation_id());
+
+            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
+            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
+            TotalInfoVO updatedVo = totalTaxService.updateTotalInfo(totalInfoVO, totalIncome);
+
+            // 성공적인 응답과 함께 updatedVo 객체 반환
+            return ResponseEntity.ok(Map.of("message", "Update Successful!", "updatedVo", updatedVo, "redirectURL", "/tax/taxRefund"));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", e.getMessage()));
+        }
+    }
+
+
+
+//    @PostMapping("/update")
+//    public String updateTotalInfo(TotalInfoVO totalInfoVO, Model model, HttpSession session){
+//        MemberVO currentUser = getCurrentUser(session);
+//        int memberId = currentUser.getMember_id();
+//        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+//        double totalIncome = taxInfoVO.getTotal_income();
+//        double calculation_id = taxInfoVO.getCalculation_id();
+//
+//        TotalInfoVO updatedVo = totalTaxService.updateTotalInfo(totalInfoVO, totalIncome);
+//
+//        model.addAttribute("totalIncome", totalIncome);
+//        model.addAttribute("calculation_id", calculation_id);
+//        return "/tax/taxRefund";
+//    }
 
     @GetMapping("/taxTest")
     public String taxResult(HttpSession session, Model model){
 
         return "tax/taxTest";
     }
+
+
+
 }
