@@ -5,15 +5,13 @@ import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.service.TaxService;
 import com.spring.oneqtax.tax.service.TotalTaxService;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -244,39 +242,45 @@ public class TaxController {
         model.addAttribute("info", totalInfoVO);
         return "tax/taxRefund";
     }
-    @PostMapping(value = "/update", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> updateTotalInfo(@RequestBody Map<String, Object> requestData, HttpSession session) {
-        MemberVO currentUser = getCurrentUser(session);
 
-        // 세션에서 사용자를 찾을 수 없으면 로그인 정보 없음을 JSON으로 반환
-        if (currentUser == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "User not logged in."));
-        }
-
-        try {
-            // requestData에서 totalInfoVO를 추출하고 TotalInfoVO 객체로 변환
-
-            int memberId = currentUser.getMember_id();
-            TotalInfoVO totalInfoVO = objectMapper.convertValue(requestData.get("totalInfoVO"), TotalInfoVO.class);
-            TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
-            double totalIncome = taxInfoVO.getTotal_income();
-            // requestData에서 totalIncome을 추출하고 double로 변환
-            totalIncome = Double.parseDouble(requestData.get("totalIncome").toString());
-
-            // taxInfoVO에서 calculation_id 가져와서 totalInfoVO에 설정
-            totalInfoVO.setCalculation_id(taxInfoVO.getCalculation_id());
-
-            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
-            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
-            TotalInfoVO updatedVo = totalTaxService.updateTotalInfo(totalInfoVO, totalIncome);
-
-            // 성공적인 응답과 함께 updatedVo 객체 반환
-            return ResponseEntity.ok(Map.of("message", "Update Successful!", "updatedVo", updatedVo, "redirectURL", "/tax/taxRefund"));
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", e.getMessage()));
-        }
+    @GetMapping("/taxCalculator")
+    public String taxCalculator(HttpSession session, Model model) {
+        return "tax/taxCalculator";
     }
+
+//    @PostMapping(value = "/update", consumes = "application/json", produces = "application/json")
+//    public ResponseEntity<?> updateTotalInfo(@RequestBody Map<String, Object> requestData, HttpSession session) {
+//        MemberVO currentUser = getCurrentUser(session);
+//
+//        // 세션에서 사용자를 찾을 수 없으면 로그인 정보 없음을 JSON으로 반환
+//        if (currentUser == null) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "User not logged in."));
+//        }
+//
+//        try {
+//            // requestData에서 totalInfoVO를 추출하고 TotalInfoVO 객체로 변환
+//
+//            int memberId = currentUser.getMember_id();
+//            TotalInfoVO totalInfoVO = objectMapper.convertValue(requestData.get("totalInfoVO"), TotalInfoVO.class);
+//            TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+//            double totalIncome = taxInfoVO.getTotal_income();
+//            // requestData에서 totalIncome을 추출하고 double로 변환
+//            totalIncome = Double.parseDouble(requestData.get("totalIncome").toString());
+//
+//            // taxInfoVO에서 calculation_id 가져와서 totalInfoVO에 설정
+//            totalInfoVO.setCalculation_id(taxInfoVO.getCalculation_id());
+//
+//            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
+//            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
+//            TotalInfoVO updatedVo = totalTaxService.updateTotalInfo(totalInfoVO, totalIncome);
+//
+//            // 성공적인 응답과 함께 updatedVo 객체 반환
+//            return ResponseEntity.ok(Map.of("message", "Update Successful!", "updatedVo", updatedVo, "redirectURL", "/tax/taxRefund"));
+//
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", e.getMessage()));
+//        }
+//    }
 
 
 
@@ -296,11 +300,39 @@ public class TaxController {
 //    }
 
     @GetMapping("/taxTest")
-    public String taxResult(HttpSession session, Model model){
+    public String taxTest(HttpSession session, Model model){
+        MemberVO currentUser = getCurrentUser(session);
 
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+
+        // total_income 가져오기
+        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+        double totalIncome = taxInfoVO.getTotal_income();
+
+        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
+        model.addAttribute("totalIncome", (int)totalIncome);
         return "tax/taxTest";
     }
 
+    @PostMapping("/testResult")
+    public String testResult(@ModelAttribute TaxFormVO taxForm, HttpSession session) {
+        // taxForm 객체를 사용하여 폼 데이터에 액세스
+        System.out.println("Total Income: " + taxForm.getTotalIncome());
+        System.out.println("Spouse Deduction: " + taxForm.getSpouseDeduction());
+        System.out.println("Child: " + taxForm.getChild());
+        System.out.println("Adopted Child: " + taxForm.getAdoptedChild());
+        System.out.println("Direct Ancestor: " + taxForm.getDirectAncestor());
+        System.out.println("Siblings: " + taxForm.getSiblings());
+        System.out.println("Senior: " + taxForm.getSenior());
+        System.out.println("Disability: " + taxForm.getDisability());
+        System.out.println("Woman Deduction: " + taxForm.getWomanDeduction());
+        System.out.println("Single Parent: " + taxForm.getSingleParent());
 
+        return "tax/testResult";
+    }
 
 }

@@ -59,9 +59,9 @@
                 <div style="color: grey; margin-bottom: 15px;">연말정산 결과</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+            <a href="${pageContext.request.contextPath}/taxCalculator"
                style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div>
+                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
@@ -153,9 +153,8 @@
                             </select>
                             <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
                             <br/>
-                            <label for="adopted_child_tax_deduction_count">출산/입양 자녀 수(세액공제):</label><br/>
-                            <select name="adopted_child_tax_deduction_count" id="adopted_child_tax_deduction_count"
-                                    class="content-dropdown">
+                            <label for="siblings_count">형제/자매 수:</label><br/>
+                            <select name="siblings_count" id="siblings_count" class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
                                 <option value="2">2명</option>
