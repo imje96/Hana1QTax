@@ -1,12 +1,9 @@
 package com.spring.oneqtax.tax.domain;
 
 import lombok.Data;
-//import lombok.Getter;
-//import lombok.Setter;
 
+// 연금보험료
 @Data
-//@Setter
-//@Getter
 public class TotalInfoVO {
     public int totalcalc_id;
     public int calculation_id;

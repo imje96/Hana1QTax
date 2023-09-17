@@ -3,6 +3,7 @@ package com.spring.oneqtax.tax.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.tax.domain.*;
+import com.spring.oneqtax.tax.service.TaxFormService;
 import com.spring.oneqtax.tax.service.TaxService;
 import com.spring.oneqtax.tax.service.TotalTaxService;
 import oracle.jdbc.proxy.annotation.Post;
@@ -20,9 +21,11 @@ import java.util.Map;
 @Controller
 public class TaxController {
 
-    private final TaxService taxService;
     @Autowired
     private TotalTaxService totalTaxService;
+    @Autowired
+    private TaxFormService taxFormService;
+    private final TaxService taxService;
     // ObjectMapper 인스턴스 생성
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -319,7 +322,7 @@ public class TaxController {
     }
 
     @PostMapping("/testResult")
-    public String testResult(@ModelAttribute TaxFormVO taxForm, HttpSession session) {
+    public String testResult(@ModelAttribute TaxFormVO taxForm, HttpSession session, Model model) {
         // taxForm 객체를 사용하여 폼 데이터에 액세스
         System.out.println("Total Income: " + taxForm.getTotalIncome());
         System.out.println("Spouse Deduction: " + taxForm.getSpouseDeduction());
@@ -331,6 +334,14 @@ public class TaxController {
         System.out.println("Disability: " + taxForm.getDisability());
         System.out.println("Woman Deduction: " + taxForm.getWomanDeduction());
         System.out.println("Single Parent: " + taxForm.getSingleParent());
+
+        // 서비스를 호출하여 계산 로직 처리
+        TotalTaxResultVO totalResult = taxFormService.calculateDeductions(taxForm);
+
+        // 결과를 세션 혹은 Model에 저장하여 view에 전달
+        session.setAttribute("totalResult", totalResult); // 세션에 저장하는 경우
+        model.addAttribute("totalResult", totalResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
+
 
         return "tax/testResult";
     }

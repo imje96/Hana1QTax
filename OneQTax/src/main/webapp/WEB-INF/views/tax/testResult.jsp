@@ -13,5 +13,8 @@
 <body>
 
 폼 결과 보는 페이지입니다
+    인적소득공제: ${totalResult.personal_deduction}
+<br/>
+    자녀세액공제: ${totalResult.children_taxcredit}
 </body>
 </html>

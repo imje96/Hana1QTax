@@ -4,9 +4,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+// 소득공제 결과
 @Data
-@Getter
-@Setter
+
 public class TaxResultVO {
 
 

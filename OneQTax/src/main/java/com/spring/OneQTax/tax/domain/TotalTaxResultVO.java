@@ -1,34 +1,29 @@
 package com.spring.oneqtax.tax.domain;
 
+import lombok.Data;
+
+@Data
 public class TotalTaxResultVO {
     private int refund_id;
-    private int calculation_id;
-    private double total_income;
-    private double income_deduction;
-    private double personal_deduction;
-    private double pension_total;
-    private double pension_deduction;
-    private double housing_total;
-    private double housing_deduciton;
-    private double incometax_deduction;
-    private double irp_total;
-    private double irp_deduciton;
-    private double guarantee_total;
-    private double guarantee_deduction;
-    private double medical_total;
-    private double medical_deduction;
-    private double donation_total;
-    private double donation_deduction;
-    private double education_total;
-    private double education_deduction;
-    private double rental_total;
-    private double rental_deduction;
-    private double possible_deduction;
-    private double expectation_deduction;
-    private double determined_tax;
-    private double prepayment_tax;
-    private double expected_tax;
-    private double result_time;
-
-
+//    private int calculation_id;
+    /* 소득공제 */
+    private int income_deduction; // 근로소득공제
+    private int personal_deduction;
+    private int pension_deduction;
+    private int housing_deduciton;
+    private int card_deduction; // 카드등소득공제
+    private int irp_taxcredit;
+    /* 여기서부터 세액공제 */
+    private int children_taxcredit;
+    private int guarantee_taxcredit;
+    private int medical_taxcredit;
+    private int donation_taxcredit;
+    private int education_taxcredit;
+    private int rental_taxcredit;
+    private int possible_taxcredit;
+    private int expectation_taxcredit;
+    private int determined_tax;
+    private int prepayment_tax;
+    private int expected_tax;
+    private int result_time;
 }

@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.math.BigDecimal;
 
+// 거래내역
 @Data
-@Getter
-@Setter
+
 public class TransactionVO {
     private int total_id;
     private int member_id;
