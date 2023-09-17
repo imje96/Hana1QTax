@@ -18,6 +18,6 @@ public class TaxFormVO {
     private int siblings; // 형제자매공제
     private int senior; // 경로우대
     private int disability; // 장애인공제
-    private String womanDeduction; // 부녀자공제
-    private String singleParent; // 한부모공제
+    private String womanDeduction;
+    private String singleParent; //한부모공제
 }

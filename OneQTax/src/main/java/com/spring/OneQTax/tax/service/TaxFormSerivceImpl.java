@@ -1,30 +1,36 @@
 package com.spring.oneqtax.tax.service;
 
+import com.spring.oneqtax.tax.domain.TaxFormResultVO;
 import com.spring.oneqtax.tax.domain.TaxFormVO;
-import com.spring.oneqtax.tax.domain.TotalTaxResultVO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TaxFormSerivceImpl implements TaxFormService {
 
 
-    public TotalTaxResultVO calculateDeductions(TaxFormVO form) {
-        TotalTaxResultVO result = new TotalTaxResultVO();
+    public TaxFormResultVO calculatePersonalDeductions(TaxFormVO form) {
+        TaxFormResultVO formResult = new TaxFormResultVO();
 
+        // 사용자가 설정한 총급여2 추가
+        formResult.setTotal_income2(form.getTotalIncome());
         // 인적공제(소득공제) 계산
         int personalIncomeDeduction = calculatePersonalIncomeDeduction(form);
-        result.setPersonal_deduction(personalIncomeDeduction);
+        formResult.setPersonal_deduction(personalIncomeDeduction);
 
         // 자녀공제(세액공제) 계산
         int ChildTaxCredit = calculateChildTaxCredit(form);
-        result.setChildren_taxcredit(ChildTaxCredit);
-        return result;
+        formResult.setChildren_taxcredit(ChildTaxCredit);
+
+        // 근로소득공제 계산
+        int IncomeDeduction = calculateIncomeDeduction(form);
+        formResult.setIncome_deduction(IncomeDeduction);
+
+        return formResult;
     }
 
     // 인적소득공제
     private int calculatePersonalIncomeDeduction(TaxFormVO form) {
         int total = 0;
-
 
         total += "yes".equalsIgnoreCase(form.getSpouseDeduction()) ? 1500000 : 0;
         total += form.getChild() * 1500000;
@@ -61,4 +67,24 @@ public class TaxFormSerivceImpl implements TaxFormService {
         return total2;
     }
 
+    // 근로소득공제
+    private int calculateIncomeDeduction(TaxFormVO form) {
+        int total3 = 0;
+        int totalIncome = form.getTotalIncome();
+
+        if (totalIncome <= 5000000) {
+            total3 = (int) Math.floor(totalIncome * 0.7);
+        } else if (totalIncome <= 15000000) {
+            total3 = (int)Math.floor((totalIncome - 5000000) * 0.4 + 3500000);
+        } else if (totalIncome <= 45000000) {
+            total3 = (int)Math.floor((totalIncome - 15000000) * 0.15 + 7500000);
+        } else if (totalIncome <= 100000000) {
+            total3 = (int)Math.floor((totalIncome - 45000000) * 0.05 + 12000000);
+        } else {
+            total3 = (int)Math.floor((totalIncome - 100000000) * 0.02 + 14750000);
+        }
+
+        return total3;
+    }
 }
+

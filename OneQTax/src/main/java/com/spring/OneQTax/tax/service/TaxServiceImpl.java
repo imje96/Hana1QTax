@@ -1,7 +1,7 @@
 package com.spring.oneqtax.tax.service;
 
 
-import com.spring.oneqtax.tax.domain.TaxResultVO;
+import com.spring.oneqtax.tax.domain.CardTaxResultVO;
 import com.spring.oneqtax.tax.domain.TaxInfoVO;
 import com.spring.oneqtax.tax.domain.TransactionVO;
 import com.spring.oneqtax.tax.repository.TaxMapper;
@@ -30,20 +30,20 @@ public class TaxServiceImpl implements TaxService {
     }
 
     @Override
-    public TaxResultVO processDeductionForMember(int memberId) {
+    public CardTaxResultVO processDeductionForMember(int memberId) {
         // TaxInfoVO와 TransactionVO 호출이 누락되어 있어서 다시 추가합니다.
         TaxInfoVO taxInfoVO = taxMapper.getTaxInfoByMemberId(memberId);
         TransactionVO transactionVO = taxMapper.getTransactionByMemberId(memberId);
 
         // 기존에 계산한 정보를 가져오는 로직
-        TaxResultVO existingResult = getDeductionResult(taxInfoVO.getCalculation_id());
+        CardTaxResultVO existingResult = getDeductionResult(taxInfoVO.getCalculation_id());
 
         if(existingResult != null) {
             return existingResult;  // 기존의 결과를 반환
         } else {
 
             // 없을 경우 계산 로직 수행
-            TaxResultVO result = calculateDeduction(taxInfoVO, transactionVO);
+            CardTaxResultVO result = calculateDeduction(taxInfoVO, transactionVO);
 
             // 결과를 데이터베이스에 저장
             insertDeductionResult(result, memberId);
@@ -55,7 +55,7 @@ public class TaxServiceImpl implements TaxService {
 
 
     @Override
-    public TaxResultVO calculateDeduction(@NotNull TaxInfoVO taxInfo, TransactionVO transaction) {
+    public CardTaxResultVO calculateDeduction(@NotNull TaxInfoVO taxInfo, TransactionVO transaction) {
 //        TaxInfoVO taxInfo = taxMapper.getTaxInfoByMemberId(memberId);
 //        TransactionVO transaction = taxMapper.getTransactionByMemberId(memberId);
 
@@ -229,7 +229,7 @@ public class TaxServiceImpl implements TaxService {
         // 아끼는 세금 = 전체공제금액 * 세금공제율
         reducing_tax = totalDeduction * deduction_rate;
 
-        TaxResultVO resultVO = new TaxResultVO();
+        CardTaxResultVO resultVO = new CardTaxResultVO();
 
         resultVO.setCalculation_id(taxInfo.getCalculation_id());  // 이 부분 추가
         resultVO.setCredit_deductible(creditDeductible);
@@ -248,7 +248,7 @@ public class TaxServiceImpl implements TaxService {
 
 
 
-    public void insertDeductionResult(TaxResultVO result, int memberId) {
+    public void insertDeductionResult(CardTaxResultVO result, int memberId) {
         // TransactionVO에서 total_id를 가져오기
         TaxInfoVO taxInfoVO = taxMapper.getTaxInfoByMemberId(memberId);
         TransactionVO transactionVO = taxMapper.getTransactionByMemberId(memberId);
@@ -262,7 +262,7 @@ public class TaxServiceImpl implements TaxService {
     }
 
     @Override
-    public TaxResultVO getDeductionResult(int memberId) {
+    public CardTaxResultVO getDeductionResult(int memberId) {
         return taxMapper.getDeductionResult(memberId);
     }
 }

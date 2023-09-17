@@ -13,8 +13,15 @@
 <body>
 
 폼 결과 보는 페이지입니다
-    인적소득공제: ${totalResult.personal_deduction}
+    인적소득공제: ${formResult.personal_deduction}
+<br/>${totalResult.personal_deduction}
 <br/>
-    자녀세액공제: ${totalResult.children_taxcredit}
+    자녀세액공제: ${formResult.children_taxcredit}
+<br/>${totalResult.children_taxcredit}
+    근로소득공제 ${formResult.income_deduction}
+<br/>${totalResult.income_deduction}
+    건강보험공제: ${totalResult.pension_deduction}
+
+<br/>연금저축보험: ${totalResult.irp_taxcredit}
 </body>
 </html>

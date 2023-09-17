@@ -6,17 +6,14 @@ import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.service.TaxFormService;
 import com.spring.oneqtax.tax.service.TaxService;
 import com.spring.oneqtax.tax.service.TotalTaxService;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @Controller
 public class TaxController {
@@ -25,6 +22,8 @@ public class TaxController {
     private TotalTaxService totalTaxService;
     @Autowired
     private TaxFormService taxFormService;
+//    @Autowired
+//    private TotalTaxService totalTaxService;
     private final TaxService taxService;
     // ObjectMapper 인스턴스 생성
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -52,6 +51,9 @@ public class TaxController {
 
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         TransactionVO transactionVO = taxService.getTransactionByMemberId(memberId);
+
+        session.setAttribute("CurrentTaxInfo", taxInfoVO);
+
 
         System.out.println("서비스결과 (컨트롤러) : " + taxInfoVO);
         System.out.println("서비스결과2 (컨트롤러) : " + transactionVO);
@@ -95,7 +97,7 @@ public class TaxController {
         double totalIncome = taxInfoVO.getTotal_income();
 
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
-        TaxResultVO result = taxService.getDeductionResult(memberId);
+        CardTaxResultVO result = taxService.getDeductionResult(memberId);
 
         // Transform the VO objects
 //        DeductionResultVO2 transformedTransaction = transformTransaction(transaction);
@@ -148,7 +150,7 @@ public class TaxController {
 
     // 공제 계산하기
     @PostMapping("/calculateAndInsertDeduction")
-    public ResponseEntity<TaxResultVO> calculateAndInsertDeduction(HttpSession session) {
+    public ResponseEntity<CardTaxResultVO> calculateAndInsertDeduction(HttpSession session) {
         // member_id 먼저 가져오기
         MemberVO currentUser = getCurrentUser(session);
 
@@ -160,7 +162,7 @@ public class TaxController {
 
 
         // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
-        TaxResultVO result = taxService.processDeductionForMember(memberId);
+        CardTaxResultVO result = taxService.processDeductionForMember(memberId);
 
 
         if (result == null) {
@@ -188,7 +190,7 @@ public class TaxController {
         double totalIncome = taxInfoVO.getTotal_income();
 
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
-        TaxResultVO result = taxService.getDeductionResult(memberId);
+        CardTaxResultVO result = taxService.getDeductionResult(memberId);
 
         // 기본항목 총합 & 추가항목 총합
         double basicTotal = transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total();
@@ -239,10 +241,10 @@ public class TaxController {
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         double totalIncome = taxInfoVO.getTotal_income();
 
-        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
+//        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
 
         model.addAttribute("totalIncome", totalIncome);
-        model.addAttribute("info", totalInfoVO);
+//        model.addAttribute("info", totalInfoVO);
         return "tax/taxRefund";
     }
 
@@ -302,7 +304,7 @@ public class TaxController {
 //        return "/tax/taxRefund";
 //    }
 
-    @GetMapping("/taxTest")
+    @GetMapping("/taxTest") // form step1~3 호출
     public String taxTest(HttpSession session, Model model){
         MemberVO currentUser = getCurrentUser(session);
 
@@ -316,34 +318,39 @@ public class TaxController {
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         double totalIncome = taxInfoVO.getTotal_income();
 
-        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
+//        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
         model.addAttribute("totalIncome", (int)totalIncome);
         return "tax/taxTest";
     }
 
-    @PostMapping("/testResult")
-    public String testResult(@ModelAttribute TaxFormVO taxForm, HttpSession session, Model model) {
+    @PostMapping("/testResult") // form 제출 시 결과 처리
+    public String testResult(@ModelAttribute TaxFormVO taxForm, TotalInfoVO totalInfo, HttpSession session, Model model) {
         // taxForm 객체를 사용하여 폼 데이터에 액세스
-        System.out.println("Total Income: " + taxForm.getTotalIncome());
-        System.out.println("Spouse Deduction: " + taxForm.getSpouseDeduction());
-        System.out.println("Child: " + taxForm.getChild());
-        System.out.println("Adopted Child: " + taxForm.getAdoptedChild());
-        System.out.println("Direct Ancestor: " + taxForm.getDirectAncestor());
-        System.out.println("Siblings: " + taxForm.getSiblings());
-        System.out.println("Senior: " + taxForm.getSenior());
-        System.out.println("Disability: " + taxForm.getDisability());
-        System.out.println("Woman Deduction: " + taxForm.getWomanDeduction());
-        System.out.println("Single Parent: " + taxForm.getSingleParent());
+//        System.out.println("Total Income: " + taxForm.getTotalIncome());
+//        System.out.println("Spouse Deduction: " + taxForm.getSpouseDeduction());
+//        System.out.println("Child: " + taxForm.getChild());
+//        System.out.println("Adopted Child: " + taxForm.getAdoptedChild());
+//        System.out.println("Direct Ancestor: " + taxForm.getDirectAncestor());
+//        System.out.println("Siblings: " + taxForm.getSiblings());
+//        System.out.println("Senior: " + taxForm.getSenior());
+//        System.out.println("Disability: " + taxForm.getDisability());
+//        System.out.println("Woman Deduction: " + taxForm.getWomanDeduction());
+//        System.out.println("Single Parent: " + taxForm.getSingleParent());
 
         // 서비스를 호출하여 계산 로직 처리
-        TotalTaxResultVO totalResult = taxFormService.calculateDeductions(taxForm);
+//        TotalTaxResultVO totalResult = taxFormService.calculatePersonalDeductions(taxForm);
+        TaxFormResultVO formResult = taxFormService.calculatePersonalDeductions(taxForm);
+
+        TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(formResult, totalInfo);
 
         // 결과를 세션 혹은 Model에 저장하여 view에 전달
-        session.setAttribute("totalResult", totalResult); // 세션에 저장하는 경우
-        model.addAttribute("totalResult", totalResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
-
+        session.setAttribute("formResult", formResult); // 세션에 저장하는 경우
+        model.addAttribute("formResult", formResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
+        model.addAttribute("totalResult", totalResult);
 
         return "tax/testResult";
     }
+
+
 
 }

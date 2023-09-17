@@ -25,14 +25,14 @@
         </select>
 
     <!-- 공제계산결과 삽입하기 deduction_id 자동생성 -->
-        <insert id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.TaxResultVO" >
+        <insert id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.CardTaxResultVO" >
             INSERT INTO DEDUCTION_RESULT (calculation_id, total_id, credit_deductible, credit_deduction, debit_deductible,
                                           debit_deduction, cash_deductible, cash_deduction, basic_deduction, additional_deduction, total_deduction, reducing_tax)
             VALUES (#{calculation_id}, #{total_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
                     #{debit_deduction}, #{cash_deductible}, #{cash_deduction}, #{basic_deduction},  #{additional_deduction}, #{total_deduction},  #{reducing_tax})
         </insert>
 
-        <select id="getDeductionResult" resultType="com.spring.oneqtax.tax.domain.TaxResultVO">
+        <select id="getDeductionResult" resultType="com.spring.oneqtax.tax.domain.CardTaxResultVO">
             SELECT *
             FROM DEDUCTION_RESULT
             WHERE total_id IN (SELECT total_id FROM TOTAL_AMOUNT WHERE member_id = #{member_id})

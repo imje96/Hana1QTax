@@ -12,9 +12,9 @@ public class TotalTaxResultVO {
     private int pension_deduction;
     private int housing_deduciton;
     private int card_deduction; // 카드등소득공제
-    private int irp_taxcredit;
     /* 여기서부터 세액공제 */
     private int children_taxcredit;
+    private int irp_taxcredit;
     private int guarantee_taxcredit;
     private int medical_taxcredit;
     private int donation_taxcredit;

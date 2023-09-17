@@ -29,7 +29,7 @@ function TaxCalculate(){
     let 기납부세액 = document.querySelector('#기납부세액');
     let 차감납부세액 = document.querySelector('#차감납부세액');
 
-    if(총급여 < 50000001){
+    if(총급여 < 5000001){
         근로소득공제 = 총급여*0.7
     } if(총급여 > 5000000){
         근로소득공제 = (총급여-5000000)*0.4 + 3500000

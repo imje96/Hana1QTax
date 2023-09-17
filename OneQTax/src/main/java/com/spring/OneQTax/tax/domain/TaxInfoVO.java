@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-// 소득공제 계산을 위한 엔터티
+// 카드 소득공제 계산을 위한 엔터티
 @Data
 
 public class TaxInfoVO {
