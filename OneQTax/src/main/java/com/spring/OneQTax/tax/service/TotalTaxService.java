@@ -12,8 +12,8 @@ public interface TotalTaxService {
 //    public TotalInfoVO getTotalInfoById(int member_id);
 //
     // 기타 세부항목 계산
-    public TotalTaxResultVO calculateTotalDeductions(TaxFormResultVO formResult, TotalInfoVO totalInfo, CardTaxResultVO cardResult);
+    public TotalTaxResultVO calculateTotalDeductions(TotalInfoVO totalInfo, CardTaxResultVO cardResult);
 
     // 최종계산
-    public TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult);
+//    public TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult);
 }
