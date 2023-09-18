@@ -8,6 +8,7 @@ public class TotalTaxResultVO {
 //    private int calculation_id;
     /* 소득공제 */
     private int income_deduction; // 근로소득공제
+    private int income_amount; // 근로소득금액 = 총급여 - 근로소득공제
     private int personal_deduction;
     private int pension_deduction;
     private int housing_deduciton;

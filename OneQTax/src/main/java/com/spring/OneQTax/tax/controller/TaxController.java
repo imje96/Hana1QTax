@@ -324,7 +324,7 @@ public class TaxController {
     }
 
     @PostMapping("/testResult") // form 제출 시 결과 처리
-    public String testResult(@ModelAttribute TaxFormVO taxForm, TotalInfoVO totalInfo, HttpSession session, Model model) {
+    public String testResult(@ModelAttribute TaxFormVO taxForm, TotalInfoVO totalInfo, CardTaxResultVO cardResult, HttpSession session, Model model) {
         // taxForm 객체를 사용하여 폼 데이터에 액세스
 //        System.out.println("Total Income: " + taxForm.getTotalIncome());
 //        System.out.println("Spouse Deduction: " + taxForm.getSpouseDeduction());
@@ -341,7 +341,10 @@ public class TaxController {
 //        TotalTaxResultVO totalResult = taxFormService.calculatePersonalDeductions(taxForm);
         TaxFormResultVO formResult = taxFormService.calculatePersonalDeductions(taxForm);
 
-        TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(formResult, totalInfo);
+        // 1차 옵션항목들 계산
+        TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(formResult, totalInfo, cardResult);
+        // 2차 최종 계산
+        totalResult = totalTaxService.calculateFinalDeudctions(totalResult);
 
         // 결과를 세션 혹은 Model에 저장하여 view에 전달
         session.setAttribute("formResult", formResult); // 세션에 저장하는 경우

@@ -104,6 +104,7 @@
 
                                 <p2>홈택스에서 전년도 총급여정보를 가져왔어요.<br/> 급여정보를 확인 또는 수정하시고 등록버튼을 눌러주세요.</p2>
                             <br/>
+                            <br/>
                                 <div>
                                     <label for="totalIncome">총급여:</label>
                                     <input type="text" name="totalIncome" id="totalIncome" value="${totalIncome}">
