@@ -187,7 +187,7 @@
                         <!-- 모달창 -->
                         <fieldset class="section-content step2" data-step="2">
                             <h3>상세보기</h3>
-                            <p>기준일 : ${totalInfo.result_time}</p>
+
                             <br/>
 
                             <div class="total-amount-box modal-trigger" data-target="detailsModal1">
@@ -275,7 +275,7 @@
 <%--                                <div class="percent">90%달성</div>--%>
                                 <div class="total-text-box">
                                     <div class="total-text">
-                                        <h4>신용카드</h4>
+                                        <h4>신용카드 등</h4>
                                         <br/>
                                         소득 공제 금액:
                                     </div>
@@ -419,9 +419,9 @@
                                         <span> </span>
                                         <h5>&gt&gt</h5>
                                         <br/>
-                                        <p2><fmt:formatNumber value="${totalResult.rent_taxcredit}"
+                                        <p1><fmt:formatNumber value="${totalResult.rent_taxcredit}"
                                                               groupingUsed="true"/>원
-                                        </p2>
+                                        </p1>
                                     </div>
                                 </div>
                             </div>
@@ -435,13 +435,105 @@
         </div>
     </div>
 </section>
+<%-- 여기서부터 모달창--%>
+<%-- 1번 모달창--%>
+<div class="modal_simulation" id="detailsModal1">
+    <div class="modal-content2">
 
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>인적사항</h3>
+            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>인적 공제를 위한 부양가족 수 및 특별공제 항목을 확인해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>소득 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <p2><fmt:formatNumber value="${totalResult.income_deduction}" groupingUsed="true"/>원</p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <p2>총급여 :</p2><br/>
+                    <p2>(-) 근로소득공제 :</p2><br/>
+                    <p2>(=) 근로소득금액 :</p2><br/>
+
+                </div>
+                <div class="modal-amount-money-variable">
+                    <p2><fmt:formatNumber value="${totalInfo.total_income2}" groupingUsed="true"/>원</p2><br/>
+                    <p2><fmt:formatNumber value="${totalResult.income_deduction}" groupingUsed="true"/>원</p2><br/>
+                    <p2><fmt:formatNumber value="${totalResult.income_final}" groupingUsed="true"/>원</p2><br/>
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>부양가족 공제?</p2>
+                <br/>
+                <p> &#183; 거주자와 생계를 같이하는 연간 소득금액 합계액 1000만원 이하(근로소득만 있는 경우 총 급여 500만원<br/> 이하)인
+                    부양가족에 대하여 1명당 1,500,000원 기본공제</p>
+                <p> &#183; 부양가족이 기본공제대상에 포함되기 위해서는 일반적으로 나이 제한을 적용받으나, 소득세법에 따른 <br/>장애인에
+                    해당하는 경우 나이제한을 적용받지 아니함</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
+            <input type="button" class="update-button" value="저장">
+        </form>
+    </div>
+</div>
+<%-- 2번 모달창--%>
+<div class="modal_simulation" id="detailsModal2">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>근로소득</h3>
+            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>근로소득 공제금액을 확인하고, 실제 근로소득 금액을 입력해 정확한 정보를 확인해보세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>소득 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <p2><fmt:formatNumber value="${totalResult.income_deduction}" groupingUsed="true"/>원</p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <p2>총급여 :</p2><br/>
+                    <p2>(-) 근로소득공제 :</p2><br/>
+                    <p2>(=) 근로소득금액 :</p2><br/>
+
+                </div>
+                <div class="modal-amount-money-variable">
+                    <p2><fmt:formatNumber value="${totalInfo.total_income2}" groupingUsed="true"/>원</p2><br/>
+                    <p2><fmt:formatNumber value="${totalResult.income_deduction}" groupingUsed="true"/>원</p2><br/>
+                    <p2><fmt:formatNumber value="${totalResult.income_final}" groupingUsed="true"/>원</p2><br/>
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>근로소득금액?</p2>
+                <br/>
+                <p> &#183; 내가 번 근로소득에도 세금이 붙어요. 근로소득세는 국방이나 교육, 공공시설 관리와 같은 나라를 운영하는데 필요한 비용으로 사용돼요. </p>
+                <p> &#183; 근로소득세에는 사업체에 고용되어 근로를 제공한 대가로 받은 모든 현금과 현물을 의미합니다. 근로소득에는 임금, 상여금 및 수당, 수수료 및 봉사료, 수익 분배금, 연차 및 유급휴가 등 비근무시간의 보수가 포함됩니다.</p>
+            </div>
+        </form>
+    </div>
+</div>
+<%-- 3번 모달창 --%>
 <div class="modal_simulation" id="detailsModal3">
     <div class="modal-content2">
 
         <span class="close">&times;</span>
-        <form id="updateForm" action="/update" method="post">
+        <form class="updateForm" action="/update" method="post">
             <h3>연금보험료</h3>
+            <p>기준일 : ${totalInfo.result_time}</p>
             <p>근로자 4대 보험 이외 개인연금저축 납입현황을 확인해주세요.</p>
             <br/>
 
@@ -451,7 +543,7 @@
                     <h5>소득 공제 금액</h5>
                 </div>
                 <div class="modal-amount-money">
-                    <span id="totalPension"><fmt:formatNumber value="${totalInfo.irpPension_total}" groupingUsed="true"/>원</span><br/>
+                    <span id="totalPension"><fmt:formatNumber value="${totalResult.total_incomeDeduction}" groupingUsed="true"/>원</span><br/>
                     <p2><fmt:formatNumber value="${totalResult.total_incomeDeduction}" groupingUsed="true"/>원</p2>
                 </div>
             </div>
@@ -459,11 +551,10 @@
             <div class="modal-amount-box">
                 <div class="modal-amount-text">
 
-                    <label for="healthInsurance">건강보험료 납입공제:</label><br/>
-
-                    <label for="employmentInsurance">고용보험료 납입공제:</label><br/>
-
-                    <label for="nationalPension">국민연금 납입공제:</label><br/>
+                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>
+                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>
+                    <label for="nationalPension">국민연금 납입공제 :</label><br/>
+                    <label for="nationalPension">기타연금 납입공제 :</label><br/>
 
 
                 </div>
@@ -471,6 +562,7 @@
                     <input type="text" id="healthInsurance" name="health_insurance" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>
                     <input type="text" id="employmentInsurance" name="employment_insurance" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>
                     <input type="text" id="nationalPension" name="national_pension" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="otherPension" name="national_pension" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>
                 </div>
             </div>
             <div class="modal-amount-explanation">
@@ -479,26 +571,114 @@
                 <p> &#183; 공무원 연금, 군인연금, 사립학교 교직원 연금, 별정 우체국 연금 등 납입한 연금보험료 공제</p>
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-            <input type="button" id="pensionBtn" value="Update">
+            <input type="button" class="update-button" value="저장">
+        </form>
+    </div>
+</div>
+<%-- 4번 모달창 --%>
+<div class="modal_simulation" id="detailsModal4">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>주택자금/주택마련저축</h3>
+            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>주택임차차입금 및 청약저축금액을 확인해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>소득 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="totalHousing"><fmt:formatNumber value="${totalInfo.housing_total}" groupingUsed="true"/>원</span><br/>
+                    <p2><fmt:formatNumber value="${totalResult.housing_deduciton}" groupingUsed="true"/>원</p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <label for="healthInsurance">주택임차 차입금 원리금 상환액 :</label><br/>
+
+                    <label for="employmentInsurance">청약저축 납입액 :</label><br/>
+
+                    <label for="nationalPension">주택청약종합저축 :</label><br/>
+
+
+                </div>
+                <div class="modal-amount-money-variable">
+                    <input type="text" id="housingLoan" name="health_insurance" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="housingAccount1" name="employment_insurance" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="housingAccount2" name="national_pension" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>주택임차 차입금?</p2>
+                <br/>
+                <p> &#183; 과세기간 종료일 현재 무주택 세대의 세대주(세대주가 주택관련 공제를 받지 않는 경우 세대원도 가능)<br/>로서 근로소득이 있는 자</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
+            <input type="button" class="update-button" value="저장">
+        </form>
+    </div>
+</div>
+<%-- 5번 모달창 --%>
+<div class="modal_simulation" id="detailsModal5">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>신용카드 및 체크카드/현금 소득공제</h3>
+            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>주택임차차입금 및 청약저축금액을 확인해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>소득 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="totalCard"><fmt:formatNumber value="${totalTransaction}" groupingUsed="true"/>원</span><br/>
+                    <p2><fmt:formatNumber value="${totalResult.card_deduction}" groupingUsed="true"/>원</p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <label for="healthInsurance">신용카드 사용액 :</label><br/>
+                    <label for="employmentInsurance">체크카드 사용액 :</label><br/>
+                    <label for="nationalPension">현금영수증 사용액 :</label><br/>
+                    <label for="nationalPension">대중교통 사용분 :</label><br/>
+                    <label for="nationalPension">전통시장 사용분 :</label><br/>
+                    <label for="nationalPension">도서공연문화 사용분 :</label><br/>
+
+
+                </div>
+                <div class="modal-amount-money-variable">
+                    <input type="text" id="creditTotal" name="health_insurance" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${transaction.credit_total}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="debitTotal" name="employment_insurance" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${transaction.debit_total}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="cashTotal" name="national_pension" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${transaction.cash_total}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="culture_total" name="national_pension" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${transaction.transport_total}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="market_total" name="national_pension" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${transaction.market_total}" groupingUsed="true"/>">원<br/>
+                    <input type="text" id="transport_total" name="national_pension" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${transaction.culture_total}" groupingUsed="true"/>">원<br/>
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>주택임차 차입금?</p2>
+                <br/>
+                <p> &#183; 과세기간 종료일 현재 무주택 세대의 세대주(세대주가 주택관련 공제를 받지 않는 경우 세대원도 가능)<br/>로서 근로소득이 있는 자</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
+            <input type="button" class="update-button" value="저장">
         </form>
     </div>
 </div>
 
-<div class="modal" id="detailsModal2">
-    <div class="modal-content">
 
-        <span class="close">&times;</span>
-        <h3>세부사항</h3>
-        <ul>
-            <li>조건1: <span id="condition4Amount">0원</span></li>
-            <li>조건2: <span id="condition5Amount">0원</span></li>
-            <li>조건3: <span id="condition6Amount">0원</span></li>
-            <!-- ... 다른 조건들 ... -->
-        </ul>
-    </div>
-
-
-</div>
 
 
 <footer>
@@ -630,6 +810,12 @@
 
 
 </script>
+<script>
+    $('.updateForm').on('submit', function() {
+        // 로직 적용
+    });
+</script>
+
 </body>
 
 </html>

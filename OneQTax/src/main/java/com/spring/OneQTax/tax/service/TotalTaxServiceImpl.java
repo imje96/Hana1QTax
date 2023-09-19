@@ -48,13 +48,20 @@ public class TotalTaxServiceImpl implements TotalTaxService {
 //        int health_insurance = totalInfo.getHealth_insurance(); // 연금보험료공제
 //        int employment_insurance = totalInfo.getEmployment_insurance(); // 연금보험료공제
 //        int national_pension = totalInfo.getNational_pension(); // 연금보험료공제
-
+        int other_pension = totalInfo.getOther_pension(); // 기타연금보험
+                
         int housing_total = totalInfo.getHousing_total(); //
         int housing_loan = totalInfo.getHousing_loan();
         int housing_account1 = totalInfo.getHousing_account1();
         int housing_account2 = totalInfo.getHousing_account2();
 
-        int card_deduction = (int) cardResult.getTotal_deduction(); // 소득공제
+        int card_deduction = totalInfo.getCard_deduction(); // 소득공제
+        int credit_deduction = totalInfo.getCredit_deduction();
+        int debit_deduction = totalInfo.getDebit_deduction();
+        int cash_deduction = totalInfo.getCash_deduction();
+        int basic_deduction = totalInfo.getBasic_deduction();
+        int additional_deduction = totalInfo.getAdditional_deduction();
+
 
         /* 세액공제 */
         /* 만약 값이 Null이면 0으로 알아서 초기화 */
@@ -105,7 +112,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         totalResult.setChildren_taxcredit(children_amount);
 
         /* 연금보험료 계산 */
-        totalResult.setPension_deduction(pension_deduction);
+        totalResult.setPension_deduction(pension_deduction+other_pension);
 
         /* 주택공제 */
         int calcHousing = 0;

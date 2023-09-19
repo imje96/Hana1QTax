@@ -103,7 +103,7 @@
                             <br/>
                             <br/>
 
-                                <p2>홈택스에서 전년도 총급여정보를 가져왔어요.<br/> 급여정보를 확인 또는 수정하시고 등록버튼을 눌러주세요.</p2>
+                                <p2>홈택스에서 전년도 총급여정보를 가져왔어요.<br/> 총급여 금액을 확인하고, 실제 금액을 입력해 정확한 정보를 확인해보세요.</p2>
                             <br/>
                             <br/>
                                 <div>
@@ -153,7 +153,7 @@
                                     class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
-                                <option value="2">2명</option>
+                                <foption value="2">2명</foption>
                                 <option value="3">3명</option>
                                 <option value="4">4명</option>
                                 <option value="5">5명</option>

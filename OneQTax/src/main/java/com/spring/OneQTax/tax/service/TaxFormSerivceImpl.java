@@ -1,5 +1,6 @@
 package com.spring.oneqtax.tax.service;
 
+import com.spring.oneqtax.tax.domain.CardTaxResultVO;
 import com.spring.oneqtax.tax.domain.TaxFormVO;
 import com.spring.oneqtax.tax.domain.TaxInfoVO;
 import com.spring.oneqtax.tax.domain.TotalInfoVO;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class TaxFormSerivceImpl implements TaxFormService {
 
 
-    public TotalInfoVO calculateForm(TaxFormVO form) {
+    public TotalInfoVO calculateForm(TaxFormVO form, CardTaxResultVO cardResult) {
         TotalInfoVO totalInfo = new TotalInfoVO();
 
         int totalIncome = form.getTotalIncome();
@@ -29,6 +30,14 @@ public class TaxFormSerivceImpl implements TaxFormService {
         totalInfo.setHealth_insurance((int) Math.floor(totalIncome * 0.04));
         totalInfo.setEmployment_insurance((int) Math.floor(totalIncome * 0.009));
         totalInfo.setNational_pension((int) Math.floor(totalIncome * 0.045));
+
+        // 카드 금액
+        totalInfo.setCard_deduction((int)cardResult.getTotal_deduction());
+        totalInfo.setCredit_deduction((int)cardResult.getCredit_deduction());
+        totalInfo.setDebit_deduction((int)cardResult.getDebit_deduction());
+        totalInfo.setCash_deduction((int)cardResult.getCash_deduction());
+        totalInfo.setBasic_deduction((int)cardResult.getBasic_deduction());
+        totalInfo.setAdditional_deduction((int)cardResult.getAdditional_deduction());
 
         return totalInfo;
     }

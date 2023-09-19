@@ -30,6 +30,7 @@ public class TotalInfoVO {
     private int health_insurance; // 건강보험 납입액
     private int employment_insurance; // 고용보험 납입액
     private int national_pension; // 국민연금 납입액
+    private int other_pension; // 기타납입연금(공무원/군인 등)
 
     /* 주택 관련 총납입액(계산X) */
     private int housing_total; // 주택관련 총납입액

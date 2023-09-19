@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 
 
 public interface TaxFormService {
-    public TotalInfoVO calculateForm(TaxFormVO form);
+    public TotalInfoVO calculateForm(TaxFormVO form, CardTaxResultVO cardResult);
 
 }
