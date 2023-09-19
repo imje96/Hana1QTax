@@ -50,11 +50,11 @@
                 <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxRefund" style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
                 <h6 style="color: black; margin-bottom: 15px;">연말정산 시뮬레이션</h6>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxTest"
+            <a href="${pageContext.request.contextPath}/simulationResult"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 결과</div>
             </a>
@@ -89,7 +89,7 @@
                     <div id="line-progress"></div>
                 </div>
 
-                <form id="multiStepForm" method="post" action="/testResult">
+                <form id="multiStepForm" method="post" action="/taxSimulation">
                     <div id="progress-content-section">
                         <!-- Step 1 Content -->
                         <fieldset class="section-content step1 active" data-step="1">

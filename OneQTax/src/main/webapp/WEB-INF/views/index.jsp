@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/taxRefund">
+                        <a href="${pageContext.request.contextPath}/taxSimulation">
                             <button class="dropbtn">연말정산플래너
                             </button>
                         </a>

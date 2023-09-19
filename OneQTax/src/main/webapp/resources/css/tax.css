@@ -473,6 +473,8 @@ div.table-title {
 
 /*** Table Styles **/
 
+
+/* 기존 테이블 css*/
 .table-fill {
     background: white;
     border-radius:3px;
@@ -485,6 +487,41 @@ div.table-title {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     animation: float 5s infinite;
 }
+/* 세금쪽 테이블 css */
+.table-tax {
+    background: white;
+    border-radius:3px;
+    border-collapse: collapse;
+    height: 450px;
+    width: 400px;
+    margin: auto;
+    max-width: 600px;
+    padding:5px;
+    /*width: 100%;*/
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
+}
+
+/*.table-tax th {*/
+/*    color:#454b4b;*/
+/*    background: #e7e2e2;*/
+/*    height: 5px;*/
+/*    !*border-bottom:4px solid #cacfcf;*!*/
+/*    !*border-right: 1px solid #efeff1;*!*/
+
+/*    font-size:20px;*/
+/*    font-weight: 100;*/
+/*    padding:24px;*/
+/*    text-align:center;*/
+/*    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
+/*    vertical-align:middle;*/
+/*}*/
+
+.table-tax tr:nth-child(odd) td {
+    background: #c9cece;
+    color: #454b4b;
+}
+
 
 th {
     color:#454b4b;
@@ -539,6 +576,7 @@ tr:nth-child(odd) td {
 
 tr:nth-child(odd):hover td {
     background: #106e69;
+    color: #FFFFFF;
 }
 
 tr:last-child td:first-child {
@@ -574,6 +612,8 @@ th.text-center {
 
 th.text-right {
     text-align: right;
+    /*width: 150px;*/
+    padding-right: 40px;
 }
 
 /*td.text-left {*/
@@ -586,6 +626,8 @@ td.text-center {
 
 td.text-right {
     text-align: right;
+    /*width: 150px;*/
+    padding-right: 40px;
 }
 
 /* 모달 css */
