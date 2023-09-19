@@ -23,6 +23,7 @@
     <%--    chartjs 추가--%>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../../resources/js/main.js"></script>
 
     <link href="../../../resources/css/tax.css" rel="stylesheet">
 </head>
@@ -107,8 +108,13 @@
                             <br/>
                                 <div>
                                     <label for="totalIncome">총급여:</label>
-                                    <input type="text" name="totalIncome" id="totalIncome" value="${totalIncome}">
+<%--                                    <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalIncome}" groupingUsed="true"/>">--%>
+<%--                                    원--%>
+<%--                                    <input type="hidden" id="totalIncome" name="totalIncome">--%>
+                                    <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" data-hidden-id="totalIncome" value="<fmt:formatNumber value="${totalIncome}" groupingUsed="true"/>">
                                     원
+                                    <input type="hidden" id="totalIncome" name="totalIncome" value="${totalIncome}">
+
                                 </div>
                             <br/>
 
@@ -303,7 +309,6 @@
         $("#line-progress").css("width", progressPercentages[currentStep] + "%");
     }
 </script>
-
 
 
 </body>

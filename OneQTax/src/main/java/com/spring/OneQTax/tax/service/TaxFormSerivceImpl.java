@@ -1,6 +1,5 @@
 package com.spring.oneqtax.tax.service;
 
-import com.spring.oneqtax.tax.domain.TaxFormResultVO;
 import com.spring.oneqtax.tax.domain.TaxFormVO;
 import com.spring.oneqtax.tax.domain.TaxInfoVO;
 import com.spring.oneqtax.tax.domain.TotalInfoVO;
@@ -19,12 +18,12 @@ public class TaxFormSerivceImpl implements TaxFormService {
         // 근로소득공제
         totalInfo.setIncome_deduction(calculateIncomeDeduction(form));
         // 근로소득금액
-        totalInfo.setIncome_amount(totalIncome-calculateIncomeDeduction(form));
+        totalInfo.setIncome_final(totalIncome-calculateIncomeDeduction(form));
 
         int personalIncomeDeduction = calculateAndSetPersonalIncomeDeduction(form, totalInfo);
         totalInfo.setPersonal_deduction(personalIncomeDeduction);
 
-        totalInfo.setChildren_taxcredit(calculateChildTaxCredit(form));
+        totalInfo.setChildren_amount(calculateChildTaxCredit(form));
 
         totalInfo.setPension_deduction(calculatePensionDeduction(form));
         totalInfo.setHealth_insurance((int) Math.floor(totalIncome * 0.04));
@@ -40,7 +39,7 @@ public class TaxFormSerivceImpl implements TaxFormService {
         int totalDeduction = 0;
 
         int basic = 1500000;
-        totalInfo.setBasic_deduction(basic);
+        totalInfo.setTaxpayer_deduction(basic);
 //        totalInfo
         totalDeduction += basic;
 

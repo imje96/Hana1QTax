@@ -4,19 +4,18 @@
 
 <mapper namespace="com.spring.oneqtax.tax.repository.TaxMapper">
 
-<!--    parameterType="com.spring.oneqtax.tax.domain.TaxInfoVO"-->
-
         <select id="getAllTaxInfo" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
             SELECT *
-            FROM deduction_calc
+            FROM tax_info
         </select>
 
         <select id="getTaxInfoByMemberId" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
             SELECT *
-            FROM deduction_calc
+            FROM tax_info
             WHERE member_id = #{member_id}
         </select>
 
+    <!-- 누적 카드내역 가져오기 -->
         <select id="getTransactionByMemberId" resultType="com.spring.oneqtax.tax.domain.TransactionVO">
             SELECT *
             FROM total_amount
@@ -26,15 +25,16 @@
 
     <!-- 공제계산결과 삽입하기 deduction_id 자동생성 -->
         <insert id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.CardTaxResultVO" >
-            INSERT INTO DEDUCTION_RESULT (calculation_id, total_id, credit_deductible, credit_deduction, debit_deductible,
+            INSERT INTO incometax_result (calculation_id, total_id, credit_deductible, credit_deduction, debit_deductible,
                                           debit_deduction, cash_deductible, cash_deduction, basic_deduction, additional_deduction, total_deduction, reducing_tax)
             VALUES (#{calculation_id}, #{total_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
                     #{debit_deduction}, #{cash_deductible}, #{cash_deduction}, #{basic_deduction},  #{additional_deduction}, #{total_deduction},  #{reducing_tax})
         </insert>
 
+    <!-- 공제결과 찾아오기 -->
         <select id="getDeductionResult" resultType="com.spring.oneqtax.tax.domain.CardTaxResultVO">
             SELECT *
-            FROM DEDUCTION_RESULT
+            FROM incometax_result
             WHERE total_id IN (SELECT total_id FROM TOTAL_AMOUNT WHERE member_id = #{member_id})
             ORDER BY deduction_id DESC
                 FETCH FIRST 1 ROWS ONLY

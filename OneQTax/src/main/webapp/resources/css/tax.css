@@ -657,6 +657,30 @@ td.text-right {
     width: 50%;
 }
 
+.modal_simulation{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 350px; /* Location of the box */
+    padding-left: 160px ;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content2 {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 50px 100px 50px 100px;
+    border: 1px solid #d2d0d0;
+    width: 30%;
+    line-height: 2.5rem;
+}
+
 .close {
     color: #aaaaaa;
     float: right;
@@ -672,3 +696,46 @@ td.text-right {
 }
 
 
+/* mmodal 내용 */
+.modal-amount-box {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.modal-amount-text {
+
+}
+
+.modal-amount-money {
+
+}
+
+input[type="text"] {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: right;
+}
+
+
+.modal-amount-money-variable input[type="text"] {
+    width: 130px;
+    height: 20px;
+    padding: 5px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: right;
+}
+
+
+.modal-amount-explanation {
+    background: #f5f5f5;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+}

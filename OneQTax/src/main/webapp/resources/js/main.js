@@ -94,3 +94,33 @@ $(document).ready(function() {
         }
     }
 });
+
+
+    function addCommaToNumber(inputElem) {
+    let num = inputElem.value.replace(/,/g, "");
+
+    if (!isNaN(num) && num.trim() != "") {
+    inputElem.value = parseFloat(num).toLocaleString('en-US');
+
+    // 연관된 숨겨진 입력 필드의 값을 갱신합니다.
+    let hiddenFieldId = inputElem.getAttribute("data-hidden-id");
+    document.getElementById(hiddenFieldId).value = num;
+} else {
+    inputElem.value = num;
+}
+}
+
+    // 모든 "view" 입력 필드의 초기값 설정
+    function setInitialValues() {
+    let viewInputs = document.querySelectorAll('input[data-hidden-id]');
+
+    viewInputs.forEach(viewInput => {
+    let hiddenFieldId = viewInput.getAttribute("data-hidden-id");
+    document.getElementById(hiddenFieldId).value = viewInput.value.replace(/,/g, "");
+});
+}
+
+    // 페이지 로드 시 초기값 설정 함수 호출
+    window.onload = setInitialValues;
+
+

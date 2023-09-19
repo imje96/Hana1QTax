@@ -346,7 +346,7 @@ public class TaxController {
         // 2차 최종 계산
 //        totalResult = totalTaxService.calculateFinalDeudctions(totalResult);
 
-        int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxCredit();
+        int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
 
         // 결과를 세션 혹은 Model에 저장하여 view에 전달
         session.setAttribute("totalInfo", totalInfo); // 세션에 저장하는 경우

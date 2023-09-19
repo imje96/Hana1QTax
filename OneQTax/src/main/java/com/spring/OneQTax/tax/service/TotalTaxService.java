@@ -1,7 +1,6 @@
 package com.spring.oneqtax.tax.service;
 
 import com.spring.oneqtax.tax.domain.CardTaxResultVO;
-import com.spring.oneqtax.tax.domain.TaxFormResultVO;
 import com.spring.oneqtax.tax.domain.TotalInfoVO;
 import com.spring.oneqtax.tax.domain.TotalTaxResultVO;
 
