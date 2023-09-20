@@ -2,32 +2,27 @@ package com.spring.oneqtax.tax.domain;
 
 import lombok.Data;
 
-// 연말정산 폼으로 받은 변수
 @Data
-public class TaxFormVO {
-    // STEP 1 Fields
-    private int totalIncome;
-    // 추가한 코드
+public class NewDetailVO {
+    /* 사용자가 설정한 총급여(계산완료) */
+    private int totalInfo_id; // pk
     private int calculation_id; // fk
     private int total_income2;
     private int income_deduction; // 근로소득공제
     private int income_final; // 근로소득금액 총급여-근로소득공제
 
-    // STEP 2 Fields
-    private String spouseDeduction; // 배우자공제
-    private int child; // 20세미만 자녀공제 소득공제 & 세액공제
-    private int adoptedChild; // 입양자녀공제 세액공제만
-
-    // STEP 3 Fields
-    private int directAncestor; // 직계가족공제
-    private int siblings; // 형제자매공제
-    private int senior; // 경로우대
-    private int disability; // 장애인공제
-    private String womanDeduction;
-    private String singleParent; //한부모공제
-
-    // 추가한 코드
+    /* 인적공제(계산완료) */
     private int personal_deduction; // 인적공제
+    private int taxpayer_deduction; // 본인공제
+    private int spouse_deduction; // 배우자공제
+    private int children_deduction; // 자녀공제
+    private int adopted_deduction; // 입양자녀공제
+    private int directAnc_deduction; // 직계가족공제
+    private int siblings_deduction; // 형제자매공제
+    private int senior_deduction; // 경로우대공제
+    private int disability_deduction;  // 장애인공제
+    private int woman_deduction; // 부녀자공제
+    private int singleParent_deduction; // 한부모공제
 
     /* 연금보험 관련 총납입액(계산완료) */
     private int pension_deduction; // 연금보험관련 총납입액
@@ -83,4 +78,5 @@ public class TaxFormVO {
     private int religion_donation; // 지정기부금 종교기부금
     /* 월세 총납입액 */
     private int rent_total;
+
 }

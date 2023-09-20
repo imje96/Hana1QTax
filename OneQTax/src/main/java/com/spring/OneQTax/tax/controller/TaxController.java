@@ -289,20 +289,44 @@ public class TaxController {
 
 
 
-//    @PostMapping("/update")
-//    public String updateTotalInfo(TotalInfoVO totalInfoVO, Model model, HttpSession session){
-//        MemberVO currentUser = getCurrentUser(session);
-//        int memberId = currentUser.getMember_id();
-//        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
-//        double totalIncome = taxInfoVO.getTotal_income();
-//        double calculation_id = taxInfoVO.getCalculation_id();
-//
-//        TotalInfoVO updatedVo = totalTaxService.updateTotalInfo(totalInfoVO, totalIncome);
-//
-//        model.addAttribute("totalIncome", totalIncome);
-//        model.addAttribute("calculation_id", calculation_id);
-//        return "/tax/taxRefund";
-//    }
+    @PostMapping("/updateDetail")
+    public String updateTotalInfo(@ModelAttribute TaxFormVO taxForm, @ModelAttribute NewDetailVO newDetail, TotalInfoVO totalInfo,  CardTaxResultVO cardResult, TransactionVO transaction, Model model, HttpSession session){
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+
+        // total_income 가져오기
+        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+        int totalIncome = (int)taxInfoVO.getTotal_income();
+        int calculation_id = taxInfoVO.getCalculation_id();
+
+        transaction = taxService.getTransactionByMemberId(memberId);
+        // 카드소득공제 결과 가져오기
+        cardResult = taxService.getDeductionResult(memberId);
+
+        // FORM 서비스를 호출하여 계산 로직 처리
+//        totalInfo = taxFormService.calculateDetailDeduction(newDetail, totalInfo);
+
+        totalInfo = taxFormService.calculateForm(taxForm, cardResult);
+        // TotalInfo 서비스 호출 (옵션사항 업데이트)
+        totalInfo = totalTaxService.updateTotalInfo(totalInfo, totalIncome);
+
+        // 2차 계산
+        TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(totalInfo, cardResult);
+
+        System.out.println(totalInfo.getHealth_insurance());
+        System.out.println(totalInfo.getEmployment_insurance());
+        System.out.println(totalInfo.getNational_pension());
+
+        model.addAttribute("totalIncome", totalIncome);
+        model.addAttribute("calculation_id", calculation_id);
+        return "/tax/taxRefund";
+    }
 
     @GetMapping("/taxSimulation") // form step1~3 호출
     public String taxTest(HttpSession session, Model model){
@@ -366,6 +390,11 @@ public class TaxController {
         return "tax/simulationResult";
     }
 
+    // 시뮬레이션 결과만 보기 임시창
+    @GetMapping("/simulationResult")
+    public String tempDetail(){
+        return "tax/simulationDetail";
+    }
 
 
 }

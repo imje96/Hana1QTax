@@ -26,5 +26,5 @@ public interface TaxMapper {
     // 전체 연말정산 중 연금보험 조회 및 업데이트
     TotalInfoVO selectTotalInfoById(int memberId);
 
-    void updateTotalInfo(TotalInfoVO totalInfoVO);
+    void updateTotalInfo(TotalInfoVO totalInfo);
 }

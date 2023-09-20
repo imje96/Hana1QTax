@@ -341,6 +341,7 @@ p {
 /* 추가 */
 .section-content {
     display: none;
+
 }
 
 .section-content.active {

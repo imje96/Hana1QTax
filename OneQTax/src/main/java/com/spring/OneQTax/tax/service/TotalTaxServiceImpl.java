@@ -17,23 +17,23 @@ public class TotalTaxServiceImpl implements TotalTaxService {
 //        return mapper.selectTotalInfoById(memberId);
 //    }
 
-//    public TotalInfoVO updateTotalInfo(TotalInfoVO totalInfoVO, double totalIncome) {
-//        totalInfoVO.setHealth_insurance(totalIncome * 0.04);
-//        totalInfoVO.setEmployment_insurance(totalIncome * 0.009);
-//        totalInfoVO.setNational_pension(totalIncome * 0.045);
-//        // 추가 계산 로직을 필요에 따라 추가
-//
-//        mapper.updateTotalInfo(totalInfoVO);
-//
-//        return totalInfoVO;
-//    }
+    public TotalInfoVO updateTotalInfo(TotalInfoVO totalInfo, int totalIncome) {
+        totalInfo.setHealth_insurance((int) (totalIncome * 0.04));
+        totalInfo.setEmployment_insurance((int) (totalIncome * 0.009));
+        totalInfo.setNational_pension((int) (totalIncome * 0.045));
+        // 추가 계산 로직을 필요에 따라 추가
 
-//    public TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult){
-//        int income_final = totalResult.getIncome_amount();
-//
-//
-//        return totalResult;
-//    }
+//        mapper.updateTotalInfo(totalInfo);
+
+        return totalInfo;
+    }
+
+    public TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult){
+        int income_final = totalResult.getIncome_final();
+
+
+        return totalResult;
+    }
     public TotalTaxResultVO calculateTotalDeductions(TotalInfoVO totalInfo, CardTaxResultVO cardResult) {
         TotalTaxResultVO totalResult = new TotalTaxResultVO();
 

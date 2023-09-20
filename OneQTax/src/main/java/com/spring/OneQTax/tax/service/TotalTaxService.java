@@ -6,7 +6,7 @@ import com.spring.oneqtax.tax.domain.TotalTaxResultVO;
 
 public interface TotalTaxService {
 
-//        public TotalInfoVO updateTotalInfo(TotalInfoVO totalInfoVO, double totalIncome);
+        public TotalInfoVO updateTotalInfo(TotalInfoVO totalInfo, int totalIncome);
 
 //    public TotalInfoVO getTotalInfoById(int member_id);
 //

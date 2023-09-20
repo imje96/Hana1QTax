@@ -67,9 +67,9 @@
 
 
         <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
-            <br/>
-            <br/>
-            <br/>
+<%--            <br/>--%>
+<%--            <br/>--%>
+<%--            <br/>--%>
             <div style="padding-left: 30px;">
                 <h3 style="color: #018c8d; margin-bottom: 15px;">카드황금비율계산</h3>
                 <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">

@@ -48,16 +48,17 @@
 <!--    </insert>-->
     <select id="selectTotalInfoById" resultType="com.spring.oneqtax.tax.domain.TotalInfoVO">
         SELECT *
-        FROM totaltax_calc
+        FROM total_info
         WHERE calculation_id IN (SELECT calculation_id FROM DEDUCTION_CALC WHERE member_id = #{member_id})
+        ORDER BY totalInfo_id DESC
+            FETCH FIRST 1 ROWS ONLY
     </select>
 
     <update id="updateTotalInfo" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO" >
-        UPDATE totaltax_calc
+        UPDATE total_info
         SET health_insurance = #{health_insurance},
             employment_insurance = #{employment_insurance},
             national_pension = #{national_pension},
-            private_pension = #{private_pension},
             other_pension = #{other_pension},
             total_pension = #{total_pension}
         WHERE calculation_id = #{calculation_id}
