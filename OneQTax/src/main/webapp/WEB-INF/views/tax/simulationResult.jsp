@@ -267,7 +267,7 @@
                                         <span> </span>
                                         <h5>&gt&gt</h5>
                                         <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.housing_deduciton}"
+                                        <p1><fmt:formatNumber value="${totalResult.housing_deduction}"
                                                               groupingUsed="true"/>원
                                         </p1>
                                     </div>
@@ -447,7 +447,7 @@
         <span class="close">&times;</span>
         <form class="updateForm" action="/update" method="post">
             <h3>인적사항</h3>
-            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>기준일시 : ${totalInfo.result_time}</p>
             <p>인적 공제를 위한 부양가족 수 및 특별공제 항목을 확인해주세요.</p>
             <br/>
 
@@ -558,7 +558,7 @@
                         해당하는 경우 나이제한을 적용받지 아니함</p>
                     <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
                     </div>
-                    <input type="button" class="update-button" value="저장">
+                    <input type="button" id="saveButton1" class="update-button" value="저장">
                     <br/>
                     <br/>
                     <br/>
@@ -581,7 +581,7 @@
         <span class="close">&times;</span>
         <form class="updateForm" action="/update" method="post">
             <h3>근로소득</h3>
-            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>기준일시 : ${totalInfo.result_time}</p>
             <p>근로소득 공제금액을 확인하고, 실제 근로소득 금액을 입력해 정확한 정보를 확인해보세요.</p>
             <br/>
 
@@ -631,7 +631,7 @@
         <span class="close">&times;</span>
         <form class="updateForm" action="/updateDetail" method="post">
             <h3>연금보험료</h3>
-            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>기준일시 : ${totalInfo.result_time}</p>
             <p>근로자 4대 보험 이외 개인연금저축 납입현황을 확인해주세요.</p>
             <br/>
 
@@ -650,32 +650,35 @@
             <div class="modal-amount-box">
                 <div class="modal-amount-text">
 
-                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>
-                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>
-                    <label for="nationalPension">국민연금 납입공제 :</label><br/>
+                    <p2>건강보험료 납입공제 :</p2>
+                    <br/>
+                    <p2>고용보험료 납입공제 :</p2>
+                    <br/>
+                    <p2>국민연금 납입공제 :</p2>
+<%--                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>--%>
+<%--                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>--%>
+<%--                    <label for="nationalPension">국민연금 납입공제 :</label><br/>--%>
                     <label for="otherPension">기타연금 납입공제 :</label><br/>
 
 
                 </div>
                 <div class="modal-amount-money-variable">
                 <div class="modal-amount-money-variable">
+                    <fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>원<br/>
+<%--                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"--%>
+<%--                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>--%>
+<%--                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">--%>
+                    <fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>원<br/>
 
-                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">
-<%--                    <input type="text" id="healthInsurance" name="health_insurance" oninput="addCommaToNumber(this)"--%>
-<%--                           value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>--%>
-                    <input type="text" name="employmentInsurance_view" id="employmentInsurance_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="employmentInsurance" value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="employmentInsurance" name="employmentInsurance" value="${totalInfo.employment_insurance}">
-<%--                    <input type="text" id="employmentInsurance" name="employment_insurance"--%>
-<%--                           oninput="addCommaToNumber(this)"--%>
-<%--                           value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>--%>
-                    <input type="text" name="nationalPension_view" id="nationalPension_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="nationalPension" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="nationalPension" name="nationalPension" value="${totalInfo.national_pension}">
-<%--                    <input type="text" id="nationalPension" name="national_pension" oninput="addCommaToNumber(this)"--%>
-<%--                           value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>--%>
+<%--                    <input type="text" name="employmentInsurance_view" id="employmentInsurance_view" oninput="addCommaToNumber(this)"--%>
+<%--                           data-hidden-id="employmentInsurance" value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>--%>
+<%--                    <input type="hidden" id="employmentInsurance" name="employmentInsurance" value="${totalInfo.employment_insurance}">--%>
+<%--                    --%>
+                    <fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>원<br/>
+
+<%--                    <input type="text" name="nationalPension_view" id="nationalPension_view" oninput="addCommaToNumber(this)"--%>
+<%--                           data-hidden-id="nationalPension" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>--%>
+<%--                    <input type="hidden" id="nationalPension" name="nationalPension" value="${totalInfo.national_pension}">--%>
                     <input type="text" name="otherPension_view" id="otherPension_view" oninput="addCommaToNumber(this)"
                            data-hidden-id="otherPension" value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>
                     <input type="hidden" id="otherPension" name="otherPension" value="${totalInfo.other_pension}">
@@ -690,8 +693,8 @@
                 <p> &#183; 공무원 연금, 군인연금, 사립학교 교직원 연금, 별정 우체국 연금 등 납입한 연금보험료 공제</p>
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-            <input type="submit" class="update-button" value="저장">
-
+<%--            <input type="submit" class="update-button" value="저장">--%>
+            <input type="button" id="saveButton2" class="update-button" value="저장">
         </form>
     </div>
 </div>
@@ -702,7 +705,7 @@
         <span class="close">&times;</span>
         <form class="updateForm" action="/update" method="post">
             <h3>주택자금/주택마련저축</h3>
-            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>기준일시 : ${totalInfo.result_time}</p>
             <p>주택임차차입금 및 청약저축금액을 확인해주세요.</p>
             <br/>
 
@@ -714,7 +717,7 @@
                 <div class="modal-amount-money">
                     <span id="totalHousing"><fmt:formatNumber value="${totalInfo.housing_total}"
                                                               groupingUsed="true"/>원</span><br/>
-                    <p2><fmt:formatNumber value="${totalResult.housing_deduciton}" groupingUsed="true"/>원</p2>
+                    <p2><fmt:formatNumber value="${totalResult.housing_deduction}" groupingUsed="true"/>원</p2>
                 </div>
             </div>
             <hr>
@@ -730,6 +733,11 @@
 
                 </div>
                 <div class="modal-amount-money-variable">
+
+                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"
+                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">
+
                     <input type="text" id="housing_loan" name="health_insurance" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
                     <input type="text" id="housing_account1" name="employment_insurance" oninput="addCommaToNumber(this)"
@@ -744,7 +752,8 @@
                 <p> &#183; 과세기간 종료일 현재 무주택 세대의 세대주(세대주가 주택관련 공제를 받지 않는 경우 세대원도 가능)<br/>로서 근로소득이 있는 자</p>
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-            <input type="button" class="update-button" value="저장">
+<%--            <input type="button" class="update-button" value="저장">--%>
+            <input type="button" id="saveButton3" class="update-button" value="저장">
         </form>
     </div>
 </div>
@@ -755,7 +764,7 @@
         <span class="close">&times;</span>
         <form class="updateForm" action="/update" method="post">
             <h3>신용카드 및 체크카드/현금 소득공제</h3>
-            <p>기준일 : ${totalInfo.result_time}</p>
+            <p>기준일시 : ${totalInfo.result_time}</p>
             <p>주택임차차입금 및 청약저축금액을 확인해주세요.</p>
             <br/>
 
@@ -774,27 +783,27 @@
             <div class="modal-amount-box">
                 <div class="modal-amount-text">
                     <h3></h3>
-                    <label for="healthInsurance">신용카드 사용액 :</label><br/>
-                    <label for="employmentInsurance">체크카드 사용액 :</label><br/>
-                    <label for="nationalPension">현금영수증 사용액 :</label><br/>
-                    <label for="nationalPension">대중교통 사용분 :</label><br/>
-                    <label for="nationalPension">전통시장 사용분 :</label><br/>
-                    <label for="nationalPension">도서공연문화 사용분 :</label><br/>
+                    <label for="creditTotal">신용카드 사용액 :</label><br/>
+                    <label for="debitTotal">체크카드 사용액 :</label><br/>
+                    <label for="cashTotal">현금영수증 사용액 :</label><br/>
+                    <label for="transportTotal">대중교통 사용분 :</label><br/>
+                    <label for="marketTotal">전통시장 사용분 :</label><br/>
+                    <label for="cultureTotal">도서공연문화 사용분 :</label><br/>
 
 
                 </div>
                 <div class="modal-amount-money-variable">
-                    <input type="text" id="creditTotal" name="health_insurance" oninput="addCommaToNumber(this)"
+                    <input type="text" id="creditTotal" name="creditTotal" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${transaction.credit_total}" groupingUsed="true"/>">원<br/>
-                    <input type="text" id="debitTotal" name="employment_insurance" oninput="addCommaToNumber(this)"
+                    <input type="text" id="debitTotal" name="debitTotal" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${transaction.debit_total}" groupingUsed="true"/>">원<br/>
-                    <input type="text" id="cashTotal" name="national_pension" oninput="addCommaToNumber(this)"
+                    <input type="text" id="cashTotal" name="cashTotal" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${transaction.cash_total}" groupingUsed="true"/>">원<br/>
-                    <input type="text" id="culture_total" name="national_pension" oninput="addCommaToNumber(this)"
+                    <input type="text" id="transportTotal" name="transportTotal" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${transaction.transport_total}" groupingUsed="true"/>">원<br/>
-                    <input type="text" id="market_total" name="national_pension" oninput="addCommaToNumber(this)"
+                    <input type="text" id="marketTotal" name="marketTotal" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${transaction.market_total}" groupingUsed="true"/>">원<br/>
-                    <input type="text" id="transport_total" name="national_pension" oninput="addCommaToNumber(this)"
+                    <input type="text" id="cultureTotal" name="cultureTotal" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${transaction.culture_total}" groupingUsed="true"/>">원<br/>
                 </div>
             </div>
@@ -805,6 +814,7 @@
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
             <input type="button" class="update-button" value="저장">
+<%--            <input type="button" id="saveButton5" class="update-button" value="저장">--%>
         </form>
     </div>
 </div>
@@ -970,11 +980,72 @@
 
 
 </script>
-
+<%-- 업데이트 로직 --%>
 <script>
-    $('.updateForm').on('submit', function () {
-        // 로직 적용
-    });
+    // 이벤트 리스너 추가
+    document.getElementById('saveButton1').addEventListener('click', updatePart1);
+    document.getElementById('saveButton2').addEventListener('click', updatePart2);
+    document.getElementById('saveButton3').addEventListener('click', updatePart3);
+    // document.getElementById('saveButton4').addEventListener('click', updatePart4);
+
+    // 1번 ajax
+    function updatePart1() {
+        let data = {
+            updateType: 'Part1',
+            field1: document.getElementById('inputField1').value,
+            field2: document.getElementById('inputField2').value,
+            field3: document.getElementById('inputField3').value,
+            field4: document.getElementById('inputField4').value
+        };
+        sendUpdateRequest(data);
+    }
+    // 2번 ajax
+    function updatePart2() {
+        let data = {
+            updateType: 'Part2',
+            field1: document.getElementById('otherPension').value,
+        };
+        sendUpdateRequest(data);
+    }
+    // 3번 ajax
+    function updatePart3() {
+        let data = {
+            updateType: 'Part3',
+            field1: document.getElementById('inputField1').value,
+            field2: document.getElementById('inputField2').value,
+            field3: document.getElementById('inputField3').value,
+            field4: document.getElementById('inputField4').value
+        };
+        sendUpdateRequest(data);
+    }
+    // 4번 ajax
+    // function updatePart1() {
+    //     let data = {
+    //         updateType: 'firstPart',
+    //         field1: document.getElementById('inputField1').value,
+    //         field2: document.getElementById('inputField2').value,
+    //         field3: document.getElementById('inputField3').value,
+    //         field4: document.getElementById('inputField4').value
+    //     };
+    //     sendUpdateRequest(data);
+    // }
+
+    // 공통 ajax 요청 함수
+    function sendUpdateRequest(data) {
+        $.ajax({
+            url: '/tax/detailUpdate',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function(response) {
+                // 성공 처리
+            },
+            error: function(error) {
+                // 에러 처리
+            }
+        });
+    }
 </script>
 
 </body>

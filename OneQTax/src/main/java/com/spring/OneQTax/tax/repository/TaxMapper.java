@@ -1,9 +1,6 @@
 package com.spring.oneqtax.tax.repository;
 
-import com.spring.oneqtax.tax.domain.CardTaxResultVO;
-import com.spring.oneqtax.tax.domain.TaxInfoVO;
-import com.spring.oneqtax.tax.domain.TotalInfoVO;
-import com.spring.oneqtax.tax.domain.TransactionVO;
+import com.spring.oneqtax.tax.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -23,8 +20,15 @@ public interface TaxMapper {
 
 
 
-    // 전체 연말정산 중 연금보험 조회 및 업데이트
-    TotalInfoVO selectTotalInfoById(int memberId);
+    //  연말정산 계산 전 항목 조회
+    TotalInfoVO getTotalInfoByCalcId(int calculationId);
 
+    // 연말정산 계산 전 항목 저장
+    void insertTotalInfo(TotalInfoVO totalInfoVO);
+    // 연말정산 계산 전 항목 업데이트
     void updateTotalInfo(TotalInfoVO totalInfo);
+    // 연말정산 계산 후 항목 저장
+    void insertTaxResult(TotalTaxResultVO totalResult);
+    // 연말정산 계산결과 조회
+    TotalTaxResultVO getTotalResultByTotalInfoId(int totalInfoId);
 }

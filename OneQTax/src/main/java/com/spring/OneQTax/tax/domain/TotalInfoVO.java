@@ -84,5 +84,5 @@ public class TotalInfoVO {
     private int determined_tax; // 결정세액
     private int prepayment_tax; // 기납부세액
     private int expected_tax; // 차감납부세액
-    private int result_time;
+    private String result_time;
 }

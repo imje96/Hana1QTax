@@ -11,7 +11,7 @@ public class TotalTaxResultVO {
     private int income_final; // 근로소득금액 = 총급여 - 근로소득공제
     private int personal_deduction;
     private int pension_deduction;
-    private int housing_deduciton;
+    private int housing_deduction;
     private int card_deduction; // 카드등소득공제
     private int total_incomeDeduction; // 소득공제 통합
 
@@ -30,5 +30,5 @@ public class TotalTaxResultVO {
     private int determined_tax; // 결정세액
     private int prepayment_tax; // 기납부세액
     private int expected_tax; // 차감납부세액(납부예상세액) = 결정세액 - 기납부세액
-    private int result_time;
+    private String result_time;
 }

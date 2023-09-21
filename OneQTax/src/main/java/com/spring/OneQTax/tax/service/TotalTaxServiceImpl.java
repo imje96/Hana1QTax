@@ -9,36 +9,41 @@ import org.springframework.stereotype.Service;
 
 public class TotalTaxServiceImpl implements TotalTaxService {
 
+    private final TaxMapper taxMapper;
     @Autowired
-    private TaxMapper mapper;
+    public TotalTaxServiceImpl(TaxMapper taxMapper) {
+        this.taxMapper = taxMapper;
+    }
 
-//    public TotalInfoVO getTotalInfoById(int memberId) {
-//
-//        return mapper.selectTotalInfoById(memberId);
+//    @Override
+//    public TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult){
+//        int income_final = totalResult.getIncome_final();
+//        return totalResult;
 //    }
 
-    public TotalInfoVO updateTotalInfo(TotalInfoVO totalInfo, int totalIncome) {
-        totalInfo.setHealth_insurance((int) (totalIncome * 0.04));
-        totalInfo.setEmployment_insurance((int) (totalIncome * 0.009));
-        totalInfo.setNational_pension((int) (totalIncome * 0.045));
-        // 추가 계산 로직을 필요에 따라 추가
-
-//        mapper.updateTotalInfo(totalInfo);
-
-        return totalInfo;
+    @Override
+    public void saveResult(TotalTaxResultVO totalResult){
+        taxMapper.insertTaxResult(totalResult);
     }
 
-    public TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult){
-        int income_final = totalResult.getIncome_final();
-
-
+    // 계산정보 조회하기
+    @Override
+    public TotalTaxResultVO getTotalResultByTotalInfoId(int totalInfoId){
+        TotalTaxResultVO totalResult = new TotalTaxResultVO();
+        totalResult = taxMapper.getTotalResultByTotalInfoId(totalInfoId);
         return totalResult;
     }
+
+
+
+    @Override
     public TotalTaxResultVO calculateTotalDeductions(TotalInfoVO totalInfo, CardTaxResultVO cardResult) {
         TotalTaxResultVO totalResult = new TotalTaxResultVO();
 
         /* TaxFormResultVO에서 값 가져오기
          * 납입금액을 가져와서 계산 후 금액으로 사용할 것*/
+        int totalInfo_id = totalInfo.getTotalInfo_id();
+
         int totalIncome = totalInfo.getTotal_income2();
 
         int income_deduction = totalInfo.getIncome_deduction();
@@ -99,9 +104,10 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         int determined_tax = totalInfo.getDetermined_tax();
         int prepayment_tax = totalInfo.getPrepayment_tax();
         int expected_tax = totalInfo.getExpected_tax();
-        int result_time = totalInfo.getResult_time();
+        String result_time = totalInfo.getResult_time();
 
-
+        /* totalInfo_id 넣기 */
+        totalResult.setTotalInfo_id(totalInfo_id);
         /* 근로소득 공제 */
         totalResult.setIncome_deduction(income_deduction); // 근로소득공제
         totalResult.setIncome_final(income_final); // 근로소득금액
@@ -122,7 +128,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         } else {
             calcHousing = 0;
         }
-        totalResult.setHousing_deduciton(calcHousing);
+        totalResult.setHousing_deduction(calcHousing);
 
         /* 카드 등 공제 */
         totalResult.setCard_deduction(card_deduction);

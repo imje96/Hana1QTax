@@ -4,63 +4,181 @@
 
 <mapper namespace="com.spring.oneqtax.tax.repository.TaxMapper">
 
-        <select id="getAllTaxInfo" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
-            SELECT *
-            FROM tax_info
-        </select>
+    <select id="getAllTaxInfo" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
+        SELECT *
+        FROM tax_info
+    </select>
 
-        <select id="getTaxInfoByMemberId" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
-            SELECT *
-            FROM tax_info
-            WHERE member_id = #{member_id}
-        </select>
+    <select id="getTaxInfoByMemberId" resultType="com.spring.oneqtax.tax.domain.TaxInfoVO">
+        SELECT *
+        FROM tax_info
+        WHERE member_id = #{member_id}
+    </select>
 
     <!-- 누적 카드내역 가져오기 -->
-        <select id="getTransactionByMemberId" resultType="com.spring.oneqtax.tax.domain.TransactionVO">
-            SELECT *
-            FROM total_amount
-            WHERE member_id = #{member_id}
+    <select id="getTransactionByMemberId" resultType="com.spring.oneqtax.tax.domain.TransactionVO">
+        SELECT *
+        FROM total_amount
+        WHERE member_id = #{member_id}
             FETCH FIRST 1 ROWS ONLY
-        </select>
+    </select>
 
-    <!-- 공제계산결과 삽입하기 deduction_id 자동생성 -->
-        <insert id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.CardTaxResultVO" >
-            INSERT INTO incometax_result (calculation_id, total_id, credit_deductible, credit_deduction, debit_deductible,
-                                          debit_deduction, cash_deductible, cash_deduction, basic_deduction, additional_deduction, total_deduction, reducing_tax)
-            VALUES (#{calculation_id}, #{total_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
-                    #{debit_deduction}, #{cash_deductible}, #{cash_deduction}, #{basic_deduction},  #{additional_deduction}, #{total_deduction},  #{reducing_tax})
-        </insert>
+    <!-- 카드공제계산결과 삽입하기 deduction_id 자동생성 -->
+    <insert id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.CardTaxResultVO">
+        INSERT INTO incometax_result (calculation_id, total_id, credit_deductible, credit_deduction, debit_deductible,
+                                      debit_deduction, cash_deductible, cash_deduction, basic_deduction,
+                                      additional_deduction, total_deduction, reducing_tax)
+        VALUES (#{calculation_id}, #{total_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
+                #{debit_deduction}, #{cash_deductible}, #{cash_deduction}, #{basic_deduction}, #{additional_deduction},
+                #{total_deduction}, #{reducing_tax})
+    </insert>
 
-    <!-- 공제결과 찾아오기 -->
-        <select id="getDeductionResult" resultType="com.spring.oneqtax.tax.domain.CardTaxResultVO">
-            SELECT *
-            FROM incometax_result
-            WHERE total_id IN (SELECT total_id FROM TOTAL_AMOUNT WHERE member_id = #{member_id})
-            ORDER BY deduction_id DESC
-                FETCH FIRST 1 ROWS ONLY
-        </select>
+    <!-- 카드공제결과 찾아오기 -->
+    <select id="getDeductionResult" resultType="com.spring.oneqtax.tax.domain.CardTaxResultVO">
+        SELECT *
+        FROM incometax_result
+        WHERE total_id IN (SELECT total_id FROM TOTAL_AMOUNT WHERE member_id = #{member_id})
+        ORDER BY deduction_id DESC
+            FETCH FIRST 1 ROWS ONLY
+    </select>
 
 
     <!--  연금공제부분 수정할 값 추가-->
-<!--    <insert id="insertInsuranceData" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO">-->
-<!--        INSERT INTO pension_insurance (health_insurance, employment_insurance, national_pension, private_pension, other_pension)-->
-<!--        VALUES (#{healthInsurance}, #{employmentInsurance}, #{national_pension}, #{private_pension}, #{other_pension})-->
-<!--    </insert>-->
-    <select id="selectTotalInfoById" resultType="com.spring.oneqtax.tax.domain.TotalInfoVO">
+    <!--    <insert id="insertInsuranceData" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO">-->
+    <!--        INSERT INTO pension_insurance (health_insurance, employment_insurance, national_pension, private_pension, other_pension)-->
+    <!--        VALUES (#{healthInsurance}, #{employmentInsurance}, #{national_pension}, #{private_pension}, #{other_pension})-->
+    <!--    </insert>-->
+    <!--  가져오기 -->
+    <select id="getTotalInfoByCalcId" resultType="com.spring.oneqtax.tax.domain.TotalInfoVO">
         SELECT *
         FROM total_info
-        WHERE calculation_id IN (SELECT calculation_id FROM DEDUCTION_CALC WHERE member_id = #{member_id})
+        WHERE calculation_id = #{calculation_id}
         ORDER BY totalInfo_id DESC
             FETCH FIRST 1 ROWS ONLY
     </select>
 
-    <update id="updateTotalInfo" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO" >
-        UPDATE total_info
-        SET health_insurance = #{health_insurance},
-            employment_insurance = #{employment_insurance},
-            national_pension = #{national_pension},
-            other_pension = #{other_pension},
-            total_pension = #{total_pension}
-        WHERE calculation_id = #{calculation_id}
+    <!--  연말정산 계산정보 저장  -->
+    <insert id="insertTotalInfo" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO">
+        INSERT INTO TOTAL_INFO
+        (CALCULATION_ID, TOTAL_INCOME2, INCOME_DEDUCTION, INCOME_FINAL,
+         PERSONAL_DEDUCTION, TAXPAYER_DEDUCTION, SPOUSE_DEDUCTION, CHILDREN_DEDUCTION, ADOPTED_DEDUCTION,
+         DIRECTANC_DEDUCTION, SIBLINGS_DEDUCTION, SENIOR_DEDUCTION, DISABILITY_DEDUCTION, WOMAN_DEDUCTION,
+         SINGLEPARENT_DEDUCTION, PENSION_DEDUCTION, HEALTH_INSURANCE, EMPLOYMENT_INSURANCE, NATIONAL_PENSION,
+         OTHER_PENSION, HOUSING_TOTAL, HOUSING_LOAN, HOUSING_ACCOUNT1, HOUSING_ACCOUNT2,
+         CARD_DEDUCTION, CREDIT_DEDUCTION, DEBIT_DEDUCTION, CASH_DEDUCTION, BASIC_DEDUCTION,
+         ADDITIONAL_DEDUCTION, CHILDREN_AMOUNT, IRPPENSION_TOTAL, PENSION_AMOUNT, IRP_AMOUNT,
+         GUARANTEE_TOTAL, BASIC_GUARANTEE, DISABLED_GUARANTEE, MEDICAL_TOTAL, MEDICAL_EXPENSE,
+         MEDICAL_EXPENSE2, MEDICAL_EXPENSE3, FAMILY_MEDICAL, EDUCATION_TOTAL, EDU_EXPENSE,
+         CHILDREN_EDU, UNIV_EDU, UNIFORM_EXPENSE, DONATION_TOTAL, DONATION1,
+         DONATION2, DONATION3, RELIGIONECT_DONATION, RELIGION_DONATION, RENT_TOTAL,
+         DETERMINED_TAX, PREPAYMENT_TAX, EXPECTED_TAX, RESULT_TIME)
+        VALUES ( #{calculation_id}, #{total_income2}, #{income_deduction}, #{income_final},
+                #{personal_deduction}, #{taxpayer_deduction}, #{spouse_deduction}, #{children_deduction},
+                #{adopted_deduction},
+                #{directAnc_deduction}, #{siblings_deduction}, #{senior_deduction}, #{disability_deduction},
+                #{woman_deduction},
+                #{singleParent_deduction}, #{pension_deduction}, #{health_insurance}, #{employment_insurance},
+                #{national_pension},
+                #{other_pension}, #{housing_total}, #{housing_loan}, #{housing_account1}, #{housing_account2},
+                #{card_deduction}, #{credit_deduction}, #{debit_deduction}, #{cash_deduction}, #{basic_deduction},
+                #{additional_deduction}, #{children_amount}, #{irpPension_total}, #{pension_amount}, #{irp_amount},
+                #{guarantee_total}, #{basic_guarantee}, #{disabled_guarantee}, #{medical_total}, #{medical_expense},
+                #{medical_expense2}, #{medical_expense3}, #{family_medical}, #{education_total}, #{edu_expense},
+                #{children_edu}, #{univ_edu}, #{uniform_expense}, #{donation_total}, #{donation1},
+                #{donation2}, #{donation3}, #{religionEct_donation}, #{religion_donation}, #{rent_total},
+                #{determined_tax}, #{prepayment_tax}, #{expected_tax}, (sysdate))
+    </insert>
+
+    <!--  연말정산 계산정보 업데이트  -->
+    <update id="updateTotalInfo" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO">
+        UPDATE TOTAL_INFO
+        SET TOTAL_INCOME2          = #{total_income2},
+            INCOME_DEDUCTION       = #{income_deduction},
+            INCOME_FINAL           = #{income_final},
+            PERSONAL_DEDUCTION     = #{personal_deduction},
+            TAXPAYER_DEDUCTION     = #{taxpayer_deduction},
+            SPOUSE_DEDUCTION       = #{spouse_deduction},
+            CHILDREN_DEDUCTION     = #{children_deduction},
+            ADOPTED_DEDUCTION      = #{adopted_deduction},
+            DIRECTANC_DEDUCTION    = #{directAnc_deduction},
+            SIBLINGS_DEDUCTION     = #{siblings_deduction},
+            SENIOR_DEDUCTION       = #{senior_deduction},
+            DISABILITY_DEDUCTION   = #{disability_deduction},
+            WOMAN_DEDUCTION        = #{woman_deduction},
+            SINGLEPARENT_DEDUCTION = #{singleParent_deduction},
+            PENSION_DEDUCTION      = #{pension_deduction},
+            HEALTH_INSURANCE       = #{health_insurance},
+            EMPLOYMENT_INSURANCE   = #{employment_insurance},
+            NATIONAL_PENSION       = #{national_pension},
+            OTHER_PENSION          = #{other_pension},
+            HOUSING_TOTAL          = #{housing_total},
+            HOUSING_LOAN           = #{housing_loan},
+            HOUSING_ACCOUNT1       = #{housing_account1},
+            HOUSING_ACCOUNT2       = #{housing_account2},
+            CARD_DEDUCTION         = #{card_deduction},
+            CREDIT_DEDUCTION       = #{credit_deduction},
+            DEBIT_DEDUCTION        = #{debit_deduction},
+            CASH_DEDUCTION         = #{cash_deduction},
+            BASIC_DEDUCTION        = #{basic_deduction},
+            ADDITIONAL_DEDUCTION   = #{additional_deduction},
+            CHILDREN_AMOUNT        = #{children_amount},
+            IRPPENSION_TOTAL       = #{irpPension_total},
+            PENSION_AMOUNT         = #{pension_amount},
+            IRP_AMOUNT             = #{irp_amount},
+            GUARANTEE_TOTAL        = #{guarantee_total},
+            BASIC_GUARANTEE        = #{basic_guarantee},
+            DISABLED_GUARANTEE     = #{disabled_guarantee},
+            MEDICAL_TOTAL          = #{medical_total},
+            MEDICAL_EXPENSE        = #{medical_expense},
+            MEDICAL_EXPENSE2       = #{medical_expense2},
+            MEDICAL_EXPENSE3       = #{medical_expense3},
+            FAMILY_MEDICAL         = #{family_medical},
+            EDUCATION_TOTAL        = #{education_total},
+            EDU_EXPENSE            = #{edu_expense},
+            CHILDREN_EDU           = #{children_edu},
+            UNIV_EDU               = #{univ_edu},
+            UNIFORM_EXPENSE        = #{uniform_expense},
+            DONATION_TOTAL         = #{donation_total},
+            DONATION1              = #{donation1},
+            DONATION2              = #{donation2},
+            DONATION3              = #{donation3},
+            RELIGIONECT_DONATION   = #{religionEct_donation},
+            RELIGION_DONATION      = #{religion_donation},
+            RENT_TOTAL             = #{rent_total},
+            DETERMINED_TAX         = #{determined_tax},
+            PREPAYMENT_TAX         = #{prepayment_tax},
+            EXPECTED_TAX           = #{expected_tax},
+            RESULT_TIME            = (sysdate)
+        WHERE TOTALINFO_ID = #{totalInfo_id}
     </update>
+
+    <!--  공제 계산결과 저장  -->
+
+        <insert id="insertTaxResult" parameterType="com.spring.oneqtax.tax.domain.TotalTaxResultVO">
+            INSERT INTO totaltax_result (
+                totalInfo_id, income_deduction, income_final,
+                personal_deduction, pension_deduction, housing_deduction,
+                card_deduction, total_incomeDeduction, earned_taxcredit,
+                children_taxcredit, irp_taxcredit, guarantee_taxcredit,
+                medical_taxcredit, education_taxcredit, donation_taxcredit,
+                rent_taxcredit, total_taxcredit, tax_base, calculated_amount,
+                determined_tax, prepayment_tax, expected_tax, result_time
+            ) VALUES (
+                         #{totalInfo_id}, #{income_deduction}, #{income_final},
+                         #{personal_deduction}, #{pension_deduction}, #{housing_deduction},
+                         #{card_deduction}, #{total_incomeDeduction}, #{earned_taxcredit},
+                         #{children_taxcredit}, #{irp_taxcredit}, #{guarantee_taxcredit},
+                         #{medical_taxcredit}, #{education_taxcredit}, #{donation_taxcredit},
+                         #{rent_taxcredit}, #{total_taxcredit}, #{tax_base}, #{calculated_amount},
+                         #{determined_tax}, #{prepayment_tax}, #{expected_tax}, (sysdate)
+                     )
+        </insert>
+    <!-- 공제결과 조회  -->
+    <select id="getTotalResultByTotalInfoId" resultType="com.spring.oneqtax.tax.domain.TotalTaxResultVO">
+        SELECT *
+        FROM totaltax_result
+        WHERE totalInfo_id = #{totalInfo_id}
+        ORDER BY refund_id DESC
+            FETCH FIRST 1 ROWS ONLY
+    </select>
 </mapper>
