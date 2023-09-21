@@ -445,7 +445,7 @@
     <div class="modal-content2">
 
         <span class="close">&times;</span>
-        <form class="updateForm" action="/update" method="post">
+<%--        <form class="updateForm" action="/update" method="post">--%>
             <h3>인적사항</h3>
             <p>기준일시 : ${totalInfo.result_time}</p>
             <p>인적 공제를 위한 부양가족 수 및 특별공제 항목을 확인해주세요.</p>
@@ -571,7 +571,7 @@
 
                 </div>
             </div>
-        </form>
+<%--        </form>--%>
     </div>
 </div>
 <%-- 2번 모달창--%>
@@ -629,7 +629,7 @@
     <div class="modal-content2">
 
         <span class="close">&times;</span>
-        <form class="updateForm" action="/updateDetail" method="post">
+<%--        <form class="updateForm" action="/updateDetail" method="post">--%>
             <h3>연금보험료</h3>
             <p>기준일시 : ${totalInfo.result_time}</p>
             <p>근로자 4대 보험 이외 개인연금저축 납입현황을 확인해주세요.</p>
@@ -658,7 +658,7 @@
 <%--                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>--%>
 <%--                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>--%>
 <%--                    <label for="nationalPension">국민연금 납입공제 :</label><br/>--%>
-                    <label for="otherPension">기타연금 납입공제 :</label><br/>
+                    <label for="other_pension">기타연금 납입공제 :</label><br/>
 
 
                 </div>
@@ -680,8 +680,8 @@
 <%--                           data-hidden-id="nationalPension" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>--%>
 <%--                    <input type="hidden" id="nationalPension" name="nationalPension" value="${totalInfo.national_pension}">--%>
                     <input type="text" name="otherPension_view" id="otherPension_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="otherPension" value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="otherPension" name="otherPension" value="${totalInfo.other_pension}">
+                           data-hidden-id="other_pension" value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="other_pension" name="other_pension" value="${totalInfo.other_pension}">
 <%--                    <input type="text" id="otherPension" name="national_pension" oninput="addCommaToNumber(this)"--%>
 <%--                           value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>--%>
                 </div>
@@ -734,16 +734,22 @@
                 </div>
                 <div class="modal-amount-money-variable">
 
-                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">
+                    <input type="text" name="housing_loan_view" id="housing_loan_view" oninput="addCommaToNumber(this)"
+                           data-hidden-id="housing_loan" value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="housing_loan" name="housing_loan" value="${totalInfo.housing_loan}"><br/>
 
-                    <input type="text" id="housing_loan" name="health_insurance" oninput="addCommaToNumber(this)"
-                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
-                    <input type="text" id="housing_account1" name="employment_insurance" oninput="addCommaToNumber(this)"
-                           value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>
-                    <input type="text" id="housing_account2" name="national_pension" oninput="addCommaToNumber(this)"
-                           value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>
+<%--                    <input type="text" id="housing_loan" name="health_insurance" oninput="addCommaToNumber(this)"--%>
+<%--                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>--%>
+                    <input type="text" name="housing_account1_view" id="housing_account1_view" oninput="addCommaToNumber(this)"
+                           data-hidden-id="housing_account1" value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="housing_account1" name="housing_account1" value="${totalInfo.housing_account1}">
+<%--                    <input type="text" id="housing_account1" name="employment_insurance" oninput="addCommaToNumber(this)"--%>
+<%--                           value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>--%>
+                    <input type="text" name="housing_account2_view" id="housing_account2_view" oninput="addCommaToNumber(this)"
+                           data-hidden-id="housing_account2" value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="housing_account2" name="housing_account2" value="${totalInfo.housing_account2}">
+<%--                    <input type="text" id="housing_account2" name="national_pension" oninput="addCommaToNumber(this)"--%>
+<%--                           value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>--%>
                 </div>
             </div>
             <div class="modal-amount-explanation">
@@ -899,55 +905,55 @@
 
 </script>
 <%-- 컴마 자동으로 입력하고 데이터 보낼 땐 컴마 제외--%>
-<script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('pensionBtn').addEventListener('click', updateTotalPension);
+<%--<script>--%>
+<%--    window.addEventListener('DOMContentLoaded', (event) => {--%>
+<%--        document.getElementById('pensionBtn').addEventListener('click', updateTotalPension);--%>
 
-        updateTotalPension();
-    });
+<%--        updateTotalPension();--%>
+<%--    });--%>
 
-    function updateTotalPension() {
-        const healthInsurance = parseInt(document.getElementById('healthInsurance').value.replace(/,/g, '').replace('원', ''));
-        const employmentInsurance = parseInt(document.getElementById('employmentInsurance').value.replace(/,/g, '').replace('원', ''));
-        const nationalPension = parseInt(document.getElementById('nationalPension').value.replace(/,/g, '').replace('원', ''));
-
-
-        const totalValue = healthInsurance + employmentInsurance + nationalPension;
-        const totalPensionSpan = document.getElementById('totalPension');
-        totalPensionSpan.textContent = new Intl.NumberFormat('ko-KR').format(totalValue) + '원';
-
-        const data = {
-            totalInfoVO: {
-                health_insurance: healthInsurance,
-                employment_insurance: employmentInsurance,
-                national_pension: nationalPension,
-               other_pension: otherPension
-            }
-        };
-
-        fetch("/update", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                document.getElementById('totalPension').textContent = new Intl.NumberFormat('ko-KR', {
-                    style: 'currency',
-                    currency: 'KRW'
-                }).format(data.health_insurance + data.employment_insurance + data.national_pension);
-            });
-    }
+<%--    function updateTotalPension() {--%>
+<%--        const healthInsurance = parseInt(document.getElementById('healthInsurance').value.replace(/,/g, '').replace('원', ''));--%>
+<%--        const employmentInsurance = parseInt(document.getElementById('employmentInsurance').value.replace(/,/g, '').replace('원', ''));--%>
+<%--        const nationalPension = parseInt(document.getElementById('nationalPension').value.replace(/,/g, '').replace('원', ''));--%>
 
 
-</script>
+<%--        const totalValue = healthInsurance + employmentInsurance + nationalPension;--%>
+<%--        const totalPensionSpan = document.getElementById('totalPension');--%>
+<%--        totalPensionSpan.textContent = new Intl.NumberFormat('ko-KR').format(totalValue) + '원';--%>
+
+<%--        const data = {--%>
+<%--            totalInfoVO: {--%>
+<%--                health_insurance: healthInsurance,--%>
+<%--                employment_insurance: employmentInsurance,--%>
+<%--                national_pension: nationalPension,--%>
+<%--               other_pension: otherPension--%>
+<%--            }--%>
+<%--        };--%>
+
+<%--        fetch("/update", {--%>
+<%--            method: "POST",--%>
+<%--            headers: {--%>
+<%--                "Content-Type": "application/json"--%>
+<%--            },--%>
+<%--            body: JSON.stringify(data)--%>
+<%--        })--%>
+<%--            .then(response => {--%>
+<%--                if (!response.ok) {--%>
+<%--                    throw new Error('Network response was not ok');--%>
+<%--                }--%>
+<%--                return response.json();--%>
+<%--            })--%>
+<%--            .then(data => {--%>
+<%--                document.getElementById('totalPension').textContent = new Intl.NumberFormat('ko-KR', {--%>
+<%--                    style: 'currency',--%>
+<%--                    currency: 'KRW'--%>
+<%--                }).format(data.health_insurance + data.employment_insurance + data.national_pension);--%>
+<%--            });--%>
+<%--    }--%>
+
+
+<%--</script>--%>
 
 <script>
     function addCommaToNumber(inputElem) {
@@ -983,69 +989,141 @@
 <%-- 업데이트 로직 --%>
 <script>
     // 이벤트 리스너 추가
-    document.getElementById('saveButton1').addEventListener('click', updatePart1);
-    document.getElementById('saveButton2').addEventListener('click', updatePart2);
-    document.getElementById('saveButton3').addEventListener('click', updatePart3);
-    // document.getElementById('saveButton4').addEventListener('click', updatePart4);
+    document.addEventListener('DOMContentLoaded', (event) => {
+        if(document.getElementById('saveButton1')) {
+            document.getElementById('saveButton1').addEventListener('click', updatePart1);
+        }
+        if(document.getElementById('saveButton2')) {
+            document.getElementById('saveButton2').addEventListener('click', updatePart2);
+        }
+        if(document.getElementById('saveButton3')) {
+            document.getElementById('saveButton3').addEventListener('click', updatePart3);
+        }
 
-    // 1번 ajax
-    function updatePart1() {
-        let data = {
-            updateType: 'Part1',
-            field1: document.getElementById('inputField1').value,
-            field2: document.getElementById('inputField2').value,
-            field3: document.getElementById('inputField3').value,
-            field4: document.getElementById('inputField4').value
-        };
-        sendUpdateRequest(data);
-    }
-    // 2번 ajax
-    function updatePart2() {
-        let data = {
-            updateType: 'Part2',
-            field1: document.getElementById('otherPension').value,
-        };
-        sendUpdateRequest(data);
-    }
-    // 3번 ajax
-    function updatePart3() {
-        let data = {
-            updateType: 'Part3',
-            field1: document.getElementById('inputField1').value,
-            field2: document.getElementById('inputField2').value,
-            field3: document.getElementById('inputField3').value,
-            field4: document.getElementById('inputField4').value
-        };
-        sendUpdateRequest(data);
-    }
-    // 4번 ajax
-    // function updatePart1() {
-    //     let data = {
-    //         updateType: 'firstPart',
-    //         field1: document.getElementById('inputField1').value,
-    //         field2: document.getElementById('inputField2').value,
-    //         field3: document.getElementById('inputField3').value,
-    //         field4: document.getElementById('inputField4').value
-    //     };
-    //     sendUpdateRequest(data);
-    // }
+        function updatePart1() {
+            const spouseDeductionValue = document.querySelector('input[name="spouseDeduction"]:checked');
+            const womanDeductionValue = document.querySelector('input[name="womanDeduction"]:checked');
+            const singleParentValue = document.querySelector('input[name="singleParent"]:checked');
+            console.log("spouseDeductionValue:", spouseDeductionValue);
 
-    // 공통 ajax 요청 함수
-    function sendUpdateRequest(data) {
-        $.ajax({
-            url: '/tax/detailUpdate',
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            success: function(response) {
-                // 성공 처리
-            },
-            error: function(error) {
-                // 에러 처리
-            }
-        });
-    }
+
+            let data = {
+                updateType: 'Part1',
+                spouseDeduction: spouseDeductionValue ? spouseDeductionValue.value : null,
+                child: document.getElementById('child').value,
+                adoptedChild: document.getElementById('adoptedChild').value,
+                directAncestor: document.getElementById('directAncestor').value,
+                siblings: document.getElementById('siblings').value,
+                senior: document.getElementById('senior').value,
+                disability: document.getElementById('disability').value,
+                womanDeduction: womanDeductionValue ? womanDeductionValue.value : null,
+                singleParent: singleParentValue ? singleParentValue.value : null
+            };
+            // 데이터 출력
+            console.log("Data to be sent:", data);
+
+            sendUpdateRequest(data);
+        }
+
+        function updatePart2() {
+            let data = {
+                updateType: 'Part2',
+                other_pension: document.getElementById('otherPension').value
+            };
+            sendUpdateRequest(data);
+        }
+
+        function updatePart3() {
+            let data = {
+                updateType: 'Part3',
+                housing_loan: document.getElementById('housing_loan').value,
+                housing_account1: document.getElementById('housing_account1').value,
+                housing_account2: document.getElementById('housing_account2').value
+            };
+            sendUpdateRequest(data);
+        }
+
+        function sendUpdateRequest(data) {
+            $.ajax({
+                url: '/updateDetail',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);  // 이 부분을 추가
+                    alert('데이터가 정상적으로 저장되었습니다.');
+                },
+                error: function(error) {
+                    alert('오류가 발생했습니다: ' + error.responseText);
+                }
+            });
+        }
+    });
+
+    // document.addEventListener('DOMContentLoaded', (event) => {
+    //     document.getElementById('saveButton1').addEventListener('click', updatePart1);
+    //     document.getElementById('saveButton2').addEventListener('click', updatePart2);
+    //     document.getElementById('saveButton3').addEventListener('click', updatePart3);
+    //     // document.getElementById('saveButton4').addEventListener('click', updatePart4);
+    //
+    //     // 1번 ajax
+    //     function updatePart1() {
+    //         let data = {
+    //             updateType: 'Part1',
+    //             totalIncome: document.getElementById('totalIncome').value,
+    //             spouseDeduction: document.querySelector('input[name="spouseDeduction"]:checked').value,
+    //             child: document.getElementById('child').value,
+    //             adoptedChild: document.getElementById('adoptedChild').value,
+    //             directAncestor: document.getElementById('directAncestor').value,
+    //             siblings: document.getElementById('siblings').value,
+    //             senior: document.getElementById('senior').value,
+    //             disability: document.getElementById('disability').value,
+    //             womanDeduction: document.querySelector('input[name="womanDeduction"]:checked').value,
+    //             singleParent: document.querySelector('input[name="singleParent"]:checked').value
+    //         };
+    //         sendUpdateRequest(data);
+    //     }
+    //
+    //     // 2번 ajax
+    //     function updatePart2() {
+    //         let data = {
+    //             updateType: 'Part2',
+    //             other_pension: document.getElementById('otherPension').value
+    //         };
+    //         sendUpdateRequest(data);
+    //     }
+    //
+    //     // 3번 ajax
+    //     function updatePart3() {
+    //         let data = {
+    //             updateType: 'Part3',
+    //             housing_loan: document.getElementById('housing_loan').value,
+    //             housing_account1: document.getElementById('housing_account1').value,
+    //             housing_account2: document.getElementById('housing_account2').value
+    //         };
+    //         sendUpdateRequest(data);
+    //     }
+    //
+    //     // 공통 ajax 요청 함수
+    //     function sendUpdateRequest(data) {
+    //         $.ajax({
+    //             url: '/detailUpdate',
+    //             type: 'POST',
+    //             data: JSON.stringify(data),
+    //             contentType: 'application/json; charset=utf-8',
+    //             dataType: 'json',
+    //             success: function (response) {
+    //                 // 성공 처리
+    //                 alert('Data has been updated successfully!');
+    //             },
+    //             error: function (error) {
+    //                 // 에러 처리
+    //                 alert('An error occurred: ' + error.responseText);
+    //             }
+    //         });
+    //     }
+    // });
 </script>
 
 </body>

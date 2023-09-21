@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class TaxController {
@@ -288,24 +290,30 @@ public class TaxController {
 //    }
 
     @PostMapping("/updateDetail")
-    public String updateTotalInfo(@ModelAttribute TaxFormVO taxForm, TotalInfoVO totalInfo, TransactionVO transaction, CardTaxResultVO cardResult , Model model, HttpSession session){
-        // memberId 가져오기
-        MemberVO currentUser = getCurrentUser(session);
+    @ResponseBody
+    public Map<String, Object> updateTotalInfo(@ModelAttribute TaxFormVO taxForm,
+                                               TotalTaxResultVO totalResult,
+                                               TotalInfoVO totalInfo,
+                                               TransactionVO transaction,
+                                               CardTaxResultVO cardResult,
+                                               Model model, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
 
+        MemberVO currentUser = getCurrentUser(session);
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
-            return "redirect:/login";
+            response.put("status", "failure");
+            response.put("message", "Not authenticated");
+            return response;
         }
+
         int memberId = currentUser.getMember_id();
 
-//        transaction = taxService.getTransactionByMemberId(memberId);
-        // 카드소득공제 결과 가져오기
-        cardResult = taxService.getDeductionResult(memberId);
-
-        // FORM 서비스를 호출하여 update 로직 처리
         totalInfo = taxFormService.updateForm(taxForm, totalInfo, cardResult);
-        // 여러 항목별로 업데이트가 반복되기 때문에 db 업데이트는 다음 단계에서 실행
-        return "redirect:/";
+        int totalInfoId = totalResult.getTotalInfo_id();
+        taxFormService.updateAndSaveForm(totalInfo);
+
+        response.put("status", "success");
+        return response;
     }
 
     @PostMapping("/saveDetail")
