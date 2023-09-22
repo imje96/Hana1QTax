@@ -181,4 +181,18 @@
         ORDER BY refund_id DESC
             FETCH FIRST 1 ROWS ONLY
     </select>
+    <!-- 공제결과 조회(회원아이디로조회)  -->
+    <select id="getTotalResultByTotalMemberId" resultType="com.spring.oneqtax.tax.domain.TotalTaxResultVO">
+        SELECT * FROM (
+                          SELECT r.*
+                          FROM TAX_INFO d
+                                   JOIN TOTAL_INFO t ON d.calculation_id = t.calculation_id
+                                   JOIN totaltax_result r ON t.totalInfo_id = r.totalInfo_id
+                          WHERE d.member_id = #{memberId}
+                          ORDER BY r.result_time DESC
+                      )
+        WHERE ROWNUM = 1
+
+    </select>
+
 </mapper>

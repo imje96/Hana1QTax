@@ -31,4 +31,6 @@ public interface TaxMapper {
     void insertTaxResult(TotalTaxResultVO totalResult);
     // 연말정산 계산결과 조회
     TotalTaxResultVO getTotalResultByTotalInfoId(int totalInfoId);
+
+    TotalTaxResultVO getTotalResultByTotalMemberId(int memberId);
 }

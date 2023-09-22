@@ -9,10 +9,11 @@ public interface TaxFormService {
     void saveForm(TotalInfoVO totalInfo);
     TotalInfoVO updateForm(TaxFormVO taxForm, TotalInfoVO totalInfo, CardTaxResultVO cardResult);
 
-    void updateAndSaveForm(TotalInfoVO totalInfo);
+//    void updateAndSaveForm(TotalInfoVO totalInfo);
 
     TotalInfoVO getTotalInfoByCalcId(int calculationId);
 
 //    public TotalInfoVO calculateDetailDeduction(NewDetailVO newDetail, TotalInfoVO totalInfo);
 
+  TotalTaxResultVO getTotalResultByTotalMemberId(int memberId);
 }

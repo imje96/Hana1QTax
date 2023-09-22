@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class TotalTaxServiceImpl implements TotalTaxService {
 
     private final TaxMapper taxMapper;
+
     @Autowired
     public TotalTaxServiceImpl(TaxMapper taxMapper) {
         this.taxMapper = taxMapper;
@@ -22,18 +23,17 @@ public class TotalTaxServiceImpl implements TotalTaxService {
 //    }
 
     @Override
-    public void saveResult(TotalTaxResultVO totalResult){
+    public void saveResult(TotalTaxResultVO totalResult) {
         taxMapper.insertTaxResult(totalResult);
     }
 
     // 계산정보 조회하기
     @Override
-    public TotalTaxResultVO getTotalResultByTotalInfoId(int totalInfoId){
+    public TotalTaxResultVO getTotalResultByTotalInfoId(int totalInfoId) {
         TotalTaxResultVO totalResult = new TotalTaxResultVO();
         totalResult = taxMapper.getTotalResultByTotalInfoId(totalInfoId);
         return totalResult;
     }
-
 
 
     @Override
@@ -54,7 +54,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
 //        int employment_insurance = totalInfo.getEmployment_insurance(); // 연금보험료공제
 //        int national_pension = totalInfo.getNational_pension(); // 연금보험료공제
         int other_pension = totalInfo.getOther_pension(); // 기타연금보험
-                
+
         int housing_total = totalInfo.getHousing_total(); //
         int housing_loan = totalInfo.getHousing_loan();
         int housing_account1 = totalInfo.getHousing_account1();
@@ -118,7 +118,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         totalResult.setChildren_taxcredit(children_amount);
 
         /* 연금보험료 계산 */
-        totalResult.setPension_deduction(pension_deduction+other_pension);
+        totalResult.setPension_deduction(pension_deduction + other_pension);
 
         /* 주택공제 */
         int calcHousing = 0;
@@ -137,7 +137,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         // 일단 생략
 
         /* 소득공제 통합 */
-        int total_incomeDeduction = personal_deduction+pension_deduction+calcHousing+card_deduction;
+        int total_incomeDeduction = personal_deduction + pension_deduction + calcHousing + card_deduction;
         totalResult.setTotal_incomeDeduction(total_incomeDeduction);
 
 
@@ -160,7 +160,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         totalResult.setIrp_taxcredit(calcIrpTax);
 
         /* 보장성보험 */
-        int calcGuarantee = Math.min((guarantee_total + disabled_guarantee), 2000000);
+        int calcGuarantee = Math.min((basic_guarantee + disabled_guarantee), 2000000);
         totalResult.setGuarantee_taxcredit(calcGuarantee);
 
         /* 의료비 */
@@ -217,26 +217,26 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         }
 
         if (donation2 <= 100000) {
-            calcDonation2 = (int) Math.floor(tempDon2* 0.2);
+            calcDonation2 = (int) Math.floor(tempDon2 * 0.2);
         } else {
             calcDonation2 = (int) Math.floor(tempDon2 * 0.35);
         }
 
-        int tempDon3 = (int) Math.min((income_final-calcDonation1-calcDonation2)*0.3, donation3);
+        int tempDon3 = (int) Math.min((income_final - calcDonation1 - calcDonation2) * 0.3, donation3);
         if (donation3 <= 100000) {
             calcDonation3 = (int) Math.floor(tempDon3 * 0.2);
         } else {
             calcDonation3 = (int) Math.floor(tempDon3 * 0.35);
         }
 
-        int tempDon4 = (int) Math.min((income_final-calcDonation1-calcDonation2-calcDonation3)*0.3, religionEct_donation);
+        int tempDon4 = (int) Math.min((income_final - calcDonation1 - calcDonation2 - calcDonation3) * 0.3, religionEct_donation);
         if (religionEct_donation <= 100000) {
             calcEctReligion = (int) Math.floor(tempDon4 * 0.2);
         } else {
             calcEctReligion = (int) Math.floor(tempDon4 * 0.35);
         }
 
-        int tempDon5 = (int) Math.min((income_final-calcDonation1-calcDonation2-calcDonation3)*0.1, religion_donation);
+        int tempDon5 = (int) Math.min((income_final - calcDonation1 - calcDonation2 - calcDonation3) * 0.1, religion_donation);
         if (religion_donation <= 100000) {
             calcReligion = (int) Math.floor(tempDon5 * 0.2);
         } else {
@@ -267,7 +267,6 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         totalResult.setRent_taxcredit(calcRent);
 
 
-
         // 계산하기
         // 과세표준 = 근로소득금액 - 소득공제총합
         // 산출세액 = 과세표준 * 기본세율
@@ -277,7 +276,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         /* 과세표준 */
         int taxbase = income_final - total_incomeDeduction; // 과세표준
         totalResult.setTax_base(taxbase);
-        int calculated_amount = 0; //산출세액
+        int calculated_amount = 0; //총산출세액
 
         if (taxbase <= 14000000) {
             calculated_amount = (int) Math.floor(taxbase * 0.06);
@@ -301,37 +300,50 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         totalResult.setCalculated_amount(calculated_amount);
 
         /* 근로세액공제 */
-        int earned_taxcredit = 0;
+        int earned_taxcredit = 0; // 산출세액 -> 근로소득만 잇는 경우는 근로소득 전액
         int calcEarned = 0;
+        int finalCalc = 0; // 공제한도까지 고려한 금액
         int temp = 0;
-        if(calculated_amount <= 1300000){
-            earned_taxcredit = (int)Math.floor(calculated_amount * 0.55);
-        }else {
-            earned_taxcredit = (int)Math.floor(calculated_amount * 0.3 + 325000);
+        if (calculated_amount <= 1300000) {
+            earned_taxcredit = (int) Math.floor(calculated_amount * 0.55);
+        } else {
+            earned_taxcredit = (int) Math.floor(calculated_amount * 0.3 + 325000);
+        }
+        // 한도 계산
+        // 74만원
+        if (totalIncome <= 3300000) {
+            finalCalc = Math.min(earned_taxcredit, 740000);
+        }
+        // Max[74만원-(총급여액-3,300만원)×8/1,000, 66만원]
+        else if (totalIncome <= 43000000) {
+            temp = (int) (740000 - (totalIncome - 33000000) * 0.008);
+            calcEarned = Math.max(temp, 660000);
+            finalCalc = Math.min(earned_taxcredit, calcEarned);
+        }
+        // 66만원
+        else if (totalIncome <= 70000000) {
+            finalCalc = Math.min(earned_taxcredit, 660000);
+        }
+        // Max[74만원-(총급여액-3,300만원)×8/1,000, 66만원]
+        else if (totalIncome <= 70320000) {
+            temp = (int) (740000 - (totalIncome - 33000000) * 0.008);
+            calcEarned = Math.max(temp, 660000);
+            finalCalc = Math.min(earned_taxcredit, calcEarned);
+        }
+        // 50만원
+        else {
+            finalCalc = Math.min(earned_taxcredit, 500000);
         }
 
-        if(totalIncome <= 3300000){
-            calcEarned = Math.min(earned_taxcredit, 740000);
-        }else if(totalIncome <=43000000){
-            temp= (int)(740000-(totalIncome-33000000)*0.8);
-            calcEarned = Math.min(earned_taxcredit,temp);
-        }
-        else if(totalIncome <= 70000000){
-           calcEarned  = Math.min(earned_taxcredit, 660000);
-        } else if(totalIncome <= 70320000){
-            temp= (int)(660000-(totalIncome-70000000)*0.5);
-            calcEarned = Math.min(earned_taxcredit, temp);
-        } else {
-            calcEarned = Math.min(earned_taxcredit, 500000);
-        }
-            totalResult.setEarned_taxcredit(calcEarned);
+        totalResult.setEarned_taxcredit(finalCalc);
 
         /* 세액공제 통합 */
-        int total_taxCredit = children_amount+calcIrpTax+calcGuarantee+calcMedicalTaxCredit+calcEdu+calcReligion+calcRent+calcEarned;
+        int total_taxCredit = children_amount + calcIrpTax + calcGuarantee + calcMedicalTaxCredit + calcEdu
+                + calcDonationTaxcredit + calcRent + finalCalc;
         totalResult.setTotal_taxcredit(total_taxCredit);
 
         /* 결정세액 */
-        determined_tax = calculated_amount - total_taxCredit; // 결정세액
+        determined_tax = Math.max(calculated_amount - total_taxCredit, 0); // 결정세액
         totalResult.setDetermined_tax(determined_tax);
         /* 기납부세액 */
         totalResult.setPrepayment_tax(prepayment_tax);

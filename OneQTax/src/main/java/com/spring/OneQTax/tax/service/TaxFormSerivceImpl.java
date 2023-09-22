@@ -4,6 +4,7 @@ import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.repository.TaxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Service
 public class TaxFormSerivceImpl implements TaxFormService {
@@ -14,6 +15,8 @@ public class TaxFormSerivceImpl implements TaxFormService {
     public TaxFormSerivceImpl(TaxMapper taxMapper) {
         this.taxMapper = taxMapper;
     }
+
+
     @Override
     public TotalInfoVO calculateForm(TaxFormVO taxForm, CardTaxResultVO cardResult) {
         TotalInfoVO totalInfo = new TotalInfoVO();
@@ -26,9 +29,9 @@ public class TaxFormSerivceImpl implements TaxFormService {
         // 근로소득금액
         totalInfo.setIncome_final(totalIncome - calculateIncomeDeduction(taxForm));
         // 인적공제 계산하기
-        int personalIncomeDeduction = calculatePersonalIncomeDeduction(taxForm, totalInfo);
+        int personalDeduction = calculatePersonalDeduction(taxForm, totalInfo);
         // 추가공제항목
-        totalInfo.setPersonal_deduction(personalIncomeDeduction);
+        totalInfo.setPersonal_deduction(personalDeduction);
         totalInfo.setChildren_amount(calculateChildTaxCredit(taxForm));
         totalInfo.setPension_deduction(calculatePensionDeduction(taxForm, totalInfo));
 
@@ -53,17 +56,19 @@ public class TaxFormSerivceImpl implements TaxFormService {
     @Override
     public TotalInfoVO updateForm(TaxFormVO taxForm, TotalInfoVO totalInfo, CardTaxResultVO cardResult) {
         // 초기 계산 실행
-        calculateForm(taxForm, cardResult);
+        TotalInfoVO test1 = calculateForm(taxForm, cardResult);
+        System.out.println("테스트1:" + test1);
         // detail 항목 계산 실행
         calculateDetailDeduction(taxForm, totalInfo);
-
+        System.out.println("아이디값 확인3: " + totalInfo.getTotalInfo_id());
+        taxMapper.updateTotalInfo(totalInfo);
         return totalInfo;
     }
     // 두번째 계산 정보 저장(업데이트)
-    @Override
-    public void updateAndSaveForm(TotalInfoVO totalInfo) {
-        taxMapper.updateTotalInfo(totalInfo);
-    }
+//    @Override
+//    public void updateAndSaveForm(TotalInfoVO totalInfo) {
+//        taxMapper.updateTotalInfo(totalInfo);
+//    }
 
     // 계산정보 조회하기
     @Override
@@ -73,8 +78,16 @@ public class TaxFormSerivceImpl implements TaxFormService {
         return totalInfo;
     }
 
+    @Override
+    public TotalTaxResultVO getTotalResultByTotalMemberId(int memberId){
+        TotalTaxResultVO totalResult = new TotalTaxResultVO();
+        totalResult = taxMapper.getTotalResultByTotalMemberId(memberId);
+        return totalResult;
+    }
+
+
     // 인적소득공제 계산하기
-    private int calculatePersonalIncomeDeduction(TaxFormVO taxForm, TotalInfoVO totalInfo) {
+    private int calculatePersonalDeduction(TaxFormVO taxForm, TotalInfoVO totalInfo) {
         int totalDeduction = 0;
 
         int basic = 1500000;
@@ -88,6 +101,10 @@ public class TaxFormSerivceImpl implements TaxFormService {
         int childDeduction = taxForm.getChild() * 1500000;
         totalInfo.setChildren_deduction(childDeduction);
         totalDeduction += childDeduction;
+
+        int adoptedDeduction = taxForm.getAdoptedChild() * 1500000;
+        totalInfo.setAdopted_deduction(adoptedDeduction);
+        totalDeduction += adoptedDeduction;
 
         int siblingsDeduction = taxForm.getSiblings() * 1500000;
         totalInfo.setSiblings_deduction(siblingsDeduction);
@@ -119,10 +136,24 @@ public class TaxFormSerivceImpl implements TaxFormService {
     // 자녀관련 세액공제 계산하기
     private int calculateChildTaxCredit(TaxFormVO taxForm) {
         int childrenTaxCredit = 0;
-        int child = taxForm.getChild(); // form 객체에서 child 값을 가져옴
-
+        int child = taxForm.getChild()-taxForm.getAdoptedChild(); // form 객체에서 child 값을 가져옴
+        int adoptedChild = taxForm.getAdoptedChild();
         // 입양자녀 세액공제
-        childrenTaxCredit += taxForm.getAdoptedChild() * 1500000;
+        switch(adoptedChild){
+            case 0:
+                childrenTaxCredit += 0;
+                break;
+            case 1:
+                childrenTaxCredit += 300000;
+                break;
+            case 2:
+                childrenTaxCredit += 500000;
+                break;
+            default:
+                childrenTaxCredit += 800000 + (adoptedChild-2)*700000;
+                break;
+        }
+
 
         // 20세 미만 자녀 세액공제
         switch (child) {

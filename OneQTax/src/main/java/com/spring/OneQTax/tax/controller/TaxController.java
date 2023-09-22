@@ -255,44 +255,11 @@ public class TaxController {
         return "tax/taxCalculator";
     }
 
-//    @PostMapping(value = "/update", consumes = "application/json", produces = "application/json")
-//    public ResponseEntity<?> updateTotalInfo(@RequestBody Map<String, Object> requestData, HttpSession session) {
-//        MemberVO currentUser = getCurrentUser(session);
-//
-//        // 세션에서 사용자를 찾을 수 없으면 로그인 정보 없음을 JSON으로 반환
-//        if (currentUser == null) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "User not logged in."));
-//        }
-//
-//        try {
-//            // requestData에서 totalInfoVO를 추출하고 TotalInfoVO 객체로 변환
-//
-//            int memberId = currentUser.getMember_id();
-//            TotalInfoVO totalInfoVO = objectMapper.convertValue(requestData.get("totalInfoVO"), TotalInfoVO.class);
-//            TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
-//            double totalIncome = taxInfoVO.getTotal_income();
-//            // requestData에서 totalIncome을 추출하고 double로 변환
-//            totalIncome = Double.parseDouble(requestData.get("totalIncome").toString());
-//
-//            // taxInfoVO에서 calculation_id 가져와서 totalInfoVO에 설정
-//            totalInfoVO.setCalculation_id(taxInfoVO.getCalculation_id());
-//
-//            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
-//            // updateTotalInfo 메서드를 호출하여 정보를 업데이트
-//            TotalInfoVO updatedVo = totalTaxService.updateTotalInfo(totalInfoVO, totalIncome);
-//
-//            // 성공적인 응답과 함께 updatedVo 객체 반환
-//            return ResponseEntity.ok(Map.of("message", "Update Successful!", "updatedVo", updatedVo, "redirectURL", "/tax/taxRefund"));
-//
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", e.getMessage()));
-//        }
-//    }
+
 
     @PostMapping("/updateDetail")
     @ResponseBody
     public Map<String, Object> updateTotalInfo(@ModelAttribute TaxFormVO taxForm,
-                                               TotalTaxResultVO totalResult,
                                                TotalInfoVO totalInfo,
                                                TransactionVO transaction,
                                                CardTaxResultVO cardResult,
@@ -308,9 +275,16 @@ public class TaxController {
 
         int memberId = currentUser.getMember_id();
 
-        totalInfo = taxFormService.updateForm(taxForm, totalInfo, cardResult);
+        TotalTaxResultVO totalResult = taxFormService.getTotalResultByTotalMemberId(memberId);
+
         int totalInfoId = totalResult.getTotalInfo_id();
-        taxFormService.updateAndSaveForm(totalInfo);
+
+        System.out.println("아이디값 확인1: " + totalInfoId);
+        totalInfo.setTotalInfo_id(totalInfoId);
+        System.out.println("아이디값 확인2:" + totalInfo.getTotalInfo_id());
+        totalInfo = taxFormService.updateForm(taxForm, totalInfo, cardResult);
+        System.out.println(totalInfo);
+//        taxFormService.updateAndSaveForm(totalInfo);
 
         response.put("status", "success");
         return response;
@@ -328,11 +302,11 @@ public class TaxController {
         int memberId = currentUser.getMember_id();
 
         // 기존에 VO에 업데이트한 항목들을 DB에 업데이트
-        taxFormService.updateAndSaveForm(totalInfo);
+//        taxFormService.updateAndSaveForm(totalInfo);
         // 2차 계산
         TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(totalInfo, cardResult);
 
-        taxFormService.updateAndSaveForm(totalInfo);
+//        taxFormService.updateAndSaveForm(totalInfo);
 
         System.out.println(totalInfo.getHealth_insurance());
         System.out.println(totalInfo.getEmployment_insurance());
@@ -464,6 +438,7 @@ public class TaxController {
 
             // 결과를 세션 혹은 Model에 저장하여 view에 전달
             session.setAttribute("totalInfo", totalInfoFromSession); // 세션에 저장하는 경우
+            session.setAttribute("totalResult", totalResult);
             model.addAttribute("totalInfo", totalInfoFromSession);   // Model에 추가하는 경우 (JSP 등에서 사용)
             model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
             model.addAttribute("totalResult", totalResult);

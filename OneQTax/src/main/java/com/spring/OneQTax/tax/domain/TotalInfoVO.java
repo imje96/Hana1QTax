@@ -8,7 +8,7 @@ public class TotalInfoVO {
     /* 사용자가 설정한 총급여(계산완료) */
     private int totalInfo_id; // pk
     private int calculation_id; // fk
-    private int total_income2;
+    private int total_income2; // 새로 입력한 연봉정보
     private int income_deduction; // 근로소득공제
     private int income_final; // 근로소득금액 총급여-근로소득공제
 
