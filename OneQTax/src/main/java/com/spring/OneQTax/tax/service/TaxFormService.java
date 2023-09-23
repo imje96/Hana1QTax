@@ -4,10 +4,10 @@ import com.spring.oneqtax.tax.domain.*;
 
 
 public interface TaxFormService {
-    public TotalInfoVO calculateForm(TaxFormVO taxForm, CardTaxResultVO cardResult);
+    public TotalInfoVO calculateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult);
 
     void saveForm(TotalInfoVO totalInfo);
-    TotalInfoVO updateForm(TaxFormVO taxForm, TotalInfoVO totalInfo, CardTaxResultVO cardResult);
+    TotalInfoVO updateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult);
 
 //    void updateAndSaveForm(TotalInfoVO totalInfo);
 

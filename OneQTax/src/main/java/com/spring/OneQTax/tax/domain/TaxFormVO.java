@@ -9,7 +9,7 @@ public class TaxFormVO {
     private int totalIncome;
     // 추가한 코드
     private int calculation_id; // fk
-    private int total_income2;
+//    private int total_income2;
     private int income_deduction; // 근로소득공제
     private int income_final; // 근로소득금액 총급여-근로소득공제
 

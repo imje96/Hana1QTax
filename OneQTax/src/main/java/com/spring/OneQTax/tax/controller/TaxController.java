@@ -259,7 +259,7 @@ public class TaxController {
 
     @PostMapping("/updateDetail")
     @ResponseBody
-    public Map<String, Object> updateTotalInfo(@ModelAttribute TaxFormVO taxForm,
+    public Map<String, Object> updateTotalInfo(@RequestBody TaxFormVO taxForm,
                                                TotalInfoVO totalInfo,
                                                TransactionVO transaction,
                                                CardTaxResultVO cardResult,
@@ -282,7 +282,7 @@ public class TaxController {
         System.out.println("아이디값 확인1: " + totalInfoId);
         totalInfo.setTotalInfo_id(totalInfoId);
         System.out.println("아이디값 확인2:" + totalInfo.getTotalInfo_id());
-        totalInfo = taxFormService.updateForm(taxForm, totalInfo, cardResult);
+        totalInfo = taxFormService.updateForm(totalInfo, taxForm, cardResult);
         System.out.println(totalInfo);
 //        taxFormService.updateAndSaveForm(totalInfo);
 
@@ -361,7 +361,7 @@ public class TaxController {
 
 //        if (taxForm != null) { // taxForm 정보가 있다면
         // 서비스를 호출하여 계산 로직 처리
-        totalInfo = taxFormService.calculateForm(taxForm, cardResult);
+        totalInfo = taxFormService.calculateForm(totalInfo, taxForm, cardResult);
         // 계산정보 DB에 저장하기
         taxFormService.saveForm(totalInfo);
 //        } else { // taxForm 정보가 없다면

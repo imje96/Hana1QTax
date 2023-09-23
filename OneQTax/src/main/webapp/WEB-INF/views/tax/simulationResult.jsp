@@ -178,6 +178,29 @@
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.determined_tax}"
                                                                              groupingUsed="true"/>원
                                     </td>
+                                    <br/>
+                                    연봉 ${totalInfo.total_income2}<br/>
+                                    본인공제${totalInfo.taxpayer_deduction}<br/>
+                                    배우자공제${totalInfo.spouse_deduction}<br/>
+                                    20세이하자녀공제${totalInfo.children_deduction}<br/>
+                                    입양자녀${totalInfo.adopted_deduction}<br/>
+                                    직계존속${totalInfo.directAnc_deduction}<br/>
+                                    형제자매${totalInfo.siblings_deduction}<br/>
+                                    경로자${totalInfo.senior_deduction}<br/>
+                                    장애인${totalInfo.disability_deduction}<br/>
+                                    부녀자${totalInfo.woman_deduction}<br/>
+                                    한부모${totalInfo.singleParent_deduction}<br/>
+                                    <br/>
+                                    <br/>
+                                    근로소득세액${totalResult.earned_taxcredit}
+                                    자녀세액${totalResult.children_taxcredit}<br/>
+                                    연금세액${totalResult.irp_taxcredit}<br/>
+                                    보장보험세액${totalResult.guarantee_taxcredit}<br/>
+                                    의료비세액${totalResult.medical_taxcredit}<br/>
+                                    교육비${totalResult.education_taxcredit}<br/>
+                                    기부금${totalResult.donation_taxcredit}<br/>
+                                    월세${totalResult.rent_taxcredit}<br/>
+                                    통합${totalResult.total_taxcredit}<br/>
                                 </tr>
                                 </tbody>
                             </table>
@@ -462,6 +485,12 @@
             <hr>
             <div class="modal-amount-box">
                 <div class="modal-amount-text">
+                    <label for="totalIncome">총급여:</label>
+                    <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" data-hidden-id="totalIncome" value="<fmt:formatNumber value="${totalInfo.total_income2}" groupingUsed="true"/>">
+                    원
+                    <input type="hidden" id="totalIncome" name="totalIncome" value="${totalInfo.total_income2}"><br/>
+
+
                     <label>배우자 공제 유/무:</label>
                     <div class="choice-button">
                         <input type="radio" id="spouseDeduction_yes" name="spouseDeduction" value="yes">
@@ -904,56 +933,7 @@
     });
 
 </script>
-<%-- 컴마 자동으로 입력하고 데이터 보낼 땐 컴마 제외--%>
-<%--<script>--%>
-<%--    window.addEventListener('DOMContentLoaded', (event) => {--%>
-<%--        document.getElementById('pensionBtn').addEventListener('click', updateTotalPension);--%>
 
-<%--        updateTotalPension();--%>
-<%--    });--%>
-
-<%--    function updateTotalPension() {--%>
-<%--        const healthInsurance = parseInt(document.getElementById('healthInsurance').value.replace(/,/g, '').replace('원', ''));--%>
-<%--        const employmentInsurance = parseInt(document.getElementById('employmentInsurance').value.replace(/,/g, '').replace('원', ''));--%>
-<%--        const nationalPension = parseInt(document.getElementById('nationalPension').value.replace(/,/g, '').replace('원', ''));--%>
-
-
-<%--        const totalValue = healthInsurance + employmentInsurance + nationalPension;--%>
-<%--        const totalPensionSpan = document.getElementById('totalPension');--%>
-<%--        totalPensionSpan.textContent = new Intl.NumberFormat('ko-KR').format(totalValue) + '원';--%>
-
-<%--        const data = {--%>
-<%--            totalInfoVO: {--%>
-<%--                health_insurance: healthInsurance,--%>
-<%--                employment_insurance: employmentInsurance,--%>
-<%--                national_pension: nationalPension,--%>
-<%--               other_pension: otherPension--%>
-<%--            }--%>
-<%--        };--%>
-
-<%--        fetch("/update", {--%>
-<%--            method: "POST",--%>
-<%--            headers: {--%>
-<%--                "Content-Type": "application/json"--%>
-<%--            },--%>
-<%--            body: JSON.stringify(data)--%>
-<%--        })--%>
-<%--            .then(response => {--%>
-<%--                if (!response.ok) {--%>
-<%--                    throw new Error('Network response was not ok');--%>
-<%--                }--%>
-<%--                return response.json();--%>
-<%--            })--%>
-<%--            .then(data => {--%>
-<%--                document.getElementById('totalPension').textContent = new Intl.NumberFormat('ko-KR', {--%>
-<%--                    style: 'currency',--%>
-<%--                    currency: 'KRW'--%>
-<%--                }).format(data.health_insurance + data.employment_insurance + data.national_pension);--%>
-<%--            });--%>
-<%--    }--%>
-
-
-<%--</script>--%>
 
 <script>
     function addCommaToNumber(inputElem) {
@@ -1009,6 +989,7 @@
 
             let data = {
                 updateType: 'Part1',
+                totalIncome: document.getElementById('totalIncome').value,
                 spouseDeduction: spouseDeductionValue ? spouseDeductionValue.value : null,
                 child: document.getElementById('child').value,
                 adoptedChild: document.getElementById('adoptedChild').value,
@@ -1023,6 +1004,7 @@
             console.log("Data to be sent:", data);
 
             sendUpdateRequest(data);
+            console.log("데이터를 보냅니다:");
         }
 
         function updatePart2() {
@@ -1045,6 +1027,7 @@
 
         function sendUpdateRequest(data) {
             $.ajax({
+
                 url: '/updateDetail',
                 type: 'POST',
                 data: JSON.stringify(data),

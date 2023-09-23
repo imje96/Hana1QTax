@@ -18,12 +18,10 @@ public class TaxFormSerivceImpl implements TaxFormService {
 
 
     @Override
-    public TotalInfoVO calculateForm(TaxFormVO taxForm, CardTaxResultVO cardResult) {
-        TotalInfoVO totalInfo = new TotalInfoVO();
-
+    public TotalInfoVO calculateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult) {
         int totalIncome = taxForm.getTotalIncome();
-
-        totalInfo.setTotal_income2(totalIncome);
+        if (taxForm.getTotalIncome() != 0) {
+            totalInfo.setTotal_income2(totalIncome);}
         // 근로소득공제 계산해서 넣기
         totalInfo.setIncome_deduction(calculateIncomeDeduction(taxForm));
         // 근로소득금액
@@ -54,9 +52,9 @@ public class TaxFormSerivceImpl implements TaxFormService {
     }
     // 업데이트 하기
     @Override
-    public TotalInfoVO updateForm(TaxFormVO taxForm, TotalInfoVO totalInfo, CardTaxResultVO cardResult) {
+    public TotalInfoVO updateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult) {
         // 초기 계산 실행
-        TotalInfoVO test1 = calculateForm(taxForm, cardResult);
+        TotalInfoVO test1 = calculateForm(totalInfo, taxForm, cardResult);
         System.out.println("테스트1:" + test1);
         // detail 항목 계산 실행
         calculateDetailDeduction(taxForm, totalInfo);
@@ -64,6 +62,7 @@ public class TaxFormSerivceImpl implements TaxFormService {
         taxMapper.updateTotalInfo(totalInfo);
         return totalInfo;
     }
+
     // 두번째 계산 정보 저장(업데이트)
 //    @Override
 //    public void updateAndSaveForm(TotalInfoVO totalInfo) {
@@ -95,41 +94,57 @@ public class TaxFormSerivceImpl implements TaxFormService {
         totalDeduction += basic;
 
         int spouseDeduction = "yes".equalsIgnoreCase(taxForm.getSpouseDeduction()) ? 1500000 : 0;
-        totalInfo.setSpouse_deduction(spouseDeduction);
-        totalDeduction += spouseDeduction;
+        if (spouseDeduction != 0) {
+            totalInfo.setSpouse_deduction(spouseDeduction);
+            totalDeduction += spouseDeduction;
+        }
 
-        int childDeduction = taxForm.getChild() * 1500000;
-        totalInfo.setChildren_deduction(childDeduction);
-        totalDeduction += childDeduction;
+        if (taxForm.getChild() != 0) {
+            int childDeduction = taxForm.getChild() * 1500000;
+            totalInfo.setChildren_deduction(childDeduction);
+            totalDeduction += childDeduction;
+        }
 
-        int adoptedDeduction = taxForm.getAdoptedChild() * 1500000;
-        totalInfo.setAdopted_deduction(adoptedDeduction);
-        totalDeduction += adoptedDeduction;
+        if (taxForm.getAdoptedChild() != 0) {
+            int adoptedDeduction = taxForm.getAdoptedChild() * 1500000;
+            totalInfo.setAdopted_deduction(adoptedDeduction);
+            totalDeduction += adoptedDeduction;
+        }
 
-        int siblingsDeduction = taxForm.getSiblings() * 1500000;
-        totalInfo.setSiblings_deduction(siblingsDeduction);
-        totalDeduction += siblingsDeduction;
+        if (taxForm.getSiblings() != 0) {
+            int siblingsDeduction = taxForm.getSiblings() * 1500000;
+            totalInfo.setSiblings_deduction(siblingsDeduction);
+            totalDeduction += siblingsDeduction;
+        }
 
-        int directAncestorDeduction = taxForm.getDirectAncestor() * 1500000;
-        totalInfo.setDirectAnc_deduction(directAncestorDeduction);
-        totalDeduction += directAncestorDeduction;
+        if (taxForm.getDirectAncestor() != 0) {
+            int directAncestorDeduction = taxForm.getDirectAncestor() * 1500000;
+            totalInfo.setDirectAnc_deduction(directAncestorDeduction);
+            totalDeduction += directAncestorDeduction;
+        }
 
-        int seniorDeduction = taxForm.getSenior() * 1000000;
-        totalInfo.setSenior_deduction(seniorDeduction);
-        totalDeduction += seniorDeduction;
+        if (taxForm.getSenior() != 0) {
+            int seniorDeduction = taxForm.getSenior() * 1000000;
+            totalInfo.setSenior_deduction(seniorDeduction);
+            totalDeduction += seniorDeduction;
+        }
 
-        int disabilityDeduction = taxForm.getDisability() * 2000000;
-        totalInfo.setDisability_deduction(disabilityDeduction);
-        totalDeduction += disabilityDeduction;
+        if (taxForm.getSenior() != 0) {
+            int disabilityDeduction = taxForm.getDisability() * 2000000;
+            totalInfo.setDisability_deduction(disabilityDeduction);
+            totalDeduction += disabilityDeduction;
+        }
 
         int womanDeduction = "yes".equalsIgnoreCase(taxForm.getWomanDeduction()) ? 1000000 : 0;
-        totalInfo.setWoman_deduction(womanDeduction);
-        totalDeduction += womanDeduction;
-
+        if (womanDeduction != 0) {
+            totalInfo.setWoman_deduction(womanDeduction);
+            totalDeduction += womanDeduction;
+        }
         int singleParentDeduction = "yes".equalsIgnoreCase(taxForm.getSingleParent()) ? 1000000 : 0;
-        totalInfo.setSingleParent_deduction(singleParentDeduction);
-        totalDeduction += singleParentDeduction;
-
+        if (singleParentDeduction != 0) {
+            totalInfo.setSingleParent_deduction(singleParentDeduction);
+            totalDeduction += singleParentDeduction;
+        }
         return totalDeduction;
     }
 
@@ -138,43 +153,45 @@ public class TaxFormSerivceImpl implements TaxFormService {
         int childrenTaxCredit = 0;
         int child = taxForm.getChild()-taxForm.getAdoptedChild(); // form 객체에서 child 값을 가져옴
         int adoptedChild = taxForm.getAdoptedChild();
-        // 입양자녀 세액공제
-        switch(adoptedChild){
-            case 0:
-                childrenTaxCredit += 0;
-                break;
-            case 1:
-                childrenTaxCredit += 300000;
-                break;
-            case 2:
-                childrenTaxCredit += 500000;
-                break;
-            default:
-                childrenTaxCredit += 800000 + (adoptedChild-2)*700000;
-                break;
+        if (taxForm.getAdoptedChild() != 0) {
+            // 입양자녀 세액공제
+            switch (adoptedChild) {
+                case 0:
+                    childrenTaxCredit += 0;
+                    break;
+                case 1:
+                    childrenTaxCredit += 300000;
+                    break;
+                case 2:
+                    childrenTaxCredit += 500000;
+                    break;
+                default:
+                    childrenTaxCredit += 800000 + (adoptedChild - 2) * 700000;
+                    break;
+            }
         }
-
-
-        // 20세 미만 자녀 세액공제
-        switch (child) {
-            case 1:
-                childrenTaxCredit += 150000;
-                break;
-            case 2:
-                childrenTaxCredit += 300000;
-                break;
-            case 3:
-                childrenTaxCredit += 600000;
-                break;
-            case 4:
-                childrenTaxCredit += 900000;
-                break;
-            case 5:
-                childrenTaxCredit += 1200000;
-                break;
-            case 6:
-                childrenTaxCredit += 1500000;
-                break;
+        if (taxForm.getChild() != 0) {
+            // 20세 미만 자녀 세액공제
+            switch (child) {
+                case 1:
+                    childrenTaxCredit += 150000;
+                    break;
+                case 2:
+                    childrenTaxCredit += 300000;
+                    break;
+                case 3:
+                    childrenTaxCredit += 600000;
+                    break;
+                case 4:
+                    childrenTaxCredit += 900000;
+                    break;
+                case 5:
+                    childrenTaxCredit += 1200000;
+                    break;
+                case 6:
+                    childrenTaxCredit += 1500000;
+                    break;
+            }
         }
         // 입양자녀 + 20세미만 자녀
         return (int) Math.floor(childrenTaxCredit);
@@ -184,35 +201,41 @@ public class TaxFormSerivceImpl implements TaxFormService {
     private int calculateIncomeDeduction(TaxFormVO taxForm) {
         int income_deduction = 0;
         int totalIncome = taxForm.getTotalIncome();
-
-        if (totalIncome <= 5000000) {
-            income_deduction = (int) Math.floor(totalIncome * 0.7);
-        } else if (totalIncome <= 15000000) {
-            income_deduction = (int) Math.floor((totalIncome - 5000000) * 0.4 + 3500000);
-        } else if (totalIncome <= 45000000) {
-            income_deduction = (int) Math.floor((totalIncome - 15000000) * 0.15 + 7500000);
-        } else if (totalIncome <= 100000000) {
-            income_deduction = (int) Math.floor((totalIncome - 45000000) * 0.05 + 12000000);
-        } else {
-            income_deduction = (int) Math.floor((totalIncome - 100000000) * 0.02 + 14750000);
+        if (taxForm.getTotalIncome() != 0) {
+            if (totalIncome <= 5000000) {
+                income_deduction = (int) Math.floor(totalIncome * 0.7);
+            } else if (totalIncome <= 15000000) {
+                income_deduction = (int) Math.floor((totalIncome - 5000000) * 0.4 + 3500000);
+            } else if (totalIncome <= 45000000) {
+                income_deduction = (int) Math.floor((totalIncome - 15000000) * 0.15 + 7500000);
+            } else if (totalIncome <= 100000000) {
+                income_deduction = (int) Math.floor((totalIncome - 45000000) * 0.05 + 12000000);
+            } else {
+                income_deduction = (int) Math.floor((totalIncome - 100000000) * 0.02 + 14750000);
+            }
         }
-
         return income_deduction;
+
     }
 
     // 연금보험료 소득공제
     private int calculatePensionDeduction(TaxFormVO taxForm, TotalInfoVO totalInfo) {
         int totalIncome = taxForm.getTotalIncome();
-        int health_insurance = (int) Math.floor(totalIncome * 0.04);
-        totalInfo.setHealth_insurance(health_insurance);
-        int employment_insurance = (int) Math.floor(totalIncome * 0.009);
-        totalInfo.setEmployment_insurance(employment_insurance);
-        int national_pension = (int) Math.floor(totalIncome * 0.045);
-        totalInfo.setNational_pension(national_pension);
-        int other_pension = taxForm.getOther_pension();
-        totalInfo.setOther_pension(other_pension);
-
-        return health_insurance + employment_insurance + national_pension + other_pension;
+        int temp = 0;
+        if (taxForm.getTotalIncome() != 0) {
+            int health_insurance = (int) Math.floor(totalIncome * 0.04);
+            totalInfo.setHealth_insurance(health_insurance);
+            int employment_insurance = (int) Math.floor(totalIncome * 0.009);
+            totalInfo.setEmployment_insurance(employment_insurance);
+            int national_pension = (int) Math.floor(totalIncome * 0.045);
+            totalInfo.setNational_pension(national_pension);
+            int other_pension = taxForm.getOther_pension();
+            totalInfo.setOther_pension(other_pension);
+            temp = health_insurance + employment_insurance + national_pension + other_pension;
+            return temp;
+        } else {
+        return totalInfo.getPension_deduction();
+        }
     }
 
     // detail 옵션항목 추가(update용)
@@ -271,4 +294,3 @@ public class TaxFormSerivceImpl implements TaxFormService {
     }
 
 }
-
