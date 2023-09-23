@@ -291,7 +291,7 @@ public class TaxController {
     }
 
     @PostMapping("/saveDetail")
-    public String saveTotalInfo(TotalInfoVO totalInfo, CardTaxResultVO cardResult , Model model, HttpSession session){
+    public String saveTotalInfo(Model model, HttpSession session) {
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
 
@@ -301,25 +301,75 @@ public class TaxController {
         }
         int memberId = currentUser.getMember_id();
 
-        // 기존에 VO에 업데이트한 항목들을 DB에 업데이트
-//        taxFormService.updateAndSaveForm(totalInfo);
+        // 기존에 totalInfo를 조회하기
+        TotalInfoVO totalInfo = totalTaxService.getTotalInfoByMemberId(memberId);
+
+        CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
+        TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
+
+
         // 2차 계산
         TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(totalInfo, cardResult);
 
-//        taxFormService.updateAndSaveForm(totalInfo);
+        int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
+        int totalTransaction = (int) (transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total()
+                + transaction.getCulture_total() + transaction.getMarket_total() + transaction.getTransport_total());
+        int totalInfo_id = totalResult.getTotalInfo_id();
 
-        System.out.println(totalInfo.getHealth_insurance());
-        System.out.println(totalInfo.getEmployment_insurance());
-        System.out.println(totalInfo.getNational_pension());
+        totalResult.setTotalInfo_id(totalInfo_id);
+        // 계산결과 DB에 저장하기
+        totalTaxService.saveResult(totalResult);
 
-        // total_income 가져오기
-        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
-        int totalIncome = (int)taxInfoVO.getTotal_income();
-        int calculation_id = taxInfoVO.getCalculation_id();
-        model.addAttribute("totalIncome", totalIncome);
-        model.addAttribute("calculation_id", calculation_id);
+        // 결과를 세션 혹은 Model에 저장하여 view에 전달
+        session.setAttribute("totalResult", totalResult);
+        model.addAttribute("totalInfo", totalInfo);   // Model에 추가하는 경우 (JSP 등에서 사용)
+        model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
+        model.addAttribute("totalResult", totalResult);
+        model.addAttribute("totalBenefit", totalBenefit);
+        model.addAttribute("transaction", transaction);
+        model.addAttribute("totalTransaction", totalTransaction);
         return "tax/simulationResult";
     }
+//        임시 참고
+
+
+//        // 세션에서 totalInfo 객체를 가져옴
+//        TotalInfoVO totalInfoFromSession = (TotalInfoVO) session.getAttribute("totalInfo");
+//
+//        // totalInfoFromSession 객체를 사용할 수 있음
+//        if (totalInfoFromSession != null) {
+//            // 이제 totalInfoFromSession 객체를 사용할 수 있음
+//            int totalInfoId = totalInfoFromSession.getTotalInfo_id();
+//            CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
+//            TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
+//
+//            TotalTaxResultVO totalResult = totalTaxService.getTotalResultByTotalInfoId(totalInfoId);
+//
+//            int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
+//            int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
+//                    +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
+//            int totalInfo_id = totalResult.getTotalInfo_id();
+//
+//            totalResult.setTotalInfo_id(totalInfo_id);
+//            // 계산결과 DB에 저장하기
+//            totalTaxService.saveResult(totalResult);
+//
+//            // 결과를 세션 혹은 Model에 저장하여 view에 전달
+//            session.setAttribute("totalInfo", totalInfoFromSession); // 세션에 저장하는 경우
+//            session.setAttribute("totalResult", totalResult);
+//            model.addAttribute("totalInfo", totalInfoFromSession);   // Model에 추가하는 경우 (JSP 등에서 사용)
+//            model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
+//            model.addAttribute("totalResult", totalResult);
+//            model.addAttribute("totalBenefit", totalBenefit);
+//            model.addAttribute("transaction", transaction);
+//            model.addAttribute("totalTransaction", totalTransaction);
+//
+
+
+
+
+
+
 
     @GetMapping("/taxSimulation") // form step1~3 호출
     public String taxTest(HttpSession session, Model model){

@@ -18,4 +18,6 @@ public interface TotalTaxService {
     void saveResult(TotalTaxResultVO totalResult);
     // 계산결과 조회
     TotalTaxResultVO getTotalResultByTotalInfoId(int totalInfoId);
+    // 계산사전정보 조회
+    TotalInfoVO getTotalInfoByMemberId(int memberId);
 }

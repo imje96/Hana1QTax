@@ -4,7 +4,6 @@ import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.repository.TaxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Service
 public class TaxFormSerivceImpl implements TaxFormService {
@@ -50,7 +49,7 @@ public class TaxFormSerivceImpl implements TaxFormService {
     public void saveForm(TotalInfoVO totalInfo){
         taxMapper.insertTotalInfo(totalInfo);
     }
-    // 업데이트 하기
+    // 업데이트하고 db에 저장하기
     @Override
     public TotalInfoVO updateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult) {
         // 초기 계산 실행
@@ -221,18 +220,21 @@ public class TaxFormSerivceImpl implements TaxFormService {
     // 연금보험료 소득공제
     private int calculatePensionDeduction(TaxFormVO taxForm, TotalInfoVO totalInfo) {
         int totalIncome = taxForm.getTotalIncome();
-        int temp = 0;
+        final double HEALTH_INSURANCE_RATE = 0.04;
+        final double EMPLOYMENT_INSURANCE_RATE = 0.009;
+        final double NATIONAL_PENSION_RATE = 0.045;
+
         if (taxForm.getTotalIncome() != 0) {
-            int health_insurance = (int) Math.floor(totalIncome * 0.04);
+            int health_insurance = (int) Math.floor(totalIncome * HEALTH_INSURANCE_RATE);
             totalInfo.setHealth_insurance(health_insurance);
-            int employment_insurance = (int) Math.floor(totalIncome * 0.009);
+            totalInfo.setHealth_insurance(health_insurance);
+            int employment_insurance = (int) Math.floor(totalIncome * EMPLOYMENT_INSURANCE_RATE);
             totalInfo.setEmployment_insurance(employment_insurance);
-            int national_pension = (int) Math.floor(totalIncome * 0.045);
+            int national_pension = (int) Math.floor(totalIncome * NATIONAL_PENSION_RATE);
             totalInfo.setNational_pension(national_pension);
             int other_pension = taxForm.getOther_pension();
             totalInfo.setOther_pension(other_pension);
-            temp = health_insurance + employment_insurance + national_pension + other_pension;
-            return temp;
+            return health_insurance + employment_insurance + national_pension + other_pension;
         } else {
         return totalInfo.getPension_deduction();
         }
@@ -251,7 +253,7 @@ public class TaxFormSerivceImpl implements TaxFormService {
         /* 자녀 세액공제 */
         totalInfo.setChildren_amount(taxForm.getChildren_amount());
         /* 연금관련 총납입액 */
-        totalInfo.setPension_deduction(taxForm.getPension_deduction());
+        totalInfo.setPension_amount(taxForm.getPension_amount());
         totalInfo.setIrp_amount(taxForm.getIrp_amount());
         int calcIrpPension = taxForm.getPension_deduction() + taxForm.getIrp_amount();
         totalInfo.setIrpPension_total(calcIrpPension);

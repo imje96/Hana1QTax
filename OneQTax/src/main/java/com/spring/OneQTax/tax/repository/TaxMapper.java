@@ -23,6 +23,7 @@ public interface TaxMapper {
     //  연말정산 계산 전 항목 조회
     TotalInfoVO getTotalInfoByCalcId(int calculationId);
 
+    TotalInfoVO getTotalInfoByMemberId(int memberId);
     // 연말정산 계산 전 항목 저장
     void insertTotalInfo(TotalInfoVO totalInfoVO);
     // 연말정산 계산 전 항목 업데이트

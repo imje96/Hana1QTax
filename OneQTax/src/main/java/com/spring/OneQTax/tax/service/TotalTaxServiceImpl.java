@@ -16,12 +16,6 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         this.taxMapper = taxMapper;
     }
 
-//    @Override
-//    public TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult){
-//        int income_final = totalResult.getIncome_final();
-//        return totalResult;
-//    }
-
     @Override
     public void saveResult(TotalTaxResultVO totalResult) {
         taxMapper.insertTaxResult(totalResult);
@@ -34,6 +28,14 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         totalResult = taxMapper.getTotalResultByTotalInfoId(totalInfoId);
         return totalResult;
     }
+
+    @Override
+    public TotalInfoVO getTotalInfoByMemberId(int memberId){
+        TotalInfoVO totalInfo = new TotalInfoVO();
+        totalInfo = taxMapper.getTotalInfoByMemberId(memberId);
+        return totalInfo;
+    }
+
 
 
     @Override

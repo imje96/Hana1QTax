@@ -102,7 +102,7 @@
                     <div id="line-progress"></div>
                 </div>
 
-                <form id="multiStepForm" method="post" action="your_server_endpoint_here">
+                <form id="multiStepForm" method="post" action="/saveDetail">
                     <div id="progress-content-section">
                         <!-- Step 1 Content -->
                         <fieldset class="section-content step1 active" data-step="1">

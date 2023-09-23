@@ -43,12 +43,7 @@
     </select>
 
 
-    <!--  연금공제부분 수정할 값 추가-->
-    <!--    <insert id="insertInsuranceData" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO">-->
-    <!--        INSERT INTO pension_insurance (health_insurance, employment_insurance, national_pension, private_pension, other_pension)-->
-    <!--        VALUES (#{healthInsurance}, #{employmentInsurance}, #{national_pension}, #{private_pension}, #{other_pension})-->
-    <!--    </insert>-->
-    <!--  가져오기 -->
+    <!--  연말정산 계산정보 가져오기 -->
     <select id="getTotalInfoByCalcId" resultType="com.spring.oneqtax.tax.domain.TotalInfoVO">
         SELECT *
         FROM total_info
@@ -56,6 +51,20 @@
         ORDER BY totalInfo_id DESC
             FETCH FIRST 1 ROWS ONLY
     </select>
+
+    <select id="getTotalInfoByMemberId" resultType="com.spring.oneqtax.tax.domain.TotalInfoVO">
+        SELECT * FROM (
+                          SELECT t                                                                                                                                          .*
+                          FROM TAX_INFO d
+                                   JOIN TOTAL_INFO t ON d.calculation_id = t.calculation_id
+                                   JOIN totaltax_result r ON t.totalInfo_id = r.totalInfo_id
+                          WHERE d.member_id = #{memberId}
+                          ORDER BY r.result_time DESC
+                      )
+        WHERE ROWNUM = 1
+    </select>
+
+
 
     <!--  연말정산 계산정보 저장  -->
     <insert id="insertTotalInfo" parameterType="com.spring.oneqtax.tax.domain.TotalInfoVO">
