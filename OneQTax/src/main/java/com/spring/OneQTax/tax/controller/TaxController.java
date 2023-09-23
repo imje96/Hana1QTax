@@ -259,8 +259,7 @@ public class TaxController {
 
     @PostMapping("/updateDetail")
     @ResponseBody
-    public Map<String, Object> updateTotalInfo(@RequestBody TaxFormVO taxForm,
-                                               TotalInfoVO totalInfo,
+    public Map<String, Object> updateTotalInfo(@RequestBody BigDTO bigDTO,
                                                TransactionVO transaction,
                                                CardTaxResultVO cardResult,
                                                Model model, HttpSession session) {
@@ -279,10 +278,12 @@ public class TaxController {
 
         int totalInfoId = totalResult.getTotalInfo_id();
 
+        TotalInfoVO totalInfo = totalTaxService.getTotalInfoByMemberId(memberId);
+
         System.out.println("아이디값 확인1: " + totalInfoId);
         totalInfo.setTotalInfo_id(totalInfoId);
         System.out.println("아이디값 확인2:" + totalInfo.getTotalInfo_id());
-        totalInfo = taxFormService.updateForm(totalInfo, taxForm, cardResult);
+        totalInfo = taxFormService.updateForm(totalInfo, bigDTO, cardResult);
         System.out.println(totalInfo);
 //        taxFormService.updateAndSaveForm(totalInfo);
 
@@ -391,7 +392,7 @@ public class TaxController {
     }
 
     @PostMapping("/taxSimulation") // form 제출 시 결과 처리
-    public String testResult(@ModelAttribute TaxFormVO taxForm, TotalInfoVO totalInfo, CardTaxResultVO cardResult, TransactionVO transaction, HttpSession session, Model model) {
+    public String testResult(@ModelAttribute BigDTO bigDTO, TotalInfoVO totalInfo, CardTaxResultVO cardResult, TransactionVO transaction, HttpSession session, Model model) {
 
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
@@ -401,6 +402,11 @@ public class TaxController {
             return "redirect:/login";
         }
         int memberId = currentUser.getMember_id();
+
+        TaxFormVO taxForm = bigDTO.getTaxFormVO();
+        FPensionVO pensionVO = bigDTO.getPensionVO();
+        FGuaranteeVO guaranteeVO = bigDTO.getGuaranteeVO();
+        FMedicalVO medicalVO = bigDTO.getMedicalVO();
 
         // total_income 가져오기
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
@@ -466,16 +472,19 @@ public class TaxController {
         int memberId = currentUser.getMember_id();
 
         // 세션에서 totalInfo 객체를 가져옴
-        TotalInfoVO totalInfoFromSession = (TotalInfoVO) session.getAttribute("totalInfo");
+//        TotalInfoVO totalInfoFromSession = (TotalInfoVO) session.getAttribute("totalInfo");
 
         // totalInfoFromSession 객체를 사용할 수 있음
-        if (totalInfoFromSession != null) {
-            // 이제 totalInfoFromSession 객체를 사용할 수 있음
-            int totalInfoId = totalInfoFromSession.getTotalInfo_id();
+//        if (totalInfoFromSession != null) {
+//            // 이제 totalInfoFromSession 객체를 사용할 수 있음
+//            int totalInfoId = totalInfoFromSession.getTotalInfo_id();
             CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
             TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
 
-            TotalTaxResultVO totalResult = totalTaxService.getTotalResultByTotalInfoId(totalInfoId);
+//            TotalTaxResultVO totalResult = totalTaxService.getTotalResultByTotalInfoId(totalInfoId);
+            TotalTaxResultVO totalResult = taxFormService.getTotalResultByTotalMemberId(memberId);
+            TotalInfoVO totalInfo = totalTaxService.getTotalInfoByMemberId(memberId);
+
 
             int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
             int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
@@ -487,41 +496,15 @@ public class TaxController {
             totalTaxService.saveResult(totalResult);
 
             // 결과를 세션 혹은 Model에 저장하여 view에 전달
-            session.setAttribute("totalInfo", totalInfoFromSession); // 세션에 저장하는 경우
+//            session.setAttribute("totalInfo", totalInfo); // 세션에 저장하는 경우
             session.setAttribute("totalResult", totalResult);
-            model.addAttribute("totalInfo", totalInfoFromSession);   // Model에 추가하는 경우 (JSP 등에서 사용)
+            model.addAttribute("totalInfo", totalInfo);   // Model에 추가하는 경우 (JSP 등에서 사용)
             model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
             model.addAttribute("totalResult", totalResult);
             model.addAttribute("totalBenefit", totalBenefit);
             model.addAttribute("transaction", transaction);
             model.addAttribute("totalTransaction", totalTransaction);
 
-        }
-
-
-//        // DB에서 사용자의 계산 결과를 가져옴
-//        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
-//        int calculationId = taxInfoVO.getCalculation_id();
-//
-//        TotalInfoVO  totalInfo = taxFormService.getTotalInfoByCalcId(calculationId);
-//        int totalInfoId = totalInfo.getTotalInfo_id();
-//        CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
-//        TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
-//        TotalTaxResultVO totalResult = totalTaxService.getTotalResultByTotalInfoId(totalInfoId);
-//
-//        int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
-//        int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
-//                +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
-//
-//        // 결과를 Model에 저장하여 view에 전달
-//        model.addAttribute("totalInfo", totalInfo);
-//        model.addAttribute("cardResult", cardResult);
-//        model.addAttribute("totalResult", totalResult);
-//        model.addAttribute("totalBenefit", totalBenefit);
-//        model.addAttribute("transaction", transaction);
-//        model.addAttribute("totalTransaction", totalTransaction);
-//
-//        return "tax/simulationResult";
         return "tax/simulationResult";
     }
 

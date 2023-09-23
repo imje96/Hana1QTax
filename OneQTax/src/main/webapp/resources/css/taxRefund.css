@@ -390,11 +390,12 @@ p {
 .total-amount-box {
     padding: 15px 25px;
     border: 1px solid #ebf1f1;
+    margin: 0 15px 7px 15px;
     /*display: flex;*/
     /*justify-content: space-between;*/
     font-size: 18px;
     border-radius: 15px;
-    width: 400px;
+    width: 300px;
     background: #e6ecea;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

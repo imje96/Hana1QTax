@@ -179,28 +179,7 @@
                                                                              groupingUsed="true"/>원
                                     </td>
                                     <br/>
-                                    연봉 ${totalInfo.total_income2}<br/>
-                                    본인공제${totalInfo.taxpayer_deduction}<br/>
-                                    배우자공제${totalInfo.spouse_deduction}<br/>
-                                    20세이하자녀공제${totalInfo.children_deduction}<br/>
-                                    입양자녀${totalInfo.adopted_deduction}<br/>
-                                    직계존속${totalInfo.directAnc_deduction}<br/>
-                                    형제자매${totalInfo.siblings_deduction}<br/>
-                                    경로자${totalInfo.senior_deduction}<br/>
-                                    장애인${totalInfo.disability_deduction}<br/>
-                                    부녀자${totalInfo.woman_deduction}<br/>
-                                    한부모${totalInfo.singleParent_deduction}<br/>
-                                    <br/>
-                                    <br/>
-                                    근로소득세액${totalResult.earned_taxcredit}
-                                    자녀세액${totalResult.children_taxcredit}<br/>
-                                    연금세액${totalResult.irp_taxcredit}<br/>
-                                    보장보험세액${totalResult.guarantee_taxcredit}<br/>
-                                    의료비세액${totalResult.medical_taxcredit}<br/>
-                                    교육비${totalResult.education_taxcredit}<br/>
-                                    기부금${totalResult.donation_taxcredit}<br/>
-                                    월세${totalResult.rent_taxcredit}<br/>
-                                    통합${totalResult.total_taxcredit}<br/>
+
                                 </tr>
                                 </tbody>
                             </table>
@@ -216,7 +195,8 @@
                             <h3>상세보기</h3>
 
                             <br/>
-
+                            <div class="flex-container">
+                            <div class="flex-column">
                             <div class="total-amount-box modal-trigger" data-target="detailsModal1">
                                 <!-- id="showModal" 추가 -->
                                 <%--                                <div class="percent">90%달성</div>--%>
@@ -335,6 +315,8 @@
                                 </div>
                             </div>
                             <br/>
+                            </div>
+                            <div class="flex-column">
                             <div class="total-amount-box modal-trigger" data-target="detailsModal7">
                                 <!-- id="showModal" 추가 -->
                                 <%--                                <div class="percent">90%달성</div>--%>
@@ -352,6 +334,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <br/>
                             <div class="total-amount-box modal-trigger" data-target="detailsModal8">
                                 <!-- id="showModal" 추가 -->
@@ -452,9 +435,13 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
+                            </div>
                             <br/>
+                                <div class="flex-container">
                             <button type="button" class="prev-button" data-step="3">이전</button>
                             <button type="submit" class="submit-button">제출하기</button>
+                                </div>
                         </fieldset>
                     </div>
                 </form>
@@ -684,6 +671,7 @@
                     <p2>고용보험료 납입공제 :</p2>
                     <br/>
                     <p2>국민연금 납입공제 :</p2>
+                    <br/>
 <%--                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>--%>
 <%--                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>--%>
 <%--                    <label for="nationalPension">국민연금 납입공제 :</label><br/>--%>
@@ -693,17 +681,17 @@
                 </div>
                 <div class="modal-amount-money-variable">
                 <div class="modal-amount-money-variable">
-                    <fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>원<br/>
+                    <p2> <fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>원</p2><br/>
 <%--                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"--%>
 <%--                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>--%>
 <%--                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">--%>
-                    <fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>원<br/>
+                    <p2><fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>원</p2><br/>
 
 <%--                    <input type="text" name="employmentInsurance_view" id="employmentInsurance_view" oninput="addCommaToNumber(this)"--%>
 <%--                           data-hidden-id="employmentInsurance" value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>--%>
 <%--                    <input type="hidden" id="employmentInsurance" name="employmentInsurance" value="${totalInfo.employment_insurance}">--%>
 <%--                    --%>
-                    <fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>원<br/>
+                    <p2><fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>원</p2><br/>
 
 <%--                    <input type="text" name="nationalPension_view" id="nationalPension_view" oninput="addCommaToNumber(this)"--%>
 <%--                           data-hidden-id="nationalPension" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>--%>
@@ -763,20 +751,20 @@
                 </div>
                 <div class="modal-amount-money-variable">
 
-                    <input type="text" name="housing_loan_view" id="housing_loan_view" oninput="addCommaToNumber(this)"
+                    <input type="text" name="housingVO.housing_loan_view" id="housing_loan_view" oninput="addCommaToNumber(this)"
                            data-hidden-id="housing_loan" value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="housing_loan" name="housing_loan" value="${totalInfo.housing_loan}"><br/>
+                    <input type="hidden" id="housing_loan" name="housingVO.housing_loan" value="${totalInfo.housing_loan}"><br/>
 
 <%--                    <input type="text" id="housing_loan" name="health_insurance" oninput="addCommaToNumber(this)"--%>
 <%--                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>--%>
-                    <input type="text" name="housing_account1_view" id="housing_account1_view" oninput="addCommaToNumber(this)"
+                    <input type="text" name="housingVO.housing_account1_view" id="housing_account1_view" oninput="addCommaToNumber(this)"
                            data-hidden-id="housing_account1" value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="housing_account1" name="housing_account1" value="${totalInfo.housing_account1}">
+                    <input type="hidden" id="housing_account1" name="housingVO.housing_account1" value="${totalInfo.housing_account1}">
 <%--                    <input type="text" id="housing_account1" name="employment_insurance" oninput="addCommaToNumber(this)"--%>
 <%--                           value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>--%>
-                    <input type="text" name="housing_account2_view" id="housing_account2_view" oninput="addCommaToNumber(this)"
+                    <input type="text" name="housingVO.housing_account2_view" id="housing_account2_view" oninput="addCommaToNumber(this)"
                            data-hidden-id="housing_account2" value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="housing_account2" name="housing_account2" value="${totalInfo.housing_account2}">
+                    <input type="hidden" id="housing_account2" name="housingVO.housing_account2" value="${totalInfo.housing_account2}">
 <%--                    <input type="text" id="housing_account2" name="national_pension" oninput="addCommaToNumber(this)"--%>
 <%--                           value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>--%>
                 </div>
@@ -988,17 +976,18 @@
 
 
             let data = {
-                updateType: 'Part1',
-                totalIncome: document.getElementById('totalIncome').value,
-                spouseDeduction: spouseDeductionValue ? spouseDeductionValue.value : null,
-                child: document.getElementById('child').value,
-                adoptedChild: document.getElementById('adoptedChild').value,
-                directAncestor: document.getElementById('directAncestor').value,
-                siblings: document.getElementById('siblings').value,
-                senior: document.getElementById('senior').value,
-                disability: document.getElementById('disability').value,
-                womanDeduction: womanDeductionValue ? womanDeductionValue.value : null,
-                singleParent: singleParentValue ? singleParentValue.value : null
+                taxFormVO: {
+                    totalIncome: document.getElementById('totalIncome').value,
+                    spouseDeduction: spouseDeductionValue ? spouseDeductionValue.value : null,
+                    child: document.getElementById('child').value,
+                    adoptedChild: document.getElementById('adoptedChild').value,
+                    directAncestor: document.getElementById('directAncestor').value,
+                    siblings: document.getElementById('siblings').value,
+                    senior: document.getElementById('senior').value,
+                    disability: document.getElementById('disability').value,
+                    womanDeduction: womanDeductionValue ? womanDeductionValue.value : null,
+                    singleParent: singleParentValue ? singleParentValue.value : null
+                }
             };
             // 데이터 출력
             console.log("Data to be sent:", data);
@@ -1009,19 +998,23 @@
 
         function updatePart2() {
             let data = {
-                updateType: 'Part2',
-                other_pension: document.getElementById('otherPension').value
-            };
+                // updateType: 'Part2',
+                pensionVO: {
+                    other_pension: document.getElementById('other_pension').value
+                }
+                };
             sendUpdateRequest(data);
         }
 
         function updatePart3() {
             let data = {
-                updateType: 'Part3',
-                housing_loan: document.getElementById('housing_loan').value,
-                housing_account1: document.getElementById('housing_account1').value,
-                housing_account2: document.getElementById('housing_account2').value
-            };
+                // updateType: 'Part3',
+                housingVO: {
+                    housing_loan: document.getElementById('housing_loan').value,
+                    housing_account1: document.getElementById('housing_account1').value,
+                    housing_account2: document.getElementById('housing_account2').value
+                }
+                };
             sendUpdateRequest(data);
         }
 
@@ -1044,68 +1037,7 @@
         }
     });
 
-    // document.addEventListener('DOMContentLoaded', (event) => {
-    //     document.getElementById('saveButton1').addEventListener('click', updatePart1);
-    //     document.getElementById('saveButton2').addEventListener('click', updatePart2);
-    //     document.getElementById('saveButton3').addEventListener('click', updatePart3);
-    //     // document.getElementById('saveButton4').addEventListener('click', updatePart4);
-    //
-    //     // 1번 ajax
-    //     function updatePart1() {
-    //         let data = {
-    //             updateType: 'Part1',
-    //             totalIncome: document.getElementById('totalIncome').value,
-    //             spouseDeduction: document.querySelector('input[name="spouseDeduction"]:checked').value,
-    //             child: document.getElementById('child').value,
-    //             adoptedChild: document.getElementById('adoptedChild').value,
-    //             directAncestor: document.getElementById('directAncestor').value,
-    //             siblings: document.getElementById('siblings').value,
-    //             senior: document.getElementById('senior').value,
-    //             disability: document.getElementById('disability').value,
-    //             womanDeduction: document.querySelector('input[name="womanDeduction"]:checked').value,
-    //             singleParent: document.querySelector('input[name="singleParent"]:checked').value
-    //         };
-    //         sendUpdateRequest(data);
-    //     }
-    //
-    //     // 2번 ajax
-    //     function updatePart2() {
-    //         let data = {
-    //             updateType: 'Part2',
-    //             other_pension: document.getElementById('otherPension').value
-    //         };
-    //         sendUpdateRequest(data);
-    //     }
-    //
-    //     // 3번 ajax
-    //     function updatePart3() {
-    //         let data = {
-    //             updateType: 'Part3',
-    //             housing_loan: document.getElementById('housing_loan').value,
-    //             housing_account1: document.getElementById('housing_account1').value,
-    //             housing_account2: document.getElementById('housing_account2').value
-    //         };
-    //         sendUpdateRequest(data);
-    //     }
-    //
-    //     // 공통 ajax 요청 함수
-    //     function sendUpdateRequest(data) {
-    //         $.ajax({
-    //             url: '/detailUpdate',
-    //             type: 'POST',
-    //             data: JSON.stringify(data),
-    //             contentType: 'application/json; charset=utf-8',
-    //             dataType: 'json',
-    //             success: function (response) {
-    //                 // 성공 처리
-    //                 alert('Data has been updated successfully!');
-    //             },
-    //             error: function (error) {
-    //                 // 에러 처리
-    //                 alert('An error occurred: ' + error.responseText);
-    //             }
-    //         });
-    //     }
+
     // });
 </script>
 

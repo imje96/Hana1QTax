@@ -7,7 +7,7 @@ public interface TaxFormService {
     public TotalInfoVO calculateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult);
 
     void saveForm(TotalInfoVO totalInfo);
-    TotalInfoVO updateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult);
+    TotalInfoVO updateForm(TotalInfoVO totalInfo, BigDTO bigDTO, CardTaxResultVO cardResult);
 
 //    void updateAndSaveForm(TotalInfoVO totalInfo);
 

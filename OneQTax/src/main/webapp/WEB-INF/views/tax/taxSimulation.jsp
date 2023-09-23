@@ -113,7 +113,7 @@
 <%--                                    <input type="hidden" id="totalIncome" name="totalIncome">--%>
                                     <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" data-hidden-id="totalIncome" value="<fmt:formatNumber value="${totalIncome}" groupingUsed="true"/>">
                                     원
-                                    <input type="hidden" id="totalIncome" name="totalIncome" value="${totalIncome}">
+                                    <input type="hidden" id="totalIncome" name="taxFormVO.totalIncome" value="${totalIncome}">
 
                                 </div>
                             <br/>
@@ -132,7 +132,7 @@
                             <div class="choice-button">
                                 <input type="radio" id="spouseDeduction_yes" name="spouseDeduction" value="yes">
                                 <label for="spouseDeduction_yes">O</label>
-                                <input type="radio" id="spouseDeduction_no" name="spouseDeduction" value="no">
+                                <input type="radio" id="spouseDeduction_no" name="taxFormVO.spouseDeduction" value="no">
                                 <label for="spouseDeduction_no">X</label>
                             </div>
                             <br/>
@@ -149,7 +149,7 @@
                             <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
                             <br/>
                             <label for="adoptedChild">출산/입양 자녀 수(세액공제):</label><br/>
-                            <select name="adoptedChild" id="adoptedChild"
+                            <select name="taxFormVO.adoptedChild" id="adoptedChild"
                                     class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
@@ -174,7 +174,7 @@
                             <h2>Q3. 손님의 부양가족 정보를 알려주세요</h2>
 
                             <label for="directAncestor">직계존속 수:</label><br/>
-                            <select name="directAncestor" id="directAncestor"
+                            <select name="taxFormVO.directAncestor" id="directAncestor"
                                     class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
@@ -187,7 +187,7 @@
                             <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
                             <br/>
                             <label for="siblings">형제/자매 수:</label><br/>
-                            <select name="siblings" id="siblings" class="content-dropdown">
+                            <select name="taxFormVO.siblings" id="siblings" class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
                                 <option value="2">2명</option>
@@ -199,7 +199,7 @@
                             <p>연말정산 적용기간에 출산하거나 입양신고 자녀</p>
                             <br/>
                             <label for="senior">경로자 수:</label><br/>
-                            <select name="senior" id="senior" class="content-dropdown">
+                            <select name="taxFormVO.senior" id="senior" class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
                                 <option value="2">2명</option>
@@ -210,7 +210,7 @@
                             </select>
                             <br/><br/>
                             <label for="disability">장애인 수:</label><br/>
-                            <select name="disability" id="disability" class="content-dropdown">
+                            <select name="taxFormVO.disability" id="disability" class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
                                 <option value="2">2명</option>
@@ -222,17 +222,17 @@
                             <br/><br/>
                             <label>부녀자 여부:</label>
                             <div class="choice-button">
-                                <input type="radio" id="woman_yes" name="womanDeduction" value="yes">
+                                <input type="radio" id="woman_yes" name="taxFormVO.womanDeduction" value="yes">
                                 <label for="woman_yes">O</label>
-                                <input type="radio" id="woman_no" name="womanDeduction" value="no">
+                                <input type="radio" id="woman_no" name="taxFormVO.womanDeduction" value="no">
                                 <label for="woman_no">X</label>
                             </div>
                             <br/>
                             <label>한부모 여부:</label>
                             <div class="choice-button">
-                                <input type="radio" id="singleParent_yes" name="singleParent" value="yes">
+                                <input type="radio" id="singleParent_yes" name="taxFormVO.singleParent" value="yes">
                                 <label for="singleParent_yes">O</label>
-                                <input type="radio" id="singleParent_no" name="singleParent" value="no">
+                                <input type="radio" id="singleParent_no" name="taxFormVO.singleParent" value="no">
                                 <label for="singleParent_no">X</label>
                             </div>
                             <br/>
@@ -309,7 +309,47 @@
         $("#line-progress").css("width", progressPercentages[currentStep] + "%");
     }
 </script>
+<%-- form 대신 jason 형태로 보내기--%>
+<script>
+    // $(document).ready(function() {
+    //     $(".submit-button").on("click", function(event) {
+    //         event.preventDefault();
+    //
+    //         const spouseDeductionValue = document.querySelector('input[name="spouseDeduction"]:checked');
+    //         const womanDeductionValue = document.querySelector('input[name="womanDeduction"]:checked');
+    //         const singleParentValue = document.querySelector('input[name="singleParent"]:checked');
+    //
+    //         const data = {
+    //             totalIncome: document.getElementById('totalIncome').value,
+    //             spouseDeduction: spouseDeductionValue ? spouseDeductionValue.value : null,
+    //             child: document.getElementById('child').value,
+    //             adoptedChild: document.getElementById('adoptedChild').value,
+    //             directAncestor: document.getElementById('directAncestor').value,
+    //             siblings: document.getElementById('siblings').value,
+    //             senior: document.getElementById('senior').value,
+    //             disability: document.getElementById('disability').value,
+    //             womanDeduction: womanDeductionValue ? womanDeductionValue.value : null,
+    //             singleParent: singleParentValue ? singleParentValue.value : null
+    //         };
+    //
+    //         $.ajax({
+    //             url: "/taxSimulation",
+    //             type: "POST",
+    //             contentType: "application/json",
+    //             data: JSON.stringify(data),
+    //             success: function(response) {
+    //                 // 성공 시 처리
+    //             },
+    //             error: function(error) {
+    //                 // 실패 시 처리
+    //             }
+    //         });
+    //     });
+    // });
 
+
+
+</script>
 
 </body>
 
