@@ -18,19 +18,21 @@ public class TaxFormSerivceImpl implements TaxFormService {
 
     @Override
     public TotalInfoVO calculateForm(TotalInfoVO totalInfo, TaxFormVO taxForm, CardTaxResultVO cardResult) {
+
         int totalIncome = totalInfo.getTotal_income2();
 
         if (taxForm != null) {
             if (taxForm.getTotalIncome() != 0) {
                 totalIncome = taxForm.getTotalIncome();
             }
+
             totalInfo.setTotal_income2(totalIncome);
 
             // 근로소득공제 계산해서 넣기
-            totalInfo.setIncome_deduction(calculateIncomeDeduction(taxForm));
+            totalInfo.setIncome_deduction(calculateIncomeDeduction(taxForm, totalInfo));
 
             // 근로소득금액
-            totalInfo.setIncome_final(totalIncome - calculateIncomeDeduction(taxForm));
+            totalInfo.setIncome_final(totalIncome - calculateIncomeDeduction(taxForm, totalInfo));
 
             // 인적공제 계산하기
             int personalDeduction = calculatePersonalDeduction(taxForm, totalInfo);
@@ -39,18 +41,22 @@ public class TaxFormSerivceImpl implements TaxFormService {
             totalInfo.setPersonal_deduction(personalDeduction);
             totalInfo.setChildren_amount(calculateChildTaxCredit(taxForm));
             totalInfo.setPension_deduction(calculatePensionDeduction(taxForm, totalInfo));
+        } else {
+            totalInfo.setTotal_income2(totalIncome);
         }
-        // 카드 금액
-        totalInfo.setCard_deduction((int) cardResult.getTotal_deduction());
-        totalInfo.setCredit_deduction((int) cardResult.getCredit_deduction());
-        totalInfo.setDebit_deduction((int) cardResult.getDebit_deduction());
-        totalInfo.setCash_deduction((int) cardResult.getCash_deduction());
-        totalInfo.setBasic_deduction((int) cardResult.getBasic_deduction());
-        totalInfo.setAdditional_deduction((int) cardResult.getAdditional_deduction());
 
-        // calculationId 저장
-        totalInfo.setCalculation_id(cardResult.getCalculation_id());
-        return totalInfo;
+
+            // 카드 금액
+            totalInfo.setCard_deduction((int) cardResult.getTotal_deduction());
+            totalInfo.setCredit_deduction((int) cardResult.getCredit_deduction());
+            totalInfo.setDebit_deduction((int) cardResult.getDebit_deduction());
+            totalInfo.setCash_deduction((int) cardResult.getCash_deduction());
+            totalInfo.setBasic_deduction((int) cardResult.getBasic_deduction());
+            totalInfo.setAdditional_deduction((int) cardResult.getAdditional_deduction());
+
+            // calculationId 저장
+            totalInfo.setCalculation_id(cardResult.getCalculation_id());
+            return totalInfo;
     }
     // 첫번째 계산 정보 저장
     @Override
@@ -69,21 +75,18 @@ public class TaxFormSerivceImpl implements TaxFormService {
         FEduVO eduVO = bigDTO.getEduVO();
         FDonationVO donationVO = bigDTO.getDonationVO();
         FRentVO rentVO = bigDTO.getRentVO();
+        PreTaxVO preTaxVO = bigDTO.getPreTaxVO();
 
         totalInfo = calculateForm(totalInfo, taxForm, cardResult);
-        System.out.println("테스트1:" + totalInfo);
+        System.out.println("calculateForm 실행:" + totalInfo);
+
         // detail 항목 계산 실행
-        totalInfo = calculateDetailDeduction(taxForm,pensionVO, housingVO, guaranteeVO,medicalVO, eduVO, donationVO, rentVO, totalInfo);
-        System.out.println("아이디값 확인3: " + totalInfo.getTotalInfo_id());
+        totalInfo = calculateDetailDeduction(taxForm,pensionVO, housingVO, guaranteeVO,medicalVO, eduVO, donationVO, rentVO, preTaxVO, totalInfo);
+        System.out.println("calculateDetailDeduction 실행: " + totalInfo);
         taxMapper.updateTotalInfo(totalInfo);
         return totalInfo;
     }
 
-    // 두번째 계산 정보 저장(업데이트)
-//    @Override
-//    public void updateAndSaveForm(TotalInfoVO totalInfo) {
-//        taxMapper.updateTotalInfo(totalInfo);
-//    }
 
     // 계산정보 조회하기
     @Override
@@ -93,12 +96,14 @@ public class TaxFormSerivceImpl implements TaxFormService {
         return totalInfo;
     }
 
+    // 전체 결과 memberId로 조회
     @Override
     public TotalTaxResultVO getTotalResultByTotalMemberId(int memberId){
         TotalTaxResultVO totalResult = new TotalTaxResultVO();
         totalResult = taxMapper.getTotalResultByTotalMemberId(memberId);
         return totalResult;
     }
+
 
 
     // 인적소득공제 계산하기
@@ -214,10 +219,17 @@ public class TaxFormSerivceImpl implements TaxFormService {
     }
 
     // 근로소득공제 계산하기
-    private int calculateIncomeDeduction(TaxFormVO taxForm) {
+    private int calculateIncomeDeduction(TaxFormVO taxForm, TotalInfoVO totalInfo) {
         int income_deduction = 0;
-        int totalIncome = taxForm.getTotalIncome();
-        if (taxForm.getTotalIncome() != 0) {
+        int totalIncome;
+        if (taxForm != null && taxForm.getTotalIncome() != 0) {
+            totalIncome = taxForm.getTotalIncome();
+        } else {
+            totalIncome = totalInfo.getTotal_income2();
+        }
+
+
+
             if (totalIncome <= 5000000) {
                 income_deduction = (int) Math.floor(totalIncome * 0.7);
             } else if (totalIncome <= 15000000) {
@@ -229,19 +241,23 @@ public class TaxFormSerivceImpl implements TaxFormService {
             } else {
                 income_deduction = (int) Math.floor((totalIncome - 100000000) * 0.02 + 14750000);
             }
-        }
         return income_deduction;
-
     }
 
     // 연금보험료 소득공제
     private int calculatePensionDeduction(TaxFormVO taxForm, TotalInfoVO totalInfo) {
-        int totalIncome = taxForm.getTotalIncome();
+        int totalIncome;
+        if (taxForm != null && taxForm.getTotalIncome() != 0) {
+            totalIncome = taxForm.getTotalIncome();
+        } else {
+            totalIncome = totalInfo.getTotal_income2();
+        }
+
         final double HEALTH_INSURANCE_RATE = 0.04;
         final double EMPLOYMENT_INSURANCE_RATE = 0.009;
         final double NATIONAL_PENSION_RATE = 0.045;
 
-        if (taxForm.getTotalIncome() != 0) {
+//        if (taxForm.getTotalIncome() != 0) {
             int health_insurance = (int) Math.floor(totalIncome * HEALTH_INSURANCE_RATE);
             totalInfo.setHealth_insurance(health_insurance);
             totalInfo.setHealth_insurance(health_insurance);
@@ -252,16 +268,19 @@ public class TaxFormSerivceImpl implements TaxFormService {
 //            int other_pension = taxForm.getOther_pension();
 //            totalInfo.setOther_pension(other_pension);
             return health_insurance + employment_insurance + national_pension;
-        } else {
-            return totalInfo.getPension_deduction();
-        }
+
     }
 
     // detail 옵션항목 추가(update용)
     private TotalInfoVO calculateDetailDeduction(TaxFormVO taxForm, FPensionVO pensionVO, FHousingVO housingVO,
                                                  FGuaranteeVO guaranteeVO, FMedicalVO medicalVO,
-                                                 FEduVO eduVO, FDonationVO donationVO, FRentVO rentVO,
+                                                 FEduVO eduVO, FDonationVO donationVO, FRentVO rentVO, PreTaxVO preTaxVO,
                                                  TotalInfoVO totalInfo) {
+        // 기납부세액 저장
+        if (preTaxVO != null) {
+            int prepayment_tax = preTaxVO.getPrepayment_tax();
+            totalInfo.setPrepayment_tax(prepayment_tax);
+        }
         /* 주택 관련 총납입액 */
         if (housingVO != null) {
             totalInfo.setHousing_loan(housingVO.getHousing_loan());

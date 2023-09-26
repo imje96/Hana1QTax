@@ -110,12 +110,33 @@
                             <h3>연말정산 결과</h3>
                             <br/>
 
-                            <h4>납부할 세금 :
-                                <td class="text-right"><fmt:formatNumber value="${totalResult.determined_tax}"
-                                                                         groupingUsed="true"/>원
-                            </h4>
+                            <%--                            <h4>납부할 세금 :--%>
+                            <%--                                <td class="text-right"><fmt:formatNumber value="${totalResult.expected_tax}"--%>
+                            <%--                                                                         groupingUsed="true"/>원--%>
+                            <%--                            </h4>--%>
+
+                            <c:choose>
+                                <c:when test="${totalResult.expected_tax >= 0}">
+                                    <h4><span style="color: #e3003f;">납부</span>할 세금 :
+                                        <td class="text-right">
+                                            <fmt:formatNumber value="${totalResult.expected_tax}" groupingUsed="true"/>원
+                                        </td>
+                                    </h4>
+                                </c:when>
+                                <c:otherwise>
+                                    <h4><span style="color: #e3003f;">환급</span>받을 세금 :
+                                        <td class="text-right">
+                                            <fmt:formatNumber value="${-totalResult.expected_tax}" groupingUsed="true"/>원
+                                        </td>
+                                    </h4>
+                                </c:otherwise>
+                            </c:choose>
+
+
                             <br/>
-                            <h4>혜택 받는 공제액 :<fmt:formatNumber value="${totalBenefit}" groupingUsed="true"/>원 </h4>
+                            <h4><span style="color: #018c8d;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
+                                                                                                 groupingUsed="true"/>원
+                            </h4>
                             <br/>
                             <p2>&#183; 납부할 세금이 +(양수)이면 세금을 납부해야하며,<br/> -(음수)이면 세금을 환급받습니다.</p2>
                             <br/><br/>
@@ -129,7 +150,7 @@
                                 </thead>
                                 <tbody class="table-hover">
                                 <tr>
-                                    <td class="text-left">1) 근로소득금액</td>
+                                    <td class="text-left">1) <span style="color: black; font-weight: 600" >근로소득금액</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.income_final}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -141,7 +162,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">3) (=) 과세표준</td>
+                                    <td class="text-left">3) <span style="color: black; font-weight: 600" > (=) 과세표준</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.tax_base}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -150,7 +171,7 @@
                                     <td class="text-left">&nbsp&nbsp&nbsp&nbspx 기본세율</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">4) (=) 산출세액</td>
+                                    <td class="text-left">4) <span style="color: black; font-weight: 600" > (=) 산출세액</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.calculated_amount}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -162,7 +183,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">5) (=) 결정세액</td>
+                                    <td class="text-left">5) <span style="color: black; font-weight: 600" > (=) 결정세액</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.determined_tax}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -174,8 +195,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp6) (=) 납부예상세금</td>
-                                    <td class="text-right"><fmt:formatNumber value="${totalResult.determined_tax}"
+                                    <td class="text-left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp6) <span style="color: black; font-weight: 600" > (=) 납부예상세금</span> </td>
+                                    <td class="text-right"><fmt:formatNumber value="${totalResult.expected_tax}"
                                                                              groupingUsed="true"/>원
                                     </td>
                                     <br/>
@@ -189,264 +210,291 @@
                         </fieldset>
 
 
-                        <!-- Step 3 Content -->
+                        <!-- Step 2 Content -->
                         <!-- 모달창 -->
                         <fieldset class="section-content step2" data-step="2">
                             <h3>상세보기</h3>
 
+                            <div class="content-text">
+                                <label for="totalIncome">이미 납부한 세금 :&nbsp;&nbsp;</label>
+                                <input type="text" name="repayment_tax_view" id="prepayment_tax_view"
+                                       oninput="addCommaToNumber(this)" data-hidden-id="prepayment_tax"
+                                       value="<fmt:formatNumber value="${totalInfo.prepayment_tax}" groupingUsed="true"/>">
+                                &nbsp;원
+                                <input type="hidden" id="prepayment_tax" name="prepayment_tax"
+                                       value="${totalInfo.prepayment_tax}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" id="saveButton0" class="update-button" value="저장">
+                            </div>
                             <br/>
                             <div class="flex-container">
+                                <div class="flex-column">
+                                    <div class="subheading"><h4>소득공제</h4></div>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal1">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>인적사항</h4>
+                                                <br/>
+                                                소득 공제 금액 :
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                <p1><fmt:formatNumber value="${totalResult.personal_deduction}"
+                                                                      groupingUsed="true"/>원
+                                                </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal2">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>근로소득</h4>
+                                            <br/>
+                                            소득 공제 금액 :
+                                        </div>
+                                        <div class="more">
+                                            <span> </span>
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.income_deduction}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal3">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>연금보험료</h4>
+                                            <br/>
+                                            소득 공제 금액 :
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.pension_deduction}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal4">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>주택자금/주택마련저축</h4>
+                                            <br/>
+                                            소득 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.housing_deduction}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal5">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>신용카드 등</h4>
+                                            <br/>
+                                            소득 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <span> </span>
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.card_deduction}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal6">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>추가소득</h4>
+                                            <br/>
+                                            소득 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1>0원</p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <br/>
+                            </div>
                             <div class="flex-column">
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal1">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>인적사항</h4>
-                                        <br/>
-                                        소득 공제 금액 :
+                                <div class="subheading"><h4>세액공제</h4></div>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal7">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>연금계좌</h4>
+                                            <br/>
+                                            세액 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.irp_taxcredit}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.personal_deduction}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
+                                </div>
+                                <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal8">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">0%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>보장성보험</h4>
+                                            <br/>
+                                            세액 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.guarantee_taxcredit}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal9">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>의료비</h4>
+                                            <br/>
+                                            세액 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.medical_taxcredit}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal10">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>교육비</h4>
+                                            <br/>
+                                            세액 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.education_taxcredit}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal11">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>기부금</h4>
+                                            <br/>
+                                            소득 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.donation_taxcredit}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="total-amount-box modal-trigger" data-target="detailsModal12">
+                                    <!-- id="showModal" 추가 -->
+                                    <%--                                <div class="percent">90%달성</div>--%>
+                                    <div class="total-text-box">
+                                        <div class="total-text">
+                                            <h4>월세</h4>
+                                            <br/>
+                                            세액 공제 금액:
+                                        </div>
+                                        <div class="more">
+                                            <div class="textalign-right1">&gt&gt</div>
+                                            <br/>
+                                            <div class="textalign-right2">
+                                            <p1><fmt:formatNumber value="${totalResult.rent_taxcredit}"
+                                                                  groupingUsed="true"/>원
+                                            </p1>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal2">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>근로소득</h4>
-                                        <br/>
-                                        소득 공제 금액 :
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.income_deduction}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal3">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>연금보험료</h4>
-                                        <br/>
-                                        소득 공제 금액 :
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.pension_deduction}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal4">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>주택자금/주택마련저축</h4>
-                                        <br/>
-                                        소득 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.housing_deduction}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal5">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>신용카드 등</h4>
-                                        <br/>
-                                        소득 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.card_deduction}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal6">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>추가소득</h4>
-                                        <br/>
-                                        소득 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1>0원</p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            </div>
-                            <div class="flex-column">
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal7">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>연금계좌</h4>
-                                        <br/>
-                                        세액 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.irp_taxcredit}" groupingUsed="true"/>원</p1>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal8">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">0%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>보장성보험</h4>
-                                        <br/>
-                                        세액 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.guarantee_taxcredit}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal9">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>의료비</h4>
-                                        <br/>
-                                        세액 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.medical_taxcredit}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal10">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>교육비</h4>
-                                        <br/>
-                                        세액 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.education_taxcredit}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal11">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>기부금</h4>
-                                        <br/>
-                                        소득 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.donation_taxcredit}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="total-amount-box modal-trigger" data-target="detailsModal12">
-                                <!-- id="showModal" 추가 -->
-                                <%--                                <div class="percent">90%달성</div>--%>
-                                <div class="total-text-box">
-                                    <div class="total-text">
-                                        <h4>월세</h4>
-                                        <br/>
-                                        세액 공제 금액:
-                                    </div>
-                                    <div class="more">
-                                        <span> </span>
-                                        <h5>&gt&gt</h5>
-                                        <br/>
-                                        <p1><fmt:formatNumber value="${totalResult.rent_taxcredit}"
-                                                              groupingUsed="true"/>원
-                                        </p1>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                            <br/>
-                                <div class="flex-container">
-                            <button type="button" class="prev-button" data-step="3">이전</button>
-                            <button type="submit" class="submit-button">제출하기</button>
-                                </div>
-                        </fieldset>
                     </div>
-                </form>
+                    <br/>
+                    <div class="flex-container">
+                        <button type="button" class="prev-button" data-step="3">이전</button>
+                        <button type="submit" class="submit-button">계산하기</button>
+                    </div>
+                    </fieldset>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 </section>
 <%-- 여기서부터 모달창--%>
@@ -455,117 +503,119 @@
     <div class="modal-content2">
 
         <span class="close">&times;</span>
-<%--        <form class="updateForm" action="/update" method="post">--%>
-            <h3>인적사항</h3>
-            <p>기준일시 : ${totalInfo.result_time}</p>
-            <p>인적 공제를 위한 부양가족 수 및 특별공제 항목을 확인해주세요.</p>
-            <br/>
+        <%--        <form class="updateForm" action="/update" method="post">--%>
+        <h3>인적사항</h3>
+        <p>기준일시 : ${totalInfo.result_time}</p>
+        <p>인적 공제를 위한 부양가족 수 및 특별공제 항목을 확인해주세요.</p>
+        <br/>
 
-            <div class="modal-amount-box">
-                <div class="modal-amount-text">
-                    <h5>소득 공제 금액</h5>
-                </div>
-                <div class="modal-amount-money">
-                    <p2><fmt:formatNumber value="${totalResult.personal_deduction}" groupingUsed="true"/>원</p2>
-                </div>
+        <div class="modal-amount-box">
+            <div class="modal-amount-text">
+                <h5>소득 공제 금액</h5>
             </div>
-            <hr>
-            <div class="modal-amount-box">
-                <div class="modal-amount-text">
-                    <label for="totalIncome">총급여:</label>
-                    <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" data-hidden-id="totalIncome" value="<fmt:formatNumber value="${totalInfo.total_income2}" groupingUsed="true"/>">
-                    원
-                    <input type="hidden" id="totalIncome" name="totalIncome" value="${totalInfo.total_income2}"><br/>
+            <div class="modal-amount-money">
+                <p2><fmt:formatNumber value="${totalResult.personal_deduction}" groupingUsed="true"/>원</p2>
+            </div>
+        </div>
+        <hr>
+        <div class="modal-amount-box">
+            <div class="modal-amount-text">
+                <label for="totalIncome">총급여:</label>
+                <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)"
+                       data-hidden-id="totalIncome"
+                       value="<fmt:formatNumber value="${totalInfo.total_income2}" groupingUsed="true"/>">
+                원
+                <input type="hidden" id="totalIncome" name="totalIncome" value="${totalInfo.total_income2}"><br/>
 
 
-                    <label>배우자 공제 유/무:</label>
-                    <div class="choice-button">
-                        <input type="radio" id="spouseDeduction_yes" name="spouseDeduction" value="yes">
-                        <label for="spouseDeduction_yes">O</label>
-                        <input type="radio" id="spouseDeduction_no" name="spouseDeduction" value="no">
-                        <label for="spouseDeduction_no">X</label>
-                    </div>
-                    <label for="child">만 20세 이하 자녀 수(세액공제):</label><br/>
-                    <select name="child" id="child" class="content-dropdown">
-                        <option value="0">0명</option>
-                        <option value="1">1명</option>
-                        <option value="2">2명</option>
-                        <option value="3">3명</option>
-                        <option value="4">4명</option>
-                        <option value="5">5명</option>
-                        <option value="6">6명</option>
-                    </select>
-                    <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
-                    <label for="adoptedChild">출산/입양 자녀 수(세액공제):</label><br/>
-                    <select name="adoptedChild" id="adoptedChild"
-                            class="content-dropdown">
-                        <option value="0">0명</option>
-                        <option value="1">1명</option>
-                        <foption value="2">2명</foption>
-                        <option value="3">3명</option>
-                        <option value="4">4명</option>
-                        <option value="5">5명</option>
-                        <option value="6">6명</option>
-                    </select>
-                    <p>연말정산 적용기간에 출산하거나 입양신고 자녀</p>
-                    <label for="directAncestor">직계존속 수:</label><br/>
-                    <select name="directAncestor" id="directAncestor"
-                            class="content-dropdown">
-                        <option value="0">0명</option>
-                        <option value="1">1명</option>
-                        <option value="2">2명</option>
-                        <option value="3">3명</option>
-                        <option value="4">4명</option>
-                        <option value="5">5명</option>
-                        <option value="6">6명</option>
-                    </select>
-                    <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
-                    <label for="siblings">형제/자매 수:</label><br/>
-                    <select name="siblings" id="siblings" class="content-dropdown">
-                        <option value="0">0명</option>
-                        <option value="1">1명</option>
-                        <option value="2">2명</option>
-                        <option value="3">3명</option>
-                        <option value="4">4명</option>
-                        <option value="5">5명</option>
-                        <option value="6">6명</option>
-                    </select>
-                    <p>연말정산 적용기간에 출산하거나 입양신고 자녀</p>
-                    <label for="senior">경로자 수:</label><br/>
-                    <select name="senior" id="senior" class="content-dropdown">
-                        <option value="0">0명</option>
-                        <option value="1">1명</option>
-                        <option value="2">2명</option>
-                        <option value="3">3명</option>
-                        <option value="4">4명</option>
-                        <option value="5">5명</option>
-                        <option value="6">6명</option>
-                    </select><br/>
-                    <label for="disability">장애인 수:</label><br/>
-                    <select name="disability" id="disability" class="content-dropdown">
-                        <option value="0">0명</option>
-                        <option value="1">1명</option>
-                        <option value="2">2명</option>
-                        <option value="3">3명</option>
-                        <option value="4">4명</option>
-                        <option value="5">5명</option>
-                        <option value="6">6명</option>
-                    </select><br/>
-                    <label>부녀자 여부:</label>
-                    <div class="choice-button">
-                        <input type="radio" id="woman_yes" name="womanDeduction" value="yes">
-                        <label for="woman_yes">O</label>
-                        <input type="radio" id="woman_no" name="womanDeduction" value="no">
-                        <label for="woman_no">X</label>
-                    </div>
-                    <label>한부모 여부:</label>
-                    <div class="choice-button">
-                        <input type="radio" id="singleParent_yes" name="singleParent" value="yes">
-                        <label for="singleParent_yes">O</label>
-                        <input type="radio" id="singleParent_no" name="singleParent" value="no">
-                        <label for="singleParent_no">X</label>
-                    </div>
-                    <div class="modal-amount-explanation">
+                <label>배우자 공제 유/무:</label>
+                <div class="choice-button">
+                    <input type="radio" id="spouseDeduction_yes" name="spouseDeduction" value="yes">
+                    <label for="spouseDeduction_yes">O</label>
+                    <input type="radio" id="spouseDeduction_no" name="spouseDeduction" value="no">
+                    <label for="spouseDeduction_no">X</label>
+                </div>
+                <label for="child">만 20세 이하 자녀 수(세액공제):</label><br/>
+                <select name="child" id="child" class="content-dropdown">
+                    <option value="0">0명</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                    <option value="6">6명</option>
+                </select>
+                <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
+                <label for="adoptedChild">출산/입양 자녀 수(세액공제):</label><br/>
+                <select name="adoptedChild" id="adoptedChild"
+                        class="content-dropdown">
+                    <option value="0">0명</option>
+                    <option value="1">1명</option>
+                    <foption value="2">2명</foption>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                    <option value="6">6명</option>
+                </select>
+                <p>연말정산 적용기간에 출산하거나 입양신고 자녀</p>
+                <label for="directAncestor">직계존속 수:</label><br/>
+                <select name="directAncestor" id="directAncestor"
+                        class="content-dropdown">
+                    <option value="0">0명</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                    <option value="6">6명</option>
+                </select>
+                <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
+                <label for="siblings">형제/자매 수:</label><br/>
+                <select name="siblings" id="siblings" class="content-dropdown">
+                    <option value="0">0명</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                    <option value="6">6명</option>
+                </select>
+                <p>연말정산 적용기간에 출산하거나 입양신고 자녀</p>
+                <label for="senior">경로자 수:</label><br/>
+                <select name="senior" id="senior" class="content-dropdown">
+                    <option value="0">0명</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                    <option value="6">6명</option>
+                </select><br/>
+                <label for="disability">장애인 수:</label><br/>
+                <select name="disability" id="disability" class="content-dropdown">
+                    <option value="0">0명</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                    <option value="6">6명</option>
+                </select><br/>
+                <label>부녀자 여부:</label>
+                <div class="choice-button">
+                    <input type="radio" id="woman_yes" name="womanDeduction" value="yes">
+                    <label for="woman_yes">O</label>
+                    <input type="radio" id="woman_no" name="womanDeduction" value="no">
+                    <label for="woman_no">X</label>
+                </div>
+                <label>한부모 여부:</label>
+                <div class="choice-button">
+                    <input type="radio" id="singleParent_yes" name="singleParent" value="yes">
+                    <label for="singleParent_yes">O</label>
+                    <input type="radio" id="singleParent_no" name="singleParent" value="no">
+                    <label for="singleParent_no">X</label>
+                </div>
+                <div class="modal-amount-explanation">
                     <p2>부양가족 공제?</p2>
                     <br/>
                     <p> &#183; 거주자와 생계를 같이하는 연간 소득금액 합계액 1000만원 이하(근로소득만 있는 경우 총 급여 500만원<br/> 이하)인
@@ -573,21 +623,21 @@
                     <p> &#183; 부양가족이 기본공제대상에 포함되기 위해서는 일반적으로 나이 제한을 적용받으나, 소득세법에 따른 <br/>장애인에
                         해당하는 경우 나이제한을 적용받지 아니함</p>
                     <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-                    </div>
-                    <input type="button" id="saveButton1" class="update-button" value="저장">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-
                 </div>
+                <input type="button" id="saveButton1" class="update-button" value="저장">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
             </div>
-<%--        </form>--%>
+        </div>
+        <%--        </form>--%>
     </div>
 </div>
 <%-- 2번 모달창--%>
@@ -645,73 +695,77 @@
     <div class="modal-content2">
 
         <span class="close">&times;</span>
-<%--        <form class="updateForm" action="/updateDetail" method="post">--%>
-            <h3>연금보험료</h3>
-            <p>기준일시 : ${totalInfo.result_time}</p>
-            <p>근로자 4대 보험 이외 개인연금저축 납입현황을 확인해주세요.</p>
-            <br/>
+        <%--        <form class="updateForm" action="/updateDetail" method="post">--%>
+        <h3>연금보험료</h3>
+        <p>기준일시 : ${totalInfo.result_time}</p>
+        <p>근로자 4대 보험 이외 개인연금저축 납입현황을 확인해주세요.</p>
+        <br/>
 
-            <div class="modal-amount-box">
-                <div class="modal-amount-text">
-                    <h5>총 납입액</h5>
-                    <h5>소득 공제 금액</h5>
-                </div>
-                <div class="modal-amount-money">
+        <div class="modal-amount-box">
+            <div class="modal-amount-text">
+                <h5>총 납입액</h5>
+                <h5>소득 공제 금액</h5>
+            </div>
+            <div class="modal-amount-money">
                     <span id="totalPension"><fmt:formatNumber value="${totalInfo.pension_deduction}"
                                                               groupingUsed="true"/>원</span><br/>
-                    <p2><fmt:formatNumber value="${totalResult.pension_deduction}" groupingUsed="true"/>원</p2>
-                </div>
+                <p2><fmt:formatNumber value="${totalResult.pension_deduction}" groupingUsed="true"/>원</p2>
             </div>
-            <hr>
-            <div class="modal-amount-box">
-                <div class="modal-amount-text">
+        </div>
+        <hr>
+        <div class="modal-amount-box">
+            <div class="modal-amount-text">
 
-                    <p2>건강보험료 납입공제 :</p2>
-                    <br/>
-                    <p2>고용보험료 납입공제 :</p2>
-                    <br/>
-                    <p2>국민연금 납입공제 :</p2>
-                    <br/>
-<%--                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>--%>
-<%--                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>--%>
-<%--                    <label for="nationalPension">국민연금 납입공제 :</label><br/>--%>
-                    <label for="other_pension">기타연금 납입공제 :</label><br/>
-
-
-                </div>
-                <div class="modal-amount-money-variable">
-                <div class="modal-amount-money-variable">
-                    <p2> <fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>원</p2><br/>
-<%--                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"--%>
-<%--                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>--%>
-<%--                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">--%>
-                    <p2><fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>원</p2><br/>
-
-<%--                    <input type="text" name="employmentInsurance_view" id="employmentInsurance_view" oninput="addCommaToNumber(this)"--%>
-<%--                           data-hidden-id="employmentInsurance" value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>--%>
-<%--                    <input type="hidden" id="employmentInsurance" name="employmentInsurance" value="${totalInfo.employment_insurance}">--%>
-<%--                    --%>
-                    <p2><fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>원</p2><br/>
-
-<%--                    <input type="text" name="nationalPension_view" id="nationalPension_view" oninput="addCommaToNumber(this)"--%>
-<%--                           data-hidden-id="nationalPension" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>--%>
-<%--                    <input type="hidden" id="nationalPension" name="nationalPension" value="${totalInfo.national_pension}">--%>
-                    <input type="text" name="otherPension_view" id="otherPension_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="other_pension" value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="other_pension" name="other_pension" value="${totalInfo.other_pension}">
-<%--                    <input type="text" id="otherPension" name="national_pension" oninput="addCommaToNumber(this)"--%>
-<%--                           value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>--%>
-                </div>
-            </div>
-            </div>
-            <div class="modal-amount-explanation">
-                <p2>기타 납입연금?</p2>
+                <p2>건강보험료 납입공제 :</p2>
                 <br/>
-                <p> &#183; 공무원 연금, 군인연금, 사립학교 교직원 연금, 별정 우체국 연금 등 납입한 연금보험료 공제</p>
+                <p2>고용보험료 납입공제 :</p2>
+                <br/>
+                <p2>국민연금 납입공제 :</p2>
+                <br/>
+                <%--                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>--%>
+                <%--                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>--%>
+                <%--                    <label for="nationalPension">국민연금 납입공제 :</label><br/>--%>
+                <label for="other_pension">기타연금 납입공제 :</label><br/>
+
+
             </div>
-            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-<%--            <input type="submit" class="update-button" value="저장">--%>
-            <input type="button" id="saveButton2" class="update-button" value="저장">
+            <div class="modal-amount-money-variable">
+                <div class="modal-amount-money-variable">
+                    <p2><fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>원</p2>
+                    <br/>
+                    <%--                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"--%>
+                    <%--                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>--%>
+                    <%--                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">--%>
+                    <p2><fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>원</p2>
+                    <br/>
+
+                    <%--                    <input type="text" name="employmentInsurance_view" id="employmentInsurance_view" oninput="addCommaToNumber(this)"--%>
+                    <%--                           data-hidden-id="employmentInsurance" value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>--%>
+                    <%--                    <input type="hidden" id="employmentInsurance" name="employmentInsurance" value="${totalInfo.employment_insurance}">--%>
+                    <%--                    --%>
+                    <p2><fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>원</p2>
+                    <br/>
+
+                    <%--                    <input type="text" name="nationalPension_view" id="nationalPension_view" oninput="addCommaToNumber(this)"--%>
+                    <%--                           data-hidden-id="nationalPension" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>--%>
+                    <%--                    <input type="hidden" id="nationalPension" name="nationalPension" value="${totalInfo.national_pension}">--%>
+                    <input type="text" name="otherPension_view" id="otherPension_view" oninput="addCommaToNumber(this)"
+                           data-hidden-id="other_pension"
+                           value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="other_pension" name="other_pension" value="${totalInfo.other_pension}">
+                    <%--                    <input type="text" id="otherPension" name="national_pension" oninput="addCommaToNumber(this)"--%>
+                    <%--                           value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>--%>
+                </div>
+            </div>
+        </div>
+        <div class="modal-amount-explanation">
+            <p2>기타 납입연금?</p2>
+            <br/>
+            <p> &#183; 공무원 연금, 군인연금, 사립학교 교직원 연금, 별정 우체국 연금 등 납입한 연금보험료 공제</p>
+        </div>
+        <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
+        <%--            <input type="submit" class="update-button" value="저장">--%>
+        <input type="button" id="saveButton2" class="update-button" value="저장">
         </form>
     </div>
 </div>
@@ -751,22 +805,29 @@
                 </div>
                 <div class="modal-amount-money-variable">
 
-                    <input type="text" name="housingVO.housing_loan_view" id="housing_loan_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="housing_loan" value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="housing_loan" name="housingVO.housing_loan" value="${totalInfo.housing_loan}"><br/>
+                    <input type="text" name="housing_loan_view" id="housing_loan_view" oninput="addCommaToNumber(this)"
+                           data-hidden-id="housing_loan"
+                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="housing_loan" name="housing_loan" value="${totalInfo.housing_loan}"><br/>
 
-<%--                    <input type="text" id="housing_loan" name="health_insurance" oninput="addCommaToNumber(this)"--%>
-<%--                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>--%>
-                    <input type="text" name="housingVO.housing_account1_view" id="housing_account1_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="housing_account1" value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="housing_account1" name="housingVO.housing_account1" value="${totalInfo.housing_account1}">
-<%--                    <input type="text" id="housing_account1" name="employment_insurance" oninput="addCommaToNumber(this)"--%>
-<%--                           value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>--%>
-                    <input type="text" name="housingVO.housing_account2_view" id="housing_account2_view" oninput="addCommaToNumber(this)"
-                           data-hidden-id="housing_account2" value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>
-                    <input type="hidden" id="housing_account2" name="housingVO.housing_account2" value="${totalInfo.housing_account2}">
-<%--                    <input type="text" id="housing_account2" name="national_pension" oninput="addCommaToNumber(this)"--%>
-<%--                           value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>--%>
+                    <%--                    <input type="text" id="housing_loan" name="health_insurance" oninput="addCommaToNumber(this)"--%>
+                    <%--                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>--%>
+                    <input type="text" name="housing_account1_view" id="housing_account1_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="housing_account1"
+                           value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="housing_account1" name="housing_account1"
+                           value="${totalInfo.housing_account1}">
+                    <%--                    <input type="text" id="housing_account1" name="employment_insurance" oninput="addCommaToNumber(this)"--%>
+                    <%--                           value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>--%>
+                    <input type="text" name="housing_account2_view" id="housing_account2_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="housing_account2"
+                           value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="housing_account2" name="housing_account2"
+                           value="${totalInfo.housing_account2}">
+                    <%--                    <input type="text" id="housing_account2" name="national_pension" oninput="addCommaToNumber(this)"--%>
+                    <%--                           value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>--%>
                 </div>
             </div>
             <div class="modal-amount-explanation">
@@ -775,7 +836,7 @@
                 <p> &#183; 과세기간 종료일 현재 무주택 세대의 세대주(세대주가 주택관련 공제를 받지 않는 경우 세대원도 가능)<br/>로서 근로소득이 있는 자</p>
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-<%--            <input type="button" class="update-button" value="저장">--%>
+            <%--            <input type="button" class="update-button" value="저장">--%>
             <input type="button" id="saveButton3" class="update-button" value="저장">
         </form>
     </div>
@@ -837,7 +898,7 @@
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
             <input type="button" class="update-button" value="저장">
-<%--            <input type="button" id="saveButton5" class="update-button" value="저장">--%>
+            <%--            <input type="button" id="saveButton5" class="update-button" value="저장">--%>
         </form>
     </div>
 </div>
@@ -952,20 +1013,36 @@
     window.onload = setInitialValues;
 
 
-
 </script>
 <%-- 업데이트 로직 --%>
 <script>
     // 이벤트 리스너 추가
     document.addEventListener('DOMContentLoaded', (event) => {
-        if(document.getElementById('saveButton1')) {
+        if (document.getElementById('saveButton0')) {
+            document.getElementById('saveButton0').addEventListener('click', updatePart0);
+        }
+        if (document.getElementById('saveButton1')) {
             document.getElementById('saveButton1').addEventListener('click', updatePart1);
         }
-        if(document.getElementById('saveButton2')) {
+        if (document.getElementById('saveButton2')) {
             document.getElementById('saveButton2').addEventListener('click', updatePart2);
         }
-        if(document.getElementById('saveButton3')) {
+        if (document.getElementById('saveButton3')) {
             document.getElementById('saveButton3').addEventListener('click', updatePart3);
+        }
+
+        function updatePart0() {
+            let data = {
+                // updateType: 'Part0',
+                preTaxVO: {
+                    prepayment_tax: document.getElementById('prepayment_tax').value
+                }
+            };
+            // 데이터 출력
+            console.log("Data to be sent:", data);
+
+            sendUpdateRequest(data);
+            console.log("데이터를 보냅니다:");
         }
 
         function updatePart1() {
@@ -1002,7 +1079,7 @@
                 pensionVO: {
                     other_pension: document.getElementById('other_pension').value
                 }
-                };
+            };
             sendUpdateRequest(data);
         }
 
@@ -1014,8 +1091,12 @@
                     housing_account1: document.getElementById('housing_account1').value,
                     housing_account2: document.getElementById('housing_account2').value
                 }
-                };
+            };
+            // 데이터 출력
+            console.log("Data to be sent:", data);
+
             sendUpdateRequest(data);
+            console.log("데이터를 보냅니다:");
         }
 
         function sendUpdateRequest(data) {
@@ -1026,11 +1107,11 @@
                 data: JSON.stringify(data),
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     console.log(response);  // 이 부분을 추가
                     alert('데이터가 정상적으로 저장되었습니다.');
                 },
-                error: function(error) {
+                error: function (error) {
                     alert('오류가 발생했습니다: ' + error.responseText);
                 }
             });

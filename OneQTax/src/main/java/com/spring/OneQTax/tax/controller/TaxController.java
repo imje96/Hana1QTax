@@ -284,7 +284,7 @@ public class TaxController {
         totalInfo.setTotalInfo_id(totalInfoId);
         System.out.println("아이디값 확인2:" + totalInfo.getTotalInfo_id());
         totalInfo = taxFormService.updateForm(totalInfo, bigDTO, cardResult);
-        System.out.println(totalInfo);
+        System.out.println("컨트롤러 update 호출 후: "+totalInfo);
 //        taxFormService.updateAndSaveForm(totalInfo);
 
         response.put("status", "success");
@@ -507,6 +507,19 @@ public class TaxController {
 
         return "tax/simulationResult";
     }
+//임시 추가
+    @GetMapping("/dashboard")
+    public String viewDashboard(){
+
+        return "dashboard";
+    }
+
+    @GetMapping("/report")
+    public String viewReport(){
+
+        return "transaction/report";
+    }
+
 
 
 }

@@ -267,20 +267,28 @@ section.service .img.motion {
     width: 1200px;
 }
 
+.container-title{
+    text-align: center;
+}
 .container2 {
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+
+/*    추가*/
+    flex-direction: column;
 }
 
 .chart-box {
     margin-top: 10px;
     display: flex;
-    flex-direction: column;
-    width: 500px;
+    /*flex-direction: column;*/
+    width: 1100px;
+    margin: 0 50px;
     align-items: center;
     /*height: 400px;*/
+    justify-content: space-around;
 }
 
 .chart-box .chart1 {
@@ -288,11 +296,32 @@ section.service .img.motion {
     /*height: 200px;*/
     display: flex;
     justify-content: center;
+    margin: 47px 0;
 }
 
 .chart-box .chart2 {
     width: 250px;
     /*height: 400px;*/
+}
+
+.chart-box-inner {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 400px;
+    align-items: center;
+    background: #f3f3f3;
+    padding-top: 30px;
+    border-radius: 10px;
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chart-box-inner h3 {
+        /*color: #fafafa;*/
+        font-size: 25px;
+        font-weight: 600;
+        /*text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);*/
+        text-transform:uppercase;
 }
 /* 그래프 아래 info 항목*/
 .info-box {
@@ -301,8 +330,7 @@ section.service .img.motion {
     padding: 10px;             /* 내부 여백 */
     width: 350px;              /* 너비 설정 (원하시는 너비로 조절 가능) */
 }
-
-.info-item {
+.info-item1 {
     border: 1px solid #f6f3f3;    /* 테두리 색상 */
     background-color: #f5f5f5;
     border-radius: 10px;       /* 모서리 둥글게 처리 */
@@ -311,21 +339,35 @@ section.service .img.motion {
     font-size: 20px;           /* 글자 크기 */
     text-align: center;
 }
+
+.info-item2 {
+    border: 1px solid #f6f3f3;
+    /*background-color: #f5f5f5;*/
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    font-size: 23px;
+    text-align: center;
+    background: #fffee3;
+}
 /* comment 부분 */
 .comment-box {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     background-color: #f3f3f3;
     border-radius: 10px;
-    /*padding: 0 10px;*/
-    width: 500px;
+    padding: 0 20px;
+    margin: 0 40px 0 40px;
+    width: 1100px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    /*flex-direction: column;*/
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .comment-info {
-    margin: 20px 20px 0 20px;
+    margin: 20px 10px 0 10px;
     padding: 0 10px;
     display: flex;
     flex-direction: column;
@@ -333,24 +375,55 @@ section.service .img.motion {
     align-items: center;
     line-height: 1.7;
 }
+.comment-text1 {
+    /*margin-left: 5px;*/
+    /*font-size: 20px;*/
+    font-weight: bold;
+    width: 400px;
+    background: white;
+    border-radius: 15px;
+    padding: 10px 20px 10px 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+    box-shadow: 5px 2px 11px rgba(0, 0, 0, 0.1);
+}
 
-.comment-info.text {
+.comment-text2 {
+    /*margin-top: 30px;*/
+    /*margin-left: 10px;*/
+    margin: 30px 0 30px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #615e5e;
+}
 
+.commet-box-inner{
+    /*width: 520px;*/
+    height: 340px;
+    /*background: #f3f3f3;*/
+    border-radius: 15px;
+    padding: 10px 0 10px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .inputImg{
     display: flex;
     justify-content: center;
+    background: #e6e9e9;
+    border-radius: 50%;
 }
 
 .result-tax {
     background-color: #106e69;
     display: flex;
-    width: 400px;
+    width: 350px;
     height: 130px;
     border-radius: 10px;
     margin-bottom: 10px;
-    padding: 20px 50px;
+    padding: 20px 10px 20px 50px;
     font-size: 20px;
     text-align: left;
     color: #f9f9f9;
@@ -359,9 +432,17 @@ section.service .img.motion {
     justify-content: center;
 }
 
+.character-box {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    justify-content: space-between;
+}
+
+
 /* 버튼 */
 .btn-container{
-    margin-top: 10px;
+    /*margin-top: 20px;*/
 }
 
 .modalBtn {
@@ -525,11 +606,12 @@ div.table-title {
 
 th {
     color:#454b4b;
-    /*background:#8ab5b3;*/
-    background: #c3dcd7;
+    background:#8ab5b3;
+    /*background: #c3dcd7;*/
+    /*background: #9ae7d7;*/
     height: 40px;
     border-bottom:4px solid #cacfcf;
-    border-right: 1px solid #efeff1;
+    border-right: 1px solid #afebde;
 
     font-size:20px;
     font-weight: 100;
@@ -662,7 +744,7 @@ td.text-right {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 350px; /* Location of the box */
+    padding-top: 150px; /* Location of the box */
     padding-left: 160px ;
     left: 0;
     top: 0;
@@ -740,11 +822,4 @@ input[type="text"] {
     margin: 20px 5px;
     padding: 10px;
     line-height: 1.8rem;
-}
-
-.flex-container{
-    display: flex;
-}
-.flex-column {
-    /*display: flex;*/
 }

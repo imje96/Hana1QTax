@@ -1149,3 +1149,14 @@ footer .inner .sns li {
 }
 
 
+.textalign-right1{
+    text-align: right;
+    font-weight: bold;
+
+}
+
+.textalign-right2{
+    text-align: right;
+    font-weight: bold;
+    color: #106e69;
+}

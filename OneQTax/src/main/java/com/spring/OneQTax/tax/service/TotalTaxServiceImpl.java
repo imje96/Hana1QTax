@@ -350,7 +350,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         /* 기납부세액 */
         totalResult.setPrepayment_tax(prepayment_tax);
         /* 차감납부세액 */
-        expected_tax = determined_tax; // 차감납부세액(환급금)
+        expected_tax = determined_tax-prepayment_tax; // 차감납부세액(환급금)
         totalResult.setExpected_tax(expected_tax);
 
         return totalResult;

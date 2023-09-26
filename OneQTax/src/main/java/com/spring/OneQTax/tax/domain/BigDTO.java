@@ -13,4 +13,5 @@ public class BigDTO {
     private FEduVO eduVO;
     private FDonationVO donationVO;
     private FRentVO rentVO;
+    private PreTaxVO preTaxVO;
 }

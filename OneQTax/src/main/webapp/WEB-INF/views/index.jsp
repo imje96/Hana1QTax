@@ -77,9 +77,10 @@
                         </a>
                     </div>
                     <div class="dropdown">
-                        <button class="dropbtn">마이데이터
-                            <i class="fa fa-caret-down"></i>
+                        <a href="${pageContext.request.contextPath}/dashboard">
+                        <button class="dropbtn">마이데이터(임시)
                         </button>
+                        </a>
                         <div class="dropdown-content">
                             <a href="#">카드관리</a>
                             <a href="#">사용내역</a>
@@ -87,9 +88,10 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button class="dropbtn">카드추천
-                            <i class="fa fa-caret-down"></i>
+                        <a href="${pageContext.request.contextPath}/report">
+                        <button class="dropbtn">카드추천(임시리포트)
                         </button>
+                        </a>
                         <div class="dropdown-content">
                             <a href="#">카드한눈에보기</a>
                             <a href="#">추천카드</a>
