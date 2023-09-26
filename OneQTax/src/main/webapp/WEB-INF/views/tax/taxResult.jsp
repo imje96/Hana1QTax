@@ -114,18 +114,23 @@
             </div>
 
 
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <div class="container1">
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
                         <span class="close">&times;</span>
-                        <h2>계산결과</h2>
+                        <%--                    <div class="container1">--%>
+<%--                        <h2>계산결과</h2>--%>
+                        <span style="color: #0d736c; font-size: 23px;"><h3>계산결과</h3></span>
+                        <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-top:10px; margin-bottom: 10px;">
                         <br/>
 
+
                         <table class="table-fill">
-                            <span style="text-align: center"></span><h3>일반공제항목 계산 결과</h3>
+                            <span style="text-align: center"></span><h3>기본공제항목 계산 결과</h3>
                             <br/>
-                            <p>일반공제항목이란? 추가공제항목인 대중교통, 전통시장, 도서및문화 등의 업종을 제외한~~</p>
+<%--                            <p>일반공제항목이란? 추가공제항목인 대중교통, 전통시장, 도서및문화 등의 업종을 제외한~~</p>--%>
                             <br/>
+                           <div class="text-box"><p2><span style="font-weight: bold; color: #fd328a">✔️ 최저사용금액 : <fmt:formatNumber value="${minimumAmount}" groupingUsed="true"/>원</span>을 초과한 금액부터 공제 가능</p2></div>
+                            <br/><span style="text-align: right;"><p>&nbsp;&nbsp;* 최저사용금액: 총급여의 25%</p></span>
                             <thead>
                             <tr>
                                 <th class="text-left">항목</th>
@@ -171,68 +176,84 @@
                                                                         groupingUsed="true"/>원
                                 </td>
                             </tr>
-
                             </tbody>
                         </table>
-<%--                        남은공제금액 ${remainingDeduction}--%>
+<%--                        <br/><span style="text-align: right"><p>&nbsp;&nbsp;* 최저사용금액: 총급여의 25%</p></span>--%>
+                        <br/><br/>
+
+
+                        <div class="container1">
+                            <span style="color: #0d736c; font-size: 23px;"><h3>공제율/공제한도</h3></span>
+                            <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-top:10px; margin-bottom: 10px;"><br/>
+                            <h3>공제율</h3><br/>
+                            <table class="table-fill">
+                                <thead>
+                                <tr>
+                                    <th class="text-left">항목</th>
+                                    <th class="text-left">공제율</th>
+                                    <%--                                <th class="text-left">7~12월</th>--%>
+
+                                </tr>
+                                </thead>
+                                <tbody class="table-hover">
+                                <tr>
+                                    <td class="text-left">신용카드</td>
+                                    <td class="text-left">15%</td>
+                                    <%--                                <td class="text-left">15%</td>--%>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">선불카드/체크카드/현금</td>
+                                    <td class="text-left">30%</td>
+                                    <%--                                <td class="text-left">30%</td>--%>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">문화비(도서,공연 등)</td>
+                                    <td class="text-left">40%</td>
+                                    <%--                                <td class="text-left">40%</td>--%>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">전통시장</td>
+                                    <td class="text-left">40%</td>
+                                    <%--                                <td class="text-left">40%</td>--%>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">대중교통</td>
+                                    <td class="text-left">40%</td>
+                                    <%--                                <td class="text-left">80%</td>--%>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <h3>급여별 총 한도액</h3><br/>
+                            <table class="table-fill">
+
+                                <thead>
+                                <tr>
+                                    <th class="text-left"></th>
+                                    <th class="text-left">기본 공제 한도</th>
+                                    <th class="text-left">추가 공제 한도</th>
+
+                                </tr>
+                                </thead>
+                                <tbody class="table-hover">
+                                <tr>
+                                    <td class="text-left">7천만 원 이하</td>
+                                    <td class="text-left">300만 원</td>
+                                    <td class="text-left">300만 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">7천만 원 초과</td>
+                                    <td class="text-left">250만 원</td>
+                                    <td class="text-left">200만 원</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <%--                </div>--%>
                     </div>
-                    <div class="container1">
-                        <h3>공제율/공제한도</h3><br/>
-                        <h3>월별 공제율</h3><br/>
-                        <table class="table-fill">
-
-                            <thead>
-                            <tr>
-                                <th class="text-left"></th>
-                                <th class="text-left">1~6월</th>
-                                <th class="text-left">7~12월</th>
-
-                            </tr>
-                            </thead>
-                            <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">7천만 원 이하</td>
-                                <td class="text-left">300만 원</td>
-                                <td class="text-left">300만 원</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">7천만 원 초과</td>
-                                <td class="text-left">250만 원</td>
-                                <td class="text-left">200만 원</td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                        <h3>급여별 총 한도액</h3><br/>
-                        <table class="table-fill">
-
-                            <thead>
-                            <tr>
-                                <th class="text-left"></th>
-                                <th class="text-left">기본 공제 한도</th>
-                                <th class="text-left">추가 공제 한도</th>
-
-                            </tr>
-                            </thead>
-                            <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">7천만 원 이하</td>
-                                <td class="text-left">300만 원</td>
-                                <td class="text-left">300만 원</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">7천만 원 초과</td>
-                                <td class="text-left">250만 원</td>
-                                <td class="text-left">200만 원</td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-
                 </div>
-            </div>
-
             <div class="time" style="text-align: right">
                 <c:set var="formattedTimestamp" value="${fn:substring(deduction_date, 0, 19)}"/>
                 ${formattedTimestamp}
@@ -245,7 +266,7 @@
                 <div class="comment-box">
                     <div class="commet-box-inner">
                         <div class="result-tax">
-                            <h6>2023년 카드 등 소득공제 공제액</h6>
+                            <h6>2023년 카드 등 소득공제액</h6>
                             <br/>
                             <h2><fmt:formatNumber value="${total_deduction}" groupingUsed="true"/>원</h2>
                             <br/>
@@ -266,7 +287,7 @@
                                     <div class="character-box">
                                         <img class="inputImg" src="../../../resources/img/character1.png" height="180">
                                         <div class="comment-text1">
-                                            <h2>별돌이의 소비 제안🌟</h2>
+                                            <h2>별돌이의 소비 제안💫</h2>
                                             <h5> 신용카드 대신 <span style="color: #ff328b; font-size: 25px;">체크카드, 현금</span>을<br/>
                                                 사용하는 것이 소득공제에 더 좋아요.</h5>
                                         </div>
@@ -297,9 +318,10 @@
                 <br/>
                 <br/>
                 <br/>
-                <span style="text-align: center;"><h2>소득공제 현황 보기</h2></span>
+                <span style="text-align: center;"><h2>소득공제 현황 보기📊</h2></span>
                 <br/>
                 <br/>
+                    <div class="big-chart-box">
                 <div class="chart-box">
                     <div class="chart-box-inner">
                         <h3>전체 카드소득공제 현황</h3><br/>
@@ -310,6 +332,7 @@
                                 value="${total}"
                                 groupingUsed="true"/>원</span>
                         </div>
+                        <p>(기준금액 = 기본공제한도 + 추가공제한도)</p>
                         <div class="chart1">
                             <canvas id="deductionChart1"></canvas>
                         </div>
@@ -328,7 +351,7 @@
                     </div>
                     <br/>
                     <div class="chart-box-inner">
-                        <h3>일반 카드소득공제 현황</h3><br/>
+                        <h3>기본 카드소득공제 현황</h3><br/>
                         <div class="info-item1">
                     <span style="color: #106e69;">
                             달성금액 : <span style="color: #ff328b;"><fmt:formatNumber value="${basic_deduction}"
@@ -336,6 +359,7 @@
                             value="${basicTotal}"
                             groupingUsed="true"/>원</span>
                         </div>
+                            <p>(기준금액 = 기본공제한도)</p>
                         <div class="chart2">
                             <canvas id="deductionChart2"></canvas>
                         </div>
@@ -356,7 +380,20 @@
                     </div>
                     <script src="../../resources/js/deductionChart.js"></script>
                 </div>
+<%--                        <span style="font-weight: bold; color: #fd328a;">--%>
+                    <br/><br/> <h2>💡카드 소득공제 TIP</h2>
+                    <div class="text-box2">
 
+                        <p2>✔️ 카드소득공제는 일반소득공제와 추가소득공제로 구성되어있어요.</p2><br/><br/>
+                        <p2>✔️ 카드 등 소득공제는 총 급여액의 25%를 초과한 금액부터 가능해요.</p2><br/>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(총 급여액은 연봉에서 식대나 보육 수당 같은 ‘비과세 소득’을 뺀 금액을 의미해요.)</p><br/>
+                        <p2>✔️ 기본공제항목은 결제수단이 신용카드, 체크/직불카드, 현금영수증인 것을 의미해요.</p2><br/><br/>
+                        <p2>✔️ 추가공제항목에는 도서/공연 등의 문화비, 전통시장, 대중교통에서 사용한 금액이 해당돼요</p2>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(단, 총급여가 7천만원을 초과하는 경우는 문화비 공제를 받을 수 없어요)</p><br/>
+
+                    </div>
+                    <br/>
+                    </div>
             </div>
         </div>
 

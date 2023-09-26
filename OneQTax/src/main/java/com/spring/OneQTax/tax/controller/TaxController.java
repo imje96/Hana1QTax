@@ -97,6 +97,7 @@ public class TaxController {
         // total_income 가져오기
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         double totalIncome = taxInfoVO.getTotal_income();
+        double minimumAmount = taxInfoVO.getMinimum_amount();
 
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
         CardTaxResultVO result = taxService.getDeductionResult(memberId);
@@ -116,6 +117,8 @@ public class TaxController {
         double remain_deduction2 = total2 - result.getBasic_deduction();
 
         // 그래프를 위한 값
+
+        model.addAttribute("minimumAmount", (int)minimumAmount);
 
         model.addAttribute("total", (int) total1);
         model.addAttribute("basicTotal", (int) total2);

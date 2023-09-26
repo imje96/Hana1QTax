@@ -279,16 +279,21 @@ section.service .img.motion {
 /*    추가*/
     flex-direction: column;
 }
+/* column화를 위한 div*/
+.big-chart-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .chart-box {
-    margin-top: 10px;
     display: flex;
     /*flex-direction: column;*/
     width: 1100px;
-    margin: 0 50px;
+    margin: 10px 20px;
     align-items: center;
     /*height: 400px;*/
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .chart-box .chart1 {
@@ -296,7 +301,7 @@ section.service .img.motion {
     /*height: 200px;*/
     display: flex;
     justify-content: center;
-    margin: 47px 0;
+    margin: 50px 0;
 }
 
 .chart-box .chart2 {
@@ -307,8 +312,8 @@ section.service .img.motion {
 .chart-box-inner {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 400px;
+    width: 530px;
+    height: 430px;
     align-items: center;
     background: #f3f3f3;
     padding-top: 30px;
@@ -348,7 +353,7 @@ section.service .img.motion {
     padding: 10px 10px;
     font-size: 23px;
     text-align: center;
-    background: #fffee3;
+    background: #fdd0e4;
 }
 /* comment 부분 */
 .comment-box {
@@ -562,6 +567,7 @@ div.table-title {
     border-collapse: collapse;
     height: 200px;
     margin: auto;
+    margin-top:5px;
     max-width: 600px;
     padding:5px;
     width: 100%;
@@ -735,9 +741,11 @@ td.text-right {
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 50px;
     border: 1px solid #d2d0d0;
-    width: 50%;
+    width: 30%;
+    padding: 50px 100px 400px 100px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
 }
 
 .modal_simulation{
@@ -822,4 +830,21 @@ input[type="text"] {
     margin: 20px 5px;
     padding: 10px;
     line-height: 1.8rem;
+}
+
+/* 텍스트 영역 */
+.text-box{
+    background: #eaf3f3;
+    padding: 6px 5px 8px 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.text-box2{
+    background: #eaf3f3;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 20px 0 5px 200px;
+    text-align: left;
+    width: 900px;
 }
