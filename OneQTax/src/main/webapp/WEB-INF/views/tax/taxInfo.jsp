@@ -60,95 +60,79 @@
 <div style="overflow: hidden;">
 
     <section class="main">
-
-
-
         <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
+            <br/>
+            <br/>
+            <br/>
             <div style="padding-left: 30px;">
-                <h3 style="color: #018c8d; margin-bottom: 15px;">카드황금비율관리</h3>
-                <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <h6 style="color: black;">소득공제 안내</h6>
+                <h3 style="color: #065859; margin-bottom: 15px;">카드황금비율관리</h3>
+                <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
+                <a href="${pageContext.request.contextPath}/taxMain"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">소득공제 안내</div>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/taxInfo" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 관리</div></a>
+
+                <a href="${pageContext.request.contextPath}/taxThreshold"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">소비 문턱 넘기기</div>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/taxThreshold" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div></a>
+                <a href="${pageContext.request.contextPath}/taxInfo"
+                   style="display: block; margin-bottom: 20px;">
+                    <h6 style="color: black; margin-bottom: 15px;">카드황금비율 계산</h6>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
+                </a>
                 <hr style="width: 200px;">
             </div>
         </div>
 
 
+
         <div class="section">
-            <div class="container1">
-                <table>
-                    <tr>
-                        <th>Calculation ID</th>
-                        <th>Member ID</th>
-                        <th>Total Income</th>
-                        <th>Minimum Amount</th>
-                        <th>Deduction Rate</th>
-                        <th>Basic Limit</th>
-                        <th>Additional Limit</th>
-                    </tr>
-                    <tr>
-                        <td>${taxInfo.calculation_id}</td>
-                        <td>${taxInfo.member_id}</td>
-                        <td>${taxInfo.total_income}</td>
-                        <td>${taxInfo.minimum_amount}</td>
-                        <td>${taxInfo.deduction_rate}</td>
-                        <td>${taxInfo.basic_limit}</td>
-                        <td>${taxInfo.additional_limit}</td>
-                    </tr>
-                </table>
-
-                <table>
-                    <tr>
-                        <th>Total ID</th>
-                        <th>Member ID</th>
-                        <th>Credit Total</th>
-                        <th>Debit Total</th>
-                        <th>Cash Total</th>
-                        <th>Culture Total</th>
-                        <th>Market Total</th>
-                        <th>Transport Total</th>
-                    </tr>
-                    <tr>
-                        <td>${transaction.total_id}</td>
-                        <td>${transaction.member_id}</td>
-                        <td>${transaction.credit_total}</td>
-                        <td>${transaction.debit_total}</td>
-                        <td>${transaction.cash_total}</td>
-                        <td>${transaction.culture_total}</td>
-                        <td>${transaction.market_total}</td>
-                        <td>${transaction.transport_total}</td>
-                    </tr>
-                </table>
-
+            <div class="container-title">
+                <h2>카드황금비율 계산</h2>
+                <br/>
+                <span style="color: #615e5e"><h3>연말정산에서 카드 소득공제를 가장 많이 받을 수 있도록 제안해드릴게요</h3></span>
             </div>
+            <br/><br/>
+
+
+
 
             <div class="container2">
-                <form action="/calculateAndInsertDeduction" method="post">
-                    <!-- 필요한 입력 필드들을 여기에 추가합니다. 예를 들면, -->
+                <div class="flex-box">
 
-                    <!-- 제출 버튼 -->
-<%--                    <input type="submit" value="계산하기" />--%>
-                    <button id="openModalBtn" class="modalBtn" type="submit"><h6>계산하기</h6></button>
-                </form>
+                <div class="info-item4">
+                    <div class="info-item">
+                        체크카드나 현금영수증 혜택이 좋다던데... <br/>
+                        계속 신용카드 써도 될까?
+                    </div>
 
-
-
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult">결과보기</a>
+                </div>
+                    <img src="../../../resources/img/character3.png" >
+                </div>
                 <br/>
-                <a href="${pageContext.request.contextPath}/taxMain">소득공제 메인화면으로 이동</a>
+
+
+
+
+                <form action="/calculateAndInsertDeduction" method="post">
+                  <button id="openModalBtn" class="modalBtn" type="submit"><h6>계산하기</h6></button>
+                </form>
+                <br/>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult">
+                    <button class="pointBtn"><h6>결과보기</h6></button></a>
+                <br/>
             </div>
 
         </div>

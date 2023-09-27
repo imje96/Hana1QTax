@@ -8,6 +8,10 @@ import org.apache.ibatis.annotations.Param;
 public interface MemberMapper {
 //    @Param("password") 제외
     MemberVO loginMember(@Param("email") String email, @Param("password") String password);
+
+    /* 우리집 돈관리 */
+    MemberVO getMemberByEmail(String email);
+
 //    List<Member> getAllMember();
 //    Member selectNameOfMember(String email);
 //    Member loginMember(HashMap<String, String> loginData);

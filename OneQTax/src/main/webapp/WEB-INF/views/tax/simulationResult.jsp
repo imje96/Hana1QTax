@@ -58,32 +58,32 @@
         <br/>
         <br/>
         <div style="padding-left: 30px;">
-            <h3 style="color: #018c8d; margin-bottom: 15px;">연말정산플래너</h3>
-            <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
+            <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
+            <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/taxMain"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/taxMain"
+               style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 시뮬레이션</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/simulationResult"
-               style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
                 <h6 style="color: black; margin-bottom: 15px;">연말정산 결과</h6>
             </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxCalculator"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
-            </a>
-            <hr style="width: 200px;">
+            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
+            <%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
+            <%--               style="display: block; margin-bottom: 20px;">--%>
+            <%--                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>--%>
+            <%--            </a>--%>
+            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
+            <%--            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"--%>
+            <%--               style="display: block; margin-bottom: 20px;">--%>
+            <%--                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>--%>
+            <%--            </a>--%>
+            <%--            <hr style="width: 200px;">--%>
         </div>
     </div>
     <div class="container1">
@@ -115,6 +115,11 @@
                             <%--                                                                         groupingUsed="true"/>원--%>
                             <%--                            </h4>--%>
 
+                                <div class="info-item5">
+                                    <div class="info-item">
+
+
+
                             <c:choose>
                                 <c:when test="${totalResult.expected_tax >= 0}">
                                     <h4><span style="color: #e3003f;">납부</span>할 세금 :
@@ -137,7 +142,12 @@
                             <h4><span style="color: #018c8d;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
                                                                                                  groupingUsed="true"/>원
                             </h4>
-                            <br/>
+                                    </div>
+
+                                </div>
+
+
+                                <br/>
                             <p2>&#183; 납부할 세금이 +(양수)이면 세금을 납부해야하며,<br/> -(음수)이면 세금을 환급받습니다.</p2>
                             <br/><br/>
                             <table class="table-tax">
@@ -205,7 +215,7 @@
                                 </tbody>
                             </table>
 
-                            <br>
+                            <br><br>
                             <button type="button" class="next-button">추가항목 입력</button>
                         </fieldset>
 

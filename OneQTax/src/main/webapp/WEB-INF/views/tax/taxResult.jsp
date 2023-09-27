@@ -72,21 +72,22 @@
             <br/>
             <div style="padding-left: 30px;">
                 <h3 style="color: #065859; margin-bottom: 15px;">카드황금비율관리</h3>
-                <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
+                <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/taxMain"
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">소득공제 안내</div>
+                </a>
+                <hr style="width: 200px; margin-bottom: 15px;">
+                <a href="${pageContext.request.contextPath}/taxThreshold"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">소비 문턱 넘기기</div>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/taxInfo" style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">카드황금비율 계산</div>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/taxThreshold"
-                   style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div>
-                </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
+
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
                    style="display: block; margin-bottom: 20px;">
                     <h6 style="color: black; margin-bottom: 15px;">카드황금비율 결과</h6></a>
@@ -254,11 +255,13 @@
                         <%--                </div>--%>
                     </div>
                 </div>
+
+
             <div class="time" style="text-align: right">
                 <c:set var="formattedTimestamp" value="${fn:substring(deduction_date, 0, 19)}"/>
                 ${formattedTimestamp}
-                <a href="#" onclick="window.location.reload(); return false;"><img
-                        src="../../../resources/img/refresh.png" height="30"></a>
+                <a href=""${pageContext.request.contextPath}/calculateAndInsertDeduction" onclick="window.location.reload(); return false;">
+                <img src="../../../resources/img/refresh.png" height="30"></a>
             </div>
             <div class="container2">
                 <%--                <p>${deduction_date}</p>--%>
@@ -296,6 +299,7 @@
 
                                             <%--                                    <h5> 신용카드 대신 <span style="color: #ff328b;">체크카드, 현금</span>을 사용하는 것이 <br/>소득공제에 더--%>
                                             <%--                                        좋아요.</h5>--%>
+                                                <span style="color: #afb2b2;">  <p>* 같은 1만원을 쓰더라도 체크카드는 3,000,원 신용카드는 1,500원만 공제되니까요 *</p></span>
                                         다만, 문화관련은 <span style="color: #ff328b;">30%</span>, 교통카드나 재래시장은 <span
                                             style="color: #ff328b;">40%</span>,
                                         결제수단에<br/> 상관없이 공제가 되니 혜택이 좋은 신용카드를 쓰는 것이 유리해요.
@@ -364,15 +368,6 @@
                             <canvas id="deductionChart2"></canvas>
                         </div>
                         <div class="info-box">
-                            <%--                        <div class="info-item">신용카드공제액:&nbsp;<fmt:formatNumber value="${credit_deduction}"--%>
-                            <%--                                                                               groupingUsed="true"/>원--%>
-                            <%--                        </div>--%>
-                            <%--                        <div class="info-item">체크카드공제액:&nbsp;<fmt:formatNumber value="${debit_deduction}"--%>
-                            <%--                                                                               groupingUsed="true"/>원--%>
-                            <%--                        </div>--%>
-                            <%--                        <div class="info-item">현금영수증공제액:&nbsp;<fmt:formatNumber value="${cash_deduction}"--%>
-                            <%--                                                                                groupingUsed="true"/>원--%>
-                            <%--                        </div>--%>
                             <div class="info-item2">남은 공제가능액:&nbsp;<fmt:formatNumber value="${remainingDeduction2}"
                                                                                      groupingUsed="true"/>원
                             </div>
@@ -381,7 +376,7 @@
                     <script src="../../resources/js/deductionChart.js"></script>
                 </div>
 <%--                        <span style="font-weight: bold; color: #fd328a;">--%>
-                    <br/><br/> <h2>💡카드 소득공제 TIP</h2>
+                    <br/><br/> <h2>💡카드 소득공제 TIP</h2><br/>
                     <div class="text-box2">
 
                         <p2>✔️ 카드소득공제는 일반소득공제와 추가소득공제로 구성되어있어요.</p2><br/><br/>

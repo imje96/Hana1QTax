@@ -16,6 +16,11 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
+    @Override
+    public MemberVO getMemberByEmail(String email) {
+        return memberMapper.getMemberByEmail(email);
+    }
+
 
 //    @Override
 //    public List<Member> getAllMember() {

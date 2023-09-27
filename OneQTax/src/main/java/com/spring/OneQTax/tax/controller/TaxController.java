@@ -2,7 +2,10 @@ package com.spring.oneqtax.tax.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.oneqtax.member.domain.MemberVO;
+import com.spring.oneqtax.member.repository.MemberMapper;
+import com.spring.oneqtax.member.service.MemberService;
 import com.spring.oneqtax.tax.domain.*;
+import com.spring.oneqtax.tax.service.SpouseService;
 import com.spring.oneqtax.tax.service.TaxFormService;
 import com.spring.oneqtax.tax.service.TaxService;
 import com.spring.oneqtax.tax.service.TotalTaxService;
@@ -12,7 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +29,12 @@ public class TaxController {
     private TotalTaxService totalTaxService;
     @Autowired
     private TaxFormService taxFormService;
+    @Autowired
+    private MemberService memberService;
+    @Autowired
+    private SpouseService spouseService;
+
+
 //    @Autowired
 //    private TotalTaxService totalTaxService;
     private final TaxService taxService;
@@ -154,27 +165,51 @@ public class TaxController {
     }
 
     // 공제 계산하기
+//    @PostMapping("/calculateAndInsertDeduction")
+//    public ResponseEntity<CardTaxResultVO> calculateAndInsertDeduction(HttpSession session) {
+//        // member_id 먼저 가져오기
+//        MemberVO currentUser = getCurrentUser(session);
+//
+//        if (currentUser == null) {
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // 401 Unauthorized 응답
+//        }
+//
+//        int memberId = currentUser.getMember_id();
+//
+//
+//        // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
+//        CardTaxResultVO result = taxService.processDeductionForMember(memberId);
+//
+//
+//        if (result == null) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//
+//        return new ResponseEntity<>(result, HttpStatus.OK);
+//    }
+// 공제 계산하기
     @PostMapping("/calculateAndInsertDeduction")
-    public ResponseEntity<CardTaxResultVO> calculateAndInsertDeduction(HttpSession session) {
+    public String calculateAndInsertDeduction(HttpSession session, RedirectAttributes redirectAttributes) {
         // member_id 먼저 가져오기
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // 401 Unauthorized 응답
+            // 로그인이 되어있지 않으면 로그인 페이지로 리디렉션
+            return "redirect:/login"; // 로그인 페이지 URL로 리디렉션
         }
 
         int memberId = currentUser.getMember_id();
 
-
         // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
         CardTaxResultVO result = taxService.processDeductionForMember(memberId);
 
-
         if (result == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            // 오류 발생 시 오류 페이지로 리디렉션
+            return "redirect:/error"; // 오류 페이지 URL로 리디렉션
         }
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        // 다른 JSP 페이지로 리디렉션
+        return "tax/taxInfo"; // 이동하려는 JSP 페이지 URL로 리디렉션
     }
 
     // 소비 문턱넘기기 페이지로 이동
@@ -334,45 +369,6 @@ public class TaxController {
         model.addAttribute("totalTransaction", totalTransaction);
         return "tax/simulationResult";
     }
-//        임시 참고
-
-
-//        // 세션에서 totalInfo 객체를 가져옴
-//        TotalInfoVO totalInfoFromSession = (TotalInfoVO) session.getAttribute("totalInfo");
-//
-//        // totalInfoFromSession 객체를 사용할 수 있음
-//        if (totalInfoFromSession != null) {
-//            // 이제 totalInfoFromSession 객체를 사용할 수 있음
-//            int totalInfoId = totalInfoFromSession.getTotalInfo_id();
-//            CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
-//            TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
-//
-//            TotalTaxResultVO totalResult = totalTaxService.getTotalResultByTotalInfoId(totalInfoId);
-//
-//            int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
-//            int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
-//                    +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
-//            int totalInfo_id = totalResult.getTotalInfo_id();
-//
-//            totalResult.setTotalInfo_id(totalInfo_id);
-//            // 계산결과 DB에 저장하기
-//            totalTaxService.saveResult(totalResult);
-//
-//            // 결과를 세션 혹은 Model에 저장하여 view에 전달
-//            session.setAttribute("totalInfo", totalInfoFromSession); // 세션에 저장하는 경우
-//            session.setAttribute("totalResult", totalResult);
-//            model.addAttribute("totalInfo", totalInfoFromSession);   // Model에 추가하는 경우 (JSP 등에서 사용)
-//            model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
-//            model.addAttribute("totalResult", totalResult);
-//            model.addAttribute("totalBenefit", totalBenefit);
-//            model.addAttribute("transaction", transaction);
-//            model.addAttribute("totalTransaction", totalTransaction);
-//
-
-
-
-
-
 
 
     @GetMapping("/taxSimulation") // form step1~3 호출
@@ -452,11 +448,6 @@ public class TaxController {
         return "tax/simulationResult";
     }
 
-    // 시뮬레이션 결과만 보기 임시창
-//    @GetMapping("/simulationResult")
-//    public String tempDetail(){
-//        return "tax/simulationDetail";
-//    }
 // 시뮬레이션 결과만 보기 임시창
     @GetMapping("/simulationResult")
     public String viewSimulationResult(){
@@ -510,7 +501,105 @@ public class TaxController {
 
         return "tax/simulationResult";
     }
-//임시 추가
+
+    /* 배우자 공제 공유 기능 */
+
+
+    @GetMapping("/spouseAdd")
+    public String addFriendForm() {
+        return "tax/spouseInvation";
+    }
+
+    @PostMapping("/spouseAdd")
+    public String addFriend(@RequestParam String spouseEmail, HttpSession session, RedirectAttributes redirectAttributes) {
+        MemberVO member = (MemberVO) session.getAttribute("loggedInMember");
+        if (member == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "You must be logged in to add a friend.");
+            return "redirect:/login";
+        }
+
+
+        MemberVO spouse = memberService.getMemberByEmail(spouseEmail);
+        if (spouse == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "찾으시는 회원이 조회되지 않습니다.");
+            return "redirect:/spouseAdd";
+        }
+
+        SpouseRelationVO spouseRelation = new SpouseRelationVO();
+        spouseRelation.setMember_id(member.getMember_id());
+        spouseRelation.setSpouse_id(spouse.getMember_id());
+        spouseRelation.setStatus("N");
+
+        spouseService.addSpouse(spouseRelation);
+        redirectAttributes.addFlashAttribute("successMessage", "Friend request sent successfully.");
+
+        return "tax/spouseAgreement";
+    }
+
+
+    @GetMapping("/spouseAgreement")
+    public String groupAgreement() throws Exception {
+        return "/tax/spouseInvitation";
+    }
+    @GetMapping("/spouseDeductionDetail")
+    public String groupAccountDetail() throws Exception {
+        return "/spouse/spouseDeductionDetail";
+    }
+    @GetMapping("/openedAccount")
+    public String openedAccount() throws Exception {
+        return "/spouse/openedAccount";
+    }
+    @GetMapping("/spouseInvite")
+    public String groupInvite() throws Exception {
+        return "/tax/spouseInvite";
+    }
+
+    @GetMapping("/myspouse/{memberId}")
+    public String myspouse(@PathVariable int memberId, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
+        session.setAttribute("memberId",memberId);
+        return "/tax/myspouse";
+    }
+
+    @GetMapping("/groupStatement")
+    public String groupStatement() throws Exception {
+        return "/group/groupStatement";
+    }
+
+//    @PostMapping("/selectVirtureAccountNumber")
+//    public ResponseEntity<GroupAccount> selectVirtureAccountNumber(HttpServletRequest request) {
+//        try {
+//            HttpSession session = request.getSession();
+//            GroupAccount groupAccount = (GroupAccount) session.getAttribute("groupAccount");
+//            Member member = (Member) session.getAttribute("member");
+//            GroupAccount groupAccountInfo = accountService.selectVirtureAccountNumber(groupAccount.getAccount_num(),member.getMember_id());
+//            session.setAttribute("groupAccountInfo",groupAccountInfo);
+//            session.setAttribute("groupId",groupAccountInfo.getGroup_id());
+//            accountService.insertGroupMember("L",groupAccount.getGroup_leader(), groupAccountInfo.getGroup_id());
+//
+//
+//            MemberVO currentUser = (MemberVO) session.getAttribute("currentUser");
+//
+//            if (currentUser == null) {
+//                // 리다이렉트나 에러 메시지 처리
+//                return "redirect:/login";
+//            }
+//
+//            System.out.println(currentUser);
+//
+//            int memberId = currentUser.getMember_id();
+//            System.out.println("id " + memberId);
+//
+//
+//            return ResponseEntity.ok(groupAccountInfo);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//        }
+//    }
+
+
+
+    //임시 추가
     @GetMapping("/dashboard")
     public String viewDashboard(){
 
@@ -522,7 +611,5 @@ public class TaxController {
 
         return "transaction/report";
     }
-
-
 
 }

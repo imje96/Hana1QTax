@@ -204,4 +204,30 @@
 
     </select>
 
+
+    <!--  우리집 돈관리  -->
+    <!-- 우리집 돈관리  -->
+<!--    <select id="getMemberByEmail" resultType="com.spring.oneqtax.member.domain.MemberVO">-->
+<!--        select * from member-->
+<!--        where email=#{email}-->
+<!--    </select>-->
+
+        <insert id="insertSpouseRelation">
+            INSERT INTO spouseRelation (member_id, friend_id) VALUES (#{memberId}, #{friendId})
+        </insert>
+
+        <select id="selectSpouseRelationsById" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
+            SELECT * FROM spouseRelation WHERE id = #{id}
+        </select>
+
+        <update id="updateFriendRelation">
+            UPDATE spouseRelation SET status = 'Y'
+            WHERE member_id = #{id} OR friend_id = #{id}
+        </update>
+
+        <delete id="deleteFriendRelationById">
+            DELETE FROM friend_relations WHERE id = #{id}
+        </delete>
+
+
 </mapper>

@@ -44,8 +44,8 @@
         <br/>
         <br/>
         <div style="padding-left: 30px;">
-            <h3 style="color: #018c8d; margin-bottom: 15px;">연말정산플래너</h3>
-            <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
+            <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
+            <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/taxMain"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
@@ -59,17 +59,17 @@
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 결과</div>
             </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxCalculator"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
-            </a>
-            <hr style="width: 200px;">
+<%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
+<%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
+<%--               style="display: block; margin-bottom: 20px;">--%>
+<%--                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>--%>
+<%--            </a>--%>
+<%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
+<%--            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"--%>
+<%--               style="display: block; margin-bottom: 20px;">--%>
+<%--                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>--%>
+<%--            </a>--%>
+<%--            <hr style="width: 200px;">--%>
         </div>
     </div>
     <div class="container1">

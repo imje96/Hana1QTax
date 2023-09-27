@@ -3,6 +3,8 @@ package com.spring.oneqtax.tax.repository;
 import com.spring.oneqtax.tax.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface TaxMapper {
 
@@ -34,4 +36,16 @@ public interface TaxMapper {
     TotalTaxResultVO getTotalResultByTotalInfoId(int totalInfoId);
 
     TotalTaxResultVO getTotalResultByTotalMemberId(int memberId);
+
+    /* 우리집 돈관리 */
+    SpouseRelationVO findByRelationId(int relationId);
+
+    List<SpouseRelationVO> selectSpouseRelationsById(int id);
+    void save(int relationId);
+
+    void insertSpouseRelation(SpouseRelationVO spouseRelation);
+    SpouseRelationVO selectSpouseRelationById(int memberId);
+    void updateSpouseRelation(SpouseRelationVO spouseRelation);
+    void deleteSpouseRelationById(int memberId);
+
 }

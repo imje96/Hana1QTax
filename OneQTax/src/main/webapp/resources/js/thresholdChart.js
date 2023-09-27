@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var threshold1 = new Chart(ctx1, {
         type: 'doughnut',
         data: {
-            labels: ['신용카드 사용액', '체크카드 사용액', '현금 사용액', '남은 금액'],
+            labels: ['신용카드 사용액', '체크카드 사용액', '현금 사용액' /*, '남은 금액'*/],
             datasets: [{
                 data: [
                     window.creditTotal,
                     window.debitTotal,
                     window.cashTotal,
-                    window.remainingThreshold,
+                    // window.remainingThreshold,
                 ],
                 backgroundColor: ['#fdbebe', '#9ae7d7', '#dac3ee','#efecec'],
                 borderColor: ['#f1f2f5', '#f1f2f5', '#f1f2f5', '#f1f2f5'],

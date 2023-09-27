@@ -44,32 +44,32 @@
         <br/>
         <br/>
         <div style="padding-left: 30px;">
-            <h3 style="color: #018c8d; margin-bottom: 15px;">연말정산플래너</h3>
-            <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
+            <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
+            <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/taxMain"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/taxMain"
+               style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 시뮬레이션</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/simulationResult"
-               style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
                 <h6 style="color: black; margin-bottom: 15px;">연말정산 결과</h6>
             </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxCalculator"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
-            </a>
-            <hr style="width: 200px;">
+            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
+            <%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
+            <%--               style="display: block; margin-bottom: 20px;">--%>
+            <%--                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>--%>
+            <%--            </a>--%>
+            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
+            <%--            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"--%>
+            <%--               style="display: block; margin-bottom: 20px;">--%>
+            <%--                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>--%>
+            <%--            </a>--%>
+            <%--            <hr style="width: 200px;">--%>
         </div>
     </div>
     <div class="container1">
@@ -94,13 +94,32 @@
                     <div id="progress-content-section">
                         <!-- Step 1 Content -->
                         <fieldset class="section-content step1 active" data-step="1">
+                            <div class="center">
+                            <img class="inputImg3" src="../../../resources/img/character2.png" >
+                            <br/><br/>
+                            <div class="flex-box">
+
+                                <div class="info-item4">
+                                    <div class="info-item">
+                                        기존에 계산한 연말정산 결과를 불러올게요.<br/>
+                                        하단의 결과 확인하기 버튼을 눌러주세요.
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <br/>
+
+
 
                             <form id="simulationResult" method="post" action="/taxSimulation">
 
                                 <button type="submit" class="submit-button">결과 확인하기</button>
+                            </form>
+                            <br>
+<%--                            <button type="button" class="next-button">다음</button>--%>
 
-                            <br><br>
-                            <button type="button" class="next-button">다음</button>
+                            </div>
                         </fieldset>
 
                         <!-- Step 2 Content -->
