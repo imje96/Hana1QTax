@@ -38,6 +38,8 @@ public interface TaxMapper {
     TotalTaxResultVO getTotalResultByTotalMemberId(int memberId);
 
     /* 우리집 돈관리 */
+
+//    SpouseRelationVO addSpouse(SpouseRelationVO spouseRelation);
     SpouseRelationVO findByRelationId(int relationId);
 
     List<SpouseRelationVO> selectSpouseRelationsById(int id);
@@ -45,7 +47,7 @@ public interface TaxMapper {
 
     void insertSpouseRelation(SpouseRelationVO spouseRelation);
     SpouseRelationVO selectSpouseRelationById(int memberId);
-    void updateSpouseRelation(SpouseRelationVO spouseRelation);
+    void updateStatusToY(int memberId);
     void deleteSpouseRelationById(int memberId);
 
 }

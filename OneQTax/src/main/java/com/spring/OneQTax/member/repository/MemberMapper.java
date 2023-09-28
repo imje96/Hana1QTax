@@ -10,7 +10,7 @@ public interface MemberMapper {
     MemberVO loginMember(@Param("email") String email, @Param("password") String password);
 
     /* 우리집 돈관리 */
-    MemberVO getMemberByEmail(String email);
+    MemberVO getMemberByEmail(String spouseEmail);
 
 //    List<Member> getAllMember();
 //    Member selectNameOfMember(String email);

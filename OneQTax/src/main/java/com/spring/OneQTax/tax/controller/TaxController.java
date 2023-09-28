@@ -512,12 +512,13 @@ public class TaxController {
 
     @PostMapping("/spouseAdd")
     public String addFriend(@RequestParam String spouseEmail, HttpSession session, RedirectAttributes redirectAttributes) {
-        MemberVO member = (MemberVO) session.getAttribute("loggedInMember");
-        if (member == null) {
-            redirectAttributes.addFlashAttribute("errorMessage", "You must be logged in to add a friend.");
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
-
 
         MemberVO spouse = memberService.getMemberByEmail(spouseEmail);
         if (spouse == null) {
@@ -526,15 +527,59 @@ public class TaxController {
         }
 
         SpouseRelationVO spouseRelation = new SpouseRelationVO();
-        spouseRelation.setMember_id(member.getMember_id());
+        spouseRelation.setMember_id(currentUser.getMember_id());
         spouseRelation.setSpouse_id(spouse.getMember_id());
         spouseRelation.setStatus("N");
 
-        spouseService.addSpouse(spouseRelation);
+        spouseService.insertSpouseRelation(spouseRelation);
         redirectAttributes.addFlashAttribute("successMessage", "Friend request sent successfully.");
 
         return "tax/spouseAgreement";
     }
+
+    @RestController
+    @RequestMapping("/accept")
+    public class AcceptController {
+
+        @GetMapping("/{memberId}")
+        public ResponseEntity<String> acceptInvitation(@PathVariable int memberId) {
+            try {
+                spouseService.acceptInvitation(memberId);
+                return new ResponseEntity<>("Success", HttpStatus.OK);
+            } catch (Exception e) {
+                e.printStackTrace(); // 오류 메시지를 로그에 출력
+                return new ResponseEntity<>("Failure", HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        @GetMapping("/getMemberId")
+        public ResponseEntity<Map<String, Integer>> getMemberId(HttpSession session) {
+            Map<String, Integer> response = new HashMap<>();
+
+            MemberVO currentUser = getCurrentUser(session);
+            int memberId = currentUser.getMember_id();
+
+            response.put("memberId", memberId);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+    }
+
+
+//    @RequestMapping("/myspouse")
+//    public class SpouseController {
+//
+//
+//
+//        @PostMapping("/{memberId}")
+//        public ResponseEntity<String> updateStatus(@PathVariable int memberId) {
+//            try {
+//                spouseService.updateStatusToY(memberId); // 여기서 spouseService는 status를 업데이트하는 서비스 메서드를 호출해야 합니다.
+//                return new ResponseEntity<>("Status updated successfully", HttpStatus.OK);
+//            } catch (Exception e) {
+//                return new ResponseEntity<>("Failed to update status", HttpStatus.INTERNAL_SERVER_ERROR);
+//            }
+//        }
+//    }
 
 
     @GetMapping("/spouseAgreement")

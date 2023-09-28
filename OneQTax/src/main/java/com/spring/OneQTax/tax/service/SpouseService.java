@@ -9,7 +9,9 @@ public interface SpouseService {
     public void acceptFriendInvitation(int relationId);
 
     // 생성 (Create)
-    public void addSpouse(SpouseRelationVO spouseRelation);
+    public void insertSpouseRelation(SpouseRelationVO spouseRelation);
+
+    public void acceptInvitation(int memberId);
 
     // 조회 (Read)
     public SpouseRelationVO getFriendRelation(int memberId);

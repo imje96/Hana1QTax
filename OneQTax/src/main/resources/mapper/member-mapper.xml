@@ -20,7 +20,7 @@
     <!-- 우리집 돈관리  -->
     <select id="getMemberByEmail" resultType="com.spring.oneqtax.member.domain.MemberVO">
         select * from member
-        where email=#{email}
+        where email=#{spouseEmail}
     </select>
 
     <!-- 회원 전체 조회 -->

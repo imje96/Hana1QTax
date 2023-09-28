@@ -213,17 +213,18 @@
 <!--    </select>-->
 
         <insert id="insertSpouseRelation">
-            INSERT INTO spouseRelation (member_id, friend_id) VALUES (#{memberId}, #{friendId})
+            INSERT INTO spouseRelation (member_id, spouse_id, status) VALUES (#{member_id}, #{spouse_id}, #{status})
         </insert>
+
+        <update id="updateStatusToY">
+            UPDATE spouseRelation SET status = 'Y'
+            WHERE member_id = #{memberId} OR spouse_id = #{memberId}
+        </update>
 
         <select id="selectSpouseRelationsById" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
             SELECT * FROM spouseRelation WHERE id = #{id}
         </select>
 
-        <update id="updateFriendRelation">
-            UPDATE spouseRelation SET status = 'Y'
-            WHERE member_id = #{id} OR friend_id = #{id}
-        </update>
 
         <delete id="deleteFriendRelationById">
             DELETE FROM friend_relations WHERE id = #{id}

@@ -92,9 +92,9 @@
 
 
                      <form method="post" action="/spouseAdd">
-                        <label for="friendEmail">Friend's Email: </label>
-                        <input type="email" id="friendEmail" name="friendEmail" required><br>
-                        <button type="submit">Add Friend</button>
+                        <label for="spouseEmail">배우자의 하나카드 아이디: </label>
+                        <input type="email" id="spouseEmail" name="spouseEmail" required><br>
+                        <button class="pointBtn" type="submit">Add Friend</button>
                     </form>
                 </div>
 
@@ -114,7 +114,7 @@
                 </div>
 
 <%--                   <button class="pointBtn" onclick="acceptInvitation(${relationId})">Accept Invitation</button>--%>
-                   <button class="pointBtn">초대 수락하기</button>
+<%--                   <button class="pointBtn">초대 수락하기</button>--%>
 
 
 

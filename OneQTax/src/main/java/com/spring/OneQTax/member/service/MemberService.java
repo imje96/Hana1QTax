@@ -6,7 +6,7 @@ public interface MemberService {
 
     MemberVO loginMember(String email, String password);
 
-    MemberVO getMemberByEmail(String email);
+    MemberVO getMemberByEmail(String spouseEmail);
 //    public List<Member> getAllMember();
 //    Member selectNameOfMember(String email);
 //    Member loginMember(HashMap<String, String> loginData);
