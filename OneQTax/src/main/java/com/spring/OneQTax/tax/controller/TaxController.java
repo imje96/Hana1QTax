@@ -164,29 +164,7 @@ public class TaxController {
         return "tax/taxResult";
     }
 
-    // 공제 계산하기
-//    @PostMapping("/calculateAndInsertDeduction")
-//    public ResponseEntity<CardTaxResultVO> calculateAndInsertDeduction(HttpSession session) {
-//        // member_id 먼저 가져오기
-//        MemberVO currentUser = getCurrentUser(session);
-//
-//        if (currentUser == null) {
-//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // 401 Unauthorized 응답
-//        }
-//
-//        int memberId = currentUser.getMember_id();
-//
-//
-//        // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
-//        CardTaxResultVO result = taxService.processDeductionForMember(memberId);
-//
-//
-//        if (result == null) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//        return new ResponseEntity<>(result, HttpStatus.OK);
-//    }
+
 // 공제 계산하기
     @PostMapping("/calculateAndInsertDeduction")
     public String calculateAndInsertDeduction(HttpSession session, RedirectAttributes redirectAttributes) {
@@ -565,21 +543,78 @@ public class TaxController {
     }
 
 
-//    @RequestMapping("/myspouse")
-//    public class SpouseController {
+    @GetMapping("/spouseResult")
+    public String getSpouseResult(HttpSession session, Model model) {
+
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+
+        // total_income 가져오기
+        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
+        double totalIncome = taxInfoVO.getTotal_income();
+        double minimumAmount = taxInfoVO.getMinimum_amount();
+
+        TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
+        CardTaxResultVO result = taxService.getDeductionResult(memberId);
+
+        // Transform the VO objects
+//        DeductionResultVO2 transformedTransaction = transformTransaction(transaction);
+//        DeductionResultVO2 transformedResult = transformDeductionResult(result);
 //
-//
-//
-//        @PostMapping("/{memberId}")
-//        public ResponseEntity<String> updateStatus(@PathVariable int memberId) {
-//            try {
-//                spouseService.updateStatusToY(memberId); // 여기서 spouseService는 status를 업데이트하는 서비스 메서드를 호출해야 합니다.
-//                return new ResponseEntity<>("Status updated successfully", HttpStatus.OK);
-//            } catch (Exception e) {
-//                return new ResponseEntity<>("Failed to update status", HttpStatus.INTERNAL_SERVER_ERROR);
-//            }
-//        }
-//    }
+
+//        추가
+        double total1 = (totalIncome > 70000000) ? 4500000 : 6000000;
+        double total2 = (totalIncome > 70000000) ? 2500000 : 3000000;
+
+        // 각 항목의 퍼센트를 계산
+        double totalDeductions = result.getCredit_deduction() + result.getDebit_deduction() + result.getCash_deduction() + result.getAdditional_deduction();
+        double remain_deduction1 = total1 - totalDeductions; // 나머지 금액 계산
+        double remain_deduction2 = total2 - result.getBasic_deduction();
+
+        // 그래프를 위한 값
+
+        model.addAttribute("minimumAmount", (int)minimumAmount);
+
+        model.addAttribute("total", (int) total1);
+        model.addAttribute("basicTotal", (int) total2);
+        model.addAttribute("remainingDeduction", (int) remain_deduction1);
+        model.addAttribute("remainingDeduction2", (int) remain_deduction2);
+
+        model.addAttribute("credit_deductible", (int) result.getCredit_deductible());
+        model.addAttribute("credit_deduction", (int) result.getCredit_deduction());
+        model.addAttribute("debit_deductible", (int) result.getDebit_deductible());
+        model.addAttribute("debit_deduction", (int) result.getDebit_deduction());
+        model.addAttribute("cash_deductible", (int) result.getCash_deductible());
+        model.addAttribute("cash_deduction", (int) result.getCash_deduction());
+        model.addAttribute("basic_deduction", (int) result.getBasic_deduction());
+        model.addAttribute("additional_deduction", (int) result.getAdditional_deduction());
+        model.addAttribute("total_deduction", (int) result.getTotal_deduction());
+        model.addAttribute("reducing_tax", (int) result.getReducing_tax());
+        model.addAttribute("deduction_date", result.getResult_date());
+
+        model.addAttribute("credit_total", (int) transaction.getCredit_total());
+        model.addAttribute("debit_total", (int) transaction.getDebit_total());
+        model.addAttribute("cash_total", (int) transaction.getCash_total());
+        model.addAttribute("culture_total", (int) transaction.getCulture_total());
+        model.addAttribute("market_total", (int) transaction.getMarket_total());
+        model.addAttribute("transport_total", (int) transaction.getTransport_total());
+
+
+        System.out.println("서비스 결과 (컨트롤러): " + result);
+        // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
+        model.addAttribute("result", result);
+        model.addAttribute("transaction", transaction);
+//        return  "tax/taxResult";
+        return "tax/spouseResult";
+    }
+
+
 
 
     @GetMapping("/spouseAgreement")
@@ -610,38 +645,6 @@ public class TaxController {
     public String groupStatement() throws Exception {
         return "/group/groupStatement";
     }
-
-//    @PostMapping("/selectVirtureAccountNumber")
-//    public ResponseEntity<GroupAccount> selectVirtureAccountNumber(HttpServletRequest request) {
-//        try {
-//            HttpSession session = request.getSession();
-//            GroupAccount groupAccount = (GroupAccount) session.getAttribute("groupAccount");
-//            Member member = (Member) session.getAttribute("member");
-//            GroupAccount groupAccountInfo = accountService.selectVirtureAccountNumber(groupAccount.getAccount_num(),member.getMember_id());
-//            session.setAttribute("groupAccountInfo",groupAccountInfo);
-//            session.setAttribute("groupId",groupAccountInfo.getGroup_id());
-//            accountService.insertGroupMember("L",groupAccount.getGroup_leader(), groupAccountInfo.getGroup_id());
-//
-//
-//            MemberVO currentUser = (MemberVO) session.getAttribute("currentUser");
-//
-//            if (currentUser == null) {
-//                // 리다이렉트나 에러 메시지 처리
-//                return "redirect:/login";
-//            }
-//
-//            System.out.println(currentUser);
-//
-//            int memberId = currentUser.getMember_id();
-//            System.out.println("id " + memberId);
-//
-//
-//            return ResponseEntity.ok(groupAccountInfo);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//        }
-//    }
-
 
 
     //임시 추가

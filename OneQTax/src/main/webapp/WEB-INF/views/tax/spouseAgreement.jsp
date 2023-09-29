@@ -102,10 +102,13 @@
                 <%--                   <button class="pointBtn" onclick="acceptInvitation(${relationId})">Accept Invitation</button>--%>
 <%--                <button class="pointBtn">초대 수락하기</button>--%>
 
-                <button id="kakaotalk-sharing-btn" href="javascript:;" onclick="send()">
+                <button class="pointBtn" id="kakaotalk-sharing-btn" href="javascript:;" onclick="send()">
                     <span>배우자 초대하기</span>
                 </button>
-
+                <br/>
+                <form method="get" action="/spouseResult">
+                    <button class="modalBtn" type="submit">결과 확인하기</button>
+                </form>
             </div>
         </div>
     </section>
@@ -124,16 +127,43 @@
             success: function(response) {
                 var memberId = response.memberId;
                 if(memberId!=""){
+                    // Kakao.Share.createCustomButton({
+                    //     container: '#kakaotalk-sharing-btn',
+                    //     templateId: 98999,
+                    //     templateArgs: {
+                    //         title: '하나원큐택스 우리집 돈 관리 초대장',
+                    //         description: '우리집, 13월의 월급을 받을 수 있을까?🏡',
+                    //
+                    //         imageUrl: 'https://ibb.co/HD27qgB',
+                    //         link: {
+                    //             // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                    //             mobileWebUrl: 'http://localhost:8080/accept/'+memberId,
+                    //             webUrl: 'http://localhost:8080/accept/'+memberId
+                    //         },
+                    //     },
+                    //     buttons: [
+                    //         {
+                    //             title: '우리집 돈 관리 시작하기',
+                    //             link: {
+                    //                 mobileWebUrl: 'http://localhost:8080/accept/'+memberId,
+                    //                 webUrl: 'http://localhost:8080/accept/'+memberId
+                    //             },
+                    //         }
+                    //     ],
+                    //     serverCallbackArgs: '{"key" : "value"}',
+                    // });
+
                     Kakao.Share.createDefaultButton({
                         container: '#kakaotalk-sharing-btn',
                         objectType: 'feed',
                         content: {
-                            title: '하나원큐택스 우리집 돈 관리 초대장.',
-                            description: '우리집, 13월의 월급을 받을 수 있을까?🏡 ' +
-                                '프라이버시는 지키면서 우리집 소득공제현황을 한 눈에 파악하고 컨설팅 받을 수 있어요. ' +
-                                '아래 링크에서 초대를 수락하고 13월의 월급과 카드 혜택까지 받아보세요.',
+                            title: '하나원큐택스 우리집 돈 관리 초대장',
+                            description: '우리집, 13월의 월급을 받을 수 있을까?🏡',
 
-                            imageUrl: 'https://ibb.co/HD27qgB',
+                                // '프라이버시는 지키면서 우리집 소득공제현황을 한 눈에 파악하고 컨설팅 받을 수 있어요. ',
+                                // '아래 링크에서 초대를 수락하고 13월의 월급과 카드 혜택까지 받아보세요.',
+
+                            imageUrl: 'https://github.com/imje96/Hana1QTax/assets/127702320/8033408d-1263-4756-b8f5-f86d69776cd7',
                             link: {
                                 // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
                                 mobileWebUrl: 'http://localhost:8080/accept/'+memberId,
@@ -151,6 +181,15 @@
                         ],
                         serverCallbackArgs: '{"key" : "value"}',
                     });
+                    // Kakao.Share.createCustomButton({
+                    //     container: '#kakaotalk-sharing-btn',
+                    //     templateId: 98999,
+                    //     templateArgs: {
+                    //         title: '하나원큐택스 우리집 돈 관리 초대장',
+                    //         description: '우리집, 13월의 월급을 받을 수 있을까?🏡',
+                    //     },
+                    // });
+
                 }else{
                     alert('로그인이 필요합니다.');
                     // var modal = document.getElementById('myModal');

@@ -306,8 +306,14 @@ section.service .img.motion {
 }
 
 .chart-box .chart2 {
-    width: 250px;
+    /*width: 250px;*/
     /*height: 400px;*/
+    width: 250px;
+    /* height: 400px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .chart-box-inner {

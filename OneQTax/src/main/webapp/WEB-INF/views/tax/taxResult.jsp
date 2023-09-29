@@ -92,7 +92,7 @@
                    style="display: block; margin-bottom: 20px;">
                     <h6 style="color: black; margin-bottom: 15px;">카드황금비율 결과</h6></a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                <a href="${pageContext.request.contextPath}/spouseResult"
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
                 </a>
@@ -271,9 +271,11 @@
                         <div class="result-tax">
                             <h6>2023년 카드 등 소득공제액</h6>
                             <br/>
-                            <h2><fmt:formatNumber value="${total_deduction}" groupingUsed="true"/>원</h2>
+                            <h2><fmt:formatNumber value="${total_deduction}" groupingUsed="true"/> 원</h2>
                             <br/>
-                            남은 최대 공제액 <fmt:formatNumber value="${remainingDeduction}" groupingUsed="true"/>원
+<%--                            남은 최대 공제액 <fmt:formatNumber value="${remainingDeduction}" groupingUsed="true"/>원--%>
+
+                            <span style="font-weight: 500; font-size: 22px;"> 아낄 수 있는 세금 : &nbsp;<span style="font-weight: 500; font-size: 22px; color: #fd328a"><fmt:formatNumber value="${reducing_tax}" groupingUsed="true"/> 원</span></span>
                         </div>
                         <div class="btn-container">
 
@@ -330,11 +332,11 @@
                     <div class="chart-box-inner">
                         <h3>전체 카드소득공제 현황</h3><br/>
                         <div class="info-item1">
-                        <span style="color: #106e69;">
+                        <span style="color: #106e69; font-size: 23px;">
                             달성금액 : <span style="color: #ff328b;"><fmt:formatNumber value="${total_deduction}"
                                                                                    groupingUsed="true"/></span>/<fmt:formatNumber
                                 value="${total}"
-                                groupingUsed="true"/>원</span>
+                                groupingUsed="true"/> 원</span>
                         </div>
                         <p>(기준금액 = 기본공제한도 + 추가공제한도)</p>
                         <div class="chart1">
@@ -350,6 +352,7 @@
                             <%--                            </div>--%>
                             <div class="info-item2">남은 공제가능액:&nbsp;<fmt:formatNumber value="${remainingDeduction}"
                                                                                      groupingUsed="true"/>원
+
                             </div>
                         </div>
                     </div>
@@ -357,11 +360,11 @@
                     <div class="chart-box-inner">
                         <h3>기본 카드소득공제 현황</h3><br/>
                         <div class="info-item1">
-                    <span style="color: #106e69;">
+                     <span style="color: #106e69; font-size: 23px;">
                             달성금액 : <span style="color: #ff328b;"><fmt:formatNumber value="${basic_deduction}"
                                                                                    groupingUsed="true"/></span>/<fmt:formatNumber
                             value="${basicTotal}"
-                            groupingUsed="true"/>원</span>
+                            groupingUsed="true"/> 원</span>
                         </div>
                             <p>(기준금액 = 기본공제한도)</p>
                         <div class="chart2">
@@ -374,6 +377,11 @@
                         </div>
                     </div>
                     <script src="../../resources/js/deductionChart.js"></script>
+                    <!-- Chart.js 및 Datalabels 플러그인 추가 -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
                 </div>
 <%--                        <span style="font-weight: bold; color: #fd328a;">--%>
                     <br/><br/> <h2>💡카드 소득공제 TIP</h2><br/>

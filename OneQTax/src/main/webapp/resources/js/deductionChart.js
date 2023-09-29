@@ -25,11 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     position: 'bottom',
                     labels: {
                         usePointStyle: true,
+                        font: {
+                            size: 15 // 여기에 fontSize를 설정합니다.
+                        }
                     },
                  },
                 layout: {
                     padding: {
-                        top: 10, // 그래프 영역의 위쪽 여백 조절
+                        top: 0, // 그래프 영역의 위쪽 여백 조절
                     }
                 },
                 tooltips: {

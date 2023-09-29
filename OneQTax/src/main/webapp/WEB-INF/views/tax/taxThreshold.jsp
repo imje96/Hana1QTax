@@ -25,24 +25,77 @@
     <link href="../../../resources/css/tax.css" rel="stylesheet">
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-            rel="stylesheet">
-    <%--    <style type="text/css">--%>
-    <%--        * {--%>
-    <%--            font-family: 'Noto Sans KR', sans-serif !important;--%>
-    <%--        }--%>
-    <%--    </style>--%>
-
-
     <style>
-        .side-nav {
-            font-family: 'Noto Sans KR', sans-serif !important;
+        /*.progress-container {*/
+        /*    position: relative;*/
+        /*    width: 300px;*/
+        /*    height: 40px; !* 높이를 적절히 조정합니다. *!*/
+        /*    border-radius: 15px;*/
+        /*    background-color: #f2f2f2;*/
+        /*    overflow: visible; !* 이 값을 보이게 설정합니다. *!*/
+        /*}*/
+
+        /*.progress-bar {*/
+        /*    height: 100%;*/
+        /*    line-height: 40px; !* line-height를 container의 높이와 동일하게 설정합니다. *!*/
+        /*    border-radius: 15px;*/
+        /*    background: linear-gradient(to right, #76c7c0, #bfe6ba);*/
+        /*}*/
+
+        /*.progress-remaining {*/
+        /*    height: 100%;*/
+        /*    border-radius: 15px;*/
+        /*    background-color: #f2f2f2; !* 적절한 회색 색상을 선택합니다. *!*/
+        /*}*/
+
+        /*.progress-text {*/
+        /*    position: absolute;*/
+        /*    line-height: 30px;*/
+        /*    color: #106e69;*/
+        /*    top: -60%;*/
+        /*    left: 50%;*/
+        /*    transform: translate(-50%, -50%);*/
+        /*    font-size: 30px;*/
+        /*    background: #5CAFFC;*/
+        /*}*/
+        .progress-container {
+            position: relative;
+            width: 410px;
+            height: 50px;
+            border-radius: 20px;
+            background: #ffffff;
+            overflow: visible;
+            margin-top: 90px;
+            margin-bottom: 40px;
         }
 
+        .gauge {
+            position: absolute;
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(to right, #37aba1, #eaffe7);
+        }
+
+        .progress-text {
+            position: absolute;
+            top: -100%;
+            transform: translate(100%, -50%);
+            text-align: center;
+            color: #ffffff;
+            font-size: 33px;
+            font-weight: bold;
+            /* margin-bottom: 66px; */
+            background: #00857f;
+            border-radius: 15px;
+            padding: 7px;
+            width: 130px;
+        }
+
+
+
     </style>
+
+
 </head>
 
 
@@ -121,19 +174,31 @@
                         </div>
                         <p>(사용누적액/최저사용금액)</p>
                         <div class="chart2">
-                            <canvas id="threshold1"></canvas>
+<%--                            <canvas id="threshold1"></canvas>--%>
+<%--    <div class="progress-container">--%>
+<%--        <div class="progress-bar"></div>--%>
+<%--        <div class="progress-text"></div>--%>
+<%--    </div>--%>
+    <div class="progress-container">
+        <div class="gauge" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+        <div class="progress-text" >0%</div>
+    </div>
+
+
                         </div>
                         <div class="info-box">
                             <div class="info-item2">공제 시작까지 남은 금액:&nbsp;0 원</div>
                         </div>
                     </div>
-                    <script src="../../resources/js/thresholdChart.js"></script>
-
+<%--                    <script src="../../resources/js/thresholdChart.js"></script>--%>
 
                     <div class="chart-box-inner">
                       <h3>누적 사용금액 확인하기</h3><br/><br/>
 <%--                        <div class="info-box">--%>
-                      <div class="info-item3">
+
+
+
+                        <div class="info-item3">
                         <h3>🔔 소득공제가 가능한 금액을 달성했어요!</h3>
                       </div><br/>
                       카드황금비율 계산 페이지에서 카드 사용전략을 확인해보세요<br/><br/>
@@ -157,6 +222,10 @@
                 </div>
             </div>
               <br/>
+
+                <div id="progressBarsContainer" class="progress-bars-container">
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                </div>
 
                 <div class="comment-info">
                       <div class="character-box-large">
@@ -182,6 +251,35 @@
 </section>
 
 </div>
+
+<script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var creditTotal = window.creditTotal || 0;
+        var debitTotal = window.debitTotal || 0;
+        var cashTotal = window.cashTotal || 0;
+        var minimumAmount = window.minimumAmount || 0;
+
+        var totalUsed =  debitTotal + cashTotal;
+        // var totalUsed = creditTotal + debitTotal + cashTotal;
+        var visualUsedPercentage = (totalUsed / minimumAmount) * 100 > 100 ? 100 : (totalUsed / minimumAmount) * 100;
+        var actualPercentage = (totalUsed / minimumAmount) * 100;
+
+        $('.gauge').animate({
+            width: visualUsedPercentage + "%"
+        }, 500, function() {
+            $('.progress-text').text(actualPercentage.toFixed(2) + "%");
+        });
+    });
+
+
+
+
+</script>
+
+
+</script>
 
 <script>
     var modal = document.getElementById("myModal");
