@@ -84,8 +84,10 @@
                         </div>
                     </div>
                     <div class="dropdown">
+                        <a href="${pageContext.request.contextPath}/tranDashboard">
                         <button class="dropbtn">마이데이터
                         </button>
+                        </a>
                         <div class="dropdown-content">
                             <a href="#">카드관리</a>
                             <a href="#">사용내역</a>
@@ -93,8 +95,12 @@
                         </div>
                     </div>
                     <div class="dropdown">
+                        <a href="${pageContext.request.contextPath}/dashboard">
+                        <a href="${pageContext.request.contextPath}/dashboard">
+                        <a href="${pageContext.request.contextPath}/dashboard">
                         <button class="dropbtn">카드추천
                         </button>
+                        </a>
                         <div class="dropdown-content">
                             <a href="#">카드한눈에보기</a>
                             <a href="#">추천카드</a>

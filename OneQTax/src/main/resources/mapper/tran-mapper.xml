@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.oneqtax.transaction.repository.TranMapper">
+
+    <!-- 보유카드 가져오기  -->
+    <select id="getCardList" resultType="com.spring.oneqtax.transaction.domain.CardListVO">
+        SELECT
+            card_number,
+            member_id,
+            cvc,
+            card_password,
+            card_period,
+            card_id,
+            card_type,
+            finance_id
+        FROM MEMBER_CARD
+        UNION
+
+        SELECT
+            card_number,
+            member_id,
+            NULL AS cvc,
+            NULL AS card_password,
+            card_period,
+            NULL AS card_id,
+            card_type,
+            finance_id
+        FROM MEMBER_OTHERCARD
+        WHERE member_id = #{memberId}
+    </select>
+
+    <!-- 카드내역 가져오기  -->
+    <select id="getCardTranByMemberId" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select * from card_transaction
+        where member_id=#{memberId}
+    </select>
+
+    <select id="getCardTranByCardNo" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select * from card_transaction
+        where card_number=#{cardNumber}
+    </select>
+
+    <select id="getCardTranByFinance" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select * from card_transaction
+        where member_id=#{memberId}
+          and finance_id=#{financeId}
+    </select>
+
+    <select id="getThisMonthTran" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select * from card_transaction
+        where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+        and member_id=#{memberId}
+    </select>
+
+
+
+    <select id="getThisMonthTranByNo" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select * from card_transaction
+        where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+        and card_number=#{cardNumber}
+    </select>
+
+    <select id="getThisMonthTotalAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select sum(amount) AS totalAmount
+        from card_transaction
+        where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+          and member_id=#{memberId}
+    </select>
+
+    <!--  업종별 사용금액    -->
+    <select id="getCategoryAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select     category_big,
+                   SUM(amount) AS totalAmount,
+                   COUNT(*) AS totalCount
+        from card_transaction
+        where member_id=#{memberId}
+        group by category_big
+        order by totalAmount desc
+    </select>
+
+    <!--  이번달 업종별 사용금액    -->
+    <select id="getThisMonthCategoryAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select     category_big AS categoryBig,
+                   SUM(amount) AS totalAmount,
+                   COUNT(*) AS totalCount
+        from card_transaction
+        where member_id=#{memberId}
+        and SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+        group by category_big
+        order by totalAmount desc
+    </select>
+
+    <select id="getHometaxTranByMemberId" resultType="com.spring.oneqtax.transaction.domain.HometaxTranVO">
+        select SUM(amount) as totalAmount
+        from hometax_transaction
+        where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+        and member_id=#{memberId}
+    </select>
+
+
+
+
+
+</mapper>

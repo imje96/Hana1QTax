@@ -29,8 +29,9 @@
 </head>
 
 
-<body>
-<style>#progress-bar-container li {
+
+<style>
+    #progress-bar-container li {
     list-style: none;
     float: left;
     width: 50%;
@@ -44,7 +45,10 @@
     vertical-align: bottom;
     height: 60px;
     position: relative;
-}</style>
+}
+</style>
+
+<body>
 
 <header>
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -122,14 +126,14 @@
 
                             <c:choose>
                                 <c:when test="${totalResult.expected_tax >= 0}">
-                                    <h4><span style="color: #e3003f;">납부</span>할 세금 :
+                                    <h4><span style="color: #f84174;">납부</span>할 세금 :
                                         <td class="text-right">
                                             <fmt:formatNumber value="${totalResult.expected_tax}" groupingUsed="true"/>원
                                         </td>
                                     </h4>
                                 </c:when>
                                 <c:otherwise>
-                                    <h4><span style="color: #e3003f;">환급</span>받을 세금 :
+                                    <h4><span style="color: #f84174;">환급</span>받을 세금 :
                                         <td class="text-right">
                                             <fmt:formatNumber value="${-totalResult.expected_tax}" groupingUsed="true"/>원
                                         </td>
@@ -139,7 +143,7 @@
 
 
                             <br/>
-                            <h4><span style="color: #018c8d;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
+                            <h4><span style="color: #f84174;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
                                                                                                  groupingUsed="true"/>원
                             </h4>
                                     </div>
@@ -244,7 +248,7 @@
                                         <%--                                <div class="percent">90%달성</div>--%>
                                         <div class="total-text-box">
                                             <div class="total-text">
-                                                <h4>인적사항</h4>
+                                                <h4>• 인적사항</h4>
                                                 <br/>
                                                 소득 공제 금액 :
                                             </div>
@@ -265,7 +269,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>근로소득</h4>
+                                            <h4>• 근로소득</h4>
                                             <br/>
                                             소득 공제 금액 :
                                         </div>
@@ -287,7 +291,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>연금보험료</h4>
+                                            <h4>• 연금보험료</h4>
                                             <br/>
                                             소득 공제 금액 :
                                         </div>
@@ -308,7 +312,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>주택자금/주택마련저축</h4>
+                                            <h4>• 주택자금/주택마련저축</h4>
                                             <br/>
                                             소득 공제 금액:
                                         </div>
@@ -329,7 +333,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>신용카드 등</h4>
+                                            <h4>• 신용카드 등</h4>
                                             <br/>
                                             소득 공제 금액:
                                         </div>
@@ -351,7 +355,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>추가소득</h4>
+                                            <h4>• 추가소득</h4>
                                             <br/>
                                             소득 공제 금액:
                                         </div>
@@ -373,7 +377,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>연금계좌</h4>
+                                            <h4>• 연금계좌</h4>
                                             <br/>
                                             세액 공제 금액:
                                         </div>
@@ -394,7 +398,7 @@
                                     <%--                                <div class="percent">0%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>보장성보험</h4>
+                                            <h4>• 보장성보험</h4>
                                             <br/>
                                             세액 공제 금액:
                                         </div>
@@ -415,7 +419,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>의료비</h4>
+                                            <h4>• 의료비</h4>
                                             <br/>
                                             세액 공제 금액:
                                         </div>
@@ -436,7 +440,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>교육비</h4>
+                                            <h4>• 교육비</h4>
                                             <br/>
                                             세액 공제 금액:
                                         </div>
@@ -457,7 +461,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>기부금</h4>
+                                            <h4>• 기부금</h4>
                                             <br/>
                                             소득 공제 금액:
                                         </div>
@@ -478,7 +482,7 @@
                                     <%--                                <div class="percent">90%달성</div>--%>
                                     <div class="total-text-box">
                                         <div class="total-text">
-                                            <h4>월세</h4>
+                                            <h4>• 월세</h4>
                                             <br/>
                                             세액 공제 금액:
                                         </div>

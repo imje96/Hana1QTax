@@ -22,27 +22,6 @@
     <%--    <link id="theme-style" rel="stylesheet"--%>
     <%--          href="${ pageContext.request.contextPath }/resources/assets_portal/css/portal.css">--%>
 
-    <!-- Favicon -->
-    <link
-            href="${ pageContext.request.contextPath }/resources/img/favicon.ico"
-            rel="icon">
-
-
-    <!-- Template Stylesheet -->
-    <link
-            href="${ pageContext.request.contextPath }/resources/css/style.css"
-            rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-            rel="stylesheet">
-    <%--    <style type="text/css">--%>
-    <%--        * {--%>
-    <%--            font-family: 'Noto Sans KR', sans-serif !important;--%>
-    <%--        }--%>
-    <%--    </style>--%>
 
 
     <style>

@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/dashboard">
+                        <a href="${pageContext.request.contextPath}/tranDashboard">
                         <button class="dropbtn">마이데이터
                         </button>
                         </a>
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/report">
+                        <a href="${pageContext.request.contextPath}/tranDashboard">
                         <button class="dropbtn">카드추천s
                         </button>
                         </a>

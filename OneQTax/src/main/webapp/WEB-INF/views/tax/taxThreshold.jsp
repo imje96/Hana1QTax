@@ -261,8 +261,8 @@
         var cashTotal = window.cashTotal || 0;
         var minimumAmount = window.minimumAmount || 0;
 
-        var totalUsed =  debitTotal + cashTotal;
-        // var totalUsed = creditTotal + debitTotal + cashTotal;
+        // var totalUsed =  debitTotal + cashTotal;
+        var totalUsed = creditTotal + debitTotal + cashTotal;
         var visualUsedPercentage = (totalUsed / minimumAmount) * 100 > 100 ? 100 : (totalUsed / minimumAmount) * 100;
         var actualPercentage = (totalUsed / minimumAmount) * 100;
 

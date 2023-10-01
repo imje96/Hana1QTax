@@ -392,11 +392,13 @@ section.service .img.motion {
     /*background-color: #f5f5f5;*/
     border-radius: 10px;
     margin-bottom: 10px;
-    padding: 20px;
+    width: 700px;
+    padding: 25px;
     font-size: 26px;
     text-align: center;
-    background: #d9e3e3;
+    background: #00857e;
     line-height: 1.7;
+    color: #FFFFFF;
 }
 
 /* comment 부분 */
