@@ -47,11 +47,12 @@
         where member_id=#{memberId}
           and finance_id=#{financeId}
     </select>
-
+    <!-- 이번달 카드내역 -->
     <select id="getThisMonthTran" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
         select * from card_transaction
         where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
         and member_id=#{memberId}
+        order by cardtrandate desc, cardtrantime desc
     </select>
 
 
@@ -92,13 +93,35 @@
         order by totalAmount desc
     </select>
 
+    <!--  홈택스 전체 사용내역  -->
+    <select id="getHometaxTransaction" resultType="com.spring.oneqtax.transaction.domain.HometaxTranVO">
+        select * from hometax_transaction
+        where member_id=#{memberId}
+        order by trandate desc, trantime desc
+    </select>
+
+    <!--  홈택스 전체 사용합계  -->
+    <select id="getHometaxSum" resultType="com.spring.oneqtax.transaction.domain.HometaxTranVO">
+        select SUM(amount) as totalAmount
+        from hometax_transaction
+        where member_id=#{memberId}
+    </select>
+
+    <!--  홈택스 이번달 사용내역  -->
+    <select id="getHometaxThisMonth" resultType="com.spring.oneqtax.transaction.domain.HometaxTranVO">
+        select * from hometax_transaction
+        where SUBSTR(trandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+          and member_id=#{memberId}
+        order by trandate desc, trantime desc
+    </select>
+
+    <!--  홈택스 이번달 사용합계  -->
     <select id="getHometaxTranByMemberId" resultType="com.spring.oneqtax.transaction.domain.HometaxTranVO">
         select SUM(amount) as totalAmount
         from hometax_transaction
-        where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+        where SUBSTR(trandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
         and member_id=#{memberId}
     </select>
-
 
 
 

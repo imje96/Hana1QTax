@@ -196,12 +196,12 @@ p {
 
 
 #headerLogo {
-    display: flex;
-    align-items: center;
-    width: 1400px;
-    padding: 10px 250px;
-    justify-content: space-between;
-    font-size: 18px;
+    display: flex !important;
+    align-items: center !important;
+    width: 1400px !important;
+    padding: 10px 250px !important;
+    justify-content: space-between !important;
+    font-size: 18px !important;
 
 }
 

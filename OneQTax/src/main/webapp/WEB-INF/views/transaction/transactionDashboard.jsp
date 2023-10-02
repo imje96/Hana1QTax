@@ -421,7 +421,7 @@
                 <div style="color: grey; margin-bottom: 15px;">카드 사용내역</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+            <a href="${pageContext.request.contextPath}/hometaxList"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">홈택스 사용내역</div>
             </a>

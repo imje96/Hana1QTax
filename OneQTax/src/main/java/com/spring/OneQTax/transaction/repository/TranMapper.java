@@ -38,6 +38,15 @@ public interface TranMapper {
     /* 이번달 업종별 사용금액 조회 */
     List<CardTranVO> getThisMonthCategoryAmount(int memberId);
 
-    /* 홈택스 내역 조회 */
+    /* 홈택스 전체 내역 조회 */
+    List<HometaxTranVO> getHometaxTransaction(int memberId);
+
+    /* 홈택스 전체 총액 조회 */
+    HometaxTranVO getHometaxSum(int memberId);
+
+    /* 홈택스 이번달 내역 조회 */
+    List<HometaxTranVO> getHometaxThisMonth(int memberId);
+
+    /* 홈택스 이번달 총액 조회 */
     HometaxTranVO getHometaxTranByMemberId(int memberId);
 }

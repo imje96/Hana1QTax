@@ -60,6 +60,21 @@ public class TranChartServiceImpl  implements TranChartService{
         return tranMapper.getThisMonthCategoryAmount(memberId);
     }
 
+    /* 홈택스 전체 내역 조회 */
+    @Override
+    public List<HometaxTranVO> getHometaxTransaction(int memberId){
+        return tranMapper.getHometaxTransaction(memberId);
+    }
+
+    /* 홈택스 전체 총액 조회 */
+    @Override
+    public HometaxTranVO getHometaxSum(int memberId){
+        return tranMapper.getHometaxSum(memberId);
+    }
+    @Override
+    public List<HometaxTranVO> getHometaxThisMonth(int memberId){
+        return tranMapper.getHometaxThisMonth(memberId);
+    }
     @Override
     public HometaxTranVO getHometaxTranByMemberId(int memberId) {
         return tranMapper.getHometaxTranByMemberId(memberId);

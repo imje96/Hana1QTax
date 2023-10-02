@@ -36,6 +36,15 @@ public interface TranChartService {
     /* 이번달 업종별 사용금액 조회 */
     public List<CardTranVO> getThisMonthCategoryAmount(int memberId);
 
+    /* 홈택스 전체 내역 조회 */
+    public List<HometaxTranVO> getHometaxTransaction(int memberId);
+
+    /* 홈택스 전체 총액 조회 */
+    public HometaxTranVO getHometaxSum(int memberId);
+
     /* 홈택스 내역 조회 */
+    public List<HometaxTranVO> getHometaxThisMonth(int memberId);
+
+    /* 홈택스 총액 조회 */
     public HometaxTranVO getHometaxTranByMemberId(int memberId);
 }

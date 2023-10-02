@@ -4,15 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--localTimestamp 초 까지만 출력--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import="com.google.gson.Gson" %>
-<%@ page import="com.spring.oneqtax.transaction.domain.CardTranVO" %>
-<%@ page import="java.util.List" %>
-<%--<%--%>
-<%--    List<CardTranVO> thisTran = (List<CardTranVO>) request.getAttribute("thisTran");--%>
-<%--    Gson gson = new Gson();--%>
-<%--    String jsonData = gson.toJson(thisTran);--%>
-<%--    pageContext.setAttribute("jsonData", jsonData);--%>
-<%--%>--%>
+
 
 
 <!DOCTYPE html>
@@ -123,13 +115,13 @@
 
     .btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
         display: inherit !important;
-         content: inherit !important;
+        content: inherit !important;
     }
 
     * {
-         -webkit-box-sizing: inherit !important;
+        -webkit-box-sizing: inherit !important;
         /*-moz-box-sizing: border-box;*/
-         box-sizing: inherit;!important;
+        box-sizing: inherit;!important;
     }
     button{
         font-family: inherit;
@@ -245,7 +237,7 @@
             <div class="transaction-list">
                 <div class="container-title">
                     <br/>
-                    <span style="color: #615e5e"><h3>카드 결제내역 확인하기</h3></span>
+                    <span style="color: #615e5e"><h3>현금영수증 결제내역 확인하기</h3></span>
                 </div>
                 <!-- 테이블 구조 정의 -->
                 <table id="tranTable" class="display"  data-te-max-height="460"
@@ -255,8 +247,7 @@
                         <th>결제일자</th>
                         <th>거래처</th>
                         <th>결제금액</th>
-                        <th>결제업종</th>
-                        <th>카드번호</th>
+                        <th>결제분류</th>
 
                     </tr>
                     </thead>
@@ -271,69 +262,44 @@
     </div>
 
 </section>
-    <%-- 카드번호 가리기--%>
-<script>
-    $(document).ready(function() {
-        $.get('/changeCardNum', function(data) {
-            var cardNumber = data.cardNumber;
-            var maskedCardNumber = maskCardNumber(cardNumber);
-            $('#card_number').text(maskedCardNumber);
-        });
-    });
+<%-- 카드번호 가리기--%>
 
-    function maskCardNumber(cardNumber) {
-        var firstDigits = cardNumber.substring(0, 4); // 카드 번호의 앞 4자리
-        var lastDigits = cardNumber.substring(cardNumber.length - 4); // 카드 번호의 뒤 4자리
-        var masked = firstDigits + " **** " + lastDigits; // 중간 8자리를 *로 치환
-        return masked;
-    }
-</script>
-    <%-- 통화 표시 --%>
+<%-- 통화 표시 --%>
 <script>
     function formatCurrency(amount) {
-            // return amount.toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'});
-            return amount.toLocaleString('ko-KR');
+        // return amount.toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'});
+        return amount.toLocaleString('ko-KR');
     }
 
 </script>
-<div id="cardNumber"></div>
 
 
 <script type="text/javascript">
     $(document).ready(function () {
+        console.log('${jsonThisTran}');
         try {
             var dataTable = $('#tranTable').DataTable({
                 processing: true,
                 ordering: false,
                 data: JSON.parse('${jsonThisTran}'),
                 dom: 'Bfrtip',
-                        buttons: [
-                            {
-                                extend: 'excel',
-                                title: '데이터 테이블 엑셀파일',
-                                text: '엑셀 다운로드',
-                                className: 'detailBtn'
-                            }
-                        ],
+                buttons: [
+                    {
+                        extend: 'excel',
+                        title: '데이터 테이블 엑셀파일',
+                        text: '엑셀 다운로드',
+                        className: 'detailBtn'
+                    }
+                ],
                 columns: [
-                    {data: "cardtrandate"},
+                    {data: "trandate"},
                     {data: "store"},
                     {data: "amount",
                         render: function (data, type, row) {
                             return formatCurrency(data); // or formatCurrency(data) depending on your need
                         }
                     },
-                    {data: "category"},
-                    {data: "card_number",
-                        render: function(data, type, row) {
-                            if(type === 'display') {
-                                var firstDigits = data.substring(0, 4);
-                                var lastDigits = data.substring(data.length - 4);
-                                return firstDigits + " **** **** " + lastDigits;
-                            }
-                            return data;
-                        }
-                    }
+                    {data: "category"}
                 ]
             });
         } catch (e) {

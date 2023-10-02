@@ -11,4 +11,5 @@ public class HometaxTranVO {
     String trandate;
     String trantime;
     int amount;
+    int totalAmount;
 }
