@@ -4,6 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--localTimestamp 초 까지만 출력--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="com.spring.oneqtax.transaction.domain.CardTranVO" %>
+<%@ page import="java.util.List" %>
+<%--<%--%>
+<%--    List<CardTranVO> thisTran = (List<CardTranVO>) request.getAttribute("thisTran");--%>
+<%--    Gson gson = new Gson();--%>
+<%--    String jsonData = gson.toJson(thisTran);--%>
+<%--    pageContext.setAttribute("jsonData", jsonData);--%>
+<%--%>--%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,16 +35,10 @@
 
 
 <%--    <!-- Add Bootstrap CSS -->--%>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <%--  jquery data table  --%>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+<%--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">--%>
 
 
 </head>
-
 
 <style>
     *, ::after, ::before {
@@ -60,200 +64,12 @@
         /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     }
 
-    .container-right {
-        background-color: #efecec;
-        width: 40%;
-        height: 1000px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        padding-right: 25px;
-        /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-    }
-
-    .title {
-        text-align-all: center;
-    }
-
-    .card-box {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 20px 0;
-        margin: 25px 25px;
-        width: 90%;
-        height: 300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .monthly-box {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 20px 25px;
-        margin: 25px 20px 20px 0;
-        width: 90%;
-        height: 200px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .category-box {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px 25px;
-        margin: 0 20px 25px 0;
-        width: 90%;
-        height: 725px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-transaction {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px 0;
-        margin: 0 20px;
-        width: 90%;
-        height: 350px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .hometax-transaction {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px 0;
-        margin: 25px 25px;
-        width: 90%;
-        height: 350px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-
-    .header-container {
-        color: #1A202C;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        font-weight: 600;
-        width: 580px;
-    }
-
-    .section-header {
-        line-height: 24px;
-        font-size: 20px;
-    }
-
-    .date-selector {
-        padding: 10px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        color: #666B85;
-        background: #b4cece;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
-    }
-
     .date-selector span {
         font-weight: 600;
         font-size: 18px;
         line-height: 15px;
     }
 
-    /* 소비내역 카테고리   */
-    .chart3 {
-        width: 300px;
-        height: 300px;
-    }
-
-    .pie-chart__labels {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        /*margin-top: 20px;*/
-        width: 320px;
-    }
-
-    .pie-chart__labels-item, .label {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .pie-chart__labels-item {
-        font-weight: 600;
-        font-size: 15px;
-        line-height: 150%;
-    }
-
-    .label {
-        gap: 12px;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 15px;
-        color: #596780;
-    }
-
-    .label__color {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-    }
-
-    .first {
-        background: #f695b8;
-    }
-
-    .second {
-        background: #f8d5d6;
-    }
-
-    .third {
-        background: #f8f2ce;
-    }
-
-    .fourth {
-        background: #d1ede5;
-    }
-
-    .fifth {
-        background: #aee3eb;
-    }
-
-    .sixth {
-        background: #e6e4dc;
-    }
-
-    .seventh {
-        background: #bfcaf2;
-    }
-
-    .eighth {
-        background: #839ee6;
-    }
-
-    .ninth {
-        background: #7C5CFC;
-    }
 
     .inner-text {
         position: absolute;
@@ -273,78 +89,10 @@
         /*margin-left: 8px;*/
     }
 
-    /* 카드사용내역 */
-    .transaction-history {
-        width: 90%;
-        text-align: left;
-        vertical-align: middle;
-        /*margin-top: 24px;*/
-    }
 
-    tr > th {
-        font-weight: 500;
-        font-size: 17px;
-        line-height: 100%;
-        color: #90A3BF;
-        /* text-align: center; */
-        background: #fff;
-        border-bottom: #fff;
-        border-right: #fff;
-    }
 
-    tr > td:first-child {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        padding-left: 30px;
-    }
 
-    tr > td {
-        font-weight: 600;
-        font-size: 16px;
-        padding: 8px 0;
-        text-align: left;
-        border-right: #fff;
-    }
 
-    tr:nth-child(odd) td {
-        background: #ffffff;
-    }
-
-    .detailBtn {
-        display: inline-block;
-        color: #05413d;
-        padding: 7px;
-        width: 150px;
-        border: none;
-        border-radius: 7px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        cursor: pointer;
-        background-color: #fdd0e4;
-        margin-left: 425px;
-        transition: background-color 0.3s, transform 0.3s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .detailBtn:hover {
-        background-color: #fa63a5;
-        /* hover 시 배경색 변경 */
-        transform: scale(1.05);
-        /* hover 시 약간 확대되는 효과 */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        /* hover 시 그림자 약간 강화 */
-    }
-
-    #headerLogo2 {
-        display: flex;
-        align-items: center;
-        width: 1644px;
-        padding: 10px 0 0 250px;
-        justify-content: space-between;
-        font-size: 18px;
-    }
 </style>
 
 
@@ -357,6 +105,7 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 </header>
 
+<div id="jsonData" data-json='${jsonData}' style="display: none;"></div>
 
 <section class="main">
 
@@ -396,13 +145,8 @@
 
 
     <div class="section">
-        <%--            <div class="container-xxl py-5">--%>
-        <%--            <div class="container-title" data-wow-delay="0.1s" style="max-width: 600px;">--%>
         <div class="container-title">
-            <%--                <h6 class="text-primary">--%>
-            <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
-            <%--                </h6>--%>
-            <%--                    💰--%>
+
             <h2>내 소비 모아보기</h2>
             <br/>
             <span style="color: #615e5e"><h3>소득공제액을 미리 확인하고 관리하세요!</h3></span>
@@ -414,186 +158,101 @@
             <div class="container-left">
 
 
-                <div class="card-transaction">
-
-                    <div class="header-container">
-                        <h3 class="section-header">카드 사용내역</h3>
-                        <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
-                        </div>
-                    </div>
-                    <button id="openModalBtn" class="detailBtn"><h6>더보기 +</h6></button>
-                    <table class="transaction-history">
-                        <tbody>
-                        <tr>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp; 거래내역</th>
-                            <th>결제일자
-                            </th>
-                            <th>결제금액
-                            </th>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                🥘 배달의 민족
-                            </td>
-                            <td>2023-10-12</td>
-                            <td>25,000 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                ☕ 스타벅스 철산점
-                            </td>
-                            <td>2023-10-12</td>
-                            <td>6,800 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                🏦 이마트 철산점
-                            </td>
-                            <td>2023-10-12</td>
-                            <td>29,980 원</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
 
 
             </div>
 
-            <div class="container-right">
-                <%--                <p>${deduction_date}</p>--%>
-
-                <div class="monthly-box">
-                    <h5> 10월 사용금액</h5>
-                    <h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
-                                                        groupingUsed="true"/>
-                        <span class="price-currency">(원)</span></h1>
-
-                    <span class="price-currency">2023년 10월 3일</span>
-                </div>
-                <div class="category-box">
 
 
                     <!-- 테이블 구조 정의 -->
-                    <table id="tranTable" class="display">
-                        <thead>
-                        <tr>
-                            <th>Transaction ID</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <!-- 필요한 다른 컬럼들을 추가해주세요 -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="tran" items="${cardTran}">
-                            <tr>
-                                <td>${tran.transaction_id}</td>
-                                <td>${tran.amount}</td>
-                                <td>${tran.category}</td>
-                                <!-- 필요한 다른 값들을 추가해주세요 -->
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                    </div>
+            <table id="tranTable" class="display">
+                <thead>
+                <tr>
+                    <th>거래 ID</th>
+                    <th>금액</th>
+                    <th>카테고리</th>
 
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 데이터 행은 DataTables에 의해 여기에 동적으로 추가됩니다. -->
+                </tbody>
+            </table>
 
                 </div>
 
             </div>
 
-        </div>
-    </div>
+
 </section>
-</div>
+<%--<script type="text/javascript">--%>
+<%--    $(document).ready(function() {--%>
+<%--        // JSP에서 모델로부터 받은 JSON 문자열을 JavaScript 객체로 변환--%>
+<%--        var jsonData = JSON.parse('${jsonThisTran}');--%>
 
-<!-- Add Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="../../resources/js/deductionChart.js"></script>
-<!-- Chart.js 및 Datalabels 플러그인 추가 -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<%--        try {--%>
+<%--            var dataTable = $('#tranTable').DataTable();--%>
 
-<script>
-    $(document).ready( function () {
-        $('#tranTable').DataTable(); // DataTables 초기화
-    });
-</script>
-
-<script>
-    const slideContainer = document.querySelector(".slideshowContents");
-    const slides = document.querySelectorAll(".slide");
-    const prevButton = document.querySelector(".lastSlide");
-    const nextButton = document.querySelector(".nextSlide");
-
-    let currentSlide = 0;
-
-    function updateButtonVisibility() {
-        prevButton.style.display = currentSlide === 0 ? "none" : "block";
-        nextButton.style.display =
-            currentSlide === slides.length - 1 ? "none" : "block";
-    }
-
-    function goToSlide(index) {
-        currentSlide = index;
-        // Get width of a slide
-        const slideWidth = slides[0].clientWidth;
-        const translateX = -index * slideWidth;
-        slideContainer.style.transform = `translateX(${translateX}px)`;
-        updateButtonVisibility(); // Update button visibility after changing slide
-    }
-
-    prevButton.addEventListener("click", () => {
-        currentSlide = Math.max(currentSlide - 1, 0);
-        goToSlide(currentSlide);
-    });
-
-    nextButton.addEventListener("click", () => {
-        currentSlide = Math.min(currentSlide + 1, slides.length - 1);
-        goToSlide(currentSlide);
-    });
-
-    window.addEventListener("resize", () => {
-        // Recalculate slide width on window resize
-        const slideWidth = slides[0].clientWidth;
-        // Update slide position based on new width
-        goToSlide(currentSlide);
-    });
-
-    // Initialize button visibility
-    updateButtonVisibility();
-
-    // Initialize slide position
-    goToSlide(currentSlide);
-
-</script>
-<script>
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("openModalBtn");
-    var span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+<%--            $.each(jsonData, function(index, tran) {--%>
+<%--                dataTable.row.add([--%>
+<%--                    tran.transaction_id,--%>
+<%--                    tran.amount,--%>
+<%--                    tran.category--%>
+<%--                ]).draw();--%>
+<%--            });--%>
+<%--        } catch (e) {--%>
+<%--            console.error("Error initializing DataTable or processing data:", e);--%>
+<%--        }--%>
+<%--    });--%>
+<%--</script>--%>
+<script type="text/javascript">
+    $(document).ready(function() {
+        try {
+            var dataTable = $('#tranTable').DataTable({
+                processing: true,
+                ordering: false,
+                data: JSON.parse('${jsonThisTran}'),
+                columns: [
+                    {data: "transaction_id"},
+                    {data: "amount"},
+                    {data: "category"}
+                ]
+            });
+        } catch (e) {
+            console.error("Error initializing DataTable or processing data:", e);
         }
-    }
-
+    });
 </script>
+
+
+<%--<script>--%>
+<%--    // jQuery.noConflict();--%>
+<%--    // $(document).ready(function () {--%>
+<%--    //     $('#tranTable').DataTable({--%>
+<%--    //         dom: 'Bfrtip',--%>
+<%--    //         buttons: [--%>
+<%--    //             {--%>
+<%--    //                 extend: 'excel',--%>
+<%--    //                 title: '데이터 테이블 엑셀파일',--%>
+<%--    //                 text: '엑셀 다운로드',--%>
+<%--    //                 className: 'detailBtn'--%>
+<%--    //             }--%>
+<%--    //         ],--%>
+<%--    //         language: {--%>
+<%--    //             "emptyTable": "기록이 없습니다."--%>
+<%--    //         },--%>
+<%--    //         order: [[3, 'desc']],--%>
+<%--    //         lengthChange: false,--%>
+<%--    //         columns: [--%>
+<%--    //             { title: '번호', data: 'transaction_id' },--%>
+<%--    //             { title: '금액', data: 'amount' },--%>
+<%--    //             { title: '항목', data: 'category' }--%>
+<%--    //             // Add more column definitions as needed--%>
+<%--    //         ]--%>
+<%--    //     });--%>
+<%--    // });--%>
+
+<%--</script>--%>
 
 
 
@@ -602,6 +261,20 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
+<!-- Load jQuery first -->
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<!-- Load DataTables CSS and JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css"/>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+
+<!-- Load Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
 </body>

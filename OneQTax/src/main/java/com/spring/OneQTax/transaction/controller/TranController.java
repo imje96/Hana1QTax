@@ -1,5 +1,6 @@
 package com.spring.oneqtax.transaction.controller;
 
+import com.google.gson.Gson;
 import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.member.service.MemberService;
 import com.spring.oneqtax.tax.domain.CardTaxResultVO;
@@ -90,7 +91,12 @@ public class TranController {
         // 그래프를 위한 값
 
         model.addAttribute("cardTran", cardTran);
-        model.addAttribute("thisTran", thisTran);
+
+        Gson gson = new Gson();
+        String jsonThisTran = gson.toJson(thisTran);
+        model.addAttribute("jsonThisTran", jsonThisTran);
+
+//        model.addAttribute("thisTran", thisTran);
         model.addAttribute("categoryTran", categoryTran);
         model.addAttribute("categoryMonth", categoryMonth);
         model.addAttribute("thisMonthSpending", thisMonthSpending);
