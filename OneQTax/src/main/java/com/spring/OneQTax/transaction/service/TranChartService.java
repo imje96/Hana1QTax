@@ -13,7 +13,7 @@ public interface TranChartService {
     public CardListVO getCardList(int memberId);
 
     /* 회원별 카드 전체내역 조회 */
-    public CardTranVO getCardTranByMemberId(int memberId);
+    public List<CardTranVO> getCardTranByMemberId(int memberId);
 
     /* 카드별 조회 */
     public CardTranVO getCardTranByCardNo(String cardNumber);
@@ -22,7 +22,7 @@ public interface TranChartService {
     public CardTranVO getCardTranByFinance(int memberId, int financeId);
 
     /* 이번달 거래내역 조회 */
-    public CardTranVO getThisMonthTran(int memberId);
+    public List<CardTranVO> getThisMonthTran(int memberId);
 
     /* 이번달 거래내역 조회(카드별) */
     public CardTranVO getThisMonthTranByNo(String cardNumber);
@@ -31,7 +31,7 @@ public interface TranChartService {
     public CardTranVO getThisMonthTotalAmount(int memberId);
 
     /* 업종별 사용금액 조회 */
-    public CardTranVO getCategoryAmount(int memberId);
+    public List<CardTranVO> getCategoryAmount(int memberId);
 
     /* 이번달 업종별 사용금액 조회 */
     public List<CardTranVO> getThisMonthCategoryAmount(int memberId);

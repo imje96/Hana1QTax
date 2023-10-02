@@ -95,9 +95,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/dashboard">
-                        <a href="${pageContext.request.contextPath}/dashboard">
-                        <a href="${pageContext.request.contextPath}/dashboard">
+                        <a href="${pageContext.request.contextPath}/transactionList">
                         <button class="dropbtn">카드추천
                         </button>
                         </a>

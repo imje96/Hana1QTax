@@ -15,7 +15,7 @@ public interface TranMapper {
     CardListVO getCardList(int memberId);
 
     /* 회원별 카드 전체내역 조회 */
-    CardTranVO getCardTranByMemberId(int memberId);
+    List<CardTranVO> getCardTranByMemberId(int memberId);
 
     /* 카드별 조회 */
     CardTranVO getCardTranByCardNo(String cardNumber);
@@ -24,7 +24,7 @@ public interface TranMapper {
     CardTranVO getCardTranByFinance(int memberId, int financeId);
 
     /* 이번달 거래내역 조회 */
-    CardTranVO getThisMonthTran(int memberId);
+    List<CardTranVO> getThisMonthTran(int memberId);
 
     /* 이번달 거래내역 조회(카드별) */
     CardTranVO getThisMonthTranByNo(String cardNumber);
@@ -33,7 +33,7 @@ public interface TranMapper {
     CardTranVO getThisMonthTotalAmount(int memberId);
 
     /* 업종별 사용금액 조회 */
-    CardTranVO getCategoryAmount(int memberId);
+    List<CardTranVO> getCategoryAmount(int memberId);
 
     /* 이번달 업종별 사용금액 조회 */
     List<CardTranVO> getThisMonthCategoryAmount(int memberId);

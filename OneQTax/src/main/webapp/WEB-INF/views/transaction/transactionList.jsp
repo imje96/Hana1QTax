@@ -24,8 +24,13 @@
     <link href="../../../resources/css/tax.css" rel="stylesheet">
 
 
-    <!-- Add Bootstrap CSS -->
+<%--    <!-- Add Bootstrap CSS -->--%>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <%--  jquery data table  --%>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 
 
 </head>
@@ -33,7 +38,7 @@
 
 <style>
     *, ::after, ::before {
-         box-sizing: inherit;
+        box-sizing: inherit;
     }
 
     .section2 {
@@ -141,52 +146,6 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .carousel-inner {
-        position: relative;
-        width: 300px;
-        overflow: hidden;
-    }
-
-    .carousel img {
-        max-width: 100%;
-        height: auto;
-        margin-top: 15px;
-        margin-bottom: 10px;
-    }
-
-    .carousel-item {
-        width: 100%; /* or any specific width */
-        height: auto; /* or any specific height */
-    }
-
-    .carousel-control-prev {
-        left: -50px;
-    }
-
-    .carousel-control-next {
-        right: -50px;
-    }
-
-    .carousel-control-next, .carousel-control-prev {
-        position: absolute;
-        top: 78px;
-        bottom: 0;
-        height: 45px;
-        border-radius: 40%;
-        z-index: 1;
-        background: #00857e;
-        /*display: -ms-flexbox;*/
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        width: 12%;
-        /*color: #343a40;*/
-        text-align: center;
-        /* opacity: .5; */
-        transition: opacity .15s ease;
-    }
 
     .header-container {
         color: #1A202C;
@@ -398,6 +357,7 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 </header>
 
+
 <section class="main">
 
     <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
@@ -409,7 +369,7 @@
             <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/tranDashboard"
                style="display: block; margin-bottom: 20px;">
-                <h6 style="color: black; margin-bottom: 15px;">대시보드</h6>
+                <div style="color: grey; margin-bottom: 15px;">대시보드</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/taxThreshold"
@@ -418,7 +378,7 @@
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/transactionList" style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">카드 사용내역</div>
+                <h6 style="color: black; margin-bottom: 15px;">카드 사용내역</h6>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
@@ -451,48 +411,9 @@
 
         <div class="section2">
 
-
-            <%--            <div class="time" style="text-align: right">--%>
-            <%--                <c:set var="formattedTimestamp" value="${fn:substring(deduction_date, 0, 19)}"/>--%>
-            <%--                ${formattedTimestamp}--%>
-            <%--                <a href=""${pageContext.request.contextPath}/calculateAndInsertDeduction" onclick="window.location.reload(); return false;">--%>
-            <%--                <img src="../../../resources/img/refresh.png" height="30"></a>--%>
-            <%--            </div>--%>
             <div class="container-left">
-                <%--                <p>${deduction_date}</p>--%>
 
-                <div class="card-box">
-                    <h5> 내 카드</h5>
 
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
-                                     class="d-block w-100" alt="Slide 1">
-                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11530.png"
-                                     class="d-block w-100" alt="Slide 2">
-                                <span style="text-align: center; color: #90A3BF;"><h5>1Q 카드</h5></span>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
-                                     class="d-block w-100" alt="Slide 3">
-                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-
-                </div>
                 <div class="card-transaction">
 
                     <div class="header-container">
@@ -540,52 +461,7 @@
                     </table>
 
                 </div>
-                <div class="hometax-transaction">
-                    <div class="header-container">
-                        <h3 class="section-header">현금영수증 사용내역</h3>
-                        <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
-                        </div>
-                    </div>
-                    <button class="detailBtn"><h6>더보기 +</h6></button>
-                    <table class="transaction-history">
-                        <tbody>
-                        <tr>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp; 거래내역</th>
-                            <th>결제일자
-                            </th>
-                            <th>결제금액
-                            </th>
 
-                        </tr>
-                        <tr>
-                            <td>
-                                ☕ 와밀커피
-                            </td>
-                            <td>2023-10-09</td>
-                            <td>5,600 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                🥘 김가네
-                            </td>
-                            <td>2023-10-11</td>
-                            <td>15,000 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                📚 교보문고
-                            </td>
-                            <td>2023-10-02</td>
-                            <td>14,000 원</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
 
             </div>
 
@@ -602,78 +478,28 @@
                 </div>
                 <div class="category-box">
 
-                    <div><h5>이번 달 사용 업종</h5></div>
-                    <div class="chart3">
 
-                        <canvas id="deductionChart2"></canvas>
-                    </div>
-                    <div class="inner-text">
-                        <h3>1위 : ${categoryMonth[0].categoryBig}</h3>
-                    </div>
-                    <div class="pie-chart__labels">
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color first"></div>
-                                ${categoryMonth[0].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[0].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color second"></div>
-                                ${categoryMonth[1].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[1].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color third"></div>
-                                ${categoryMonth[2].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[2].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color fourth"></div>
-                                ${categoryMonth[3].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[3].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color fifth"></div>
-                                ${categoryMonth[4].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[4].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color sixth"></div>
-                                ${categoryMonth[5].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[5].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color seventh"></div>
-                                ${categoryMonth[6].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[6].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color eighth"></div>
-                                ${categoryMonth[7].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[7].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color ninth"></div>
-                                ${categoryMonth[8].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[8].totalAmount}" groupingUsed="true"/> 원
-                        </div>
+                    <!-- 테이블 구조 정의 -->
+                    <table id="tranTable" class="display">
+                        <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <!-- 필요한 다른 컬럼들을 추가해주세요 -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="tran" items="${cardTran}">
+                            <tr>
+                                <td>${tran.transaction_id}</td>
+                                <td>${tran.amount}</td>
+                                <td>${tran.category}</td>
+                                <!-- 필요한 다른 값들을 추가해주세요 -->
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                     </div>
 
 
@@ -694,6 +520,12 @@
 <!-- Chart.js 및 Datalabels 플러그인 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<script>
+    $(document).ready( function () {
+        $('#tranTable').DataTable(); // DataTables 초기화
+    });
+</script>
 
 <script>
     const slideContainer = document.querySelector(".slideshowContents");
@@ -762,58 +594,7 @@
     }
 
 </script>
-<script type="text/javascript">
-    let categories = [];
-    <c:forEach var="item" items="${categoryMonth}">
-    categories.push('${item.categoryBig}'); // EL 태그를 사용하여 JavaScript 배열에 데이터 저장
-    </c:forEach>
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const ctx2 = document.getElementById('deductionChart2').getContext('2d');
 
-        var deductionChart2 = new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: categories,
-                datasets: [{
-                    data: [
-                        ${categoryMonth[0].totalAmount},
-                        ${categoryMonth[1].totalAmount},
-                        ${categoryMonth[2].totalAmount},
-                        ${categoryMonth[3].totalAmount},
-                        ${categoryMonth[4].totalAmount},
-                        ${categoryMonth[5].totalAmount},
-                        ${categoryMonth[6].totalAmount},
-                        ${categoryMonth[7].totalAmount},
-                        ${categoryMonth[8].totalAmount},
-                    ],
-                    backgroundColor: ['#f695b8', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC'],
-                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
-                    // circumference: 180,
-                    rotation: 270,
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        display: false, // 범례를 숨김
-                    },
-                },
-                tooltips: {
-                    enabled: true,
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            let label = data.labels[tooltipItem.index];
-                            let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            return label + ': ' + value;
-                        }
-                    }
-                }
-            }
-        });
-    });
-</script>
 
 
 <!-- footer-wrapper -->
