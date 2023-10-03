@@ -11,5 +11,6 @@ public class CardListVO {
     int card_period;
     String card_id;
     String card_type;
+    String card_name;
     String finance_id;
 }

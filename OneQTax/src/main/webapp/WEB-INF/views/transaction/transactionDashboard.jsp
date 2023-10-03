@@ -143,7 +143,7 @@
 
     .carousel-inner {
         position: relative;
-        width: 300px;
+        width: 350px;
         overflow: hidden;
     }
 
@@ -417,7 +417,7 @@
                 <div style="color: grey; margin-bottom: 15px;">내 카드 확인하기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/transactionList" style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/cardBenefits" style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">실적 확인하기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
@@ -467,19 +467,29 @@
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
+                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14134.png"
                                      class="d-block w-100" alt="Slide 1">
-                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                                <span style="text-align: center; color: #90A3BF;"><h5>원더카드 LIVING</h5></span>
                             </div>
                             <div class="carousel-item">
                                 <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11530.png"
                                      class="d-block w-100" alt="Slide 2">
-                                <span style="text-align: center; color: #90A3BF;"><h5>1Q 카드</h5></span>
+                                <span style="text-align: center; color: #90A3BF;"><h5>1Q Daily+(원큐데일리플러스)</h5></span>
                             </div>
                             <div class="carousel-item">
                                 <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
                                      class="d-block w-100" alt="Slide 3">
                                 <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://www.econovill.com/news/photo/202008/407097_337754_4414.png"
+                                     class="d-block w-100" alt="Slide 3">
+                                <span style="text-align: center; color: #90A3BF;"><h5>(신한)네이버페이 라인프렌즈 신한카드</h5></span>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://img1.kbcard.com/ST/img/cxc/kbcard/upload/img/product/01900_img.png"
+                                     class="d-block w-100" alt="Slide 3">
+                                <span style="text-align: center; color: #90A3BF;"><h5>(국민)펭수 노리 체크카드</h5></span>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -516,7 +526,7 @@
                         </tr>
                         <tr>
                             <td>
-                                🥘 배달의 민족
+                                🛵 배달의 민족
                             </td>
                             <td>2023-10-12</td>
                             <td>25,000 원</td>

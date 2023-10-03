@@ -19,6 +19,9 @@
     <link href="../../../resources/css/common.css" rel="stylesheet">
     <link href="../../../resources/css/main.css" rel="stylesheet">
 
+    <!-- font awseom -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <%--    chartjs 추가--%>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="../../../resources/css/tax.css" rel="stylesheet">
@@ -73,12 +76,36 @@
     }
 
     .card-box {
+        background-color: #fdfdfd;
+        border-radius: 10px;
+        padding: 20px 0;
+        margin: 25px 25px;
+        width: 90%;
+        height: 674px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 15px solid #00857e;
+        /* transform과 box-shadow 효과를 0.3초 동안 부드럽게 적용 */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-box:hover {
+        /* hover 시 약간 확대되는 효과 */
+        transform: scale(1.04);
+        /* hover 시 그림자 약간 강화 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-box2 {
         background-color: #fff;
         border-radius: 10px;
         padding: 20px 0;
         margin: 25px 25px;
         width: 90%;
-        height: 300px;
+        height: 700px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -86,9 +113,10 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .card-box h3{
+    .card-box h3 {
         font-size: 25px;
     }
+
     .monthly-box {
         background-color: #fff;
         border-radius: 10px;
@@ -147,7 +175,7 @@
 
     .carousel-inner {
         position: relative;
-        width: 300px;
+        width: 350px;
         overflow: hidden;
     }
 
@@ -161,19 +189,20 @@
     .carousel-item {
         width: 100%; /* or any specific width */
         height: auto; /* or any specific height */
+        position: relative;
     }
 
     .carousel-control-prev {
-        left: -50px;
+        left: -55px;
     }
 
     .carousel-control-next {
-        right: -50px;
+        right: -55px;
     }
 
     .carousel-control-next, .carousel-control-prev {
         position: absolute;
-        top: 78px;
+        top: 100px;
         bottom: 0;
         height: 45px;
         border-radius: 40%;
@@ -192,6 +221,7 @@
         transition: opacity .15s ease;
     }
 
+
     .header-container {
         color: #1A202C;
         display: flex;
@@ -204,7 +234,7 @@
 
     .section-header {
         line-height: 24px;
-        font-size: 20px;
+        font-size: 25px;
     }
 
     .date-selector {
@@ -224,89 +254,31 @@
         line-height: 15px;
     }
 
-    /* 소비내역 카테고리   */
-    .chart3 {
-        width: 300px;
-        height: 300px;
-    }
-
-    .pie-chart__labels {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        /*margin-top: 20px;*/
-        width: 320px;
-    }
-
-    .pie-chart__labels-item, .label {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .pie-chart__labels-item {
-        font-weight: 600;
-        font-size: 15px;
-        line-height: 150%;
-    }
-
-    .label {
-        gap: 12px;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 15px;
-        color: #596780;
-    }
-
-    .label__color {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-    }
-
-    .first {
-        background: #f695b8;
-    }
-
-    .second {
-        background: #f8d5d6;
-    }
-
-    .third {
-        background: #f8f2ce;
-    }
-
-    .fourth {
-        background: #d1ede5;
-    }
-
-    .fifth {
-        background: #aee3eb;
-    }
-
-    .sixth {
-        background: #e6e4dc;
-    }
-
-    .seventh {
-        background: #bfcaf2;
-    }
-
-    .eighth {
-        background: #839ee6;
-    }
-
-    .ninth {
-        background: #7C5CFC;
-    }
-
-    .inner-text {
-        position: absolute;
-        transform: translate(0%, -530%);
-        /*top: 32%;*/
-        /*left: 50%;*/
+    .info-box1 {
+        background-color: rgb(255 223 237) !important;
+        /*padding: 10px;*/
+        border-radius: 10px;
         text-align: center;
-        color: #e4003f;
+        width: 90%;
+        height: 300px;
+        padding: 20px 16px;
+        margin-top: 20px;
+        /*color: #ffffff;*/
+    }
+
+
+    .info-box2 {
+        /*position: absolute;*/
+        /*top: 10px;*/
+        /*right: 10px;*/
+        background-color: rgb(239, 241, 243) !important;
+        /*padding: 10px;*/
+        border-radius: 10px;
+        text-align: center;
+        width: 90%;
+        height: 270px;
+        padding: 20px 16px;
+        margin-top: 40px;
     }
 
     /*   금액 표시 */
@@ -362,6 +334,155 @@
     .lower-section {
         display: flex;
         width: 1200px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /*  카드 타이틀  */
+    .card_title {
+        text-align: center;
+        color: #000000;
+        font-size: 22px;
+    }
+
+    .personal_info {
+        text-align: center;
+        color: #7a7a7a;
+        font-size: 17px;
+    }
+
+    .card_subtitle {
+        text-align: center;
+        color: #ffffff;
+        font-size: 18px;
+        background: #e50745;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+
+    .card_brand {
+        text-align: center;
+        color: #ffffff;
+        font-size: 18px;
+        background: #afafaf;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+
+    .card_number {
+        text-align: center;
+        /*color: #ffffff;*/
+        font-size: 18px;
+        /*background: #e50745;*/
+        /*padding: 5px 10px;*/
+        border-radius: 15px;
+        margin-top: 5px;
+    }
+
+    .card-benefits {
+        color: #000000;
+        font-size: 15px;
+        border: 3px solid #FFFFFF;
+        border-radius: 10px;
+        padding: 10px 0;
+        line-height: 1.8;
+        text-align: left;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .card-benefits2 {
+        color: #000000;
+        font-size: 20px;
+        border: 3px solid #FFFFFF;
+        border-radius: 10px;
+        padding: 10px 0;
+        line-height: 1.8;
+        text-align: left;
+        margin: 10px 0;
+    }
+
+    .point {
+        color: #2a9791;
+        font-weight: bold;
+    }
+
+    .icon-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 14px;
+        color: #4f4949;
+    }
+
+    .icon-bg {
+        background: #05413d;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon-bg:hover {
+        /* hover 시 약간 확대되는 효과 */
+        transform: scale(1.05);
+        /* hover 시 그림자 약간 강화 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /*  모달창 버튼  */
+    .modalBtn2 {
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 15px;
+        cursor: pointer;
+        background: none !important;
+        color: #7a7a7a;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .modalBtn2:hover {
+        transform: scale(1.05);
+        /* hover 시 약간 확대되는 효과 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        /* hover 시 그림자 약간 강화 */
+    }
+
+    .modal-content2 {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        /* width: 100%; */
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 0.3rem;
+        outline: 0;
+    }
+
+    /*  카드사별 한도  */
+    .cards-limit {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px 0;
+        margin: 25px 25px;
+        width: 95%;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 </style>
 
@@ -394,7 +515,7 @@
                 <h6 style="color: black; margin-bottom: 15px;">내 카드 확인하기</h6>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/transactionList" style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/cardBenefits" style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">실적 확인하기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
@@ -429,29 +550,124 @@
         <div class="section2">
 
 
-            <div class="lower-section">
+            <div class="upper-section">
                 <div class="card-box">
                     <h3> 마이 하나카드</h3>
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
+                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14134.png"
                                      class="d-block w-100" alt="Slide 1">
-                                <div class="info-box">
-                                    <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
-                                    테스트 내용입니다
+                                <div class="info-box1">
+                                    <span class="card_title"><h5>카드를 선택해주세요</h5></span>
+                                    <span class="personal_info">VISA | 본인4565 (신용)<br/></span>
+                                    <span class="card_subtitle">병원부터 관리비까지 생활비 혜택</span>
+                                    <div class="card_number"><h5>결제일 : 매월 1일</h5></div>
+                                    <div class="card_number">카드번호 : 4882-****-****-4565<br/></div>
+                                    <div class="card-benefits">
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            관리비
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-house-medical"
+                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            병원&약국
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            주유/택시
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-mug-saucer"
+                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            커피
+                                        </div>
+                                    </div>
+                                    <button id="openModalBtn1" class="modalBtn2"><h6>[혜택 더 보기]</h6></button>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11530.png"
                                      class="d-block w-100" alt="Slide 2">
-                                <span style="text-align: center; color: #90A3BF;"><h5>1Q 카드</h5></span>
+                                <div class="info-box1">
+                                    <span class="card_title"><h5>1Q Daily+(원큐데일리플러스)</h5></span>
+                                    <span class="personal_info">VISA | 본인2640 (신용)<br/></span>
+                                    <span class="card_subtitle">매일매일 혜택이 플러스<br/></span>
+                                    <div class="card_number"><h5>결제일 : 매월 1일</h5></div>
+                                    <div class="card_number">카드번호 : 4152-****-****-2640<br/></div>
+                                    <div class="card-benefits">
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-store" style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            모든가맹점
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-cart-shopping"
+                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            온라인쇼핑
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            주유
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            관리비
+                                        </div>
+                                    </div>
+                                    <button id="openModalBtn2" class="modalBtn2"><h6>[혜택 더 보기]</h6></button>
+                                </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
                                      class="d-block w-100" alt="Slide 3">
-                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                                <div class="info-box1">
+                                    <span class="card_title"><h5>모두의 일상 카드</h5></span>
+                                    <span class="personal_info">VISA | 본인9723 (체크)<br/></span>
+                                    <span class="card_subtitle">전월 실적 없이 어디서나 최대 0.4% 적립<br/></span>
+                                    <div class="card_number">카드번호 : 4773-****-****-9723<br/></div>
+                                    <div class="card-benefits">
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <img src="https://m.hanacard.co.kr/ATTACH/NEW_MOBILE/images/event/logo_1QPayAppCard.png"
+                                                     style="font-size: 20px">
+
+                                            </div>
+                                            하나원큐페이
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fa-brands fa-amazon-pay"
+                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            페이결제
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                                            </div>
+                                            모든가맹점
+                                        </div>
+                                    </div>
+                                    <button id="openModalBtn3" class="modalBtn2"><h6>[혜택 더 보기]</h6></button>
+                                </div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -464,27 +680,31 @@
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="upper-section">
-                <div class="card-box">
+
+                <div class="card-box2">
                     <h3>타사카드</h3>
 
                     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
+                                <img src="https://www.econovill.com/news/photo/202008/407097_337754_4414.png"
                                      class="d-block w-100" alt="Slide 1">
-                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                                <div class="info-box2">
+                                    <span class="card_title"><h5>네이버페이 라인프렌즈 신한카드</h5></span>
+                                    <span class="personal_info">VISA | 1298 (신용)<br/></span>
+                                    <div class="card_brand ">카드사 : 신한카드</div>
+                                    <div class="card_number">카드번호 : 9410-****-****-1298</div>
+                                </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11530.png"
+                                <img src="https://img1.kbcard.com/ST/img/cxc/kbcard/upload/img/product/01900_img.png"
                                      class="d-block w-100" alt="Slide 2">
-                                <span style="text-align: center; color: #90A3BF;"><h5>1Q 카드</h5></span>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
-                                     class="d-block w-100" alt="Slide 3">
-                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                                <div class="info-box2">
+                                    <span class="card_title"><h5>펭수 노리 체크카드</h5></span>
+                                    <span class="personal_info">VISA | 2094 (체크)<br/></span>
+                                    <div class="card_brand ">카드사 : KB 국민카드</div>
+                                    <div class="card_number">카드번호 : 5409-****-****-2094</div>
+                                </div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#myCarousel2" role="button" data-slide="prev">
@@ -497,9 +717,81 @@
                         </a>
                     </div>
                 </div>
+
             </div>
-        </div>
+            <div class="lower-section">
+                <div class="cards-limit">
+                    <div class="header-container">
+                        <h2 class="section-header">카드사별 한도</h2>
+                        <div class="date-selector">
+                            <span>📅 2023 10/1 - 10/12</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cards-limit">
+                    <div class="header-container">
+                        <h2 class="section-header">카드사 이용금액</h2>
+                        <div class="date-selector">
+                            <span>📅 2023 10/1 - 10/12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           </div>
+    </div>
 </section>
+
+<div id="myModal" class="modal">
+    <div class="modal-content2">
+        <span class="close">&times;</span>
+        <br/>
+        <h2>원더카드 LIVING 업종별 혜택</h2>
+        <div class="card-benefits2">
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg">
+                        <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    생활요금
+                </div>
+                &nbsp;&nbsp; 아파트관리비, 전기세, 가스비 &nbsp; <span class="point"> 10%</span> 청구할인<br/>
+            </div>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg">
+                        <i class="fas fa-house-medical" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    병원&약국
+                </div>
+                &nbsp;&nbsp; 병원 및 약국&nbsp; <span class="point"> 10%</span>청구할인<br/>
+            </div>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg">
+                        <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    주유/택시
+                </div>
+                &nbsp;&nbsp; SK에너지, GS칼텍스, S-OIL, 현대오일뱅크알뜰주유소&nbsp; <span class="point"> 10%</span>청구할인<br/>
+            </div>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg">
+                        <i class="fas fa-mug-saucer" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    커피
+                </div>
+                &nbsp;&nbsp;스타벅스, 커피빈, 이디야, 폴바셋, 투썸플레이스, 블루보틀&nbsp; <span class="point"> 10%</span> 청구할인<br/>
+            </div>
+<%--            • 모든 가맹점&nbsp; <span class="point"> 0.3-1.0%</span> 적립<br/>--%>
+<%--            • 온라인쇼핑, 통신/교통/자동이체 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
+<%--            • 주유 <span class="point"> 5만원당 3천원</span> 청구할인<br/>--%>
+<%--            • 아파트관리비/4대보험 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
+        </div>
+    </div>
+
+</div>
 </div>
 
 <!-- Add Bootstrap JS and Popper.js -->
@@ -611,7 +903,27 @@
         });
     });
 </script>
+<%-- 모달창 --%>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModalBtn1");
+    var span = document.getElementsByClassName("close")[0];
 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+</script>
 
 <!-- footer-wrapper -->
 <footer>

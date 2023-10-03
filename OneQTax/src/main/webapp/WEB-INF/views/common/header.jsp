@@ -59,7 +59,7 @@
                 </div>
                 <div class="drops">
                     <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/taxInfo">
+                        <a href="${pageContext.request.contextPath}/taxMain">
                             <button class="dropbtn">카드황금비율관리
                             </button>
                         </a>

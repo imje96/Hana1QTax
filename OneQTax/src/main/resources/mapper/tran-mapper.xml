@@ -61,11 +61,12 @@
         and card_number=#{cardNumber}
     </select>
 
+    <!--  이번달 카드별 총 사용금액  -->
     <select id="getThisMonthTotalAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
         select sum(amount) AS totalAmount
         from card_transaction
         where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
-          and member_id=#{memberId}
+          and card_number=#{cardNumber}
     </select>
 
     <!--  업종별 사용금액    -->

@@ -29,6 +29,8 @@
     <%--    <!-- Add Bootstrap CSS -->--%>
 <%--        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">--%>
 
+    <!-- font awseom -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 </head>
 
@@ -207,7 +209,7 @@
                 <div style="color: grey; margin-bottom: 15px;">내 카드 확인하기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/transactionList" style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/cardBenefits" style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">실적 확인하기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
@@ -242,7 +244,7 @@
                 </div>
                 <div class="info-item5">
                     <div class="info-item">
-                        <h3><a href="#"><span style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월 ∨</span></a> 사용금액 :
+                        <h3><a href="#"><span style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i class="fa fa-caret-down"></i></span></a> 사용금액 :
                       <fmt:formatNumber value="${hometaxThisMonthSum.totalAmount}" groupingUsed="true"/> 원</h3>
                     </div>
                 </div><br/>
@@ -294,7 +296,7 @@
                     {
                         extend: 'excel',
                         title: '데이터 테이블 엑셀파일',
-                        text: '엑셀 다운로드',
+                        text: '📋 엑셀 다운로드',
                         className: 'detailBtn'
                     }
                 ],

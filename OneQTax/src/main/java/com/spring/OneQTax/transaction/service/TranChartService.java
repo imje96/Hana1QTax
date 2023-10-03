@@ -10,7 +10,7 @@ import java.util.List;
 public interface TranChartService {
 
     /* 회원별 보유카드 조회 */
-    public CardListVO getCardList(int memberId);
+    public List<CardListVO> getCardList(int memberId);
 
     /* 회원별 카드 전체내역 조회 */
     public List<CardTranVO> getCardTranByMemberId(int memberId);
@@ -26,6 +26,9 @@ public interface TranChartService {
 
     /* 이번달 거래내역 조회(카드별) */
     public CardTranVO getThisMonthTranByNo(String cardNumber);
+
+    /* 이번달 카드별 총액 조회 */
+    public CardTranVO getThisMonthTotalAmount(String cardNumber);
 
     /* 이번달 총 사용금액 조회 */
     public CardTranVO getThisMonthTotalAmount(int memberId);
