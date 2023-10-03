@@ -13,6 +13,7 @@
             card_password,
             card_period,
             card_id,
+            card_name,
             card_type,
             finance_id
         FROM MEMBER_CARD
@@ -25,6 +26,7 @@
             NULL AS card_password,
             card_period,
             NULL AS card_id,
+            card_name,
             card_type,
             finance_id
         FROM MEMBER_OTHERCARD
@@ -58,11 +60,20 @@
     <select id="getThisMonthTranByNo" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
         select * from card_transaction
         where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
-        and card_number=#{cardNumber}
+          and card_number=#{cardNumber}
+        order by cardtrandate desc, cardtrantime desc
     </select>
 
-    <!--  이번달 카드별 총 사용금액  -->
+    <!--  이번달 총 사용금액  -->
     <select id="getThisMonthTotalAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        select sum(amount) AS totalAmount
+        from card_transaction
+        where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+          and member_id=#{memberId}
+    </select>
+
+    <!--  이번달 카드별 사용금액  -->
+    <select id="getThisMonthTotalByCard" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
         select sum(amount) AS totalAmount
         from card_transaction
         where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')

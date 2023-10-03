@@ -118,39 +118,27 @@ public class TranController {
         int memberId = currentUser.getMember_id();
 
         // transaction 가져오기
-        List<CardListVO> getCardList = tranChart.getCardList(memberId);
-        int cardNumber = getCardList[0].card_number;
-        CardTranVO MonthSpendingByNum = tranChart.getThisMonthTotalAmount(cardNumber);
-
-
-        List<CardTranVO> cardTran = tranChart.getCardTranByMemberId(memberId);
-//        CardTranVO financeTran = tranChart.getCardTranByFinance(memberId);
-        List<CardTranVO> thisTran =  tranChart.getThisMonthTran(memberId);
-        List<CardTranVO> categoryTran = tranChart.getCategoryAmount(memberId);
-        List<CardTranVO> categoryMonth = tranChart.getThisMonthCategoryAmount(memberId);
-        CardTranVO thisMonthSpending = tranChart.getThisMonthTotalAmount(memberId);
+        List<CardListVO> cardList = tranChart.getCardList(memberId);
+        // default로 맨 처음 카드의 사용금액 보여주기
+        if (!cardList.isEmpty()) {
+            String cardNumber = cardList.get(0).getCard_number();
+            CardTranVO monthSpendingByNum = tranChart.getThisMonthTotalByCard(cardNumber);
+            model.addAttribute("monthSpending", monthSpendingByNum);
+        }
 
         // 그래프를 위한 값
 
-        model.addAttribute("cardTran", cardTran);
+        model.addAttribute("cardList", cardList);
 
-        Gson gson = new Gson();
-        String jsonThisTran = gson.toJson(thisTran);
-        model.addAttribute("jsonThisTran", jsonThisTran);
-
-//        model.addAttribute("thisTran", thisTran);
-        model.addAttribute("categoryTran", categoryTran);
-        model.addAttribute("categoryMonth", categoryMonth);
-        model.addAttribute("thisMonthSpending", thisMonthSpending);
 
         return "transaction/cardBenefits";
     }
 
-    // AJAX 요청 처리를 위한 새로운 매핑
+    // AJAX 요청을 통해 총 사용금액을 바로 보여주기
     @PostMapping("/getMonthlyTotal")
     @ResponseBody
-    public CardTranVO getMonthlyTotal(@RequestParam int cardNumber) {
-        return tranChart.getThisMonthTotalAmount(cardNumber);
+    public CardTranVO getMonthlyTotal(@RequestParam String cardNumber) {
+        return tranChart.getThisMonthTotalByCard(cardNumber);
     }
 
     /* 카드 사용내역 */

@@ -560,7 +560,7 @@
                                 <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14134.png"
                                      class="d-block w-100" alt="Slide 1">
                                 <div class="info-box1">
-                                    <span class="card_title"><h5>카드를 선택해주세요</h5></span>
+                                    <span class="card_title"><h5>원더카드 LIVING</h5></span>
                                     <span class="personal_info">VISA | 본인4565 (신용)<br/></span>
                                     <span class="card_subtitle">병원부터 관리비까지 생활비 혜택</span>
                                     <div class="card_number"><h5>결제일 : 매월 1일</h5></div>

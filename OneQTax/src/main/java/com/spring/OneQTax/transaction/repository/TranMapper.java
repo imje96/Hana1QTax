@@ -29,11 +29,11 @@ public interface TranMapper {
     /* 이번달 거래내역 조회(카드별) */
     CardTranVO getThisMonthTranByNo(String cardNumber);
 
-    /* 이번달 카드별 총액 조회 */
-    CardTranVO getThisMonthTotalAmount(String cardNumber);
-
     /* 이번달 총 사용금액 조회 */
     CardTranVO getThisMonthTotalAmount(int memberId);
+
+    /* 이번달 카드별 총액 조회 */
+    CardTranVO getThisMonthTotalByCard(String cardNumber);
 
     /* 업종별 사용금액 조회 */
     List<CardTranVO> getCategoryAmount(int memberId);

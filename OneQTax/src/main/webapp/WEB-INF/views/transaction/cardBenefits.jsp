@@ -570,26 +570,20 @@
                 <div class="card-box">
                     <h3> 마이 하나카드</h3>
 
-
-                        <div class="white-wrapper"></div>
-
                         <div class="inner-wrapper">
-
                             <div class="hex-select hex-select-js">
                                 <select name="example" id="example-custom">
-<%--                                    <option value="">Custom select....</option>--%>
-                                    <option value="memberCard1">원더카드 LIVING</option>
-                                    <option value="memberCard2">1Q Daily+(원큐데일리플러스)</option>
-                                    <option value="memberCard3">모두의 일상 카드</option>
-                                    <option value="otherCard1">펭수 노리 체크카드</option>
-                                    <option value="otherCard2">네이버페이 라인프렌즈 신한카드</option>
+<%--           카드리스트에서 카드 가져오기                         --%>
+                                <c:forEach items="${cardList}" var="card">
+                                    <option value="${card.card_number}">${card.card_name}</option>
+                                </c:forEach>
                                 </select>
                             </div>
-
                         </div>
 
-                        <div class="white-wrapper"></div>
+                    ${monthSpending.totalAmount}
                     </div>
+
 
                     <!-- 그래프 영역 -->
 <%--                    <canvas id="myChart"></canvas>--%>
@@ -600,57 +594,29 @@
         </div>
     </div>
 </section>
+<%-- 카드 번호 ajax로 보내기--%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#example-custom').change(function() {
+            var cardNumber = $(this).val();
 
-<%--<div id="myModal" class="modal">--%>
-<%--    <div class="modal-content2">--%>
-<%--        <span class="close">&times;</span>--%>
-<%--        <br/>--%>
-<%--        <h2>원더카드 LIVING 업종별 혜택</h2>--%>
-<%--        <div class="card-benefits2">--%>
-<%--            <div class="flex-box">--%>
-<%--                <div class="icon-box">--%>
-<%--                    <div class="icon-bg">--%>
-<%--                        <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>--%>
-<%--                    </div>--%>
-<%--                    생활요금--%>
-<%--                </div>--%>
-<%--                &nbsp;&nbsp; 아파트관리비, 전기세, 가스비 &nbsp; <span class="point"> 10%</span> 청구할인<br/>--%>
-<%--            </div>--%>
-<%--            <div class="flex-box">--%>
-<%--                <div class="icon-box">--%>
-<%--                    <div class="icon-bg">--%>
-<%--                        <i class="fas fa-house-medical" style="font-size: 25px; color: #FFFFFF"></i>--%>
-<%--                    </div>--%>
-<%--                    병원&약국--%>
-<%--                </div>--%>
-<%--                &nbsp;&nbsp; 병원 및 약국&nbsp; <span class="point"> 10%</span>청구할인<br/>--%>
-<%--            </div>--%>
-<%--            <div class="flex-box">--%>
-<%--                <div class="icon-box">--%>
-<%--                    <div class="icon-bg">--%>
-<%--                        <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>--%>
-<%--                    </div>--%>
-<%--                    주유/택시--%>
-<%--                </div>--%>
-<%--                &nbsp;&nbsp; SK에너지, GS칼텍스, S-OIL, 현대오일뱅크알뜰주유소&nbsp; <span class="point"> 10%</span>청구할인<br/>--%>
-<%--            </div>--%>
-<%--            <div class="flex-box">--%>
-<%--                <div class="icon-box">--%>
-<%--                    <div class="icon-bg">--%>
-<%--                        <i class="fas fa-mug-saucer" style="font-size: 25px; color: #FFFFFF"></i>--%>
-<%--                    </div>--%>
-<%--                    커피--%>
-<%--                </div>--%>
-<%--                &nbsp;&nbsp;스타벅스, 커피빈, 이디야, 폴바셋, 투썸플레이스, 블루보틀&nbsp; <span class="point"> 10%</span> 청구할인<br/>--%>
-<%--            </div>--%>
-<%--            &lt;%&ndash;            • 모든 가맹점&nbsp; <span class="point"> 0.3-1.0%</span> 적립<br/>&ndash;%&gt;--%>
-<%--            &lt;%&ndash;            • 온라인쇼핑, 통신/교통/자동이체 <span class="point"> 10만원 당 5천머니</span> 적립<br/>&ndash;%&gt;--%>
-<%--            &lt;%&ndash;            • 주유 <span class="point"> 5만원당 3천원</span> 청구할인<br/>&ndash;%&gt;--%>
-<%--            &lt;%&ndash;            • 아파트관리비/4대보험 <span class="point"> 10만원 당 5천머니</span> 적립<br/>&ndash;%&gt;--%>
-<%--        </div>--%>
-<%--    </div>--%>
+            $.ajax({
+                type: "POST",
+                url: "/getMonthlyTotal",
+                data: { cardNumber: cardNumber },
+                success: function(response) {
+                    // response를 화면에 표시하는 로직. 예:
+                    // $('#someElement').text(response.someField);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 
-<%--</div>--%>
 <script>
     // Custom select
     let customSelects = document.querySelectorAll('.hex-select-js');

@@ -8,7 +8,7 @@ public class CardListVO {
     int member_id;
     int cvc;
     int card_password;
-    int card_period;
+    String card_period;
     String card_id;
     String card_type;
     String card_name;
