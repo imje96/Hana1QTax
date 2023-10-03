@@ -28,7 +28,7 @@
 
 
     <!-- Add Bootstrap CSS -->
-<%--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">--%>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
 
 </head>
@@ -84,7 +84,7 @@
         height: 674px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         /*border: 15px solid #00857e;*/
@@ -99,18 +99,18 @@
     /*    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);*/
     /*}*/
 
-    .card-box2 {
-        background-color: #fff;
+    .card-selector {
+        background-color: #55e7df;
         border-radius: 10px;
-        padding: 20px 0;
-        margin: 25px 25px;
+        /*padding: 20px 0;*/
+        /*margin: 25px 25px;*/
         width: 90%;
-        height: 700px;
+        /*height: 700px;*/
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     }
 
     .card-box h3 {
@@ -357,6 +357,15 @@
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     }
 
+    .inner-text {
+        /*position: absolute;*/
+        /*transform: translate(0%, -530%);*/
+        /*top: 32%;*/
+        /*left: 50%;*/
+        text-align: center;
+        color: #e4003f;
+    }
+
     /*  모달창 버튼  */
     .modalBtn2 {
         border: none;
@@ -398,7 +407,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 50vh;
+        /*min-height: 50vh;*/
         gap: 20px;
     }
 
@@ -530,11 +539,11 @@
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/cardList"
                style="display: block; margin-bottom: 20px;">
-                <h6 style="color: black; margin-bottom: 15px;">내 카드 확인하기</h6>
+                <div style="color: grey; margin-bottom: 15px;">내 카드 확인하기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/transactionList" style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">실적 확인하기</div>
+                <h6 style="color: black; margin-bottom: 15px;">실적 확인하기</h6>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/transactionList"
@@ -568,7 +577,15 @@
         <div class="section2">
             <div class="uppper-section">
                 <div class="card-box">
-                    <h3> 마이 하나카드</h3>
+
+                    <div class="card-selector">
+                        <div class="info-item5">
+                            <div class="info-item">
+                                <h3><a href="#"><span style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i class="fa fa-caret-down"></i></span></a> 사용금액 :
+                                    <fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/>    <span class="price-currency">(원)</span></h3>
+                            </div>
+                        </div>
+
 
                         <div class="inner-wrapper">
                             <div class="hex-select hex-select-js">
@@ -581,10 +598,29 @@
                             </div>
                         </div>
 
-                    ${monthSpending.totalAmount}
                     </div>
 
+                    <div class="inner-text">
+            <%--   c:choose 구문은 페이지 로드 시 서버에서 한번만 실행되기 때문에 ajax를 통해 값을 비동기적으로 가져와서 업데이트 해야 함                 --%>
+<%--                        <c:choose>--%>
+<%--                            <c:when test="${monthSpending.totalAmount >= 600000}">--%>
+<%--                                <option value="${monthSpending.totalAmount}">60만원 실적을 충족했어요</option>--%>
+<%--                            </c:when>--%>
+<%--                            <c:when test="${monthSpending.totalAmount >= 300000}">--%>
+<%--                                <option value="${monthSpending.totalAmount}">30만원 실적을 충족했어요</option>--%>
+<%--                            </c:when>--%>
+<%--                            <c:otherwise>--%>
+<%--                                <option value="${monthSpending.totalAmount}">--%>
+<%--                                    30만원 실적 충족까지 ${(300000 - monthSpending.totalAmount)}원 더 이용하고 30만원 실적 혜택을 받으세요.--%>
+<%--                                </option>--%>
+<%--                            </c:otherwise>--%>
+<%--                        </c:choose>--%>
+                    </div>
 
+                    </div>
+                <div class="card-box">
+
+                </div>
                     <!-- 그래프 영역 -->
 <%--                    <canvas id="myChart"></canvas>--%>
 
@@ -606,8 +642,14 @@
                 url: "/getMonthlyTotal",
                 data: { cardNumber: cardNumber },
                 success: function(response) {
-                    // response를 화면에 표시하는 로직. 예:
-                    // $('#someElement').text(response.someField);
+                    // response로 받은 사용금액을 화면에 업데이트합니다.
+                    let formattedTotal = new Intl.NumberFormat().format(response.totalAmount);
+                    $('.info-item h3').html('10 월 사용금액 : ' + formattedTotal + ' <span class="price-currency">(원)</span>');
+                    // 통화 , 구분자 추가
+                    let diff = 300000 - response.totalAmount;
+                    let formattedDiff = new Intl.NumberFormat().format(diff);
+                    // 실적 메시지도 업데이트
+                    $('.inner-text').text(response.benefitMessage);
                 },
                 error: function(error) {
                     console.log(error);
@@ -616,6 +658,32 @@
         });
     });
 </script>
+<%-- 실적 비동기적으로 업데이트 하기 --%>
+<%--<script>--%>
+<%--    $(document).ready(function() {--%>
+<%--        $('#example-custom').on('change', function() {--%>
+<%--            var selectedCardNumber = $(this).val();--%>
+
+<%--            $.ajax({--%>
+<%--                url: '/getTotalAmount?cardNumber=' + selectedCardNumber,--%>
+<%--                type: 'GET',--%>
+<%--                success: function(data) {--%>
+<%--                    var totalAmount = data.totalAmount;--%>
+
+<%--                    if (totalAmount >= 600000) {--%>
+<%--                        $('.inner-text').text('60만원 실적을 충족했어요');--%>
+<%--                    } else if (totalAmount >= 300000) {--%>
+<%--                        $('.inner-text').text('30만원 실적을 충족했어요');--%>
+<%--                    } else {--%>
+<%--                        var diff = 300000 - totalAmount;--%>
+<%--                        $('.inner-text').text('30만원 실적 충족까지 ' + diff + '원 더 이용하고 30만원 실적 혜택을 받으세요.');--%>
+<%--                    }--%>
+<%--                }--%>
+<%--            });--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
+
 
 <script>
     // Custom select
@@ -718,7 +786,6 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
-
 
 </body>
 </html>

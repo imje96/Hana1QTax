@@ -135,11 +135,39 @@ public class TranController {
     }
 
     // AJAX 요청을 통해 총 사용금액을 바로 보여주기
+//    @PostMapping("/getMonthlyTotal")
+//    @ResponseBody
+//    public CardTranVO getMonthlyTotal(@RequestParam String cardNumber) {
+//        return tranChart.getThisMonthTotalByCard(cardNumber);
+//    }
     @PostMapping("/getMonthlyTotal")
     @ResponseBody
-    public CardTranVO getMonthlyTotal(@RequestParam String cardNumber) {
-        return tranChart.getThisMonthTotalByCard(cardNumber);
+    public Map<String, Object> getMonthlyTotal(@RequestParam String cardNumber) {
+        CardTranVO tran = tranChart.getThisMonthTotalByCard(cardNumber);
+        long totalAmount = tran.getTotalAmount();
+        String benefitMessage = "";
+
+        if (totalAmount >= 600000) {
+            benefitMessage = "60만원 실적을 충족했어요";
+        } else if (totalAmount >= 300000) {
+            benefitMessage = "30만원 실적을 충족했어요";
+        } else {
+            long diff = 300000 - totalAmount;
+            benefitMessage = "30만원 실적 충족까지 " + diff + "원 더 이용하고 30만원 실적 혜택을 받으세요.";
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("totalAmount", totalAmount);
+        response.put("benefitMessage", benefitMessage);
+
+        return response;
     }
+
+//    @GetMapping("/getTotalAmount")
+//    public long getTotalAmount(@RequestParam String cardNumber) {
+//        // 카드 번호를 기반으로 DB에서 카드의 사용 금액 가져오기
+//        return tranChart.getThisMonthTotalByCard(cardNumber);
+//    }
 
     /* 카드 사용내역 */
     @GetMapping("/transactionList")

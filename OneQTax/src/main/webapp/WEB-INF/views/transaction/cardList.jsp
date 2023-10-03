@@ -276,7 +276,7 @@
         border-radius: 10px;
         text-align: center;
         width: 90%;
-        height: 270px;
+        height: 300px;
         padding: 20px 16px;
         margin-top: 40px;
     }
@@ -420,7 +420,8 @@
     }
 
     .icon-bg {
-        background: #05413d;
+        /*background: #05413d;*/
+        background: #FFFFFF;
         border-radius: 50%;
         width: 50px;
         height: 50px;
@@ -429,6 +430,7 @@
         align-items: center;
     }
 
+
     .icon-bg:hover {
         /* hover 시 약간 확대되는 효과 */
         transform: scale(1.05);
@@ -436,6 +438,17 @@
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
     }
 
+    .icon-bg2 {
+        background: #05413d;
+        /*background: #FFFFFF;*/
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
     /*  모달창 버튼  */
     .modalBtn2 {
         border: none;
@@ -568,27 +581,25 @@
                                     <div class="card-benefits">
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-house" style="font-size: 25px;"></i>
                                             </div>
                                             관리비
                                         </div>
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-house-medical"
-                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-house-medical" style="font-size: 25px;"></i>
                                             </div>
                                             병원&약국
                                         </div>
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-car" style="font-size: 25px;"></i>
                                             </div>
                                             주유/택시
                                         </div>
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-mug-saucer"
-                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-mug-saucer" style="font-size: 25px; "></i>
                                             </div>
                                             커피
                                         </div>
@@ -608,26 +619,26 @@
                                     <div class="card-benefits">
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-store" style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-store" style="font-size: 25px;"></i>
                                             </div>
                                             모든가맹점
                                         </div>
                                         <div class="icon-box">
                                             <div class="icon-bg">
                                                 <i class="fas fa-cart-shopping"
-                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                                   style="font-size: 25px;"></i>
                                             </div>
                                             온라인쇼핑
                                         </div>
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-car" style="font-size: 25px;"></i>
                                             </div>
                                             주유
                                         </div>
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-house" style="font-size: 25px;"></i>
                                             </div>
                                             관리비
                                         </div>
@@ -655,13 +666,13 @@
                                         <div class="icon-box">
                                             <div class="icon-bg">
                                                 <i class="fa-brands fa-amazon-pay"
-                                                   style="font-size: 25px; color: #FFFFFF"></i>
+                                                   style="font-size: 25px;"></i>
                                             </div>
                                             페이결제
                                         </div>
                                         <div class="icon-box">
                                             <div class="icon-bg">
-                                                <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                                                <i class="fas fa-house" style="font-size: 25px;"></i>
                                             </div>
                                             모든가맹점
                                         </div>
@@ -750,7 +761,7 @@
         <div class="card-benefits2">
             <div class="flex-box">
                 <div class="icon-box">
-                    <div class="icon-bg">
+                    <div class="icon-bg2">
                         <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
                     </div>
                     생활요금
@@ -759,7 +770,7 @@
             </div>
             <div class="flex-box">
                 <div class="icon-box">
-                    <div class="icon-bg">
+                    <div class="icon-bg2">
                         <i class="fas fa-house-medical" style="font-size: 25px; color: #FFFFFF"></i>
                     </div>
                     병원&약국
@@ -768,7 +779,7 @@
             </div>
             <div class="flex-box">
                 <div class="icon-box">
-                    <div class="icon-bg">
+                    <div class="icon-bg2">
                         <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
                     </div>
                     주유/택시
@@ -777,7 +788,7 @@
             </div>
             <div class="flex-box">
                 <div class="icon-box">
-                    <div class="icon-bg">
+                    <div class="icon-bg2">
                         <i class="fas fa-mug-saucer" style="font-size: 25px; color: #FFFFFF"></i>
                     </div>
                     커피

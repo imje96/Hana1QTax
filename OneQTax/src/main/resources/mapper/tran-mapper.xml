@@ -31,6 +31,7 @@
             finance_id
         FROM MEMBER_OTHERCARD
         WHERE member_id = #{memberId}
+        ORDER BY card_id
     </select>
 
     <!-- 카드내역 가져오기  -->
