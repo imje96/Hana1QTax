@@ -27,7 +27,7 @@
 
 
     <%--    <!-- Add Bootstrap CSS -->--%>
-    <%--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">--%>
+<%--        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">--%>
 
 
 </head>
@@ -109,7 +109,7 @@
     body {
         font-size: 20px !important;
         line-height: 1.42857143;
-        color: #333;
+        color: #333 !important;
         background-color: #fff;
     }
 
@@ -125,16 +125,17 @@
     }
     button{
         font-family: inherit;
-        font-size: 17px !important;
+        /*font-size: 17px !important;*/
         line-height: inherit;
-        background: #00857e;
-        color: #ffffff !important;
+        background: #e9efee;
+        /*color: #ffffff !important;*/
         border-radius: 10px;
         padding: 0 9px;
-        border-color: #00857e !important;
+        border-color: #e9efee !important;
     }
     button:hover {
         background-color: #106e69;
+        color: #FFFFFF;
         /* hover 시 배경색 변경 */
         transform: scale(1.05);
         /* hover 시 약간 확대되는 효과 */
@@ -171,7 +172,7 @@
         display: flex;
         margin-top: 50px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        height: 630px;
+        height: 800px;
     }
 </style>
 
@@ -201,23 +202,23 @@
                 <div style="color: grey; margin-bottom: 15px;">대시보드</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxThreshold"
+            <a href="${pageContext.request.contextPath}/cardList"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">내 카드 확인하기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/transactionList" style="display: block; margin-bottom: 20px;">
-                <h6 style="color: black; margin-bottom: 15px;">카드 사용내역</h6>
+                <div style="color: grey; margin-bottom: 15px;">실적 확인하기</div>
+            </a>
+            <hr style="width: 200px; margin-bottom: 15px;">
+            <a href="${pageContext.request.contextPath}/transactionList"
+               style="display: block; margin-bottom: 20px;">
+                <div style="color: grey; margin-bottom: 15px;">카드 사용내역</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/hometaxList"
                style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">홈택스 사용내역</div>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/spouseResult"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">실적 확인하기</div>
+                <h6 style="color: black; margin-bottom: 15px;">현금영수증 사용내역</h6>
             </a>
             <hr style="width: 200px;">
         </div>
@@ -227,9 +228,9 @@
     <div class="section">
         <div class="container-title">
 
-            <h2>내 소비 모아보기</h2>
+            <h2>현금영수증 사용내역 보기</h2>
             <br/>
-            <span style="color: #615e5e"><h3>소득공제액을 미리 확인하고 관리하세요!</h3></span>
+            <span style="color: #615e5e"><h3>홈택스로 연동한 현금영수증 내역을 확인해보세요</h3></span>
         </div>
 
         <div class="section3">
@@ -237,8 +238,14 @@
             <div class="transaction-list">
                 <div class="container-title">
                     <br/>
-                    <span style="color: #615e5e"><h3>현금영수증 결제내역 확인하기</h3></span>
+                    <span style="color: #615e5e"><h3>현금영수증 결제내역 확인하기</h3></span><br/>
                 </div>
+                <div class="info-item5">
+                    <div class="info-item">
+                        <h3><a href="#"><span style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월 ∨</span></a> 사용금액 :
+                      <fmt:formatNumber value="${hometaxThisMonthSum.totalAmount}" groupingUsed="true"/> 원</h3>
+                    </div>
+                </div><br/>
                 <!-- 테이블 구조 정의 -->
                 <table id="tranTable" class="display"  data-te-max-height="460"
                        data-te-fixed-header="true">

@@ -162,6 +162,44 @@ public class TranController {
         return "transaction/hometaxList";
     }
 
+    /* 카드 리스트 */
+    @GetMapping("/cardList")
+    public String viewCardList(HttpSession session, Model model){
+
+            // memberId 가져오기
+            MemberVO currentUser = getCurrentUser(session);
+
+            if (currentUser == null) {
+                // 리다이렉트나 에러 메시지 처리
+                return "redirect:/login";
+            }
+            int memberId = currentUser.getMember_id();
+
+            // transaction 가져오기
+            List<CardTranVO> cardTran = tranChart.getCardTranByMemberId(memberId);
+//        CardTranVO financeTran = tranChart.getCardTranByFinance(memberId);
+            List<CardTranVO> thisTran =  tranChart.getThisMonthTran(memberId);
+            List<CardTranVO> categoryTran = tranChart.getCategoryAmount(memberId);
+            List<CardTranVO> categoryMonth = tranChart.getThisMonthCategoryAmount(memberId);
+            CardTranVO thisMonthSpending = tranChart.getThisMonthTotalAmount(memberId);
+
+
+            // 그래프를 위한 값
+
+            model.addAttribute("cardTran", cardTran);
+
+            Gson gson = new Gson();
+            String jsonThisTran = gson.toJson(thisTran);
+            model.addAttribute("jsonThisTran", jsonThisTran);
+
+//        model.addAttribute("thisTran", thisTran);
+            model.addAttribute("categoryTran", categoryTran);
+            model.addAttribute("categoryMonth", categoryMonth);
+            model.addAttribute("thisMonthSpending", thisMonthSpending);
+
+            return "transaction/cardList";
+    }
+
 
     // 세션에서 member_id 가져오기
     private MemberVO getCurrentUser(HttpSession session) {

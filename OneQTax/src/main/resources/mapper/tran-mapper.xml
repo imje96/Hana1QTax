@@ -55,8 +55,6 @@
         order by cardtrandate desc, cardtrantime desc
     </select>
 
-
-
     <select id="getThisMonthTranByNo" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
         select * from card_transaction
         where SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')

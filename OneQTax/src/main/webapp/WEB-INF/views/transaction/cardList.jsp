@@ -33,13 +33,14 @@
 
 <style>
     *, ::after, ::before {
-         box-sizing: inherit;
+        box-sizing: inherit;
     }
 
     .section2 {
         width: 1200px;
         background: #f1f3f5;
         display: flex;
+        flex-direction: column;
         margin-top: 50px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -85,6 +86,9 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
+    .card-box h3{
+        font-size: 25px;
+    }
     .monthly-box {
         background-color: #fff;
         border-radius: 10px;
@@ -314,43 +318,6 @@
         /*margin-left: 8px;*/
     }
 
-    /* 카드사용내역 */
-    .transaction-history {
-        width: 90%;
-        text-align: left;
-        vertical-align: middle;
-        /*margin-top: 24px;*/
-    }
-
-    tr > th {
-        font-weight: 500;
-        font-size: 17px;
-        line-height: 100%;
-        color: #90A3BF;
-        /* text-align: center; */
-        background: #fff;
-        border-bottom: #fff;
-        border-right: #fff;
-    }
-
-    tr > td:first-child {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        padding-left: 30px;
-    }
-
-    tr > td {
-        font-weight: 600;
-        font-size: 16px;
-        padding: 8px 0;
-        text-align: left;
-        border-right: #fff;
-    }
-
-    tr:nth-child(odd) td {
-        background: #ffffff;
-    }
 
     .detailBtn {
         display: inline-block;
@@ -386,6 +353,16 @@
         justify-content: space-between;
         font-size: 18px;
     }
+
+    .upper-section {
+        display: flex;
+        width: 1200px;
+    }
+
+    .lower-section {
+        display: flex;
+        width: 1200px;
+    }
 </style>
 
 
@@ -409,12 +386,12 @@
             <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/tranDashboard"
                style="display: block; margin-bottom: 20px;">
-                <h6 style="color: black; margin-bottom: 15px;">대시보드</h6>
+                <div style="color: grey; margin-bottom: 15px;">대시보드</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/cardList"
                style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">내 카드 확인하기</div>
+                <h6 style="color: black; margin-bottom: 15px;">내 카드 확인하기</h6>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
             <a href="${pageContext.request.contextPath}/transactionList" style="display: block; margin-bottom: 20px;">
@@ -443,33 +420,28 @@
             <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
             <%--                </h6>--%>
             <%--                    💰--%>
-            <h2>내 소비 모아보기</h2>
+            <h2>나의 카드 목록</h2>
             <br/>
-            <span style="color: #615e5e"><h3>마이데이터로 연동한 나의 모든 소비 현황을 확인해보세요</h3></span>
+            <span style="color: #615e5e"><h3>마이데이터로 연동한 모든 카드 목록을 확인해보세요</h3></span>
         </div>
 
 
         <div class="section2">
 
 
-            <%--            <div class="time" style="text-align: right">--%>
-            <%--                <c:set var="formattedTimestamp" value="${fn:substring(deduction_date, 0, 19)}"/>--%>
-            <%--                ${formattedTimestamp}--%>
-            <%--                <a href=""${pageContext.request.contextPath}/calculateAndInsertDeduction" onclick="window.location.reload(); return false;">--%>
-            <%--                <img src="../../../resources/img/refresh.png" height="30"></a>--%>
-            <%--            </div>--%>
-            <div class="container-left">
-                <%--                <p>${deduction_date}</p>--%>
-
+            <div class="lower-section">
                 <div class="card-box">
-                    <h5> 내 카드</h5>
+                    <h3> 마이 하나카드</h3>
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
                                      class="d-block w-100" alt="Slide 1">
-                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                                <div class="info-box">
+                                    <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                                    테스트 내용입니다
+                                </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11530.png"
@@ -491,201 +463,42 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-
                 </div>
-                <div class="card-transaction">
-
-                    <div class="header-container">
-                        <h3 class="section-header">카드 사용내역</h3>
-                        <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
-                        </div>
-                    </div>
-<%--                    <a href="/transactionList" class="detailBtn"><h6>더보기 +</h6></a>--%>
-                    <button class="detailBtn" onclick="location.href='/transactionList'"><h6>더보기 +</h6></button>
-
-                    <table class="transaction-history">
-                        <tbody>
-                        <tr>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp; 거래내역</th>
-                            <th>결제일자
-                            </th>
-                            <th>결제금액
-                            </th>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                🥘 배달의 민족
-                            </td>
-                            <td>2023-10-12</td>
-                            <td>25,000 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                ☕ 스타벅스 철산점
-                            </td>
-                            <td>2023-10-12</td>
-                            <td>6,800 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                🏦 이마트 철산점
-                            </td>
-                            <td>2023-10-12</td>
-                            <td>29,980 원</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="hometax-transaction">
-                    <div class="header-container">
-                        <h3 class="section-header">현금영수증 사용내역</h3>
-                        <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
-                        </div>
-                    </div>
-                    <button class="detailBtn" onclick="location.href='/hometaxList'"><h6>더보기 +</h6></button>
-
-                    <table class="transaction-history">
-                        <tbody>
-                        <tr>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp; 거래내역</th>
-                            <th>결제일자
-                            </th>
-                            <th>결제금액
-                            </th>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                ☕ 와밀커피
-                            </td>
-                            <td>2023-10-09</td>
-                            <td>5,600 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                🥘 김가네
-                            </td>
-                            <td>2023-10-11</td>
-                            <td>15,000 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                📚 교보문고
-                            </td>
-                            <td>2023-10-02</td>
-                            <td>14,000 원</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-
             </div>
+            <div class="upper-section">
+                <div class="card-box">
+                    <h3>타사카드</h3>
 
-            <div class="container-right">
-                <%--                <p>${deduction_date}</p>--%>
-
-                <div class="monthly-box">
-                    <h5> 10월 사용금액</h5>
-                    <h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
-                                                        groupingUsed="true"/>
-                        <span class="price-currency">(원)</span></h1>
-
-                    <span class="price-currency">2023년 10월 3일</span>
+                    <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
+                                     class="d-block w-100" alt="Slide 1">
+                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11530.png"
+                                     class="d-block w-100" alt="Slide 2">
+                                <span style="text-align: center; color: #90A3BF;"><h5>1Q 카드</h5></span>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png"
+                                     class="d-block w-100" alt="Slide 3">
+                                <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#myCarousel2" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel2" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="category-box">
-
-                    <div><h5>이번 달 사용 업종</h5></div>
-                    <div class="chart3">
-
-                        <canvas id="deductionChart2"></canvas>
-                    </div>
-                    <div class="inner-text">
-                        <h3>1위 : ${categoryMonth[0].categoryBig}</h3>
-                    </div>
-                    <div class="pie-chart__labels">
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color first"></div>
-                                ${categoryMonth[0].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[0].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color second"></div>
-                                ${categoryMonth[1].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[1].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color third"></div>
-                                ${categoryMonth[2].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[2].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color fourth"></div>
-                                ${categoryMonth[3].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[3].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color fifth"></div>
-                                ${categoryMonth[4].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[4].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color sixth"></div>
-                                ${categoryMonth[5].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[5].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color seventh"></div>
-                                ${categoryMonth[6].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[6].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color eighth"></div>
-                                ${categoryMonth[7].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[7].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                        <div class="pie-chart__labels-item">
-                            <div class="label">
-                                <div class="label__color ninth"></div>
-                                ${categoryMonth[8].categoryBig}
-                            </div>
-                            <fmt:formatNumber value="${categoryMonth[8].totalAmount}" groupingUsed="true"/> 원
-                        </div>
-                    </div>
-
-
-                </div>
-
             </div>
-
         </div>
-    </div>
 </section>
 </div>
 
