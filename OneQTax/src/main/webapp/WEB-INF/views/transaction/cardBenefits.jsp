@@ -358,14 +358,11 @@
     }
 
     .inner-text {
-        /*position: absolute;*/
-        /*transform: translate(0%, -530%);*/
-        /*top: 32%;*/
-        /*left: 50%;*/
         text-align: left;
         /*color: #e4003f;*/
         font-size: 25px;
         font-weight: 600;
+        height: 130px;
     }
 
     /*  모달창 버튼  */
@@ -511,37 +508,92 @@
         visibility: visible;
         pointer-events: all;
     }
+
     .info-item6 {
-    border: 1px solid #f6f3f3;
-    /* background-color: #f5f5f5; */
-    border-radius: 10px;
-    margin-bottom: 50px;
-    width: 700px;
-    padding: 25px;
-    font-size: 26px;
-    text-align: center;
-    background: #00857e;
-    line-height: 1.7;
-    color: #FFFFFF;
+        border: 1px solid #f6f3f3;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        width: 600px;
+        padding: 25px;
+        font-size: 26px;
+        text-align: center;
+        background: #f8f8f8;
+        line-height: 1.7;
+
     }
+    .info-item {
+        border: 1px solid #f6f3f3;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        width: 600px;
+        padding: 25px;
+        font-size: 26px;
+        text-align: center;
+        background: #f8f8f8;
+        line-height: 1.7;
+        display: flex;
+        justify-content: space-between;
+    }
+
     /*  막대그래프  */
+    .chart-cover {
+        width: 600px;
+        height: 150px;
+        background-color: #1d3a59;
+        font-weight: 600;
+        font-size: 25px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        color: #FFFFFF;
+        align-content: space-around;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .progress-sector {
+        width: 500px;
+        display: flex;
+        font-weight: 600;
+        font-size: .8rem;
+        position: relative;
+        justify-content: space-between;
+        color: #afb4b8;
+        margin: 5px 0 20px 0;
+    }
+    .progress-sector2 {
+        width: 500px;
+        display: flex;
+        font-weight: 600;
+        font-size: .7rem;
+        color: #dddddd;
+        position: relative;
+        justify-content: space-between;
+        /*margin-bottom: 35px;*/
+    }
     .progress-container {
         width: 500px;
         height: 30px;
         background-color: #dedede;
         font-weight: 600;
         font-size: .8rem;
-        position: relative; /* 추가 */
+        position: relative;
+        /*margin-bottom: 35px;*/
     }
 
     .progress-container .gauge {
         height: 30px;
-        padding: 0;
+        padding: 0px;
         text-align: center;
-        background-color: #4F98FF;
+        background-color: #6eb4e5;
         color: #111;
-        /* position: absolute; 제거 */
-        overflow: hidden; /* 추가 */
+        overflow: hidden;
+    }
+    .flex-text {
+        width: 500px;
+        display: flex;
+        margin-bottom: 15px;
+        justify-content: space-between;
     }
 
 
@@ -604,7 +656,8 @@
             <%--                    💰--%>
             <h2>실적 충족 조회</h2>
             <br/>
-            <span style="color: #615e5e"><h3>카드의 실적 충족 현황을 확인해보세요</h3></span>
+            <span style="color: #615e5e"><h3>하나카드의 실적 충족 현황을 확인해보세요</h3></span>
+            <p>(무실적 상품은 화면에 표시되지 않습니다)</p>
         </div>
 
 
@@ -626,12 +679,14 @@
                         </div>
 
                     </div>
-                    <div class="info-item6">
+                    <div class="info-item1">
                         <div class="info-item">
-                            <h3><a href="#"><span
-                                    style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i
-                                    class="fa fa-caret-down"></i></span></a> 사용금액 :
-                                <fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> <span
+                            <h3>
+<%--                                <a href="#"><span--%>
+<%--                                    style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i--%>
+<%--                                    class="fa fa-caret-down"></i></span></a> --%>
+                                <div>총 이용금액 :</div>
+                               <fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> <span
                                         class="price-currency">(원)</span></h3>
                         </div>
                     </div>
@@ -653,13 +708,29 @@
                     <%--                                </option>--%>
                     <%--                            </c:otherwise>--%>
                     <%--                        </c:choose>--%>
-<%--                    <div class="progress-bar">--%>
-<%--                        <div class="progress"> </div>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="progress-bar">--%>
+                    <%--                        <div class="progress"> </div>--%>
+                    <%--                    </div>--%>
+                    <div class="chart-cover">
+                        <div class="flex-text">
+                        <div><span style="font-size: 22px">내 카드 실적 현황</span></div>
+                            <div class="progress-text"> 0%</div>
+                        </div>
 
-                    <div class="progress-container">
-                        <div class="gauge" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-                        <div class="progress-text" >0%</div>
+<%--                        <div class="progress-sector2">--%>
+<%--                            <h5>|</h5>--%>
+<%--                            <h5>|</h5>--%>
+<%--                            <h5>|</h5>--%>
+<%--                        </div>--%>
+                        <div class="progress-container">
+                            <div class="gauge" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+
+                        </div>
+                        <div class="progress-sector">
+                            <h5>0만원</h5>
+                            <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30만원</h5>
+                            <h5>60만원</h5>
+                        </div>
                     </div>
                 </div>
                 <div class="card-box">
