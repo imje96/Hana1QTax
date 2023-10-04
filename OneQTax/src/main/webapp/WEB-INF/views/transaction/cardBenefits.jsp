@@ -708,9 +708,11 @@
 
                         </div>
                         <div class="progress-sector">
+                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                             <h5>0만원</h5>
-                            <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30만원</h5>
-                            <h5>60만원</h5>
+                            <h5>40만원</h5>
+                            <h5>80만원</h5>
+                            <h5>120만원</h5>
                         </div>
                     </div>
                 </div>
@@ -792,6 +794,21 @@
                     let formattedTotal = new Intl.NumberFormat().format(response.totalAmount);
                     $('.info-item h3').html(formattedTotal + ' <span class="price-currency">(원)</span>');
                     $('.inner-text').html(response.benefitMessage);
+                    // 카드 타입에 따른 h5 태그들 변경
+                    if (response.cardType === "type1") {
+                        $('.progress-sector').html(`
+                        <h5>0만원</h5>
+                        <h5>40만원</h5>
+                        <h5>80만원</h5>
+                        <h5>120만원</h5>
+                    `);
+                    } else if (response.cardType === "type2") {
+                        $('.progress-sector').html(`
+                        <h5>0만원</h5>
+                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30만원</h5>
+                        <h5>60만원</h5>
+                    `);
+                    }
                 },
                 error: function (error) {
                     console.log(error);

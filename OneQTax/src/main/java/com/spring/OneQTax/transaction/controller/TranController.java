@@ -204,17 +204,7 @@ public class TranController {
     private String generateBenefitMessage(long totalAmount, String cardType) {
         String benefitMessage = "";
 
-        if ("type2".equals(cardType)) {
-            if (totalAmount >= 600000) {
-                benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
-            } else if (totalAmount >= 300000) {
-                long diff = 600000 - totalAmount;
-                benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지" + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
-            } else {
-                long diff = 300000 - totalAmount;
-                benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
-            }
-        } else if ("type1".equals(cardType)) {
+        if ("type1".equals(cardType)) {
             long diff1 = 400000 - totalAmount;
             long diff2 = 800000 - totalAmount;
             long diff3 = 1200000 - totalAmount;
@@ -228,8 +218,18 @@ public class TranController {
             } else {
                 benefitMessage = "아직 실적을 충족하지 못했어요. <br/>40만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff1 + "</span>&nbsp;원<br/> 더 이용하고 40만원 실적 혜택을 받으세요.";
             }
-        }
 
+        } else if ("type2".equals(cardType)) {
+            if (totalAmount >= 600000) {
+                benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
+            } else if (totalAmount >= 300000) {
+                long diff = 600000 - totalAmount;
+                benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지" + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+            } else {
+                long diff = 300000 - totalAmount;
+                benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
+            }
+        }
         return benefitMessage;
     }
 
