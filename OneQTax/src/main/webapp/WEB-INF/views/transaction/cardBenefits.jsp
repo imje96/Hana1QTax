@@ -363,6 +363,7 @@
         font-size: 25px;
         font-weight: 600;
         height: 130px;
+        margin: 25px 0;
     }
 
     /*  모달창 버튼  */
@@ -521,11 +522,12 @@
         line-height: 1.7;
 
     }
+
     .info-item {
         border: 1px solid #f6f3f3;
         border-radius: 10px;
-        margin-bottom: 50px;
-        width: 600px;
+        /*margin-bottom: 50px;*/
+        width: 560px;
         padding: 25px;
         font-size: 26px;
         text-align: center;
@@ -551,6 +553,7 @@
         flex-direction: column;
         justify-content: flex-end;
     }
+
     .progress-sector {
         width: 500px;
         display: flex;
@@ -561,6 +564,7 @@
         color: #afb4b8;
         margin: 5px 0 20px 0;
     }
+
     .progress-sector2 {
         width: 500px;
         display: flex;
@@ -571,6 +575,7 @@
         justify-content: space-between;
         /*margin-bottom: 35px;*/
     }
+
     .progress-container {
         width: 500px;
         height: 30px;
@@ -589,6 +594,7 @@
         color: #111;
         overflow: hidden;
     }
+
     .flex-text {
         width: 500px;
         display: flex;
@@ -679,49 +685,22 @@
                         </div>
 
                     </div>
-                    <div class="info-item1">
-                        <div class="info-item">
-                            <h3>
-<%--                                <a href="#"><span--%>
-<%--                                    style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i--%>
-<%--                                    class="fa fa-caret-down"></i></span></a> --%>
-                                <div>총 이용금액 :</div>
-                               <fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> <span
-                                        class="price-currency">(원)</span></h3>
-                        </div>
+                    <div class="info-item">
+
+                        <div>총 이용금액 :</div>
+                        <h3><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> <span
+                                class="price-currency">(원)</span></h3>
                     </div>
                     <div class="inner-text">
-                        <%--                        ${fn:replace(defaultBenefitMessage, '&#10;', '<br/>')}--%>
                         ${defaultBenefitMessage}
                     </div>
-                    <%--   c:choose 구문은 페이지 로드 시 서버에서 한번만 실행되기 때문에 ajax를 통해 값을 비동기적으로 가져와서 업데이트 해야 함                 --%>
-                    <%--                        <c:choose>--%>
-                    <%--                            <c:when test="${monthSpending.totalAmount >= 600000}">--%>
-                    <%--                                <option value="${monthSpending.totalAmount}">60만원 실적을 충족했어요</option>--%>
-                    <%--                            </c:when>--%>
-                    <%--                            <c:when test="${monthSpending.totalAmount >= 300000}">--%>
-                    <%--                                <option value="${monthSpending.totalAmount}">30만원 실적을 충족했어요</option>--%>
-                    <%--                            </c:when>--%>
-                    <%--                            <c:otherwise>--%>
-                    <%--                                <option value="${monthSpending.totalAmount}">--%>
-                    <%--                                    30만원 실적 충족까지 ${(300000 - monthSpending.totalAmount)}원 더 이용하고 30만원 실적 혜택을 받으세요.--%>
-                    <%--                                </option>--%>
-                    <%--                            </c:otherwise>--%>
-                    <%--                        </c:choose>--%>
-                    <%--                    <div class="progress-bar">--%>
-                    <%--                        <div class="progress"> </div>--%>
-                    <%--                    </div>--%>
+
                     <div class="chart-cover">
                         <div class="flex-text">
-                        <div><span style="font-size: 22px">내 카드 실적 현황</span></div>
+                            <div><span style="font-size: 22px">내 카드 실적 현황</span></div>
                             <div class="progress-text"> 0%</div>
                         </div>
 
-<%--                        <div class="progress-sector2">--%>
-<%--                            <h5>|</h5>--%>
-<%--                            <h5>|</h5>--%>
-<%--                            <h5>|</h5>--%>
-<%--                        </div>--%>
                         <div class="progress-container">
                             <div class="gauge" per="0"></div> <!-- 초기 값은 0%로 설정 -->
 
@@ -756,7 +735,7 @@
                 success: function (response) {
                     // response로 받은 사용금액을 화면에 업데이트합니다.
                     let formattedTotal = new Intl.NumberFormat().format(response.totalAmount);
-                    $('.info-item h3').html('10 월 사용금액 : ' + formattedTotal + ' <span class="price-currency">(원)</span>');
+                    $('.info-item h3').html(formattedTotal + ' <span class="price-currency">(원)</span>');
                     // 통화 , 구분자 추가
                     let diff = 300000 - response.totalAmount;
                     let diff2 = 600000 - response.totalAmount;

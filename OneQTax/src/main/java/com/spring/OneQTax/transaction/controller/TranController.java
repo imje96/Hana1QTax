@@ -287,7 +287,7 @@ public class TranController {
         int memberId = currentUser.getMember_id();
 
         // transaction 가져오기
-        List<HometaxTranVO> hometaxTran = tranChart.getHometaxTransaction(memberId);
+        List<HometaxTranVO> hometaxTran = tranChart.getHometaxThisMonth(memberId);
 
         HometaxTranVO hometaxSum = tranChart.getHometaxSum(memberId);
         HometaxTranVO hometaxThisMonthSum = tranChart.getHometaxTranByMemberId(memberId);
