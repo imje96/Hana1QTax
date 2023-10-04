@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--localTimestamp 초 까지만 출력--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%-- 문자열 바꾸기 --%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,9 +100,9 @@
     /*}*/
 
     .card-selector {
-        background-color: #55e7df;
+        /*background-color: #55e7df;*/
         border-radius: 10px;
-        /*padding: 20px 0;*/
+        padding: 20px 0;
         /*margin: 25px 25px;*/
         width: 90%;
         /*height: 700px;*/
@@ -362,8 +362,10 @@
         /*transform: translate(0%, -530%);*/
         /*top: 32%;*/
         /*left: 50%;*/
-        text-align: center;
-        color: #e4003f;
+        text-align: left;
+        /*color: #e4003f;*/
+        font-size: 25px;
+        font-weight: 600;
     }
 
     /*  모달창 버튼  */
@@ -400,7 +402,7 @@
         outline: 0;
     }
 
-         /*  드랍다운  */
+    /*  드랍다운  */
 
 
     .inner-wrapper {
@@ -509,6 +511,38 @@
         visibility: visible;
         pointer-events: all;
     }
+    .info-item6 {
+    border: 1px solid #f6f3f3;
+    /* background-color: #f5f5f5; */
+    border-radius: 10px;
+    margin-bottom: 50px;
+    width: 700px;
+    padding: 25px;
+    font-size: 26px;
+    text-align: center;
+    background: #00857e;
+    line-height: 1.7;
+    color: #FFFFFF;
+    }
+    /*  막대그래프  */
+    .progress-container {
+        width: 500px;
+        height: 30px;
+        background-color: #dedede;
+        font-weight: 600;
+        font-size: .8rem;
+        position: relative; /* 추가 */
+    }
+
+    .progress-container .gauge {
+        height: 30px;
+        padding: 0;
+        text-align: center;
+        background-color: #4F98FF;
+        color: #111;
+        /* position: absolute; 제거 */
+        overflow: hidden; /* 추가 */
+    }
 
 
 </style>
@@ -579,51 +613,58 @@
                 <div class="card-box">
 
                     <div class="card-selector">
-                        <div class="info-item5">
-                            <div class="info-item">
-                                <h3><a href="#"><span style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i class="fa fa-caret-down"></i></span></a> 사용금액 :
-                                    <fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/>    <span class="price-currency">(원)</span></h3>
-                            </div>
-                        </div>
-
-
+                        <h5>카드를 선택해주세요</h5>
                         <div class="inner-wrapper">
                             <div class="hex-select hex-select-js">
                                 <select name="example" id="example-custom">
-<%--           카드리스트에서 카드 가져오기                         --%>
-                                <c:forEach items="${cardList}" var="card">
-                                    <option value="${card.card_number}">${card.card_name}</option>
-                                </c:forEach>
+                                    <%--           카드리스트에서 카드 가져오기                         --%>
+                                    <c:forEach items="${cardList}" var="card">
+                                        <option value="${card.card_number}">${card.card_name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
 
                     </div>
-
+                    <div class="info-item6">
+                        <div class="info-item">
+                            <h3><a href="#"><span
+                                    style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i
+                                    class="fa fa-caret-down"></i></span></a> 사용금액 :
+                                <fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> <span
+                                        class="price-currency">(원)</span></h3>
+                        </div>
+                    </div>
                     <div class="inner-text">
-            <%--   c:choose 구문은 페이지 로드 시 서버에서 한번만 실행되기 때문에 ajax를 통해 값을 비동기적으로 가져와서 업데이트 해야 함                 --%>
-<%--                        <c:choose>--%>
-<%--                            <c:when test="${monthSpending.totalAmount >= 600000}">--%>
-<%--                                <option value="${monthSpending.totalAmount}">60만원 실적을 충족했어요</option>--%>
-<%--                            </c:when>--%>
-<%--                            <c:when test="${monthSpending.totalAmount >= 300000}">--%>
-<%--                                <option value="${monthSpending.totalAmount}">30만원 실적을 충족했어요</option>--%>
-<%--                            </c:when>--%>
-<%--                            <c:otherwise>--%>
-<%--                                <option value="${monthSpending.totalAmount}">--%>
-<%--                                    30만원 실적 충족까지 ${(300000 - monthSpending.totalAmount)}원 더 이용하고 30만원 실적 혜택을 받으세요.--%>
-<%--                                </option>--%>
-<%--                            </c:otherwise>--%>
-<%--                        </c:choose>--%>
+                        <%--                        ${fn:replace(defaultBenefitMessage, '&#10;', '<br/>')}--%>
+                        ${defaultBenefitMessage}
                     </div>
+                    <%--   c:choose 구문은 페이지 로드 시 서버에서 한번만 실행되기 때문에 ajax를 통해 값을 비동기적으로 가져와서 업데이트 해야 함                 --%>
+                    <%--                        <c:choose>--%>
+                    <%--                            <c:when test="${monthSpending.totalAmount >= 600000}">--%>
+                    <%--                                <option value="${monthSpending.totalAmount}">60만원 실적을 충족했어요</option>--%>
+                    <%--                            </c:when>--%>
+                    <%--                            <c:when test="${monthSpending.totalAmount >= 300000}">--%>
+                    <%--                                <option value="${monthSpending.totalAmount}">30만원 실적을 충족했어요</option>--%>
+                    <%--                            </c:when>--%>
+                    <%--                            <c:otherwise>--%>
+                    <%--                                <option value="${monthSpending.totalAmount}">--%>
+                    <%--                                    30만원 실적 충족까지 ${(300000 - monthSpending.totalAmount)}원 더 이용하고 30만원 실적 혜택을 받으세요.--%>
+                    <%--                                </option>--%>
+                    <%--                            </c:otherwise>--%>
+                    <%--                        </c:choose>--%>
+<%--                    <div class="progress-bar">--%>
+<%--                        <div class="progress"> </div>--%>
+<%--                    </div>--%>
 
+                    <div class="progress-container">
+                        <div class="gauge" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                        <div class="progress-text" >0%</div>
                     </div>
+                </div>
                 <div class="card-box">
 
                 </div>
-                    <!-- 그래프 영역 -->
-<%--                    <canvas id="myChart"></canvas>--%>
-
 
 
             </div>
@@ -633,25 +674,29 @@
 <%-- 카드 번호 ajax로 보내기--%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#example-custom').change(function() {
+    $(document).ready(function () {
+        $('#example-custom').change(function () {
             var cardNumber = $(this).val();
 
             $.ajax({
                 type: "POST",
                 url: "/getMonthlyTotal",
-                data: { cardNumber: cardNumber },
-                success: function(response) {
+                data: {cardNumber: cardNumber},
+                success: function (response) {
                     // response로 받은 사용금액을 화면에 업데이트합니다.
                     let formattedTotal = new Intl.NumberFormat().format(response.totalAmount);
                     $('.info-item h3').html('10 월 사용금액 : ' + formattedTotal + ' <span class="price-currency">(원)</span>');
                     // 통화 , 구분자 추가
                     let diff = 300000 - response.totalAmount;
+                    let diff2 = 600000 - response.totalAmount;
                     let formattedDiff = new Intl.NumberFormat().format(diff);
+                    let formattedDiff2 = new Intl.NumberFormat().format(diff);
                     // 실적 메시지도 업데이트
-                    $('.inner-text').text(response.benefitMessage);
+                    // 줄바꿈 \n -> br 태그로 변환
+                    // var formattedMessage = response.benefitMessage.replace(/\n/g, '<br>');
+                    $('.inner-text').html(response.benefitMessage);
                 },
-                error: function(error) {
+                error: function (error) {
                     console.log(error);
                 }
             });
@@ -683,7 +728,55 @@
 <%--        });--%>
 <%--    });--%>
 <%--</script>--%>
+<script>
+    window.totalUsed = ${monthSpending.totalAmount};
+    window.limits = 600000;
+</script>
+<%-- ajax 통신하여 그래프 그리기--%>
+<script>
+    $(document).ready(function () {
+        function updateGauge(totalUsed) {
+            var limits = window.limits;
+            var visualUsedPercentage = (totalUsed / limits) * 100 > 100 ? 100 : (totalUsed / limits) * 100;
+            var actualPercentage = (totalUsed / limits) * 100;
 
+            $('.gauge').animate({
+                width: visualUsedPercentage + "%"
+            }, {
+                duration: 500,
+                step: function (now, fx) {
+                    if (fx.prop === "width") {
+                        // 현재 너비에 따라 텍스트 업데이트
+                        var currentPercentage = (now / 100) * actualPercentage;
+                        $('.progress-text').text(currentPercentage.toFixed(2) + "%");
+                    }
+                }
+            });
+        }
+
+        // 초기 로딩시 그래프 업데이트
+        updateGauge(window.totalUsed || 0);
+
+        $('#example-custom').change(function () {
+            var cardNumber = $(this).val();
+
+            $.ajax({
+                type: "POST",
+                url: "/getMonthlyTotal",
+                data: {cardNumber: cardNumber},
+                success: function (response) {
+                    // 그래프 업데이트
+                    updateGauge(response.totalAmount || 0);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+
+
+</script>
 
 <script>
     // Custom select
@@ -726,7 +819,7 @@
     });
 </script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         var data1 = [10, 20, 30, 40];
         var data2 = [40, 30, 20, 10];
 
@@ -743,13 +836,13 @@
             }
         });
 
-        $('.dropdown-item').click(function(e) {
+        $('.dropdown-item').click(function (e) {
             e.preventDefault();
             var dataSet = $(this).data('value');
 
-            if(dataSet === 'set1') {
+            if (dataSet === 'set1') {
                 chart.data.datasets[0].data = data1;
-            } else if(dataSet === 'set2') {
+            } else if (dataSet === 'set2') {
                 chart.data.datasets[0].data = data2;
             }
 

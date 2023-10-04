@@ -120,11 +120,20 @@ public class TranController {
         // transaction 가져오기
         List<CardListVO> cardList = tranChart.getCardList(memberId);
         // default로 맨 처음 카드의 사용금액 보여주기
+//        if (!cardList.isEmpty()) {
+//            String cardNumber = cardList.get(0).getCard_number();
+//            CardTranVO monthSpendingByNum = tranChart.getThisMonthTotalByCard(cardNumber);
+//            model.addAttribute("monthSpending", monthSpendingByNum);
+//        }
         if (!cardList.isEmpty()) {
             String cardNumber = cardList.get(0).getCard_number();
             CardTranVO monthSpendingByNum = tranChart.getThisMonthTotalByCard(cardNumber);
             model.addAttribute("monthSpending", monthSpendingByNum);
+
+            String defaultBenefitMessage = generateBenefitMessage(monthSpendingByNum.getTotalAmount());
+            model.addAttribute("defaultBenefitMessage", defaultBenefitMessage);
         }
+
 
         // 그래프를 위한 값
 
@@ -140,27 +149,59 @@ public class TranController {
 //    public CardTranVO getMonthlyTotal(@RequestParam String cardNumber) {
 //        return tranChart.getThisMonthTotalByCard(cardNumber);
 //    }
+//    @PostMapping("/getMonthlyTotal")
+//    @ResponseBody
+//    public Map<String, Object> getMonthlyTotal(@RequestParam String cardNumber) {
+//        CardTranVO tran = tranChart.getThisMonthTotalByCard(cardNumber);
+//        long totalAmount = tran.getTotalAmount();
+//        String benefitMessage = "";
+//
+//        if (totalAmount >= 600000) {
+//            benefitMessage = "60만원 실적을 충족했어요.\n 최대 혜택을 누려보세요.";
+//        } else if (totalAmount >= 300000) {
+//            long diff = 600000 - totalAmount;
+//            benefitMessage = "30만원 실적을 충족했어요.\n 60만원 실적 충족까지 " + diff + "원 더 이용하고 더 많은 혜택을 받으세요.";
+//        } else {
+//            long diff = 300000 - totalAmount;
+//            benefitMessage = "30만원 실적 충족까지 " + diff + "원 더 이용하고 30만원 실적 혜택을 받으세요.";
+//        }
+//
+//        Map<String, Object> response = new HashMap<>();
+//        response.put("totalAmount", totalAmount);
+//        response.put("benefitMessage", benefitMessage);
+//
+//        return response;
+//    }
     @PostMapping("/getMonthlyTotal")
     @ResponseBody
     public Map<String, Object> getMonthlyTotal(@RequestParam String cardNumber) {
         CardTranVO tran = tranChart.getThisMonthTotalByCard(cardNumber);
         long totalAmount = tran.getTotalAmount();
-        String benefitMessage = "";
 
-        if (totalAmount >= 600000) {
-            benefitMessage = "60만원 실적을 충족했어요";
-        } else if (totalAmount >= 300000) {
-            benefitMessage = "30만원 실적을 충족했어요";
-        } else {
-            long diff = 300000 - totalAmount;
-            benefitMessage = "30만원 실적 충족까지 " + diff + "원 더 이용하고 30만원 실적 혜택을 받으세요.";
-        }
+        String benefitMessage = generateBenefitMessage(totalAmount);
 
         Map<String, Object> response = new HashMap<>();
         response.put("totalAmount", totalAmount);
         response.put("benefitMessage", benefitMessage);
 
         return response;
+    }
+
+    // 실적 계산하는 메서드 분리
+    private String generateBenefitMessage(long totalAmount) {
+        String benefitMessage = "";
+
+        if (totalAmount >= 600000) {
+            benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
+        } else if (totalAmount >= 300000) {
+            long diff = 600000 - totalAmount;
+            benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지"+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+        } else {
+            long diff = 300000 - totalAmount;
+            benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 "+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
+        }
+
+        return benefitMessage;
     }
 
 //    @GetMapping("/getTotalAmount")
