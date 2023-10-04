@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class TranController {
 
     /* 대시보드 */
     @GetMapping("/tranDashboard")
-    public String viewTranDashboard(HttpSession session, Model model){
+    public String viewTranDashboard(HttpSession session, Model model) {
 
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
@@ -58,7 +59,6 @@ public class TranController {
         CardTranVO thisMonthSpending = tranChart.getThisMonthTotalAmount(memberId);
 
 
-
         // 그래프를 위한 값
         model.addAttribute("categoryMonth", categoryMonth);
         model.addAttribute("thisMonthSpending", thisMonthSpending);
@@ -68,7 +68,7 @@ public class TranController {
 
     /* 카드 리스트 */
     @GetMapping("/cardList")
-    public String viewCardList(HttpSession session, Model model){
+    public String viewCardList(HttpSession session, Model model) {
 
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
@@ -81,8 +81,7 @@ public class TranController {
 
         // transaction 가져오기
         List<CardTranVO> cardTran = tranChart.getCardTranByMemberId(memberId);
-//        CardTranVO financeTran = tranChart.getCardTranByFinance(memberId);
-        List<CardTranVO> thisTran =  tranChart.getThisMonthTran(memberId);
+        List<CardTranVO> thisTran = tranChart.getThisMonthTran(memberId);
         List<CardTranVO> categoryTran = tranChart.getCategoryAmount(memberId);
         List<CardTranVO> categoryMonth = tranChart.getThisMonthCategoryAmount(memberId);
         CardTranVO thisMonthSpending = tranChart.getThisMonthTotalAmount(memberId);
@@ -106,8 +105,7 @@ public class TranController {
 
     /* 카드 실적조회 */
     @GetMapping("/cardBenefits")
-    public String viewCardBenefits(HttpSession session, Model model){
-
+    public String viewCardBenefits(HttpSession session, Model model) {
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
 
@@ -117,92 +115,124 @@ public class TranController {
         }
         int memberId = currentUser.getMember_id();
 
-        // transaction 가져오기
-        List<CardListVO> cardList = tranChart.getCardList(memberId);
-        // default로 맨 처음 카드의 사용금액 보여주기
-//        if (!cardList.isEmpty()) {
-//            String cardNumber = cardList.get(0).getCard_number();
-//            CardTranVO monthSpendingByNum = tranChart.getThisMonthTotalByCard(cardNumber);
-//            model.addAttribute("monthSpending", monthSpendingByNum);
-//        }
-        if (!cardList.isEmpty()) {
-            String cardNumber = cardList.get(0).getCard_number();
+        List<CardListVO> selectedCards = getSelectedCards(memberId); // 중복 제거하여 메소드 호출
+
+        if (!selectedCards.isEmpty()) {
+            String cardNumber = selectedCards.get(0).getCard_number();
             CardTranVO monthSpendingByNum = tranChart.getThisMonthTotalByCard(cardNumber);
             model.addAttribute("monthSpending", monthSpendingByNum);
 
-            String defaultBenefitMessage = generateBenefitMessage(monthSpendingByNum.getTotalAmount());
+            // 카드 선택한 것 가져오기
+            String cardType = getCardTypeByCardNumber(cardNumber, selectedCards);
+
+            String defaultBenefitMessage = generateBenefitMessage(monthSpendingByNum.getTotalAmount(), cardType);
             model.addAttribute("defaultBenefitMessage", defaultBenefitMessage);
         }
 
-
         // 그래프를 위한 값
-
-        model.addAttribute("cardList", cardList);
-
+        model.addAttribute("cardList", selectedCards);
 
         return "transaction/cardBenefits";
     }
 
-    // AJAX 요청을 통해 총 사용금액을 바로 보여주기
-//    @PostMapping("/getMonthlyTotal")
-//    @ResponseBody
-//    public CardTranVO getMonthlyTotal(@RequestParam String cardNumber) {
-//        return tranChart.getThisMonthTotalByCard(cardNumber);
-//    }
-//    @PostMapping("/getMonthlyTotal")
-//    @ResponseBody
-//    public Map<String, Object> getMonthlyTotal(@RequestParam String cardNumber) {
-//        CardTranVO tran = tranChart.getThisMonthTotalByCard(cardNumber);
-//        long totalAmount = tran.getTotalAmount();
-//        String benefitMessage = "";
-//
-//        if (totalAmount >= 600000) {
-//            benefitMessage = "60만원 실적을 충족했어요.\n 최대 혜택을 누려보세요.";
-//        } else if (totalAmount >= 300000) {
-//            long diff = 600000 - totalAmount;
-//            benefitMessage = "30만원 실적을 충족했어요.\n 60만원 실적 충족까지 " + diff + "원 더 이용하고 더 많은 혜택을 받으세요.";
-//        } else {
-//            long diff = 300000 - totalAmount;
-//            benefitMessage = "30만원 실적 충족까지 " + diff + "원 더 이용하고 30만원 실적 혜택을 받으세요.";
-//        }
-//
-//        Map<String, Object> response = new HashMap<>();
-//        response.put("totalAmount", totalAmount);
-//        response.put("benefitMessage", benefitMessage);
-//
-//        return response;
-//    }
+
     @PostMapping("/getMonthlyTotal")
     @ResponseBody
-    public Map<String, Object> getMonthlyTotal(@RequestParam String cardNumber) {
+    public Map<String, Object> getMonthlyTotal(@RequestParam String cardNumber, HttpSession session) {
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        int memberId = currentUser.getMember_id();
+
+        List<CardListVO> selectedCards = getSelectedCards(memberId); // 중복 제거
+
         CardTranVO tran = tranChart.getThisMonthTotalByCard(cardNumber);
         long totalAmount = tran.getTotalAmount();
 
-        String benefitMessage = generateBenefitMessage(totalAmount);
+        // cardType 결정
+        String cardType = getCardTypeByCardNumber(cardNumber, selectedCards);
+        // 혜택 메시지 생성
+        String benefitMessage = generateBenefitMessage(totalAmount, cardType);
 
         Map<String, Object> response = new HashMap<>();
         response.put("totalAmount", totalAmount);
         response.put("benefitMessage", benefitMessage);
+        response.put("cardType", cardType);
 
         return response;
     }
 
+    // 카드 선택 메서드
+    private List<CardListVO> getSelectedCards(int memberId) {
+        List<CardListVO> cardList = tranChart.getCardList(memberId);
+        List<CardListVO> selectedCards = new ArrayList<>();
+        if (cardList.size() > 1) {
+            selectedCards.add(cardList.get(0));
+            selectedCards.add(cardList.get(1));
+        } else if (cardList.size() == 1) {
+            selectedCards.add(cardList.get(0));
+        }
+        return selectedCards;
+    }
+
+    // 카드 선택 메서드 -> type으로 지정
+    private String getCardTypeByCardNumber(String cardNumber, List<CardListVO> selectedCards) {
+        if (selectedCards.get(0).getCard_number().equals(cardNumber)) {
+            return "type1";
+        } else if (selectedCards.size() > 1 && selectedCards.get(1).getCard_number().equals(cardNumber)) {
+            return "type2";
+        }
+        return "unknown";
+    }
+
     // 실적 계산하는 메서드 분리
-    private String generateBenefitMessage(long totalAmount) {
+//    private String generateBenefitMessage(long totalAmount) {
+//        String benefitMessage = "";
+//
+//        if (totalAmount >= 600000) {
+//            benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
+//        } else if (totalAmount >= 300000) {
+//            long diff = 600000 - totalAmount;
+//            benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지"+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+//        } else {
+//            long diff = 300000 - totalAmount;
+//            benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 "+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
+//        }
+//
+//        return benefitMessage;
+//    }
+    private String generateBenefitMessage(long totalAmount, String cardType) {
         String benefitMessage = "";
 
-        if (totalAmount >= 600000) {
-            benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
-        } else if (totalAmount >= 300000) {
-            long diff = 600000 - totalAmount;
-            benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지"+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
-        } else {
-            long diff = 300000 - totalAmount;
-            benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 "+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
+        if ("type2".equals(cardType)) {
+            if (totalAmount >= 600000) {
+                benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
+            } else if (totalAmount >= 300000) {
+                long diff = 600000 - totalAmount;
+                benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지" + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+            } else {
+                long diff = 300000 - totalAmount;
+                benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
+            }
+        } else if ("type1".equals(cardType)) {
+            long diff1 = 400000 - totalAmount;
+            long diff2 = 800000 - totalAmount;
+            long diff3 = 1200000 - totalAmount;
+
+            if (totalAmount >= 1200000) {
+                benefitMessage = "축하드려요. 3구간 120만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
+            } else if (totalAmount >= 800000) {
+                benefitMessage = "80만원 실적을 충족했어요.<br/>120만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff3 + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+            } else if (totalAmount >= 400000) {
+                benefitMessage = "40만원 실적을 충족했어요.<br/>80만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff2 + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+            } else {
+                benefitMessage = "아직 실적을 충족하지 못했어요. <br/>40만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff1 + "</span>&nbsp;원<br/> 더 이용하고 40만원 실적 혜택을 받으세요.";
+            }
         }
 
         return benefitMessage;
     }
+
 
 //    @GetMapping("/getTotalAmount")
 //    public long getTotalAmount(@RequestParam String cardNumber) {
@@ -212,7 +242,7 @@ public class TranController {
 
     /* 카드 사용내역 */
     @GetMapping("/transactionList")
-    public String viewTransaction(HttpSession session, Model model){
+    public String viewTransaction(HttpSession session, Model model) {
 
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
@@ -226,11 +256,10 @@ public class TranController {
         // transaction 가져오기
         List<CardTranVO> cardTran = tranChart.getCardTranByMemberId(memberId);
 //        CardTranVO financeTran = tranChart.getCardTranByFinance(memberId);
-        List<CardTranVO> thisTran =  tranChart.getThisMonthTran(memberId);
+        List<CardTranVO> thisTran = tranChart.getThisMonthTran(memberId);
         List<CardTranVO> categoryTran = tranChart.getCategoryAmount(memberId);
         List<CardTranVO> categoryMonth = tranChart.getThisMonthCategoryAmount(memberId);
         CardTranVO thisMonthSpending = tranChart.getThisMonthTotalAmount(memberId);
-
 
 
         // 그래프를 위한 값
@@ -252,7 +281,7 @@ public class TranController {
     /* 카드 번호 암호화 */
     @RequestMapping("/getCardNumber")
     @ResponseBody
-    public Map<String, Object> sendData(HttpSession session, Model model){
+    public Map<String, Object> sendData(HttpSession session, Model model) {
         Map<String, Object> data = new HashMap<>();
 
         // memberId 가져오기
@@ -265,9 +294,9 @@ public class TranController {
         int memberId = currentUser.getMember_id();
 
         // transaction 가져오기
-        List<CardTranVO> thisTran =  tranChart.getThisMonthTran(memberId);
+        List<CardTranVO> thisTran = tranChart.getThisMonthTran(memberId);
 
-        if(!thisTran.isEmpty()) {
+        if (!thisTran.isEmpty()) {
             data.put("cardNumber", thisTran.get(2).getCard_number());
         }
         return data;
@@ -275,7 +304,7 @@ public class TranController {
 
     /* 현금영수증 사용내역 */
     @GetMapping("/hometaxList")
-    public String hometaxList(HttpSession session, Model model){
+    public String hometaxList(HttpSession session, Model model) {
 
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
