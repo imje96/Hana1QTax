@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--localTimestamp 초 까지만 출력--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -491,6 +490,11 @@
                                      class="d-block w-100" alt="Slide 3">
                                 <span style="text-align: center; color: #90A3BF;"><h5>(국민)펭수 노리 체크카드</h5></span>
                             </div>
+                            <div class="carousel-item">
+                                <img src="https://img1.kbcard.com/ST/img/cxc/kbcard/upload/img/product/09171_img.png"
+                                     class="d-block w-100" alt="Slide 3">
+                                <span style="text-align: center; color: #90A3BF;"><h5>(국민)청춘대로 티타늄 카드</h5></span>
+                            </div>
                         </div>
                         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -611,7 +615,8 @@
                                                         groupingUsed="true"/>
                         <span class="price-currency">(원)</span></h1>
 
-                    <span class="price-currency">2023년 10월 3일</span>
+                    <span class="price-currency"><c:set var="now" value="<%= new java.util.Date() %>" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></span>
                 </div>
                 <div class="category-box">
 

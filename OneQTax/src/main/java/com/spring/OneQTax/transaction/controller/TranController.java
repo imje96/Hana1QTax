@@ -79,23 +79,30 @@ public class TranController {
         }
         int memberId = currentUser.getMember_id();
 
+        // 카드 리스트 가져오기
+        List<CardListVO> cardList = tranChart.getCardList(memberId);
+        // 카드사별 한도 조회
+        List<CardListVO> cardLimit = tranChart.getCardlimit(memberId);
+
         // transaction 가져오기
         List<CardTranVO> cardTran = tranChart.getCardTranByMemberId(memberId);
         List<CardTranVO> thisTran = tranChart.getThisMonthTran(memberId);
         List<CardTranVO> categoryTran = tranChart.getCategoryAmount(memberId);
         List<CardTranVO> categoryMonth = tranChart.getThisMonthCategoryAmount(memberId);
+        List<CardTranVO> thisTotalBrand = tranChart.getThisMonthTotalByBrand(memberId);
         CardTranVO thisMonthSpending = tranChart.getThisMonthTotalAmount(memberId);
 
 
         // 그래프를 위한 값
-
+        model.addAttribute("cardList", cardList);
+        model.addAttribute("cardLimit", cardLimit);
         model.addAttribute("cardTran", cardTran);
 
         Gson gson = new Gson();
         String jsonThisTran = gson.toJson(thisTran);
         model.addAttribute("jsonThisTran", jsonThisTran);
 
-//        model.addAttribute("thisTran", thisTran);
+        model.addAttribute("thisTotalBrand", thisTotalBrand);
         model.addAttribute("categoryTran", categoryTran);
         model.addAttribute("categoryMonth", categoryMonth);
         model.addAttribute("thisMonthSpending", thisMonthSpending);
@@ -185,22 +192,6 @@ public class TranController {
         return "unknown";
     }
 
-    // 실적 계산하는 메서드 분리
-//    private String generateBenefitMessage(long totalAmount) {
-//        String benefitMessage = "";
-//
-//        if (totalAmount >= 600000) {
-//            benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
-//        } else if (totalAmount >= 300000) {
-//            long diff = 600000 - totalAmount;
-//            benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지"+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
-//        } else {
-//            long diff = 300000 - totalAmount;
-//            benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 "+ "<span style=\"color: #e4003f;\">"+ diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
-//        }
-//
-//        return benefitMessage;
-//    }
     private String generateBenefitMessage(long totalAmount, String cardType) {
         String benefitMessage = "";
 

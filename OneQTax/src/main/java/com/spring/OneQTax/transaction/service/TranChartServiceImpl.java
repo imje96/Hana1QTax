@@ -21,6 +21,10 @@ public class TranChartServiceImpl  implements TranChartService{
     }
 
     @Override
+    public List<CardListVO> getCardlimit(int memberId) {
+        return tranMapper.getCardList(memberId);
+    }
+    @Override
     public List<CardTranVO> getCardTranByMemberId(int memberId) {
         return tranMapper.getCardTranByMemberId(memberId);
     }
@@ -48,6 +52,11 @@ public class TranChartServiceImpl  implements TranChartService{
     @Override
     public CardTranVO getThisMonthTotalByCard(String cardNumber){
         return tranMapper.getThisMonthTotalByCard(cardNumber);
+    }
+
+    @Override
+    public List<CardTranVO> getThisMonthTotalByBrand(int memberId){
+        return tranMapper.getThisMonthTotalByBrand(memberId);
     }
 
     @Override

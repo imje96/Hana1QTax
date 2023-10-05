@@ -116,7 +116,10 @@
     .card-box h3 {
         font-size: 25px;
     }
-
+    .card-box2 h3 {
+        font-size: 25px;
+        margin-top: 23px;
+    }
 
     .carousel-inner {
         position: relative;
@@ -186,17 +189,22 @@
         padding: 10px 16px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         border-radius: 6px;
         color: #666B85;
-        background: #b4cece;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        width: 700px;
+        /*background: #b4cece;*/
+        /*box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);*/
     }
 
     .date-selector span {
         font-weight: 600;
         font-size: 18px;
         line-height: 15px;
+        width: 100px;
+        background: #b4cece;
+        padding: 14px 14px;
+        border-radius: 6px;
     }
 
     .info-box1 {
@@ -495,6 +503,9 @@
         border: 1px solid rgb(0 0 0 / 18%);
         /*box-shadow: 1px 5px 27px rgba(0, 0, 0, 0.1);*/
     }
+    .expense-box{
+        margin-bottom: 50px;
+    }
 
     /*  한도 차트  */
     /*  막대그래프  */
@@ -508,7 +519,7 @@
         display: flex;
         align-items: center;
         border-radius: 15px;
-        /*color: #FFFFFF;*/
+        margin-bottom: 20px;
         align-content: space-around;
         flex-direction: column;
         justify-content: flex-end;
@@ -518,16 +529,18 @@
         width: 700px;
         display: flex;
         font-weight: 600;
-        font-size: 22px;
         position: relative;
         justify-content: space-between;
         /*color: #ffffff;*/
         margin: 11px 0 20px 0;
     }
-
+    .progress-sector h5 {
+        color: #6e6969;
+        font-size: 22px;
+    }
     .progress-sector h3 {
         color: #e3003f;
-        font-size: 20px;
+        font-size: 26px;
     }
 
     .progress-text {
@@ -546,7 +559,7 @@
     }
 
     .progress-container .gauge1 {
-        width: 70%;
+        /*width: 70%;*/
         height: 50px;
         padding: 0px;
         text-align: center;
@@ -557,7 +570,7 @@
     }
 
     .progress-container .gauge2 {
-        width: 40%;
+        /*width: 40%;*/
         height: 50px;
         padding: 0px;
         text-align: center;
@@ -568,7 +581,7 @@
     }
 
     .progress-container .gauge3 {
-        width: 90%;
+        /*width: 90%;*/
         height: 50px;
         padding: 0px;
         text-align: center;
@@ -789,7 +802,7 @@
 
                 <div class="card-box2">
                     <h3>타사카드</h3>
-
+<br/>
                     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -812,6 +825,16 @@
                                     <div class="card_number">카드번호 : 5409-****-****-2094</div>
                                 </div>
                             </div>
+                            <div class="carousel-item">
+                                <img src="https://img1.kbcard.com/ST/img/cxc/kbcard/upload/img/product/09171_img.png"
+                                     class="d-block w-100" alt="Slide 2">
+                                <div class="info-box2">
+                                    <span class="card_title"><h5>청춘대로 티타늄 카드</h5></span>
+                                    <span class="personal_info">Mastercard | 2082 (신용)<br/></span>
+                                    <div class="card_brand ">카드사 : KB 국민카드</div>
+                                    <div class="card_number">카드번호 : 5112-****-****-2082</div>
+                                </div>
+                            </div>
                         </div>
                         <a class="carousel-control-prev" href="#myCarousel2" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -829,9 +852,13 @@
                 <div class="cards-limit">
                     <div class="title">카드사 이용금액</div>
                     <div class="date-selector">
-                        <span>📅 2023.10</span>
+                        <span>📅
+                        <c:set var="now" value="<%= new java.util.Date() %>" />
+                        <fmt:formatDate value="${now}" pattern="yyyy-MM" />
+                        </span>
                     </div>
                     <br/>
+                    <div class="expense-box">
                     <div class="flex-box2">
                         <div class="expense-cover">
                             <div class="logo-box"><img src="../../../resources/img/hana.png" height="75"></div>
@@ -841,7 +868,7 @@
                             <h3>하나카드(주)</h3>
                             <h5>신용&체크</h5></div>
                         <div class="amount-box">
-                            <h2><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
+                            <h2><fmt:formatNumber value="${thisTotalBrand[0].totalAmount}"
                                               groupingUsed="true"/></h2>
                         </div>
                             </div>
@@ -855,8 +882,8 @@
                             <h3>신한카드(주)</h3>
                             <h5>신용</h5></div>
                         <div class="amount-box">
-                            <h2><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
-                                                  groupingUsed="true"/></h2>
+                            <h2><fmt:formatNumber value="${thisTotalBrand[2].totalAmount}"
+                                                  groupingUsed="true"/>원</h2>
                         </div>
                         </div>
                     </div>
@@ -869,12 +896,12 @@
                             <h3>(주)KB국민카드</h3>
                             <h5>신용</h5></div>
                         <div class="amount-box">
-                            <h2><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
-                                                  groupingUsed="true"/></h2>
+                            <h2><fmt:formatNumber value="${thisTotalBrand[1].totalAmount}"
+                                                  groupingUsed="true"/>원</h2>
                         </div>
                         </div>
                     </div>
-
+                    </div>
 
                 </div>
 
@@ -883,7 +910,12 @@
             <div class="cards-limit">
                 <div class="title">카드사 한도</div>
                 <div class="date-selector">
-                    <span>📅 2023.10</span>
+                    <div class="date-selector">
+                        <span>📅
+                        <c:set var="now" value="<%= new java.util.Date() %>" />
+                        <fmt:formatDate value="${now}" pattern="yyyy-MM" />
+                        </span>
+                    </div>
                 </div>
 
                 <br/>
@@ -899,7 +931,7 @@
                     <div class="progress-sector">
                         <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                         <h5>총한도</h5>
-                        <h3>1300만원</h3>
+                        <h3>1700만원</h3>
                     </div>
                 </div>
 
@@ -914,7 +946,8 @@
                     <div class="progress-sector">
                         <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                         <h5>총한도</h5>
-                        <h3>630만원</h3>
+                        <h3>800만원</h3>
+<%--                        ${cardList[5].limit}--%>
                     </div>
                 </div>
 
@@ -929,7 +962,7 @@
                     <div class="progress-sector">
                         <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                         <h5>총한도</h5>
-                        <h3>520만원</h3>
+                        <h3>760만원</h3>
                     </div>
                 </div>
 
@@ -937,7 +970,6 @@
 
         </div>
 
-    </div>
     </div>
 </section>
 
@@ -1048,8 +1080,73 @@
     goToSlide(currentSlide);
 
 </script>
+<%-- 한도 그래프 --%>
+<script>
+    window.totalUsed1 = ${thisTotalBrand[0].totalAmount};
+    window.totalUsed2 = ${thisTotalBrand[1].totalAmount};
+    window.totalUsed3 = ${thisTotalBrand[2].totalAmount};
+    window.limit1 = ${cardList[0].limit};
+    window.limit2 = ${cardList[1].limit};
+    window.limit3 = ${cardList[2].limit};
+    </script>
+<script>
+    window.totalUsed1 = ${thisTotalBrand[0].totalAmount};
+    window.totalUsed2 = ${thisTotalBrand[1].totalAmount};
+    window.totalUsed3 = ${thisTotalBrand[2].totalAmount};
+    window.limit1 = ${cardList[0].limit};
+    window.limit2 = ${cardList[1].limit};
+    window.limit3 = ${cardList[2].limit};
+</script>
+<script>
+    $(document).ready(function () {
 
-<script type="text/javascript">
+        // Gauge 업데이트 함수
+        function updateGauge(gaugeSelector, totalUsed, limit) {
+            // 최대 limit 값을 넘지 않도록 함
+            totalUsed = totalUsed > limit ? limit : totalUsed;
+            var visualUsedPercentage = (totalUsed / limit) * 100;
+
+            $(gaugeSelector).animate({
+                width: visualUsedPercentage + "%"
+            }, {
+                duration: 500,
+                step: function (now, fx) {
+                    if (fx.prop === "width") {
+                        var currentPercentage = (now / 100) * visualUsedPercentage;
+                        $(gaugeSelector).parent().siblings('.flex-text').find('.progress-text').text(currentPercentage.toFixed(2) + "%");
+                    }
+                }
+            });
+        }
+
+        // 페이지 로딩시 초기 게이지 값 설정
+        updateGauge('.gauge1', window.totalUsed1, window.limit1);
+        updateGauge('.gauge2', window.totalUsed2, window.limit2);
+        updateGauge('.gauge3', window.totalUsed3, window.limit3);
+
+        $('#example-custom').change(function () {
+            var cardNumber = $(this).val();
+
+            $.ajax({
+                type: "POST",
+                url: "/cardList ",
+                success: function (response) {
+                    // 각 게이지를 업데이트
+                    updateGauge('.gauge1', response.totalUsed1, response.limit1);
+                    updateGauge('.gauge2', response.totalUsed2, response.limit2);
+                    updateGauge('.gauge3', response.totalUsed3, response.limit3);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+
+
+
+<script>
     let categories = [];
     <c:forEach var="item" items="${categoryMonth}">
     categories.push('${item.categoryBig}'); // EL 태그를 사용하여 JavaScript 배열에 데이터 저장

@@ -13,4 +13,5 @@ public class CardListVO {
     String card_type;
     String card_name;
     String finance_id;
+    int limit;
 }
