@@ -83,7 +83,8 @@ public class TranController {
         List<CardListVO> cardList = tranChart.getCardList(memberId);
         // 카드사별 한도 조회
         List<CardListVO> cardLimit = tranChart.getCardlimit(memberId);
-
+        // 카드별 사용금액 조회
+        List<CardTranVO> privateCardTotal = tranChart.getThisMonthTotalByCard2(memberId);
         // transaction 가져오기
         List<CardTranVO> cardTran = tranChart.getCardTranByMemberId(memberId);
         List<CardTranVO> thisTran = tranChart.getThisMonthTran(memberId);
@@ -97,7 +98,7 @@ public class TranController {
         model.addAttribute("cardList", cardList);
         model.addAttribute("cardLimit", cardLimit);
         model.addAttribute("cardTran", cardTran);
-
+        model.addAttribute("privateCardTotal", privateCardTotal);
         Gson gson = new Gson();
         String jsonThisTran = gson.toJson(thisTran);
         model.addAttribute("jsonThisTran", jsonThisTran);

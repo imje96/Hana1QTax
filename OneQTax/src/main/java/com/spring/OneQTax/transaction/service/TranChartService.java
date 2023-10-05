@@ -36,6 +36,8 @@ public interface TranChartService {
     /* 이번달 카드별 총액 조회 */
     CardTranVO getThisMonthTotalByCard(String cardNumber);
 
+    /* 이번달 카드별 총액 조회2 */
+    List<CardTranVO> getThisMonthTotalByCard2(int memberId);
     /* 이번달 카드사별 총액 조회 */
     List<CardTranVO> getThisMonthTotalByBrand(int memberId);
 

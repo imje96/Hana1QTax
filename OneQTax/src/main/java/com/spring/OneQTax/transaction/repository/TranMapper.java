@@ -38,6 +38,9 @@ public interface TranMapper {
     /* 이번달 카드별 총액 조회 */
     CardTranVO getThisMonthTotalByCard(String cardNumber);
 
+    /* 이번달 카드별 총액 조회_카드별 그룹화 */
+    List<CardTranVO> getThisMonthTotalByCard2(int memberId);
+
     /* 이번달 카드사별 총액 조회 */
     List<CardTranVO> getThisMonthTotalByBrand(int memberId);
 

@@ -116,6 +116,7 @@
     .card-box h3 {
         font-size: 25px;
     }
+
     .card-box2 h3 {
         font-size: 25px;
         margin-top: 23px;
@@ -459,15 +460,18 @@
         width: 700px;
         justify-content: space-between;
     }
+
     .flex-box3 {
         display: flex;
         align-items: center;
         width: 550px;
         justify-content: space-between;
     }
-    .flex-box3 h2{
+
+    .flex-box3 h2 {
         font-size: 27px;
     }
+
     .expense-cover {
         /*width: 900px;*/
         /*height: 200px;*/
@@ -503,7 +507,8 @@
         border: 1px solid rgb(0 0 0 / 18%);
         /*box-shadow: 1px 5px 27px rgba(0, 0, 0, 0.1);*/
     }
-    .expense-box{
+
+    .expense-box {
         margin-bottom: 50px;
     }
 
@@ -534,10 +539,12 @@
         /*color: #ffffff;*/
         margin: 11px 0 20px 0;
     }
+
     .progress-sector h5 {
         color: #6e6969;
         font-size: 22px;
     }
+
     .progress-sector h3 {
         color: #e3003f;
         font-size: 26px;
@@ -561,7 +568,6 @@
     .progress-container .gauge1 {
         /*width: 70%;*/
         height: 50px;
-        padding: 0px;
         text-align: center;
         background-color: #00847d;
         border-radius: 10px;
@@ -572,7 +578,6 @@
     .progress-container .gauge2 {
         /*width: 40%;*/
         height: 50px;
-        padding: 0px;
         text-align: center;
         background-color: #00847d;
         border-radius: 10px;
@@ -583,7 +588,6 @@
     .progress-container .gauge3 {
         /*width: 90%;*/
         height: 50px;
-        padding: 0px;
         text-align: center;
         background-color: #00847d;
         border-radius: 10px;
@@ -802,7 +806,7 @@
 
                 <div class="card-box2">
                     <h3>타사카드</h3>
-<br/>
+                    <br/>
                     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -813,6 +817,7 @@
                                     <span class="personal_info">VISA | 1298 (신용)<br/></span>
                                     <div class="card_brand ">카드사 : 신한카드</div>
                                     <div class="card_number">카드번호 : 9410-****-****-1298</div>
+
                                 </div>
                             </div>
                             <div class="carousel-item">
@@ -853,54 +858,66 @@
                     <div class="title">카드사 이용금액</div>
                     <div class="date-selector">
                         <span>📅
-                        <c:set var="now" value="<%= new java.util.Date() %>" />
-                        <fmt:formatDate value="${now}" pattern="yyyy-MM" />
+                        <c:set var="now" value="<%= new java.util.Date() %>"/>
+                        <fmt:formatDate value="${now}" pattern="yyyy-MM"/>
                         </span>
                     </div>
                     <br/>
                     <div class="expense-box">
-                    <div class="flex-box2">
-                        <div class="expense-cover">
-                            <div class="logo-box"><img src="../../../resources/img/hana.png" height="75"></div>
-                        </div>
-                        <div class="flex-box3">
-                        <div class="column-box">
-                            <h3>하나카드(주)</h3>
-                            <h5>신용&체크</h5></div>
-                        <div class="amount-box">
-                            <h2><fmt:formatNumber value="${thisTotalBrand[0].totalAmount}"
-                                              groupingUsed="true"/></h2>
-                        </div>
+                        <div class="flex-container">
+                        <div class="flex-box2">
+                            <div class="expense-cover">
+                                <div class="logo-box"><img src="../../../resources/img/hana.png" height="75"></div>
                             </div>
-                    </div>
-                    <div class="flex-box2">
-                        <div class="expense-cover">
-                            <span style="margin: 10px;"><img src="../../../resources/img/sh.png" height="110"></span>
+                            <div class="flex-box3">
+                                <div class="column-box">
+                                    <h3>하나카드(주)</h3>
+                                    <h5>신용&체크</h5></div>
+                                <div class="amount-box">
+                                    <h2><fmt:formatNumber value="${thisTotalBrand[0].totalAmount}"
+                                                          groupingUsed="true"/></h2>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex-box3">
-                        <div class="column-box">
-                            <h3>신한카드(주)</h3>
-                            <h5>신용</h5></div>
-                        <div class="amount-box">
-                            <h2><fmt:formatNumber value="${thisTotalBrand[2].totalAmount}"
-                                                  groupingUsed="true"/>원</h2>
+                            <div class="accordion-content" style="display:none;">
+                                여기에 펼쳐질 내용을 넣어주세요.<br/>
+                                ${privateCardTotal[0].card_number}; ${privateCardTotal[0].totalAmount};<br/>
+                                ${privateCardTotal[1].card_number}; ${privateCardTotal[1].totalAmount};<br/>
+                                원더 : ${privateCardTotal[2].card_number}; ${privateCardTotal[2].totalAmount};<br/>
+                                모두 : ${privateCardTotal[3].card_number}; ${privateCardTotal[3].totalAmount};<br/>
+                                원큐 : ${privateCardTotal[4].card_number}; ${privateCardTotal[4].totalAmount};<br/>
+                            </div>
                         </div>
+                        <div class="flex-box2">
+                            <div class="expense-cover">
+                                <span style="margin: 10px;"><img src="../../../resources/img/sh.png"
+                                                                 height="110"></span>
+                            </div>
+                            <div class="flex-box3">
+                                <div class="column-box">
+                                    <h3>신한카드(주)</h3>
+                                    <h5>신용</h5></div>
+                                <div class="amount-box">
+                                    <h2><fmt:formatNumber value="${thisTotalBrand[1].totalAmount}"
+                                                          groupingUsed="true"/>원</h2>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex-box2">
-                        <div class="expense-cover">
-                            <span style="margin: 10px 10px 10px 16px;"> <img src="../../../resources/img/kb.png" height="98"></span>
+                        <div class="flex-box2">
+                            <div class="expense-cover">
+                                <span style="margin: 10px 10px 10px 16px;"> <img src="../../../resources/img/kb.png"
+                                                                                 height="98"></span>
+                            </div>
+                            <div class="flex-box3">
+                                <div class="column-box">
+                                    <h3>(주)KB국민카드</h3>
+                                    <h5>신용</h5></div>
+                                <div class="amount-box">
+                                    <h2><fmt:formatNumber value="${thisTotalBrand[2].totalAmount}"
+                                                          groupingUsed="true"/>원</h2>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex-box3">
-                        <div class="column-box">
-                            <h3>(주)KB국민카드</h3>
-                            <h5>신용</h5></div>
-                        <div class="amount-box">
-                            <h2><fmt:formatNumber value="${thisTotalBrand[1].totalAmount}"
-                                                  groupingUsed="true"/>원</h2>
-                        </div>
-                        </div>
-                    </div>
                     </div>
 
                 </div>
@@ -912,8 +929,8 @@
                 <div class="date-selector">
                     <div class="date-selector">
                         <span>📅
-                        <c:set var="now" value="<%= new java.util.Date() %>" />
-                        <fmt:formatDate value="${now}" pattern="yyyy-MM" />
+                        <c:set var="now" value="<%= new java.util.Date() %>"/>
+                        <fmt:formatDate value="${now}" pattern="yyyy-MM"/>
                         </span>
                     </div>
                 </div>
@@ -931,7 +948,7 @@
                     <div class="progress-sector">
                         <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                         <h5>총한도</h5>
-                        <h3>1700만원</h3>
+                        <h3>1200만원</h3>
                     </div>
                 </div>
 
@@ -946,8 +963,8 @@
                     <div class="progress-sector">
                         <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                         <h5>총한도</h5>
-                        <h3>800만원</h3>
-<%--                        ${cardList[5].limit}--%>
+                        <h3>500만원</h3>
+                        <%--                        ${cardList[5].limit}--%>
                     </div>
                 </div>
 
@@ -962,15 +979,13 @@
                     <div class="progress-sector">
                         <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                         <h5>총한도</h5>
-                        <h3>760만원</h3>
+                        <h3>430만원</h3>
                     </div>
                 </div>
-
             </div>
 
-        </div>
 
-    </div>
+        </div>
 </section>
 
 <div id="myModal" class="modal">
@@ -1023,16 +1038,22 @@
     </div>
 
 </div>
-
 <!-- Add Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="../../resources/js/deductionChart.js"></script>
 <!-- Chart.js 및 Datalabels 플러그인 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
+<%-- 아코디언 --%>
+<script>
+    $(document).ready(function () {
+        $(".flex-container").click(function () {
+            $(this).find(".accordion-content").slideToggle();
+        });
+    });
+</script>
 <script>
     const slideContainer = document.querySelector(".slideshowContents");
     const slides = document.querySelectorAll(".slide");
@@ -1081,21 +1102,18 @@
 
 </script>
 <%-- 한도 그래프 --%>
+
 <script>
+
+
     window.totalUsed1 = ${thisTotalBrand[0].totalAmount};
     window.totalUsed2 = ${thisTotalBrand[1].totalAmount};
     window.totalUsed3 = ${thisTotalBrand[2].totalAmount};
-    window.limit1 = ${cardList[0].limit};
-    window.limit2 = ${cardList[1].limit};
-    window.limit3 = ${cardList[2].limit};
-    </script>
-<script>
-    window.totalUsed1 = ${thisTotalBrand[0].totalAmount};
-    window.totalUsed2 = ${thisTotalBrand[1].totalAmount};
-    window.totalUsed3 = ${thisTotalBrand[2].totalAmount};
-    window.limit1 = ${cardList[0].limit};
-    window.limit2 = ${cardList[1].limit};
-    window.limit3 = ${cardList[2].limit};
+    window.limit1 = ${cardLimit[0].limit};
+    window.limit2 = ${cardLimit[1].limit};
+    window.limit3 = ${cardLimit[2].limit};
+    console.log("Total Used 1:", window.totalUsed1);
+    console.log("Limit 1:", window.limit1);
 </script>
 <script>
     $(document).ready(function () {
@@ -1112,7 +1130,7 @@
                 duration: 500,
                 step: function (now, fx) {
                     if (fx.prop === "width") {
-                        var currentPercentage = (now / 100) * visualUsedPercentage;
+                        var currentPercentage = visualUsedPercentage;
                         $(gaugeSelector).parent().siblings('.flex-text').find('.progress-text').text(currentPercentage.toFixed(2) + "%");
                     }
                 }
@@ -1132,9 +1150,11 @@
                 url: "/cardList ",
                 success: function (response) {
                     // 각 게이지를 업데이트
-                    updateGauge('.gauge1', response.totalUsed1, response.limit1);
-                    updateGauge('.gauge2', response.totalUsed2, response.limit2);
-                    updateGauge('.gauge3', response.totalUsed3, response.limit3);
+                    updateGauge('.gauge1', response.thisTotalBrand[0].totalAmount, response.cardLimit[0].limit);
+                    updateGauge('.gauge2', response.thisTotalBrand[1].totalAmount, response.cardLimit[1].limit);
+                    updateGauge('.gauge3', response.thisTotalBrand[2].totalAmount, response.cardLimit[2].limit);
+                    console.log(response);
+
                 },
                 error: function (error) {
                     console.log(error);
@@ -1143,7 +1163,6 @@
         });
     });
 </script>
-
 
 
 <script>
