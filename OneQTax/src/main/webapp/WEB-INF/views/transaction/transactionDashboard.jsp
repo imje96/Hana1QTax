@@ -45,7 +45,7 @@
     }
 
     .container-left {
-        background-color: #efecec;
+        background-color: #f1f3f5;
         width: 60%;
         height: 1000px;
         display: flex;
@@ -56,7 +56,7 @@
     }
 
     .container-right {
-        background-color: #efecec;
+        background-color: #f1f3f5;
         width: 40%;
         height: 1000px;
         display: flex;

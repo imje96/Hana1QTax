@@ -73,6 +73,9 @@
 
     .title {
         text-align-all: center;
+        margin-top: 40px;
+        font-size: 30px;
+        font-weight: 700;
     }
 
     .card-box {
@@ -92,12 +95,6 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /*.card-box:hover {*/
-    /*    !* hover 시 약간 확대되는 효과 *!*/
-    /*    transform: scale(1.04);*/
-    /*    !* hover 시 그림자 약간 강화 *!*/
-    /*    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);*/
-    /*}*/
 
     .card-selector {
         /*background-color: #55e7df;*/
@@ -110,6 +107,7 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        color: #2a9791;
         /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     }
 
@@ -251,123 +249,17 @@
         font-size: 18px;
     }
 
-    .upper-section {
-        display: flex;
-        width: 1200px;
-    }
 
-    .lower-section {
-        display: flex;
-        width: 1200px;
-    }
-
-    /*  카드 타이틀  */
-    .card_title {
-        text-align: center;
-        color: #000000;
-        font-size: 22px;
-    }
-
-    .personal_info {
-        text-align: center;
-        color: #7a7a7a;
-        font-size: 17px;
-    }
-
-    .card_subtitle {
-        text-align: center;
-        color: #ffffff;
-        font-size: 18px;
-        background: #e50745;
-        padding: 5px 10px;
-        border-radius: 15px;
-    }
-
-    .card_brand {
-        text-align: center;
-        color: #ffffff;
-        font-size: 18px;
-        background: #afafaf;
-        padding: 5px 10px;
-        border-radius: 15px;
-    }
-
-    .card_number {
-        text-align: center;
-        /*color: #ffffff;*/
-        font-size: 18px;
-        /*background: #e50745;*/
-        /*padding: 5px 10px;*/
-        border-radius: 15px;
-        margin-top: 5px;
-    }
-
-    .card-benefits {
-        color: #000000;
-        font-size: 15px;
-        border: 3px solid #FFFFFF;
-        border-radius: 10px;
-        padding: 10px 0;
-        line-height: 1.8;
-        text-align: left;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 10px 0;
-    }
-
-    .card-benefits2 {
-        color: #000000;
-        font-size: 20px;
-        border: 3px solid #FFFFFF;
-        border-radius: 10px;
-        padding: 10px 0;
-        line-height: 1.8;
-        text-align: left;
-        margin: 10px 0;
-    }
-
-    .point {
-        color: #2a9791;
-        font-weight: bold;
-    }
-
-    .icon-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        font-size: 14px;
-        color: #4f4949;
-    }
-
-    .icon-bg {
-        background: #05413d;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .icon-bg:hover {
-        /* hover 시 약간 확대되는 효과 */
-        transform: scale(1.05);
-        /* hover 시 그림자 약간 강화 */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    }
 
     .inner-text {
         text-align: left;
-        /*color: #e4003f;*/
-        font-size: 25px;
+        /* color: #e4003f; */
+        font-size: 27px;
         font-weight: 600;
-        /*width: 430px;*/
+        /* width: 430px; */
         height: 130px;
-        margin: 25px 0 15px 0;
+        margin: 25px 0 20px 0;
     }
-
     /*  모달창 버튼  */
     .modalBtn2 {
         border: none;
@@ -541,8 +433,8 @@
 
     /*  막대그래프  */
     .chart-cover {
-        width: 600px;
-        height: 150px;
+        width: 800px;
+        height: 200px;
         background-color: #1d3a59;
         font-weight: 600;
         font-size: 25px;
@@ -557,54 +449,97 @@
     }
 
     .progress-sector {
-        width: 500px;
+        width: 600px;
         display: flex;
         font-weight: 600;
-        font-size: .8rem;
+        font-size: 22px;
         position: relative;
         justify-content: space-between;
-        color: #afb4b8;
-        margin: 5px 0 20px 0;
+        color: #ffffff;
+        margin: 11px 0 20px 0;
     }
 
-    .progress-sector2 {
-        width: 500px;
-        display: flex;
-        font-weight: 600;
-        font-size: .7rem;
-        color: #dddddd;
-        position: relative;
-        justify-content: space-between;
-        /*margin-bottom: 35px;*/
+    .progress-text {
+        font-size: 35px;
     }
 
     .progress-container {
-        width: 500px;
-        height: 30px;
+        width: 600px;
+        height: 50px;
         background-color: #dedede;
         font-weight: 600;
         font-size: .8rem;
         position: relative;
-        /*margin-bottom: 35px;*/
+        /* margin-bottom: 35px; */
     }
-
     .progress-container .gauge {
-        height: 30px;
+        height: 50px;
         padding: 0px;
         text-align: center;
         background-color: #6eb4e5;
         color: #111;
         overflow: hidden;
     }
-
     .flex-text {
-        width: 500px;
+        width: 600px;
         display: flex;
         margin-bottom: 15px;
         justify-content: space-between;
+        align-items: center;
     }
-
-
+    /* 실적 구간 */
+    .limits-info{
+        display: flex;
+        width: 600px;
+        justify-content: space-between;
+        margin-left: 200px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .limits-info h4{
+        font-size: 21px;
+        /*color: #e4003f;*/
+    }
+    .limits-info h5{
+        font-size: 18px;
+        color: #2a9791;
+    }
+    /*  테이블  */
+    .table-fill2 {
+        background: white;
+        border-radius: 3px;
+        border-collapse: collapse;
+        height: 400px;
+        margin: 50px;
+        margin-top: 5px;
+        max-width: 800px;
+        padding: 5px;
+        width: 100%;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        animation: float 5s infinite;
+    }
+    .text-th{
+        color: #454b4b !important;
+        background: #d5dfdf !important;
+        height: 45px !important;
+        border-bottom: 4px solid #cacfcf !important;
+        border-right: 1px solid #d5dfdf !important;
+        font-size: 20px !important;
+        font-weight: 500 !important;
+        text-align: center !important;
+    }
+    #benefitTable{
+        display: none;
+    }
+    #benefitTable2{
+        display: none;
+    }
+    .notice1{
+        display: none;
+    }
+    .notice2{
+        display: none;
+    }
 </style>
 
 
@@ -662,7 +597,7 @@
             <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
             <%--                </h6>--%>
             <%--                    💰--%>
-            <h2>실적 충족 조회</h2>
+            <h2>하나카드 실적 확인하기</h2>
             <br/>
             <span style="color: #615e5e"><h3>하나카드의 실적 충족 현황을 확인해보세요</h3></span>
             <p>(무실적 상품은 화면에 표시되지 않습니다)</p>
@@ -676,7 +611,7 @@
                     <div class="card-selector">
                         <h5>카드를 선택해주세요</h5>
                         <div class="inner-wrapper">
-                            <div class="hex-select hex-select-js">
+                           <div class="hex-select hex-select-js">
                                 <select name="example" id="example-custom">
                                     <%--           카드리스트에서 카드 가져오기                         --%>
                                     <c:forEach items="${cardList}" var="card">
@@ -699,7 +634,7 @@
 
                     <div class="chart-cover">
                         <div class="flex-text">
-                            <div><span style="font-size: 22px">내 카드 실적 현황</span></div>
+                            <div><span style="font-size: 26px">내 카드 실적 현황</span></div>
                             <div class="progress-text"> 0%</div>
                         </div>
 
@@ -715,64 +650,260 @@
                             <h5>120만원</h5>
                         </div>
                     </div>
+<%--                    <div class="limits-info">--%>
+<%--                        <div class="column1">--%>
+<%--                        실적 30만원<br/>--%>
+<%--                            <h5>충족</h5>--%>
+<%--                        </div>--%>
+<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
+<%--                    </div>--%>
+<%--                    <div class="limits-info">--%>
+<%--                        <div class="column2">--%>
+<%--                            실적 30만원<br/>--%>
+<%--                            <h5>충족</h5>--%>
+<%--                        </div>--%>
+<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
+<%--                    </div>--%>
+<%--                    <div class="limits-info">--%>
+<%--                        <div class="column3">--%>
+<%--                            실적 30만원<br/>--%>
+<%--                            <h5>충족</h5>--%>
+<%--                        </div>--%>
+<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
+<%--                    </div>--%>
+<%--                    <div class="limits-info">--%>
+<%--                        <div class="column">--%>
+<%--                            실적 60만원<br/>--%>
+<%--                            <h5>충족</h5>--%>
+<%--                        </div>--%>
+<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
+<%--                    </div>--%>
+<%--                    <div class="limits-info">--%>
+<%--                        <div class="column">--%>
+<%--                            실적 30만원<br/>--%>
+<%--                            충족--%>
+<%--                        </div>--%>
+<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
+<%--                    </div>--%>
+
+<%--                    <table class="table-fill">--%>
+<%--                        <thead>--%>
+<%--                        <tr>--%>
+<%--                            <th class="text-left">실적구간</th>--%>
+<%--                            <th class="text-left">충족여부</th>--%>
+<%--                            <th class="text-left">사용금액</th>--%>
+<%--                        </tr>--%>
+<%--                        </thead>--%>
+<%--                        <tbody class="table-hover">--%>
+<%--                        <tr>--%>
+<%--                            <td class="text-left">1구간 40만원</td>--%>
+<%--                            <td class="text-left">충족</td>--%>
+<%--                            <td class="text-left"><fmt:formatNumber value="${credit_total}" groupingUsed="true"/>원--%>
+
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td class="text-left">2구간 80만원</td>--%>
+<%--                            <td class="text-left">충족</td>--%>
+<%--                            <td class="text-left"><fmt:formatNumber value="${debit_total}" groupingUsed="true"/>원--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td class="text-left">3구간 120만원</td>--%>
+<%--                            <td class="text-left">부족</td>--%>
+<%--                            <td class="text-left"><fmt:formatNumber value="${cash_total}" groupingUsed="true"/>원--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        </tbody>--%>
+<%--                    </table>--%>
+
                 </div>
                 <div class="card-box">
-                    <table class="table-fill">
-                        <span style="text-align: center"></span><h3>기본공제항목 계산 결과</h3>
+                    <div class="title">실적별 주요혜택</div>
+                    <table class="table-fill2" id="benefitTable0">
                         <br/>
-                        <%--                            <p>일반공제항목이란? 추가공제항목인 대중교통, 전통시장, 도서및문화 등의 업종을 제외한~~</p>--%>
                         <br/>
-                        <div class="text-box"><p2><span style="font-weight: bold; color: #fd328a">✔️ 최저사용금액 : <fmt:formatNumber value="${minimumAmount}" groupingUsed="true"/>원</span>을 초과한 금액부터 공제 가능</p2></div>
-                        <br/><span style="text-align: right;"><p>&nbsp;&nbsp;* 최저사용금액: 총급여의 25%</p></span>
                         <thead>
                         <tr>
-                            <th class="text-left">구분</th>
-                            <th class="text-left">충족여부</th>
-                            <th class="text-left">사용금액</th>
-                            <th class="text-left">적립/할인 예정금액</th>
-                            <th class="text-left">공제액</th>
+                            <th class="text-th">혜택업종</th>
+                            <th class="text-th">혜택구분</th>
+                            <th class="text-th">실적1 (40만원~)</th>
+                            <th class="text-th">실적2 (80만원~)</th>
+                            <th class="text-th">실적3 (120만원~)</th>
                         </tr>
                         </thead>
                         <tbody class="table-hover">
                         <tr>
-                            <td class="text-left">신용카드</td>
-                            <td class="text-left"><fmt:formatNumber value="${credit_total}" groupingUsed="true"/>원
-                            </td>
-                            </td> <!--사용금액-->
-                            <td class="text-left"><fmt:formatNumber value="${credit_deductible}"
-                                                                    groupingUsed="true"/>원
-                            </td>
-                            <td class="text-left">15%</td>
-                            <td class="text-left"><fmt:formatNumber value="${credit_deduction}"
-                                                                    groupingUsed="true"/>원
-                            </td><!-- 공제액 금액-->
+                            <td><h5>공과금</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 6,000원</td>
+                            <td>10% / 10,000원</td>
                         </tr>
                         <tr>
-                            <td class="text-left">체크카드</td>
-                            <td class="text-left"><fmt:formatNumber value="${debit_total}" groupingUsed="true"/>원
-                            </td>
-                            </td> <!--사용금액-->
-                            <td class="text-left"><fmt:formatNumber value="${debit_deductible}"
-                                                                    groupingUsed="true"/>원
-                            </td>
-                            <td class="text-left">30%</td>
-                            <td class="text-left"><fmt:formatNumber value="${debit_deduction}" groupingUsed="true"/>원</td>
+                            <td><h5>병원/약국</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 6,000원</td>
+                            <td>10% / 10,000원</td>
                         </tr>
                         <tr>
-                            <td class="text-left">현금영수증</td>
-                            <td class="text-left"><fmt:formatNumber value="${cash_total}" groupingUsed="true"/>원
-                            </td>
-                            </td> <!--사용금액-->
-                            <td class="text-left"><fmt:formatNumber value="${cash_deductible}" groupingUsed="true"/>원</td>
-                            <td class="text-left">30%</td>
-                            <td class="text-left"><fmt:formatNumber value="${cash_deduction}"
-                                                                    groupingUsed="true"/>원
-                            </td>
+                            <td><h5>주유</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>택시</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>카페</h5></td>
+                            <td>할인</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                            <td>10% / 15,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>생활</h5></td>
+                            <td>할인</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                            <td>10% / 15,000원</td>
                         </tr>
                         </tbody>
                     </table>
-                </div>
+                    <table class="table-fill2" id="benefitTable">
+                        <thead>
+                        <tr>
+                            <th class="text-th">혜택업종</th>
+                            <th class="text-th">혜택구분</th>
+                            <th class="text-th">실적1 (40만원~)</th>
+                            <th class="text-th">실적2 (80만원~)</th>
+                            <th class="text-th">실적3 (120만원~)</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-hover">
+                        <tr>
+                            <td><h5>공과금</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 6,000원</td>
+                            <td>10% / 10,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>병원/약국</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 6,000원</td>
+                            <td>10% / 10,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>주유</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>택시</h5></td>
+                            <td>할인</td>
+                            <td>10% / 4,000원</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>카페</h5></td>
+                            <td>할인</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                            <td>10% / 15,000원</td>
+                        </tr>
+                        <tr>
+                            <td><h5>생활</h5></td>
+                            <td>할인</td>
+                            <td>10% / 8,000원</td>
+                            <td>10% / 12,000원</td>
+                            <td>10% / 15,000원</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
+                    <table class="table-fill2" id="benefitTable2">
+                        <thead>
+                        <tr>
+                            <th class="text-th">혜택업종</th>
+                            <th class="text-th">혜택구분</th>
+                            <th class="text-th">실적1 (~30만원)</th>
+                            <th class="text-th">실적2 (30만원~)</th>
+                            <th class="text-th">실적3 (60만원~)</th>
+                            <th class="text-th">비고</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-hover">
+                        <tr>
+                            <td><h5>데일리 적립</h5></td>
+                            <td>적립</td>
+                            <td>0.3%</td>
+                            <td>0.5%</td>
+                            <td>1.0%</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><h5>플러스 적립</h5></td>
+                            <td>적립</td>
+                            <td>X</td>
+                            <td>5천 머니</td>
+                            <td>동일</td>
+                            <td>영역별 합산<br/>10만원 이상 시</td>
+                        </tr>
+                        <tr>
+                            <td><h5>주유 할인</h5></td>
+                            <td>할인</td>
+                            <td>X</td>
+                            <td>3,000원 / 6,000원</td>
+                            <td>동일</td>
+                            <td>SK주유소<br/>5만원 이상 결제 시</td>
+                        </tr>
+                        <tr>
+                            <td><h5>커피 할인</h5></td>
+                            <td>할인</td>
+                            <td>X</td>
+                            <td>4,000원 / 4,000원</td>
+                            <td>동일</td>
+                            <td>스타벅스/커피빈<br/>4천원 이상 결제 시</td>
+                        </tr>
+                        <tr>
+                            <td><h5>아파트 관리비/<br/>4대보험</h5></td>
+                            <td>적립</td>
+                            <td>X</td>
+                            <td>X</td>
+                            <td>5천 머니 / 5천 머니</td>
+                            <td>이번달 합산<br/>10만원 이상 시</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="notice0">
+                        <h5>유의사항</h5>
+                        <p>* 원더카드는 회원이 원하는 혜택을 직접 선택하여 이용할 수 있는 상품으로 기본 서비스와 신청 시 추가 혜택을 받을 수 있는 혜택플러스가 제공됩니다.</p>
+                        <p>카드 신청 시 선택한 맞춤 혜택 조홥의 상세한 내용은 하나페이 앱에서 확인 가능하며. 카드 발급 후 직접 변경하여 이용 가능합니다.</p>
+                        <br/>
+                    </div>
+                    <div class="notice1">
+                        <h5>유의사항</h5>
+                        <p>* 원더카드는 회원이 원하는 혜택을 직접 선택하여 이용할 수 있는 상품으로 기본 서비스와 신청 시 추가 혜택을 받을 수 있는 혜택플러스가 제공됩니다.</p>
+                        <p>카드 신청 시 선택한 맞춤 혜택 조홥의 상세한 내용은 하나페이 앱에서 확인 가능하며. 카드 발급 후 직접 변경하여 이용 가능합니다.</p>
+                        <br/>
+                    </div>
+                    <div class="notice2">
+                        <h5>유의사항</h5>
+                        <p>1Q Daily+는 ‘하나멤버스 1Q카드 Daily’와는 다른 상품이며, 서비스 내용에 차이가 있으니 유의하시기 바랍니다.</p>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -802,12 +933,26 @@
                         <h5>80만원</h5>
                         <h5>120만원</h5>
                     `);
+                        // 테이블 보이기
+                        $('#benefitTable0').hide();
+                        $('#benefitTable').show();
+                        $('#benefitTable2').hide();
+                        $('.notice0').hide();
+                        $('.notice1').show();
+                        $('.notice2').hide();
                     } else if (response.cardType === "type2") {
                         $('.progress-sector').html(`
                         <h5>0만원</h5>
                         <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30만원</h5>
                         <h5>60만원</h5>
                     `);
+                        // 테이블 숨기기
+                        $('#benefitTable0').hide();
+                        $('#benefitTable').hide();
+                        $('#benefitTable2').show();
+                        $('.notice0').hide();
+                        $('.notice1').hide();
+                        $('.notice2').show();
                     }
                 },
                 error: function (error) {
@@ -840,8 +985,7 @@
         }
 
         // Update the gauge on initial load
-        // Note: You might need to get the cardType value during initial load too!
-        updateGauge(window.totalUsed || 0, "type1"); // Or "type2" or however you get this value during initial load
+        updateGauge(window.totalUsed || 0, "type1");
 
         $('#example-custom').change(function () {
             var cardNumber = $(this).val();
@@ -862,49 +1006,6 @@
     });
 </script>
 
-
-<script>
-    // Custom select logic
-    let customSelects = document.querySelectorAll('.hex-select-js');
-
-    customSelects.forEach((element) => {
-        // ... (this part remains unchanged)
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        var data1 = [10, 20, 30, 40];
-        var data2 = [40, 30, 20, 10];
-
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Point 1', 'Point 2', 'Point 3', 'Point 4'],
-                datasets: [{
-                    label: 'Sample Data',
-                    data: data1,
-                    borderColor: 'rgba(75, 192, 192, 1)'
-                }]
-            }
-        });
-
-        $('.dropdown-item').click(function (e) {
-            e.preventDefault();
-            var dataSet = $(this).data('value');
-
-            if (dataSet === 'set1') {
-                chart.data.datasets[0].data = data1;
-            } else if (dataSet === 'set2') {
-                chart.data.datasets[0].data = data2;
-            }
-
-            chart.update();
-        });
-    });
-
-</script>
 
 <%-- 모달창 --%>
 <script>

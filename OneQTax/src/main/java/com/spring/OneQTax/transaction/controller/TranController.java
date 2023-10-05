@@ -124,7 +124,7 @@ public class TranController {
 
             // 카드 선택한 것 가져오기
             String cardType = getCardTypeByCardNumber(cardNumber, selectedCards);
-
+            model.addAttribute("cardType", cardType);
             String defaultBenefitMessage = generateBenefitMessage(monthSpendingByNum.getTotalAmount(), cardType);
             model.addAttribute("defaultBenefitMessage", defaultBenefitMessage);
         }
@@ -210,24 +210,29 @@ public class TranController {
             long diff3 = 1200000 - totalAmount;
 
             if (totalAmount >= 1200000) {
-                benefitMessage = "축하드려요. 3구간 120만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
+                benefitMessage = "축하드려요. <span style=\"color: #0c716b;\">120만원 </span> 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
             } else if (totalAmount >= 800000) {
-                benefitMessage = "80만원 실적을 충족했어요.<br/>120만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff3 + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+                benefitMessage = "<span style=\"color: #0c716b;\">80만원 </span> 실적을 충족했어요.<br/>" + "<span style=\"color: #e4003f;\">" + diff3 + "</span>&nbsp;원 더 이용하고<br/>" +
+                        " <span style=\"color: #0c716b;\">120만원</span> 실적 혜택을 받으세요.";
             } else if (totalAmount >= 400000) {
-                benefitMessage = "40만원 실적을 충족했어요.<br/>80만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff2 + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+                benefitMessage = "<span style=\"color: #0c716b;\">40만원 </span> 실적을 충족했어요.<br/>" + "<span style=\"color: #e4003f;\">" + diff2 + "</span>&nbsp;원<br/> 더 이용하고<br/>" +
+                        " <span style=\"color: #0c716b;\">80만원</span> 실적 혜택을 받으세요.";
             } else {
-                benefitMessage = "아직 실적을 충족하지 못했어요. <br/>40만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff1 + "</span>&nbsp;원<br/> 더 이용하고 40만원 실적 혜택을 받으세요.";
+                benefitMessage = "아직 실적을 충족하지 못했어요." + "<span style=\"color: #e4003f;\">" + diff1 + "</span>&nbsp;원<br/> 더 이용하고<br/>" +
+                        " <span style=\"color: #0c716b;\">40만원</span> 실적 혜택을 받으세요.";
             }
 
         } else if ("type2".equals(cardType)) {
             if (totalAmount >= 600000) {
-                benefitMessage = "60만원 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
+                benefitMessage = "<span style=\"color: #0c716b;\">60만원 </span> 실적을 충족했어요.<br/> 최대 혜택을 누려보세요.";
             } else if (totalAmount >= 300000) {
                 long diff = 600000 - totalAmount;
-                benefitMessage = "30만원 실적을 충족했어요.<br/> 60만원 실적 충족까지" + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 더 많은 혜택을 받으세요.";
+                benefitMessage = "<span style=\"color: #0c716b;\">30만원 </span> 실적을 충족했어요.<br/>" + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고<br/>" +
+                        " <span style=\"color: #0c716b;\">60만원</span> 실적 혜택을 받으세요.";
             } else {
                 long diff = 300000 - totalAmount;
-                benefitMessage = "아직 실적을 충족하지 못했어요. <br/> 30만원 실적 충족까지 " + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원<br/> 더 이용하고 30만원 실적 혜택을 받으세요.";
+                benefitMessage = "아직 실적을 충족하지 못했어요. <br/>"  + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원 더 이용하고<br/>" +
+                        " <span style=\"color: #0c716b;\">30만원</span> 실적 혜택을 받으세요.";
             }
         }
         return benefitMessage;
