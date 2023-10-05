@@ -540,6 +540,8 @@
     .notice2{
         display: none;
     }
+    /*    */
+
 </style>
 
 
@@ -650,71 +652,6 @@
                             <h5>120만원</h5>
                         </div>
                     </div>
-<%--                    <div class="limits-info">--%>
-<%--                        <div class="column1">--%>
-<%--                        실적 30만원<br/>--%>
-<%--                            <h5>충족</h5>--%>
-<%--                        </div>--%>
-<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
-<%--                    </div>--%>
-<%--                    <div class="limits-info">--%>
-<%--                        <div class="column2">--%>
-<%--                            실적 30만원<br/>--%>
-<%--                            <h5>충족</h5>--%>
-<%--                        </div>--%>
-<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
-<%--                    </div>--%>
-<%--                    <div class="limits-info">--%>
-<%--                        <div class="column3">--%>
-<%--                            실적 30만원<br/>--%>
-<%--                            <h5>충족</h5>--%>
-<%--                        </div>--%>
-<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
-<%--                    </div>--%>
-<%--                    <div class="limits-info">--%>
-<%--                        <div class="column">--%>
-<%--                            실적 60만원<br/>--%>
-<%--                            <h5>충족</h5>--%>
-<%--                        </div>--%>
-<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
-<%--                    </div>--%>
-<%--                    <div class="limits-info">--%>
-<%--                        <div class="column">--%>
-<%--                            실적 30만원<br/>--%>
-<%--                            충족--%>
-<%--                        </div>--%>
-<%--                        <h4><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> 원</h4><br/>--%>
-<%--                    </div>--%>
-
-<%--                    <table class="table-fill">--%>
-<%--                        <thead>--%>
-<%--                        <tr>--%>
-<%--                            <th class="text-left">실적구간</th>--%>
-<%--                            <th class="text-left">충족여부</th>--%>
-<%--                            <th class="text-left">사용금액</th>--%>
-<%--                        </tr>--%>
-<%--                        </thead>--%>
-<%--                        <tbody class="table-hover">--%>
-<%--                        <tr>--%>
-<%--                            <td class="text-left">1구간 40만원</td>--%>
-<%--                            <td class="text-left">충족</td>--%>
-<%--                            <td class="text-left"><fmt:formatNumber value="${credit_total}" groupingUsed="true"/>원--%>
-
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td class="text-left">2구간 80만원</td>--%>
-<%--                            <td class="text-left">충족</td>--%>
-<%--                            <td class="text-left"><fmt:formatNumber value="${debit_total}" groupingUsed="true"/>원--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td class="text-left">3구간 120만원</td>--%>
-<%--                            <td class="text-left">부족</td>--%>
-<%--                            <td class="text-left"><fmt:formatNumber value="${cash_total}" groupingUsed="true"/>원--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        </tbody>--%>
-<%--                    </table>--%>
 
                 </div>
                 <div class="card-box">

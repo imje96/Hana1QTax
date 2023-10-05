@@ -117,61 +117,6 @@
         font-size: 25px;
     }
 
-    .monthly-box {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 20px 25px;
-        margin: 25px 20px 20px 0;
-        width: 90%;
-        height: 200px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .category-box {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px 25px;
-        margin: 0 20px 25px 0;
-        width: 90%;
-        height: 725px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-transaction {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px 0;
-        margin: 0 20px;
-        width: 90%;
-        height: 350px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .hometax-transaction {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px 0;
-        margin: 25px 25px;
-        width: 90%;
-        height: 350px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
     .carousel-inner {
         position: relative;
@@ -449,6 +394,7 @@
         align-items: center;
         padding: 5px;
     }
+
     /*  모달창 버튼  */
     .modalBtn2 {
         border: none;
@@ -490,12 +436,161 @@
         padding: 10px 0;
         margin: 25px 25px;
         width: 95%;
-        height: 350px;
+        /*height: 350px;*/
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 카드사 이용금액 */
+    .flex-box2 {
+        display: flex;
+        align-items: center;
+        width: 700px;
+        justify-content: space-between;
+    }
+    .flex-box3 {
+        display: flex;
+        align-items: center;
+        width: 550px;
+        justify-content: space-between;
+    }
+    .flex-box3 h2{
+        font-size: 27px;
+    }
+    .expense-cover {
+        /*width: 900px;*/
+        /*height: 200px;*/
+        /*background-color: #b8bec4;*/
+        font-weight: 600;
+        font-size: 25px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        /*color: #FFFFFF;*/
+        align-content: space-around;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .column-box h5 {
+        color: #777373;
+        font-size: 17px;
+    }
+
+    .logo-box {
+        background: #ffffff;
+        border-radius: 50%;
+        width: 94px;
+        height: 94px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        margin-left: 20px;
+        /*border-color: #aaaaaa;*/
+        border: 1px solid rgb(0 0 0 / 18%);
+        /*box-shadow: 1px 5px 27px rgba(0, 0, 0, 0.1);*/
+    }
+
+    /*  한도 차트  */
+    /*  막대그래프  */
+    .chart-cover {
+        width: 900px;
+        /*height: 200px;*/
+        /*background-color: #b8bec4;*/
+        font-weight: 600;
+        font-size: 25px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        /*color: #FFFFFF;*/
+        align-content: space-around;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .progress-sector {
+        width: 700px;
+        display: flex;
+        font-weight: 600;
+        font-size: 22px;
+        position: relative;
+        justify-content: space-between;
+        /*color: #ffffff;*/
+        margin: 11px 0 20px 0;
+    }
+
+    .progress-sector h3 {
+        color: #e3003f;
+        font-size: 20px;
+    }
+
+    .progress-text {
+        font-size: 35px;
+    }
+
+    .progress-container {
+        width: 700px;
+        height: 50px;
+        background-color: #dedede;
+        font-weight: 600;
+        font-size: .8rem;
+        border-radius: 10px;
+        position: relative;
+        /* margin-bottom: 35px; */
+    }
+
+    .progress-container .gauge1 {
+        width: 70%;
+        height: 50px;
+        padding: 0px;
+        text-align: center;
+        background-color: #00847d;
+        border-radius: 10px;
+        color: #111;
+        overflow: hidden;
+    }
+
+    .progress-container .gauge2 {
+        width: 40%;
+        height: 50px;
+        padding: 0px;
+        text-align: center;
+        background-color: #00847d;
+        border-radius: 10px;
+        color: #111;
+        overflow: hidden;
+    }
+
+    .progress-container .gauge3 {
+        width: 90%;
+        height: 50px;
+        padding: 0px;
+        text-align: center;
+        background-color: #00847d;
+        border-radius: 10px;
+        color: #111;
+        overflow: hidden;
+    }
+
+    .flex-text {
+        width: 700px;
+        display: flex;
+        margin-bottom: 5px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title {
+        text-align-all: center;
+        margin-top: 40px;
+        font-size: 30px;
+        font-weight: 700;
     }
 </style>
 
@@ -732,24 +827,117 @@
             </div>
             <div class="lower-section">
                 <div class="cards-limit">
-                    <div class="header-container">
-                        <h2 class="section-header">카드사별 한도</h2>
-                        <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
+                    <div class="title">카드사 이용금액</div>
+                    <div class="date-selector">
+                        <span>📅 2023.10</span>
+                    </div>
+                    <br/>
+                    <div class="flex-box2">
+                        <div class="expense-cover">
+                            <div class="logo-box"><img src="../../../resources/img/hana.png" height="75"></div>
+                        </div>
+                        <div class="flex-box3">
+                        <div class="column-box">
+                            <h3>하나카드(주)</h3>
+                            <h5>신용&체크</h5></div>
+                        <div class="amount-box">
+                            <h2><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
+                                              groupingUsed="true"/></h2>
+                        </div>
+                            </div>
+                    </div>
+                    <div class="flex-box2">
+                        <div class="expense-cover">
+                            <span style="margin: 10px;"><img src="../../../resources/img/sh.png" height="110"></span>
+                        </div>
+                        <div class="flex-box3">
+                        <div class="column-box">
+                            <h3>신한카드(주)</h3>
+                            <h5>신용</h5></div>
+                        <div class="amount-box">
+                            <h2><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
+                                                  groupingUsed="true"/></h2>
+                        </div>
                         </div>
                     </div>
-                </div>
-                <div class="cards-limit">
-                    <div class="header-container">
-                        <h2 class="section-header">카드사 이용금액</h2>
-                        <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
+                    <div class="flex-box2">
+                        <div class="expense-cover">
+                            <span style="margin: 10px 10px 10px 16px;"> <img src="../../../resources/img/kb.png" height="98"></span>
+                        </div>
+                        <div class="flex-box3">
+                        <div class="column-box">
+                            <h3>(주)KB국민카드</h3>
+                            <h5>신용</h5></div>
+                        <div class="amount-box">
+                            <h2><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
+                                                  groupingUsed="true"/></h2>
+                        </div>
                         </div>
                     </div>
+
+
                 </div>
+
+
+            </div>
+            <div class="cards-limit">
+                <div class="title">카드사 한도</div>
+                <div class="date-selector">
+                    <span>📅 2023.10</span>
+                </div>
+
+                <br/>
+                <%--                    차트 --%>
+                <div class="chart-cover">
+                    <div class="flex-text">
+                        <div><span style="font-size: 26px">하나카드(주)</span></div>
+                        <div class="progress-text"> 0%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="gauge1" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                    </div>
+                    <div class="progress-sector">
+                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                        <h5>총한도</h5>
+                        <h3>1300만원</h3>
+                    </div>
+                </div>
+
+                <div class="chart-cover">
+                    <div class="flex-text">
+                        <div><span style="font-size: 26px">신한카드(주)</span></div>
+                        <div class="progress-text"> 0%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="gauge2" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                    </div>
+                    <div class="progress-sector">
+                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                        <h5>총한도</h5>
+                        <h3>630만원</h3>
+                    </div>
+                </div>
+
+                <div class="chart-cover">
+                    <div class="flex-text">
+                        <div><span style="font-size: 26px">(주)KB국민카드</span></div>
+                        <div class="progress-text"> 0%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="gauge3" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                    </div>
+                    <div class="progress-sector">
+                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                        <h5>총한도</h5>
+                        <h3>520만원</h3>
+                    </div>
+                </div>
+
             </div>
 
-           </div>
+        </div>
+
+    </div>
     </div>
 </section>
 
@@ -795,14 +983,13 @@
                 </div>
                 &nbsp;&nbsp;스타벅스, 커피빈, 이디야, 폴바셋, 투썸플레이스, 블루보틀&nbsp; <span class="point"> 10%</span> 청구할인<br/>
             </div>
-<%--            • 모든 가맹점&nbsp; <span class="point"> 0.3-1.0%</span> 적립<br/>--%>
-<%--            • 온라인쇼핑, 통신/교통/자동이체 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
-<%--            • 주유 <span class="point"> 5만원당 3천원</span> 청구할인<br/>--%>
-<%--            • 아파트관리비/4대보험 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
+            <%--            • 모든 가맹점&nbsp; <span class="point"> 0.3-1.0%</span> 적립<br/>--%>
+            <%--            • 온라인쇼핑, 통신/교통/자동이체 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
+            <%--            • 주유 <span class="point"> 5만원당 3천원</span> 청구할인<br/>--%>
+            <%--            • 아파트관리비/4대보험 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
         </div>
     </div>
 
-</div>
 </div>
 
 <!-- Add Bootstrap JS and Popper.js -->
