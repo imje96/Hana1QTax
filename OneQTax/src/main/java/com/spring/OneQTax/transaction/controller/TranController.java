@@ -3,9 +3,7 @@ package com.spring.oneqtax.transaction.controller;
 import com.google.gson.Gson;
 import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.member.service.MemberService;
-import com.spring.oneqtax.tax.domain.CardTaxResultVO;
-import com.spring.oneqtax.tax.domain.TaxInfoVO;
-import com.spring.oneqtax.tax.domain.TransactionVO;
+import com.spring.oneqtax.naverSMS.SmsService;
 import com.spring.oneqtax.tax.service.SpouseService;
 import com.spring.oneqtax.tax.service.TaxFormService;
 import com.spring.oneqtax.tax.service.TaxService;
@@ -40,6 +38,18 @@ public class TranController {
     private TaxService taxService;
     @Autowired
     private TranChartService tranChart;
+    @Autowired
+    private final SmsService smsService;
+
+    public TranController(SmsService smsService) {
+        this.smsService = smsService;
+    }
+
+    @GetMapping("/send")
+    public String getSmsPage() {
+        return "transaction/sendSms";
+    }
+
 
     /* 대시보드 */
     @GetMapping("/tranDashboard")

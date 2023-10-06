@@ -704,6 +704,9 @@
             <h2>나의 카드 목록</h2>
             <br/>
             <span style="color: #615e5e"><h3>마이데이터로 연동한 모든 카드 목록을 확인해보세요</h3></span>
+
+
+            <a href="${pageContext.request.contextPath}/send"><h3>문자 보내기</h3></a>
         </div>
 
 

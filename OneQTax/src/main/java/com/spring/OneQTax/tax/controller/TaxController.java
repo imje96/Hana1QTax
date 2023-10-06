@@ -1,24 +1,33 @@
 package com.spring.oneqtax.tax.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.oneqtax.member.domain.MemberVO;
-import com.spring.oneqtax.member.repository.MemberMapper;
 import com.spring.oneqtax.member.service.MemberService;
+import com.spring.oneqtax.naverSMS.MessageDTO;
+import com.spring.oneqtax.naverSMS.SmsResponseDTO;
+import com.spring.oneqtax.naverSMS.SmsService;
 import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.service.SpouseService;
 import com.spring.oneqtax.tax.service.TaxFormService;
 import com.spring.oneqtax.tax.service.TaxService;
 import com.spring.oneqtax.tax.service.TotalTaxService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,8 +44,8 @@ public class TaxController {
     private SpouseService spouseService;
 
 
-//    @Autowired
-//    private TotalTaxService totalTaxService;
+
+    @Autowired
     private final TaxService taxService;
     // ObjectMapper 인스턴스 생성
     private final ObjectMapper objectMapper = new ObjectMapper();
