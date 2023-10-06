@@ -260,7 +260,7 @@
     }
 
     .first {
-        background: #f695b8;
+        background: #fc91b7;
     }
 
     .second {
@@ -295,9 +295,15 @@
         background: #7C5CFC;
     }
 
+    .tenth {
+        background: #063cbe;
+    }
+    .eleventh {
+        background: #0d0036;
+    }
     .inner-text {
         position: absolute;
-        transform: translate(0%, -530%);
+        transform: translate(0%, -230%);
         /*top: 32%;*/
         /*left: 50%;*/
         text-align: center;
@@ -626,7 +632,7 @@
                         <canvas id="deductionChart2"></canvas>
                     </div>
                     <div class="inner-text">
-                        <h3>1위 : ${categoryMonth[0].categoryBig}</h3>
+                        <h3>1위  <br/><br/>${categoryMonth[0].categoryBig}</h3>
                     </div>
                     <div class="pie-chart__labels">
                         <div class="pie-chart__labels-item">
@@ -691,6 +697,20 @@
                                 ${categoryMonth[8].categoryBig}
                             </div>
                             <fmt:formatNumber value="${categoryMonth[8].totalAmount}" groupingUsed="true"/> 원
+                        </div>
+                        <div class="pie-chart__labels-item">
+                            <div class="label">
+                                <div class="label__color tenth"></div>
+                                ${categoryMonth[9].categoryBig}
+                            </div>
+                            <fmt:formatNumber value="${categoryMonth[9].totalAmount}" groupingUsed="true"/> 원
+                        </div>
+                        <div class="pie-chart__labels-item">
+                            <div class="label">
+                                <div class="label__color eleventh"></div>
+                                ${categoryMonth[10].categoryBig}
+                            </div>
+                            <fmt:formatNumber value="${categoryMonth[10].totalAmount}" groupingUsed="true"/> 원
                         </div>
                     </div>
 
@@ -786,9 +806,11 @@
                         ${categoryMonth[6].totalAmount},
                         ${categoryMonth[7].totalAmount},
                         ${categoryMonth[8].totalAmount},
+                        ${categoryMonth[9].totalAmount},
+                        ${categoryMonth[10].totalAmount},
                     ],
-                    backgroundColor: ['#f695b8', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC'],
-                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+                    backgroundColor: ['#fc91b7', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC', '#063cbe', '#0d0036'],
+                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
                     // circumference: 180,
                     rotation: 270,
                 }]

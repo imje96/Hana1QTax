@@ -257,7 +257,7 @@
         font-size: 27px;
         font-weight: 600;
         /* width: 430px; */
-        height: 130px;
+        height: 160px;
         margin: 25px 0 20px 0;
     }
     /*  모달창 버튼  */
@@ -613,7 +613,7 @@
                     <div class="card-selector">
                         <h5>카드를 선택해주세요</h5>
                         <div class="inner-wrapper">
-                           <div class="hex-select hex-select-js">
+                            <div class="hex-select hex-select-js">
                                 <select name="example" id="example-custom">
                                     <%--           카드리스트에서 카드 가져오기                         --%>
                                     <c:forEach items="${cardList}" var="card">
@@ -645,7 +645,7 @@
 
                         </div>
                         <div class="progress-sector">
-                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
                             <h5>0만원</h5>
                             <h5>40만원</h5>
                             <h5>80만원</h5>

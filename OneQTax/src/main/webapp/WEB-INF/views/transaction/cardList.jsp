@@ -119,7 +119,7 @@
 
     .card-box2 h3 {
         font-size: 25px;
-        margin-top: 23px;
+        /*margin-top: 23px;*/
     }
 
     .carousel-inner {
@@ -459,6 +459,7 @@
         align-items: center;
         width: 700px;
         justify-content: space-between;
+        cursor: grab;
     }
 
     .flex-box3 {
@@ -470,6 +471,16 @@
 
     .flex-box3 h2 {
         font-size: 27px;
+        color: #00857e;
+    }
+
+    .flex-box4 {
+        display: flex;
+        align-items: center;
+        width: 550px;
+        justify-content: space-between;
+        font-size: 23px;
+        margin: 6px 0;
     }
 
     .expense-cover {
@@ -492,6 +503,7 @@
         color: #777373;
         font-size: 17px;
     }
+
 
     .logo-box {
         background: #ffffff;
@@ -528,6 +540,24 @@
         align-content: space-around;
         flex-direction: column;
         justify-content: flex-end;
+
+    }
+
+    .chart-cover2 {
+        width: 600px;
+        background-color: #c8dfde;
+        font-weight: 600;
+        font-size: 25px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        margin: 0 0 20px 99px;
+        padding: 20px 0;
+        align-content: space-around;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
     .progress-sector {
@@ -547,7 +577,7 @@
 
     .progress-sector h3 {
         color: #e3003f;
-        font-size: 26px;
+        font-size: 28px;
     }
 
     .progress-text {
@@ -601,6 +631,11 @@
         margin-bottom: 5px;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .flex-text h3 {
+        color: #494848;
+        font-size: 25px;
     }
 
     .title {
@@ -855,189 +890,189 @@
             </div>
             <div class="lower-section">
                 <div class="cards-limit">
-                    <div class="title">카드사 이용금액</div>
+                    <div class="title">카드사 이용금액</div><br/>
+                    <span style="color: #6d6969"> 카드사 영역을 클릭해 카드별 사용내역을 확인해보세요</span><br/>
                     <div class="date-selector">
                         <span>📅
                         <c:set var="now" value="<%= new java.util.Date() %>"/>
                         <fmt:formatDate value="${now}" pattern="yyyy-MM"/>
                         </span>
                     </div>
-                    <br/>
                     <div class="expense-box">
-                        <div class="flex-container">
-                        <div class="flex-box2">
-                            <div class="expense-cover">
-                                <div class="logo-box"><img src="../../../resources/img/hana.png" height="75"></div>
+                        <div class="flex-container1">
+                            <div class="flex-box2">
+                                <div class="expense-cover">
+                                    <div class="logo-box"><img src="../../../resources/img/hana.png" height="75"></div>
+                                </div>
+                                <div class="flex-box3">
+                                    <div class="column-box">
+                                        <h3>하나카드(주)</h3>
+                                        <h5>신용&체크</h5></div>
+                                    <div class="amount-box">
+                                        <h2><fmt:formatNumber value="${thisTotalBrand[0].totalAmount}"
+                                                              groupingUsed="true"/> 원 </h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex-box3">
-                                <div class="column-box">
-                                    <h3>하나카드(주)</h3>
-                                    <h5>신용&체크</h5></div>
-                                <div class="amount-box">
-                                    <h2><fmt:formatNumber value="${thisTotalBrand[0].totalAmount}"
-                                                          groupingUsed="true"/></h2>
+                            <div class="accordion-content1" style="display:none;">
+                                <div class="chart-cover2">
+                                    <%--                                여기에 펼쳐질 내용을 넣어주세요.<br/>--%>
+                                    <%--                                라인${privateCardTotal[0].card_number}; ${privateCardTotal[0].totalAmount};<br/>--%>
+                                    <%--                                펭수${privateCardTotal[1].card_number}; ${privateCardTotal[1].totalAmount};<br/>--%>
+                                    <%--                                청춘${privateCardTotal[2].card_number}; ${privateCardTotal[2].totalAmount};<br/>--%>
+                                    <div class="flex-box4">
+                                        <h5> 원더카드 LIVING :</h5>
+                                        <h3><fmt:formatNumber value="${privateCardTotal[3].totalAmount}"
+                                                              groupingUsed="true"/> 원</h3>
+                                    </div>
+                                    <div class="flex-box4">
+                                        <h5> 1Q Daily+(원큐데일리플러스) :</h5>
+                                        <h3><fmt:formatNumber value="${privateCardTotal[5].totalAmount}"
+                                                              groupingUsed="true"/> 원</h3>
+                                    </div>
+                                    <div class="flex-box4">
+                                        <h5> 모두의 일상 카드 :</h5>
+                                        <h3><fmt:formatNumber value="${privateCardTotal[4].totalAmount}"
+                                                              groupingUsed="true"/> 원</h3>
+                                    </div>
+                                    <%--                                모두의 일상 카드 : <fmt:formatNumber value="${privateCardTotal[4].totalAmount}" groupingUsed="true"/>원 <br/>--%>
+
                                 </div>
                             </div>
                         </div>
-                            <div class="accordion-content" style="display:none;">
-                                여기에 펼쳐질 내용을 넣어주세요.<br/>
-                                ${privateCardTotal[0].card_number}; ${privateCardTotal[0].totalAmount};<br/>
-                                ${privateCardTotal[1].card_number}; ${privateCardTotal[1].totalAmount};<br/>
-                                원더 : ${privateCardTotal[2].card_number}; ${privateCardTotal[2].totalAmount};<br/>
-                                모두 : ${privateCardTotal[3].card_number}; ${privateCardTotal[3].totalAmount};<br/>
-                                원큐 : ${privateCardTotal[4].card_number}; ${privateCardTotal[4].totalAmount};<br/>
-                            </div>
-                        </div>
-                        <div class="flex-box2">
-                            <div class="expense-cover">
+
+                        <div class="flex-container2">
+                            <div class="flex-box2">
+                                <div class="expense-cover">
                                 <span style="margin: 10px;"><img src="../../../resources/img/sh.png"
                                                                  height="110"></span>
+                                </div>
+                                <div class="flex-box3">
+                                    <div class="column-box">
+                                        <h3>신한카드(주)</h3>
+                                        <h5>신용</h5></div>
+                                    <div class="amount-box">
+                                        <h2><fmt:formatNumber value="${thisTotalBrand[1].totalAmount}"
+                                                              groupingUsed="true"/> 원</h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex-box3">
-                                <div class="column-box">
-                                    <h3>신한카드(주)</h3>
-                                    <h5>신용</h5></div>
-                                <div class="amount-box">
-                                    <h2><fmt:formatNumber value="${thisTotalBrand[1].totalAmount}"
-                                                          groupingUsed="true"/>원</h2>
+                            <div class="accordion-content2" style="display:none;">
+                                <div class="chart-cover2">
+                                    <%--                                라인${privateCardTotal[0].card_number}; ${privateCardTotal[0].totalAmount};<br/>--%>
+                                    <%--                                펭수${privateCardTotal[1].card_number}; ${privateCardTotal[1].totalAmount};<br/>--%>
+                                    <%--                                청춘${privateCardTotal[2].card_number}; ${privateCardTotal[2].totalAmount};<br/>--%>
+                                    <div class="flex-box4">
+                                        <h5> 네이버페이 라인프렌즈 신한카드 :</h5>
+                                        <h3><fmt:formatNumber value="${privateCardTotal[0].totalAmount}"
+                                                              groupingUsed="true"/> 원</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex-box2">
-                            <div class="expense-cover">
+
+                        <div class="flex-container3">
+                            <div class="flex-box2">
+                                <div class="expense-cover">
                                 <span style="margin: 10px 10px 10px 16px;"> <img src="../../../resources/img/kb.png"
                                                                                  height="98"></span>
+                                </div>
+                                <div class="flex-box3">
+                                    <div class="column-box">
+                                        <h3>(주)KB국민카드</h3>
+                                        <h5>신용</h5></div>
+                                    <div class="amount-box">
+                                        <h2><fmt:formatNumber value="${thisTotalBrand[2].totalAmount}"
+                                                              groupingUsed="true"/> 원</h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex-box3">
-                                <div class="column-box">
-                                    <h3>(주)KB국민카드</h3>
-                                    <h5>신용</h5></div>
-                                <div class="amount-box">
-                                    <h2><fmt:formatNumber value="${thisTotalBrand[2].totalAmount}"
-                                                          groupingUsed="true"/>원</h2>
+                            <div class="accordion-content3" style="display:none;">
+                                <div class="chart-cover2">
+                                    <%--                                라인${privateCardTotal[0].card_number}; ${privateCardTotal[0].totalAmount};<br/>--%>
+                                    <%--                                펭수${privateCardTotal[1].card_number}; ${privateCardTotal[1].totalAmount};<br/>--%>
+                                    <%--                                청춘${privateCardTotal[2].card_number}; ${privateCardTotal[2].totalAmount};<br/>--%>
+                                    <div class="flex-box4">
+                                        <h5> 펭수 노리 체크카드 :</h5>
+                                        <h3><fmt:formatNumber value="${privateCardTotal[1].totalAmount}"
+                                                              groupingUsed="true"/> 원</h3>
+                                    </div>
+                                        <div class="flex-box4">
+                                            <h5> 청춘대로 티타늄 카드 :</h5>
+                                            <h3><fmt:formatNumber value="${privateCardTotal[2].totalAmount}"
+                                                                  groupingUsed="true"/> 원</h3>
+                                        </div>
                                 </div>
                             </div>
                         </div>
+
+
+                        </div>
                     </div>
-
                 </div>
-
-
-            </div>
-            <div class="cards-limit">
-                <div class="title">카드사 한도</div>
-                <div class="date-selector">
+                <div class="cards-limit">
+                    <div class="title">카드사 한도</div>
                     <div class="date-selector">
+                        <div class="date-selector">
                         <span>📅
                         <c:set var="now" value="<%= new java.util.Date() %>"/>
                         <fmt:formatDate value="${now}" pattern="yyyy-MM"/>
                         </span>
+                        </div>
                     </div>
-                </div>
 
-                <br/>
-                <%--                    차트 --%>
-                <div class="chart-cover">
-                    <div class="flex-text">
-                        <div><span style="font-size: 26px">하나카드(주)</span></div>
-                        <div class="progress-text"> 0%</div>
+                    <br/>
+                    <%--                    차트 --%>
+                    <div class="chart-cover">
+                        <div class="flex-text">
+                            <div><h3>하나카드(주)</h3></div>
+                            <div class="progress-text"> 0%</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="gauge1" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                        </div>
+                        <div class="progress-sector">
+                            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                            <h5>총한도</h5>
+                            <h3>1200만원</h3>
+                        </div>
                     </div>
-                    <div class="progress-container">
-                        <div class="gauge1" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-                    </div>
-                    <div class="progress-sector">
-                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
-                        <h5>총한도</h5>
-                        <h3>1200만원</h3>
-                    </div>
-                </div>
 
-                <div class="chart-cover">
-                    <div class="flex-text">
-                        <div><span style="font-size: 26px">신한카드(주)</span></div>
-                        <div class="progress-text"> 0%</div>
+                    <div class="chart-cover">
+                        <div class="flex-text">
+                            <div><h3>신한카드(주)</h3></div>
+                            <div class="progress-text"> 0%</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="gauge2" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                        </div>
+                        <div class="progress-sector">
+                            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                            <h5>총한도</h5>
+                            <h3>500만원</h3>
+                            <%--                        ${cardList[5].limit}--%>
+                        </div>
                     </div>
-                    <div class="progress-container">
-                        <div class="gauge2" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-                    </div>
-                    <div class="progress-sector">
-                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
-                        <h5>총한도</h5>
-                        <h3>500만원</h3>
-                        <%--                        ${cardList[5].limit}--%>
-                    </div>
-                </div>
 
-                <div class="chart-cover">
-                    <div class="flex-text">
-                        <div><span style="font-size: 26px">(주)KB국민카드</span></div>
-                        <div class="progress-text"> 0%</div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="gauge3" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-                    </div>
-                    <div class="progress-sector">
-                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
-                        <h5>총한도</h5>
-                        <h3>430만원</h3>
+                    <div class="chart-cover">
+                        <div class="flex-text">
+                            <div><h3>(주)KB국민카드</h3></div>
+                            <div class="progress-text"> 0%</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="gauge3" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                        </div>
+                        <div class="progress-sector">
+                            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                            <h5>총한도</h5>
+                            <h3>430만원</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
 </section>
 
-<div id="myModal" class="modal">
-    <div class="modal-content2">
-        <span class="close">&times;</span>
-        <br/>
-        <h2>원더카드 LIVING 업종별 혜택</h2>
-        <div class="card-benefits2">
-            <div class="flex-box">
-                <div class="icon-box">
-                    <div class="icon-bg2">
-                        <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
-                    </div>
-                    생활요금
-                </div>
-                &nbsp;&nbsp; 아파트관리비, 전기세, 가스비 &nbsp; <span class="point"> 10%</span> 청구할인<br/>
-            </div>
-            <div class="flex-box">
-                <div class="icon-box">
-                    <div class="icon-bg2">
-                        <i class="fas fa-house-medical" style="font-size: 25px; color: #FFFFFF"></i>
-                    </div>
-                    병원&약국
-                </div>
-                &nbsp;&nbsp; 병원 및 약국&nbsp; <span class="point"> 10%</span>청구할인<br/>
-            </div>
-            <div class="flex-box">
-                <div class="icon-box">
-                    <div class="icon-bg2">
-                        <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
-                    </div>
-                    주유/택시
-                </div>
-                &nbsp;&nbsp; SK에너지, GS칼텍스, S-OIL, 현대오일뱅크알뜰주유소&nbsp; <span class="point"> 10%</span>청구할인<br/>
-            </div>
-            <div class="flex-box">
-                <div class="icon-box">
-                    <div class="icon-bg2">
-                        <i class="fas fa-mug-saucer" style="font-size: 25px; color: #FFFFFF"></i>
-                    </div>
-                    커피
-                </div>
-                &nbsp;&nbsp;스타벅스, 커피빈, 이디야, 폴바셋, 투썸플레이스, 블루보틀&nbsp; <span class="point"> 10%</span> 청구할인<br/>
-            </div>
-            <%--            • 모든 가맹점&nbsp; <span class="point"> 0.3-1.0%</span> 적립<br/>--%>
-            <%--            • 온라인쇼핑, 통신/교통/자동이체 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
-            <%--            • 주유 <span class="point"> 5만원당 3천원</span> 청구할인<br/>--%>
-            <%--            • 아파트관리비/4대보험 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
-        </div>
-    </div>
-
-</div>
 <!-- Add Bootstrap JS and Popper.js -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -1049,8 +1084,14 @@
 <%-- 아코디언 --%>
 <script>
     $(document).ready(function () {
-        $(".flex-container").click(function () {
-            $(this).find(".accordion-content").slideToggle();
+        $(".flex-container1").click(function () {
+            $(this).find(".accordion-content1").slideToggle();
+        });
+        $(".flex-container2").click(function () {
+            $(this).find(".accordion-content2").slideToggle();
+        });
+        $(".flex-container3").click(function () {
+            $(this).find(".accordion-content3").slideToggle();
         });
     });
 </script>
@@ -1104,8 +1145,6 @@
 <%-- 한도 그래프 --%>
 
 <script>
-
-
     window.totalUsed1 = ${thisTotalBrand[0].totalAmount};
     window.totalUsed2 = ${thisTotalBrand[1].totalAmount};
     window.totalUsed3 = ${thisTotalBrand[2].totalAmount};
@@ -1122,7 +1161,11 @@
         function updateGauge(gaugeSelector, totalUsed, limit) {
             // 최대 limit 값을 넘지 않도록 함
             totalUsed = totalUsed > limit ? limit : totalUsed;
-            var visualUsedPercentage = (totalUsed / limit) * 100;
+
+            // 반대 게이지 계산
+            var visualUsedPercentage = 100 - ((totalUsed / limit) * 100);
+            // 사용률을 나타내는 퍼센트
+            var textPercentage = (totalUsed / limit) * 100;
 
             $(gaugeSelector).animate({
                 width: visualUsedPercentage + "%"
@@ -1130,8 +1173,7 @@
                 duration: 500,
                 step: function (now, fx) {
                     if (fx.prop === "width") {
-                        var currentPercentage = visualUsedPercentage;
-                        $(gaugeSelector).parent().siblings('.flex-text').find('.progress-text').text(currentPercentage.toFixed(2) + "%");
+                        $(gaugeSelector).parent().siblings('.flex-text').find('.progress-text').html(textPercentage.toFixed(2) + "% <span style='font-size: 20px; color: #6e6969;'>이용</span>");
                     }
                 }
             });
