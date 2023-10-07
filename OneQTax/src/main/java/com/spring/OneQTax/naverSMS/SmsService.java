@@ -54,7 +54,8 @@ public class SmsService {
         messages.add(messageDto);
 
         SmsRequestDTO request = SmsRequestDTO.builder()
-                .type("SMS")
+                .type("lMS")
+                .subject("하나원큐택스 알림")
                 .contentType("COMM")
                 .countryCode("82")
                 .from(phone)

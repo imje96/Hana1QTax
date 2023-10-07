@@ -191,8 +191,8 @@
                                 <thead>
                                 <tr>
                                     <th class="text-left">항목</th>
-                                    <th class="text-left">공제율</th>
-                                    <%--                                <th class="text-left">7~12월</th>--%>
+                                    <th class="text-left">1~3월 공제율</th>
+                                    <th class="text-left">4~12월 공제율</th>
 
                                 </tr>
                                 </thead>
@@ -200,27 +200,27 @@
                                 <tr>
                                     <td class="text-left">신용카드</td>
                                     <td class="text-left">15%</td>
-                                    <%--                                <td class="text-left">15%</td>--%>
+                                    <td class="text-left">15%</td>
                                 </tr>
                                 <tr>
                                     <td class="text-left">선불카드/체크카드/현금</td>
                                     <td class="text-left">30%</td>
-                                    <%--                                <td class="text-left">30%</td>--%>
+                                    <td class="text-left">30%</td>
                                 </tr>
                                 <tr>
                                     <td class="text-left">문화비(도서,공연 등)</td>
+                                    <td class="text-left">30%</td>
                                     <td class="text-left">40%</td>
-                                    <%--                                <td class="text-left">40%</td>--%>
                                 </tr>
                                 <tr>
                                     <td class="text-left">전통시장</td>
                                     <td class="text-left">40%</td>
-                                    <%--                                <td class="text-left">40%</td>--%>
-                                </tr>
+                                    <td class="text-left">50%</td>
+                            </tr>
                                 <tr>
                                     <td class="text-left">대중교통</td>
                                     <td class="text-left">40%</td>
-                                    <%--                                <td class="text-left">80%</td>--%>
+                                     <td class="text-left">80%</td>
                                 </tr>
                                 </tbody>
                             </table>

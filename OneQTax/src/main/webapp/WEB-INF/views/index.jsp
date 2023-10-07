@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/tranDashboard">
+                        <a href="${pageContext.request.contextPath}/recommCard1">
                         <button class="dropbtn">카드추천s
                         </button>
                         </a>

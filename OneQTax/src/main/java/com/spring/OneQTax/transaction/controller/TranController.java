@@ -27,16 +27,6 @@ import java.util.Map;
 public class TranController {
 
     @Autowired
-    private TotalTaxService totalTaxService;
-    @Autowired
-    private TaxFormService taxFormService;
-    @Autowired
-    private MemberService memberService;
-    @Autowired
-    private SpouseService spouseService;
-    @Autowired
-    private TaxService taxService;
-    @Autowired
     private TranChartService tranChart;
     @Autowired
     private final SmsService smsService;

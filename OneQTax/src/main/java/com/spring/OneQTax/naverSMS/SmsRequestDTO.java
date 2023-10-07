@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 public class SmsRequestDTO {
     private String type;
+    private String subject;
     private String contentType;
     private String countryCode;
     private String from;

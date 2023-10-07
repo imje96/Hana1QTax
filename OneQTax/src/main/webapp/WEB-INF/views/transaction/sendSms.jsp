@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Send Mail</title>
     <%-- If you need these scripts uncomment them --%>
-    <script type="text/javascript" src="/scripts/jquery-ui/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/common/common-ui.js"></script>
+    <%-- <script type="text/javascript" src="<c:url value='/scripts/jquery-ui/jquery.min.js'/>"></script> --%>
+    <%-- <script type="text/javascript" src="<c:url value='/scripts/common/common-ui.js'/>"></script> --%>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
             <tr class="form-group">
                 <td>발송할 전화번호</td>
                 <td>
-                    <input type="text" class="form-control" name="to" placeholder="발송할 전화번호를 입력하세요">
+                    <input type="text" class="form-control" name="to" placeholder="이메일 주소를 입력하세요">
                 </td>
             </tr>
             <tr class="form-group">
