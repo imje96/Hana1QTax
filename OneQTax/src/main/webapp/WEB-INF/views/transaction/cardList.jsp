@@ -978,8 +978,11 @@
                                         <h3><fmt:formatNumber value="${privateCardTotal[4].totalAmount}"
                                                               groupingUsed="true"/> 원</h3>
                                     </div>
-                                    <%--                                모두의 일상 카드 : <fmt:formatNumber value="${privateCardTotal[4].totalAmount}" groupingUsed="true"/>원 <br/>--%>
-
+                                        <div class="flex-box4">
+                                            <h5> 금쪽이 Young Hana+ 체크카드 :</h5>
+                                            <h3><fmt:formatNumber value="${privateCardTotal[6].totalAmount}"
+                                                                  groupingUsed="true"/>0 원</h3>
+                                        </div>
                                 </div>
                             </div>
                         </div>

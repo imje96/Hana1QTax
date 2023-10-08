@@ -121,6 +121,20 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
+    .cardImg2 {
+        background-color: #e1caca;
+        border-radius: 10px;
+        /* padding: 20px 0; */
+        margin: 0 0 30px 0;
+        width: 100%;
+        height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     .recomm-Info {
         /*background-color: #f4d8db;*/
         border: 3px solid #6b6b6b;
@@ -196,9 +210,32 @@
         color: #6b6a6a;
         margin-bottom: 15px;
     }
+    .category-box4 {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px 25px;
+        margin: 25px 0 25px 0;
+        width: 90%;
+        /*height: 420px;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border: 3px solid #e3003f;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-box4 h4 {
+        font-size: 26px;
+        color: #6b6a6a;
+        margin-bottom: 15px;
+    }
+
 
     .recommendList {
         display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .header-container {
@@ -253,8 +290,6 @@
         padding: 20px 20px;
         margin-top: 20px;
     }
-
-
     .info-box2 {
         background-color: #cde1e1 !important;
         border-radius: 10px;
@@ -263,6 +298,25 @@
         /*height: 150px;*/
         padding: 20px 20px;
         margin-top: 20px;
+    }
+    .info-box3 {
+        background-color: #fdd0e4  !important;
+        border-radius: 10px;
+        text-align: center;
+        width: 90%;
+        /*height: 150px;*/
+        padding: 20px 20px;
+        margin-top: 20px;
+    }
+    .info-box4 {
+        background-color: #ece8e8 !important;
+        border-radius: 10px;
+        text-align: center;
+        /*width: 90%;*/
+        /*height: 150px;*/
+        padding: 20px 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     /*   금액 표시 */
@@ -322,22 +376,6 @@
     }
 
     /*  모달창 버튼  */
-    .modalBtn {
-        display: inline-block;
-        color: #ffffff;
-        padding: 15px 20px;
-        width: 350px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 18px;
-        cursor: pointer;
-        background-color: #6b6b6b;
-        transition: background-color 0.3s, transform 0.3s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
     .modalBtn2 {
         display: inline-block;
         color: #ffffff;
@@ -360,6 +398,29 @@
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         /* hover 시 그림자 약간 강화 */
     }
+    .modalBtn3 {
+        display: inline-block;
+        color: #ffffff;
+        padding: 15px 20px;
+        width: 350px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #6b6b6b;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .modalBtn3:hover {
+        transform: scale(1.05);
+        /* hover 시 약간 확대되는 효과 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        /* hover 시 그림자 약간 강화 */
+    }
+
+
 
     .modal {
         display: none;
@@ -447,7 +508,60 @@
         font-size: 18px;
         color: #2a9791;
     }
+/*    토글 */
+    .toggle-button {
+        width: 140px;
+        height: 40px;
+        background-color: #ddd;
+        position: relative;
+        border-radius: 20px;
+        cursor: pointer;
+        left: 400px;
+    }
 
+    .slider {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+
+    .status {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: bold;
+        font-size: 20px;
+        color: black;
+    }
+
+    .toggle-button.on .slider {
+        left: 105px;
+    }
+
+    .toggle-button.on .status {
+        color: black;
+        right: 50px;
+        content: "ON";
+        font-size: 20px;
+    }
+
+    .content {
+        margin-top: 10px;
+        font-size: 24px;
+        text-align: center;
+    }
+    .content h5{
+        /*background: #aaaaaa;*/
+        font-size: 26px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
 </style>
 
 
@@ -492,7 +606,7 @@
             <%--                    💰--%>
             <h2>소득공제 기반 하나카드 추천받기</h2>
             <br/>
-            <span style="color: #615e5e"><h3>💳소득공제와 소비내역 기반으로 카드를 추천받아보세요</h3></span>
+            <span style="color: #615e5e"><h3>💳소득공제/소비내역 기반의 연말정산에 유리한 카드를 추천받아보세요</h3></span>
         </div>
 
 
@@ -502,7 +616,7 @@
 
                     <%--                    <div class="title">소득공제 기반 카드추천</div>--%>
                     <div class="category-box">
-                        <h4>${name}님의 보유카드 추천</h4>
+                        <h4><span style="color: black; font-size: 28px;"> ${name}</span>님의 보유카드 추천</h4>
                         <div class="recommendList">
                             <div class="cardImg-box">
                                 <img class="cardImg"
@@ -537,7 +651,7 @@
                     <div class="category-box2">
                         <h3>❓ 정말 체크카드가 신용카드보다 유리할까?</h3>
                         <br>
-                        <button id="openModalBtn" class="modalBtn"><h6>자세히 알아보기</h6></button>
+                        <button id="openModalBtn" class="modalBtn3"><h6>자세히 알아보기</h6></button>
                     </div>
                     <div class="category-box3">
                         <h4>💚추가로 혜택받기💚</h4>
@@ -556,9 +670,9 @@
                         <br/>
                         <div class="recommendList">
                             <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://m.hanacard.co.kr/images/contents/my-branch/card-check-02.png">
-
+<%--                                <img class="cardImg"--%>
+<%--                                     src="https://m.hanacard.co.kr/images/contents/my-branch/card-check-02.png">--%>
+                                                                 <img class="cardImg2" src="../../../resources/img/multianycard.png" >
                                 <div class="card-info">
                                     <span class="card-title">MULTI Any 체크카드</span><br/><br/>
                                     <span style="font-size: 17px; color: #605c5c">#전가맹점 #페이 결제 <br/>
@@ -567,10 +681,9 @@
                                 <button id="openModalBtn2" class="modalBtn2"><h6>자세히 알아보기</h6></button>
                             </div>
                             <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13327.png">
-                                <%--                              <img class="cardImg" src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/04652.png">--%>
-                                <%--                              <img class="cardImg" src="../../../resources/img/travellog.png" height="180" >--%>
+                                                                <img class="cardImg2" src="../../../resources/img/younghanacard.png">
+<%--                                <img class="cardImg"--%>
+<%--                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13327.png">--%>
                                 <div class="card-info">
                                     <span class="card-title">Young Hana+ 체크카드</span><br/><br/>
                                     <span style="font-size: 17px; color: #605c5c"> #편의점/딜리버리 #대중교통<br/>
@@ -580,27 +693,120 @@
                                 <button id="openModalBtn3" class="modalBtn2"><h6>자세히 알아보기</h6></button>
                             </div>
                         </div>
+                            <p>* 최대 혜택금액은 영역별 최대 혜택 한도를 산출한 것으로 개인별 소비패턴에 따라 혜택 금액이 달라질 수 있습니다.</p>
                     </div>
+                        <div class="category-box4">
+                            <h4>💕추가공제 업종에서 혜택받기💕</h4>
+                            <div class="flex-box">
+                                추가공제 업종은&nbsp; <span style="font-weight:bold; font-size:23px; color: #ff328b;">대중교통, 문화(영화관/공연/도서), 전통시장</span>을 의미해요.<br/>
+                            </div>
+                            <div class="flex-box">
+                            <span style="font-weight:bold;">추가공제</span>도 받고&nbsp; <span style="font-weight:bold;">카드 혜택</span>도 동시에 누릴 수 있는 카드를 추천해드릴게요.
+                        </div>
+                            <div class="info-box3">
+                                추가공제항목은 혜택이 좋은 <span style="font-weight: bold; font-size: 25px">신용카드</span>를 사용하는 것이 유리해요
+                            </div>
+                            <br/>
 
 
-                    <%--          <div class="category-box">--%>
-                    <%--            <h5>추가로 혜택받기</h5>--%>
-                    <%--          </div>--%>
+                            <div class="toggle-button" id="toggleBtn">
+                                <div class="slider"></div>
+                                <p class="status">대중교통</p>
+                            </div>
+                            <div id="contentA" class="content">
+                                <h5>대중교통 혜택 카드</h5>
+                                <div class="info-box4">
+                                    아래 카드를 함께 사용하면 교통업종에서 매달 최대 <span style="font-weight: bold; font-size: 25px">12,000</span> 원 혹은  <span style="font-weight: bold; font-size: 25px">30%</span> 혜택을 받을
+                                    수 있어요
+                                </div>
+                                <div class="recommendList">
+                                    <div class="cardImg-box">
+                                        <img class="cardImg"
+                                             src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14127.png">
+                                        <div class="card-info">
+                                            <span class="card-title">원더카드 DAILY</span><br/><br/>
+                                            <span style="font-size: 17px; color: #605c5c">#영상스트리밍 #대중교통 <br/>
+                                       #딜리버리/편의점 #하나페이 맛집 </span>
+                                        </div>
+                                        <button id="openModalBtn6" class="modalBtn2"><h6>자세히 알아보기</h6></button>
+                                    </div>
+                                    <div class="cardImg-box">
+                                        <img class="cardImg"
+                                             src="https://m.hanacard.co.kr/ATTACH/NEW_MOBILE/images/cardinfo/card_img/12709.png">
+                                        <div class="card-info">
+                                            <span class="card-title">알뜰교통 my pass 마패 신용</span><br/><br/>
+                                            <span style="font-size: 17px; color: #605c5c"> #대중교통 #편의점<br/>
+                                            #커피
+                                        </span>
+                                        </div>
+                                        <button id="openModalBtn7" class="modalBtn2"><h6>자세히 알아보기</h6></button>
+                                    </div>
+                                    <div class="cardImg-box">
+                                        <img class="cardImg"
+                                             src="https://www.hanacard.co.kr/ATTACH/MOBILE_APP/images/card/14022.png">
+                                        <div class="card-info">
+                                            <span class="card-title">#MY WAY(샵 마이웨이) 카드</span><br/><br/>
+                                            <span style="font-size: 17px; color: #605c5c"> #대중교통/커피/편의점 #디지털구독<br/>
+                                            #쇼핑 #전가맹점
+                                        </span>
+                                        </div>
+                                        <button id="openModalBtn8" class="modalBtn2"><h6>자세히 알아보기</h6></button>
+                                    </div>
+                                </div>
+                                <p>* 최대 혜택금액은 영역별 최대 혜택 한도를 산출한 것으로 개인별 소비패턴에 따라 혜택 금액이 달라질 수 있습니다.</p>
+                            </div>
+
+                            <div id="contentB" class="content" style="display: none;">
+                                <h5>영화관 혜택 카드</h5>
+                                <div class="info-box4">
+                                    아래 카드를 함께 사용하면 영화관 업종에서 매달 최대 <span style="font-weight: bold; font-size: 25px">4,000</span> 원 혜택을 받을 수 있어요
+                                </div>
+                                <div class="recommendList">
+                                    <div class="cardImg-box">
+                                        <img class="cardImg"
+                                             src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/03496.png">
+                                        <div class="card-info">
+                                            <span class="card-title">CLUB SK(클럽 SK)카드</span><br/><br/>
+                                            <span style="font-size: 17px; color: #605c5c">#SK텔레콤 #SK주유소 <br/>
+                                       #마트 #학원 </span>
+                                        </div>
+                                        <button id="openModalBtn9" class="modalBtn2"><h6>자세히 알아보기</h6></button>
+                                    </div>
+                                    <div class="cardImg-box">
+                                        <img class="cardImg"
+                                             src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11662.png">
+                                        <div class="card-info">
+                                            <span class="card-title">Mile 1.6 대한항공</span><br/><br/>
+                                            <span style="font-size: 17px; color: #605c5c"> #해외1.8마일 #국내1.6마일<br/>
+                                            #영화 #스타벅스
+                                        </span>
+                                        </div>
+                                        <button id="openModalBtn10" class="modalBtn2"><h6>자세히 알아보기</h6></button>
+                                    </div>
+                                    <div class="cardImg-box">
+                                        <img class="cardImg"
+                                             src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/11661.png">
+                                        <div class="card-info">
+                                            <span class="card-title">Mile 1.6 아시아나</span><br/><br/>
+                                            <span style="font-size: 17px; color: #605c5c"> #해외1.8마일 #국내1.6마일<br/>
+                                            #영화 #스타벅스
+                                        </span>
+                                        </div>
+                                        <button id="openModalBtn11" class="modalBtn2"><h6>자세히 알아보기</h6></button>
+                                    </div>
+                                </div>
+                                <p>* 최대 혜택금액은 영역별 최대 혜택 한도를 산출한 것으로 개인별 소비패턴에 따라 혜택 금액이 달라질 수 있습니다.</p>
+                                </div>
 
 
-                    <%--          <div class="info-item">--%>
-
-                    <%--            <div>총 이용금액 :</div>--%>
-                    <%--            <h3><fmt:formatNumber value="${monthSpending.totalAmount}" groupingUsed="true"/> <span--%>
-                    <%--                    class="price-currency">(원)</span></h3>--%>
-                    <%--          </div>--%>
-                    <div class="inner-text">
-                    </div>
 
 
-                </div>
-                <div class="card-box">
-                    <div class="title">실적별 주요혜택</div>
+
+
+
+                        </div>
+
+
 
 
                 </div>
@@ -663,6 +869,38 @@
     $("#openModalBtn3").click(function () {
         window.location.href = "/redirectToYoungHana";
     });
+</script>
+<script>
+    // document.getElementById('toggleBtn').addEventListener('click', function() {
+    //     var infoA = document.getElementById('infoA');
+    //     var infoB = document.getElementById('infoB');
+    //
+    //     if (infoA.style.display === 'none') {
+    //         infoA.style.display = 'block';
+    //         infoB.style.display = 'none';
+    //     } else {
+    //         infoA.style.display = 'none';
+    //         infoB.style.display = 'block';
+    //     }
+    // });
+    document.getElementById('toggleBtn').addEventListener('click', function() {
+        this.classList.toggle('on');
+
+        var status = this.querySelector('.status');
+        var contentA = document.getElementById('contentA');
+        var contentB = document.getElementById('contentB');
+
+        if (this.classList.contains('on')) {
+            status.textContent = '영화관';
+            contentA.style.display = 'none';
+            contentB.style.display = 'block';
+        } else {
+            status.textContent = '대중교통';
+            contentA.style.display = 'block';
+            contentB.style.display = 'none';
+        }
+    });
+
 </script>
 <!-- footer-wrapper -->
 <footer>
