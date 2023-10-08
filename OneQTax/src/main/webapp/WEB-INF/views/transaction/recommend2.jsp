@@ -102,8 +102,7 @@
     }
 
     .cardImg-box {
-        /*margin: 0 40px 20px 0;*/
-        margin: 15px;
+        margin: 0 40px 20px 0;
         text-align: center;
     }
 
@@ -126,7 +125,7 @@
         border: 3px solid #6b6b6b;
         border-radius: 10px;
         padding: 20px;
-        margin: 0 0 20px 15px;
+        margin: 0 0 20px 0;
         width: 250px;
         height: 230px;
         /*display: flex;*/
@@ -135,12 +134,10 @@
         /*align-items: center;*/
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
     .recomm-Info h4 {
         font-size: 25px;
         margin-bottom: 20px;
     }
-
     .category-box {
         background-color: #fff;
         border-radius: 10px;
@@ -155,12 +152,10 @@
         border: 3px solid #00857e;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
-    .category-box h4 {
+    .category-box h4{
         font-size: 26px;
         color: #6b6a6a;
     }
-
     .category-box2 {
         background-color: #e7e7e7;
         border-radius: 10px;
@@ -175,14 +170,13 @@
         /*border: 3px solid #00857e;*/
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
     .category-box3 {
         background-color: #fff;
         border-radius: 10px;
-        padding: 20px 25px;
+        padding: 10px 25px;
         margin: 25px 0 25px 0;
         width: 90%;
-        /*height: 420px;*/
+        height: 420px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -190,13 +184,10 @@
         border: 3px solid #00857e;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
-    .category-box3 h4 {
+    .category-box3 h4{
         font-size: 26px;
         color: #6b6a6a;
-        margin-bottom: 15px;
     }
-
     .recommendList {
         display: flex;
     }
@@ -214,10 +205,8 @@
     .card-info {
         line-height: 24px;
         font-size: 20px;
-        margin-bottom: 15px;
     }
-
-    .card-title {
+    .card-title{
         background: #eee9e9;
         border-radius: 10px;
         padding: 10px;
@@ -225,7 +214,6 @@
         font-weight: bold;
         margin-top: 40px;
     }
-
     .date-selector {
         padding: 10px 16px;
         display: flex;
@@ -249,14 +237,14 @@
         border-radius: 10px;
         text-align: left;
         width: 90%;
-        /*height: 150px;*/
+        height: 150px;
         padding: 20px 20px;
         margin-top: 20px;
     }
 
 
     .info-box2 {
-        background-color: #cde1e1 !important;
+        background-color: #fbcfe3 !important;
         border-radius: 10px;
         text-align: center;
         width: 90%;
@@ -338,21 +326,6 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .modalBtn2 {
-        display: inline-block;
-        color: #ffffff;
-        padding: 10px 10px;
-        width: 200px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 18px;
-        cursor: pointer;
-        background-color: #6b6b6b;
-        transition: background-color 0.3s, transform 0.3s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
     .modalBtn2:hover {
         transform: scale(1.05);
@@ -360,8 +333,7 @@
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         /* hover 시 그림자 약간 강화 */
     }
-
-    .modal {
+    .modal{
         display: none;
         position: fixed;
         z-index: 1;
@@ -372,10 +344,9 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
     }
-
     .modal-content2 {
         position: relative;
         display: -ms-flexbox;
@@ -390,13 +361,11 @@
         border-radius: 0.3rem;
         padding: 50px 100px 400px 100px;
     }
-
-    .modal-subtitle {
+    .modal-subtitle{
         width: 600px;
         text-align: center;
     }
-
-    .inputImg4 {
+    .inputImg4{
         margin: 30px 0;
     }
 
@@ -505,8 +474,7 @@
                         <h4>${name}님의 보유카드 추천</h4>
                         <div class="recommendList">
                             <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png">
+                                <img class="cardImg" src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13015.png">
 
                                 <div class="card-info">
                                     <span class="card-title">모두의 일상 체크카드</span><br/><br/>
@@ -514,8 +482,7 @@
                                 </div>
                             </div>
                             <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://www.hanacard.co.kr/ATTACH/MOBILE_APP/images/card/14295.png">
+                                <img class="cardImg" src="https://www.hanacard.co.kr/ATTACH/MOBILE_APP/images/card/14295.png">
                                 <%--                              <img class="cardImg" src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/04652.png">--%>
                                 <%--                              <img class="cardImg" src="../../../resources/img/travellog.png" height="180" >--%>
                                 <div class="card-info">
@@ -540,48 +507,22 @@
                         <button id="openModalBtn" class="modalBtn"><h6>자세히 알아보기</h6></button>
                     </div>
                     <div class="category-box3">
-                        <h4>💚추가로 혜택받기💚</h4>
+                        <h4>추가로 혜택받기</h4>
                         <div class="flex-box">
-                            <span style="font-weight:bold; font-size:23px;"> ${name}</span>님이 주로 사용한 업종은&nbsp; <span
-                                style="font-weight: bold; color: #2a9791; font-size: 25px"># 외식&nbsp;</span> <span
-                                style="font-weight: bold; color: #2a9791;font-size: 25px"># 마트&nbsp;</span>
+                            ${name}님이 주로 사용한 업종은&nbsp; <span style="font-weight: bold; color: #2a9791; font-size: 25px"># 외식&nbsp;</span> <span style="font-weight: bold; color: #2a9791;font-size: 25px"># 마트&nbsp;</span>
                             <span style="font-weight: bold; color: #2a9791;font-size: 25px"># 배달&nbsp;</span>입니다.<br/>
                         </div>
-                        자주 사용하시는 업종에 맞춰 체크카드를 추천해드릴게요.
                         <div class="info-box2">
-                            아래 카드를 함께 사용하면 매달 최대 <span style="font-weight: bold; font-size: 25px">50,000</span> 원 혜택을 받을
-                            수 있어요
-                            <span style="font-size:17px">(MULTI Any 체크카드)</span>
+                            아래 카드를 함께 사용하면 매달 최대 <span style="font-weight: bold">17,000</span> 원 혜택을 받을 수 있어요
                         </div>
-                        <br/>
-                        <div class="recommendList">
-                            <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://m.hanacard.co.kr/images/contents/my-branch/card-check-02.png">
-
-                                <div class="card-info">
-                                    <span class="card-title">MULTI Any 체크카드</span><br/><br/>
-                                    <span style="font-size: 17px; color: #605c5c">#전가맹점 #페이 결제 <br/>
-                                       #딜리버리 #쇼핑 </span>
-                                </div>
-                                <button id="openModalBtn2" class="modalBtn2"><h6>자세히 알아보기</h6></button>
-                            </div>
-                            <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/13327.png">
-                                <%--                              <img class="cardImg" src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/04652.png">--%>
-                                <%--                              <img class="cardImg" src="../../../resources/img/travellog.png" height="180" >--%>
-                                <div class="card-info">
-                                    <span class="card-title">Young Hana+ 체크카드</span><br/><br/>
-                                    <span style="font-size: 17px; color: #605c5c"> #편의점/딜리버리 #대중교통<br/>
-                                            #커피 #페이결제 캐시백
-                                        </span>
-                                </div>
-                                <button id="openModalBtn3" class="modalBtn2"><h6>자세히 알아보기</h6></button>
-                            </div>
-                        </div>
+                        <div class="info-box1"></div>
                     </div>
+                    <div class="category-box">
+                        <h5>추가 공제에 유리한 카드 추천</h5>
+                        #대중교통 #영화 할인<br/>
+                        ${name}님이 주로 사용한 업종은  #외식 #마트 #배달 입니다.<br/>
 
+                    </div>
 
                     <%--          <div class="category-box">--%>
                     <%--            <h5>추가로 혜택받기</h5>--%>
@@ -620,9 +561,8 @@
             신용카드 사용 시보다 <span style="font-weight: bold;">324,000</span> 혜택을 더 받을 수 있어요.<br/>
             신용카드 연간 혜택이 <span style="font-weight: bold;">약 32만원</span>보다 높지 않으면
             <span style="font-weight: bold; color: #ee364f">체크카드</span> 이용이<br/> 유리해요.
-        </div>
-        <br/>
-        <div class="modal-subtitle"><h3>☑ 체크카드 이용 시</h3></div>
+        </div> <br/>
+        <div class="modal-subtitle"> <h4>☑ 체크카드 이용 시</h4></div>
         <img class="inputImg4" src="../../../resources/img/debitDeduction.png">
 
         <div class="modal-subtitle"><h4>☑ 신용카드 이용 시</h4></div>
@@ -655,15 +595,7 @@
     }
 
 </script>
-<%-- 멀티any 체크카드 --%>
-<script>
-    $("#openModalBtn2").click(function () {
-        window.location.href = "/redirectToMultiAny";
-    });
-    $("#openModalBtn3").click(function () {
-        window.location.href = "/redirectToYoungHana";
-    });
-</script>
+
 <!-- footer-wrapper -->
 <footer>
 

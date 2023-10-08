@@ -830,6 +830,46 @@
                                     <button id="openModalBtn3" class="modalBtn2"><h6>[혜택 더 보기]</h6></button>
                                 </div>
                             </div>
+                            <div class="carousel-item">
+                                <img src="https://www.hanacard.co.kr/ATTACH/MOBILE_APP/images/card/14295.png"
+                                     class="d-block w-100" alt="Slide 3">
+                                <div class="info-box1">
+                                    <span class="card_title"><h5>금쪽이 Young Hana+ 체크카드</h5></span>
+                                    <span class="personal_info">mastercard | 본인1734 (체크)<br/></span>
+                                    <span class="card_subtitle">세상의 금쪽이들 다 모여라<br/></span>
+                                    <div class="card_number">카드번호 : 4790-****-****-1734<br/></div>
+                                    <div class="card-benefits">
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fa-brands fa-amazon-pay"
+                                                   style="font-size: 25px;"></i>
+                                            </div>
+                                            페이결제
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-store"
+                                                   style="font-size: 25px;"></i>
+                                            </div>
+                                            편의점
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-train-subway"
+                                                   style="font-size: 25px;"></i>
+                                            </div>
+                                            대중교통
+                                        </div>
+                                        <div class="icon-box">
+                                            <div class="icon-bg">
+                                                <i class="fas fa-mug-saucer" style="font-size: 25px;"></i>
+                                            </div>
+                                            카페
+                                        </div>
+                                    </div>
+                                    <button id="openModalBtn4" class="modalBtn2"><h6>[혜택 더 보기]</h6></button>
+                                </div>
+                            </div>
                         </div>
                         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -873,7 +913,7 @@
                                      class="d-block w-100" alt="Slide 2">
                                 <div class="info-box2">
                                     <span class="card_title"><h5>청춘대로 티타늄 카드</h5></span>
-                                    <span class="personal_info">Mastercard | 2082 (신용)<br/></span>
+                                    <span class="personal_info">mastercard | 2082 (신용)<br/></span>
                                     <div class="card_brand ">카드사 : KB 국민카드</div>
                                     <div class="card_number">카드번호 : 5112-****-****-2082</div>
                                 </div>
@@ -1075,7 +1115,56 @@
             </div>
         </div>
 </section>
+<div id="myModal" class="modal">
+    <div class="modal-content2">
+        <span class="close">&times;</span>
+        <br/>
+        <h2>원더카드 LIVING 업종별 혜택</h2>
+        <div class="card-benefits2">
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg2">
+                        <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    생활요금
+                </div>
+                &nbsp;&nbsp; 아파트관리비, 전기세, 가스비 &nbsp; <span class="point"> 10%</span> 청구할인<br/>
+            </div>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg2">
+                        <i class="fas fa-house-medical" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    병원&약국
+                </div>
+                &nbsp;&nbsp; 병원 및 약국&nbsp; <span class="point"> 10%</span>청구할인<br/>
+            </div>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg2">
+                        <i class="fas fa-car" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    주유/택시
+                </div>
+                &nbsp;&nbsp; SK에너지, GS칼텍스, S-OIL, 현대오일뱅크알뜰주유소&nbsp; <span class="point"> 10%</span>청구할인<br/>
+            </div>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg2">
+                        <i class="fas fa-mug-saucer" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    커피
+                </div>
+                &nbsp;&nbsp;스타벅스, 커피빈, 이디야, 폴바셋, 투썸플레이스, 블루보틀&nbsp; <span class="point"> 10%</span> 청구할인<br/>
+            </div>
+            <%--            • 모든 가맹점&nbsp; <span class="point"> 0.3-1.0%</span> 적립<br/>--%>
+            <%--            • 온라인쇼핑, 통신/교통/자동이체 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
+            <%--            • 주유 <span class="point"> 5만원당 3천원</span> 청구할인<br/>--%>
+            <%--            • 아파트관리비/4대보험 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
+        </div>
+    </div>
 
+</div>
 <!-- Add Bootstrap JS and Popper.js -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

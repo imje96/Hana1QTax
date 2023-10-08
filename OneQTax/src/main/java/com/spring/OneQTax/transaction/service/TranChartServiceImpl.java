@@ -65,6 +65,10 @@ public class TranChartServiceImpl  implements TranChartService{
     }
 
     @Override
+    public CardTranVO getThisMonthTotalCard(int memberId) {
+        return tranMapper.getThisMonthTotalCard(memberId);
+    }
+    @Override
     public CardTranVO getThisMonthTotalAmount(int memberId) {
         return tranMapper.getThisMonthTotalAmount(memberId);
     }

@@ -1,4 +1,7 @@
 package com.spring.oneqtax.recommendation.service;
 
-public class RecommendServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class RecommendServiceImpl implements RecommendService{
 }

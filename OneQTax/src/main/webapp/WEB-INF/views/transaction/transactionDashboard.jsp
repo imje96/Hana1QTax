@@ -90,7 +90,7 @@
         padding: 20px 25px;
         margin: 25px 20px 20px 0;
         width: 90%;
-        height: 200px;
+        height: 150px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -221,8 +221,8 @@
 
     /* 소비내역 카테고리   */
     .chart3 {
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        height: 280px;
     }
 
     .pie-chart__labels {
@@ -296,9 +296,12 @@
     }
 
     .tenth {
-        background: #063cbe;
+        background: #4371ec;
     }
     .eleventh {
+        background: #063dc2;
+    }
+    .twelfth {
         background: #0d0036;
     }
     .inner-text {
@@ -311,6 +314,10 @@
     }
 
     /*   금액 표시 */
+    .price{
+        font-size: 35px;
+        color: #2a9690;
+    }
     .price-currency {
         line-height: 21px;
         font-size: 14px;
@@ -487,6 +494,11 @@
                                 <span style="text-align: center; color: #90A3BF;"><h5>모두의 일상 카드</h5></span>
                             </div>
                             <div class="carousel-item">
+                                <img src="https://www.hanacard.co.kr/ATTACH/MOBILE_APP/images/card/14295.png"
+                                     class="d-block w-100" alt="Slide 3">
+                                <span style="text-align: center; color: #90A3BF;"><h5>금쪽이 Young Hana+ 체크카드</h5></span>
+                            </div>
+                            <div class="carousel-item">
                                 <img src="https://www.econovill.com/news/photo/202008/407097_337754_4414.png"
                                      class="d-block w-100" alt="Slide 3">
                                 <span style="text-align: center; color: #90A3BF;"><h5>(신한)네이버페이 라인프렌즈 신한카드</h5></span>
@@ -501,6 +513,10 @@
                                      class="d-block w-100" alt="Slide 3">
                                 <span style="text-align: center; color: #90A3BF;"><h5>(국민)청춘대로 티타늄 카드</h5></span>
                             </div>
+
+
+
+
                         </div>
                         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -616,7 +632,7 @@
                 <%--                <p>${deduction_date}</p>--%>
 
                 <div class="monthly-box">
-                    <h5> 10월 사용금액</h5>
+                    <h5> 10월 사용금액 <span style="font-size: 15px">(카드&현금영수증)</span></h5>
                     <h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
                                                         groupingUsed="true"/>
                         <span class="price-currency">(원)</span></h1>
@@ -711,6 +727,13 @@
                                 ${categoryMonth[10].categoryBig}
                             </div>
                             <fmt:formatNumber value="${categoryMonth[10].totalAmount}" groupingUsed="true"/> 원
+                        </div>
+                        <div class="pie-chart__labels-item">
+                            <div class="label">
+                                <div class="label__color twelfth"></div>
+                                ${categoryMonth[11].categoryBig}
+                            </div>
+                            <fmt:formatNumber value="${categoryMonth[11].totalAmount}" groupingUsed="true"/> 원
                         </div>
                     </div>
 
@@ -808,9 +831,10 @@
                         ${categoryMonth[8].totalAmount},
                         ${categoryMonth[9].totalAmount},
                         ${categoryMonth[10].totalAmount},
+                        ${categoryMonth[11].totalAmount},
                     ],
-                    backgroundColor: ['#fc91b7', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC', '#063cbe', '#0d0036'],
-                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+                    backgroundColor: ['#fc91b7', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC', '#063cbe', '#063dc2', '#0d0036'],
+                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
                     // circumference: 180,
                     rotation: 270,
                 }]

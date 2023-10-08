@@ -14,29 +14,31 @@ import java.util.List;
 public class RecommendController {
 
     @Autowired
-//    private RecommendService recommService;
+    private RecommendService recommService;
 
     /* 소득공제 카드추천*/
     @GetMapping("/recommCard1")
-    public String recommedCard1(HttpSession session) {
+    public String recommedCard1(HttpSession session, Model model) {
         // memberId 가져오기
-//        MemberVO currentUser = getCurrentUser(session);
-//
-//        if (currentUser == null) {
-//            // 리다이렉트나 에러 메시지 처리
-//            return "redirect:/login";
-//        }
-//        int memberId = currentUser.getMember_id();
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+        String name = currentUser.getName();
 
 
-        // 그래프를 위한 값
+        model.addAttribute("name", name);
+
 
         return "recommendation/recommend1";
     }
 
     // 세션에서 member_id 가져오기
-//    private MemberVO getCurrentUser(HttpSession session) {
-//        return (MemberVO) session.getAttribute("currentUser");
-//    }
+    private MemberVO getCurrentUser(HttpSession session) {
+        return (MemberVO) session.getAttribute("currentUser");
+    }
 }
 

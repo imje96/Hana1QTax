@@ -256,6 +256,7 @@
                         <th>결제일자</th>
                         <th>거래처</th>
                         <th>결제금액</th>
+                        <th>결제업종</th>
                         <th>결제분류</th>
 
                     </tr>
@@ -308,7 +309,8 @@
                             return formatCurrency(data); // or formatCurrency(data) depending on your need
                         }
                     },
-                    {data: "category"}
+                    {data: "category"},
+                    {data: "classification"}
                 ]
             });
         } catch (e) {

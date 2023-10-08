@@ -13,9 +13,11 @@ import com.spring.oneqtax.transaction.domain.CardTranVO;
 import com.spring.oneqtax.transaction.domain.HometaxTranVO;
 import com.spring.oneqtax.transaction.service.TranChartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -252,11 +254,10 @@ public class TranController {
 
         // transaction 가져오기
         List<CardTranVO> cardTran = tranChart.getCardTranByMemberId(memberId);
-//        CardTranVO financeTran = tranChart.getCardTranByFinance(memberId);
         List<CardTranVO> thisTran = tranChart.getThisMonthTran(memberId);
         List<CardTranVO> categoryTran = tranChart.getCategoryAmount(memberId);
         List<CardTranVO> categoryMonth = tranChart.getThisMonthCategoryAmount(memberId);
-        CardTranVO thisMonthSpending = tranChart.getThisMonthTotalAmount(memberId);
+        CardTranVO thisMonthSpending = tranChart.getThisMonthTotalCard(memberId);
 
 
         // 그래프를 위한 값
@@ -330,6 +331,15 @@ public class TranController {
         return "transaction/hometaxList";
     }
 
+    // 하나카드 홈페이지로 이동
+    @GetMapping("/redirectToMultiAny")
+    public String redirectToMultiAny() {
+        return "redirect:https://www.hanacard.co.kr/OPI41000000D.web?schID=pcd&mID=PI41013823P&CD_PD_SEQ=13823";
+    }
+    @GetMapping("/redirectToYoungHana")
+    public String redirectToYoungHana() {
+        return "redirect:https://www.hanacard.co.kr/OPI41000000D.web?schID=pcd&mID=PI41013798P&CD_PD_SEQ=13798&";
+    }
 
     // 세션에서 member_id 가져오기
     private MemberVO getCurrentUser(HttpSession session) {
