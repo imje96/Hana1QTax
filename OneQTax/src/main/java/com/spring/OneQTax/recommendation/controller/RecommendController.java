@@ -36,6 +36,45 @@ public class RecommendController {
         return "recommendation/recommend1";
     }
 
+    /* 일반 카드추천*/
+    @GetMapping("/recommCard2")
+    public String recommedCard2(HttpSession session, Model model) {
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+        String name = currentUser.getName();
+
+
+        model.addAttribute("name", name);
+
+
+        return "recommendation/recommend2";
+    }
+
+    /* 종합결과*/
+    @GetMapping("/recommedResult")
+    public String recommedResult(HttpSession session, Model model) {
+        // memberId 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 리다이렉트나 에러 메시지 처리
+            return "redirect:/login";
+        }
+        int memberId = currentUser.getMember_id();
+        String name = currentUser.getName();
+
+
+        model.addAttribute("name", name);
+
+
+        return "recommendation/recommedResult";
+    }
     // 세션에서 member_id 가져오기
     private MemberVO getCurrentUser(HttpSession session) {
         return (MemberVO) session.getAttribute("currentUser");

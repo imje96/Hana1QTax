@@ -644,6 +644,22 @@
         font-size: 30px;
         font-weight: 700;
     }
+
+    /*  카드이용금액 박스 */
+    /*.flex-box2{*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    width: 700px;*/
+    /*    justify-content: space-between;*/
+    /*    cursor: grab;*/
+    /*    border: 3px solid #ebe7e7;*/
+    /*    !* border: solid; *!*/
+    /*    margin: 20px;*/
+    /*    padding: 10px 20px;*/
+    /*    border-radius: 10px;*/
+    /*    height: 110px;*/
+    /*    transition: background-color 0.3s, transform 0.5s;*/
+    /*}*/
 </style>
 
 
@@ -953,7 +969,7 @@
                                         <h5>신용&체크</h5></div>
                                     <div class="amount-box">
                                         <h2><fmt:formatNumber value="${thisTotalBrand[0].totalAmount}"
-                                                              groupingUsed="true"/> 원 </h2>
+                                                              groupingUsed="true"/> 원 🔽</h2>
                                     </div>
                                 </div>
                             </div>
@@ -966,7 +982,7 @@
                                     <div class="flex-box4">
                                         <h5> 원더카드 LIVING :</h5>
                                         <h3><fmt:formatNumber value="${privateCardTotal[3].totalAmount}"
-                                                              groupingUsed="true"/> 원</h3>
+                                                              groupingUsed="true"/> 원 </h3>
                                     </div>
                                     <div class="flex-box4">
                                         <h5> 1Q Daily+(원큐데일리플러스) :</h5>
@@ -999,7 +1015,7 @@
                                         <h5>신용</h5></div>
                                     <div class="amount-box">
                                         <h2><fmt:formatNumber value="${thisTotalBrand[1].totalAmount}"
-                                                              groupingUsed="true"/> 원</h2>
+                                                              groupingUsed="true"/> 원 🔽</h2>
                                     </div>
                                 </div>
                             </div>
@@ -1029,7 +1045,7 @@
                                         <h5>신용</h5></div>
                                     <div class="amount-box">
                                         <h2><fmt:formatNumber value="${thisTotalBrand[2].totalAmount}"
-                                                              groupingUsed="true"/> 원</h2>
+                                                              groupingUsed="true"/> 원 🔽</h2>
                                     </div>
                                 </div>
                             </div>
