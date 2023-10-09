@@ -57,20 +57,20 @@ document.addEventListener('DOMContentLoaded', function() {
             datasets: [{
                 label: '기본공제액',
                 data: [window.basicDeduction],
-                backgroundColor: ['#9ae7d7'],
-                borderColor: ['#ffffff'],
+                backgroundColor: ['#fdbebe'],
+                borderColor: ['#f1f2f5'],
             },
                 {
                     label: '추가공제액',
                     data: [window.additionalDeduction],
-                    backgroundColor: ['#b5f2ff'],
-                    borderColor: ['#ffffff'],
+                    backgroundColor: ['#9ae7d7'],
+                    borderColor: ['#f1f2f5'],
                 },
                 {
                     label: '남은공제액',
                     data: [window.total - window.basicDeduction - window.additionalDeduction],
                     backgroundColor: ['#edebeb'],
-                    borderColor: ['#ffffff'],
+                    borderColor: ['#f1f2f5'],
                 }
             ]
         },

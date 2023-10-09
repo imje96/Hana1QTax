@@ -168,7 +168,7 @@
 
     .carousel-control-next, .carousel-control-prev {
         position: absolute;
-        top: 78px;
+        top: 100px;
         bottom: 0;
         height: 45px;
         border-radius: 40%;

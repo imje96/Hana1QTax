@@ -58,11 +58,27 @@
         /*    font-size: 30px;*/
         /*    background: #5CAFFC;*/
         /*}*/
+
+        .chart-cover {
+            width: 450px;
+            height: 160px;
+            background-color: #d9e3e3;
+            font-weight: 600;
+            font-size: 25px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+            color: #FFFFFF;
+            align-content: space-around;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
         .progress-container {
             position: relative;
             width: 410px;
             height: 50px;
-            border-radius: 20px;
+            /*border-radius: 20px;*/
             background: #ffffff;
             overflow: visible;
             margin-top: 90px;
@@ -72,26 +88,56 @@
         .gauge {
             position: absolute;
             height: 100%;
-            border-radius: 20px;
-            background: linear-gradient(to right, #37aba1, #eaffe7);
+            /*border-radius: 20px;*/
+            /*background: linear-gradient(to right, #37aba1, #eaffe7);*/
+            background: #00857f;
         }
 
         .progress-text {
             position: absolute;
-            top: -100%;
-            transform: translate(100%, -50%);
+            /* top: 17%; */
+            transform: translate(100%, -211%);
             text-align: center;
-            color: #ffffff;
+            color: black;
             font-size: 33px;
             font-weight: bold;
             /* margin-bottom: 66px; */
-            background: #00857f;
+            /* background: #ffffff; */
             border-radius: 15px;
             padding: 7px;
             width: 130px;
         }
-
-
+        .progress-sector {
+            width: 410px;
+            display: flex;
+            font-weight: 600;
+            font-size: 17px;
+            position: relative;
+            justify-content: space-between;
+            color: black;
+            margin: 11px 0 20px 0;
+            top: 44px;
+        }
+       .info-item1 {
+             border: 1px solid #f6f3f3;
+             background-color: #f5f5f5;
+             border-radius: 10px;
+             margin-bottom: 10px;
+             padding: 5px 10px;
+             font-size: 25px;
+             text-align: center;
+         }
+        .info-item4 {
+            border: 1px solid #f6f3f3;
+            /* background-color: #f5f5f5; */
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 20px;
+            font-size: 21px;
+            text-align: center;
+            background: #d9e3e3;
+            line-height: 1.7;
+        }
 
     </style>
 
@@ -173,19 +219,22 @@
                       <fmt:formatNumber value="${minimum_amount}" groupingUsed="true"/>원</span>
                         </div>
                         <p>(사용누적액/최저사용금액)</p>
-                        <div class="chart2">
-<%--                            <canvas id="threshold1"></canvas>--%>
-<%--    <div class="progress-container">--%>
-<%--        <div class="progress-bar"></div>--%>
-<%--        <div class="progress-text"></div>--%>
-<%--    </div>--%>
+                        <br/>
+        <div class="chart-cover">
+            <div class="progress-text"> 0%</div>
     <div class="progress-container">
+
         <div class="gauge" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-        <div class="progress-text" >0%</div>
+<%--        <div class="progress-text" >0%</div>--%>
+        <div class="progress-sector">
+            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+            <h5>| 0%</h5>
+            <h5>100% |</h5>
+        </div>
+        </div>
     </div>
+                        <br/>
 
-
-                        </div>
                         <div class="info-box">
                             <div class="info-item2">공제 시작까지 남은 금액:&nbsp;0 원</div>
                         </div>
@@ -193,15 +242,12 @@
 <%--                    <script src="../../resources/js/thresholdChart.js"></script>--%>
 
                     <div class="chart-box-inner">
-                      <h3>누적 사용금액 확인하기</h3><br/><br/>
+                      <h3>누적 사용금액 확인하기</h3><br/>
 <%--                        <div class="info-box">--%>
-
-
-
                         <div class="info-item3">
-                        <h3>🔔 소득공제가 가능한 금액을 달성했어요!</h3>
+                        <h3>🔔 아직 소득공제가 시작되지 않았어요</h3>
                       </div><br/>
-                      카드황금비율 계산 페이지에서 카드 사용전략을 확인해보세요<br/><br/>
+                      <span style="font-weight: bold; margin-bottom: 10px"> ✅ 내게 맞는 카드 추천받기에서</span> 카드 사용전략을 확인해 보세요<br/><br/>
                           <div class="info-item4">
                             <div class="info-item">신용카드 사용금액 :&nbsp;<span style="font-weight: bold"><fmt:formatNumber value="${credit_total}"
                                                                                        groupingUsed="true"/> 원</span>

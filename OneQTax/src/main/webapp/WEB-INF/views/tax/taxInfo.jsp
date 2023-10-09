@@ -16,7 +16,6 @@
     <link href="../../../resources/css/main.css" rel="stylesheet">
 
 
-
     <!-- Favicon -->
     <link
             href="${ pageContext.request.contextPath }/resources/img/favicon.ico"
@@ -41,10 +40,48 @@
 
 
     <style>
-        .side-nav {
-            font-family: 'Noto Sans KR', sans-serif !important;
+        .info-item5 {
+            border: 1px solid #f6f3f3;
+            /* background-color: #f5f5f5; */
+            border-radius: 10px;
+            margin-bottom: 10px;
+            margin-left: 150px;
+            width: 400px;
+            padding: 20px;
+            font-size: 23px;
+            text-align: center;
+            background: #d9e3e3;
+            color: black;
+            line-height: 1.7;
         }
 
+        .info-item6 {
+            border: 1px solid #f6f3f3;
+            /* background-color: #f5f5f5; */
+            border-radius: 10px;
+            margin-bottom: 10px;
+            margin-right: 100px;
+            width: 400px;
+            padding: 20px;
+            font-size: 23px;
+            text-align: center;
+            background: #d9e3e3;
+            color: black;
+            line-height: 1.7;
+        }
+
+        .conversation-box {
+
+        }
+        .container2 {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 100px;
+        }
     </style>
 </head>
 
@@ -97,7 +134,6 @@
         </div>
 
 
-
         <div class="section">
             <div class="container-title">
                 <h2>카드황금비율 계산</h2>
@@ -107,31 +143,40 @@
             <br/><br/>
 
 
-
-
             <div class="container2">
                 <div class="flex-box">
 
-                <div class="info-item4">
-                    <div class="info-item">
-                        체크카드나 현금영수증 혜택이 좋다던데... <br/>
-                        계속 신용카드 써도 될까?
-                    </div>
+<%--                    <img src="../../../resources/img/character4.png" height="200px">--%>
+                    <div class="conversation-box">
+                        <img src="../../../resources/img/conversation.png" height="300px">
+<%--                        <div class="info-item5">--%>
+<%--                            <div class="info-item">--%>
+<%--                                체크카드나 현금영수증 혜택이 좋다던데... <br/>--%>
+<%--                                계속 신용카드 써도 될까?--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <br/>--%>
+<%--                        <div class="info-item6">--%>
+<%--                            <div class="info-item">--%>
+<%--                                아직 하나원큐택스 안 써봤어?<br/>--%>
+<%--                                연말정산에 유리한 소비전략도 다 알려주잖아--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                </div>
-                    <img src="../../../resources/img/character3.png" >
+                    </div>
+<%--                    <img src="../../../resources/img/character3.png" height="220px">--%>
                 </div>
                 <br/>
-
-
-
+                <h3>지금 바로 최대 혜택 확인해보기</h3><br/>
+                👇 👇<br/><br/>
 
                 <form action="/calculateAndInsertDeduction" method="post">
-                  <button id="openModalBtn" class="modalBtn" type="submit"><h6>계산하기</h6></button>
+                    <button id="openModalBtn" class="modalBtn" type="submit"><h6>계산하기</h6></button>
                 </form>
                 <br/>
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult">
-                    <button class="pointBtn"><h6>결과보기</h6></button></a>
+                    <button class="pointBtn"><h6>결과보기</h6></button>
+                </a>
                 <br/>
             </div>
 

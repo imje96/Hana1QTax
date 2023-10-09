@@ -237,7 +237,7 @@ ORDER BY totalAmount DESC
                     SUM(amount) AS totalAmount,
                     COUNT(*) AS totalCount
                 FROM card_transaction
-                WHERE member_id=#{memberId} AND SUBSTR(cardtrandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY/MM')
+                WHERE member_id=#{memberId} AND SUBSTR(cardtrandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -2), 'YYYY/MM')
                 GROUP BY category_big
 
                 UNION ALL -- 중복 제거 없이 두 결과를 합침

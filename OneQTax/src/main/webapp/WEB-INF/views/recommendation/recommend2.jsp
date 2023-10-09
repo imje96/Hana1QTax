@@ -121,12 +121,14 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, transform 0.3s;
     }
+
     .cardImg:hover {
         transform: scale(1.05);
         /* hover 시 약간 확대되는 효과 */
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         /* hover 시 그림자 약간 강화 */
     }
+
     .cardImg2 {
         background-color: #e1caca;
         border-radius: 10px;
@@ -141,18 +143,20 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, transform 0.3s;
     }
+
     .cardImg2:hover {
         transform: scale(1.05);
         /* hover 시 약간 확대되는 효과 */
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         /* hover 시 그림자 약간 강화 */
     }
+
     .recomm-Info {
         /*background-color: #f4d8db;*/
         border: 3px solid #6b6b6b;
         border-radius: 10px;
         padding: 20px;
-        margin: 0 0 20px 15px;
+        margin: 0 0 40px 15px;
         width: 250px;
         height: 230px;
         /*display: flex;*/
@@ -223,6 +227,7 @@
         color: #6b6a6a;
         margin-bottom: 15px;
     }
+
     .category-box4 {
         background-color: #fff;
         border-radius: 10px;
@@ -244,6 +249,20 @@
         margin-bottom: 15px;
     }
 
+    .category-box5 {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px 25px;
+        margin: 25px 0 25px 0;
+        width: 90%;
+        /*height: 420px;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border: 3px solid #00857e;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
     .recommendList {
         display: flex;
@@ -303,6 +322,7 @@
         padding: 20px 20px;
         margin-top: 20px;
     }
+
     .info-box2 {
         background-color: #cde1e1 !important;
         border-radius: 10px;
@@ -312,8 +332,9 @@
         padding: 20px 20px;
         margin-top: 20px;
     }
+
     .info-box3 {
-        background-color: #fdd0e4  !important;
+        background-color: #fdd0e4 !important;
         border-radius: 10px;
         text-align: center;
         width: 90%;
@@ -321,6 +342,7 @@
         padding: 20px 20px;
         margin-top: 20px;
     }
+
     .info-box4 {
         background-color: #ece8e8 !important;
         border-radius: 10px;
@@ -330,7 +352,7 @@
         /*padding: 20px 20px;*/
         margin-top: 20px;
         margin-bottom: 20px;
-        font-size:18px;
+        font-size: 18px;
     }
 
     /*   금액 표시 */
@@ -389,6 +411,13 @@
         margin: 25px 0 20px 0;
     }
 
+    .inner-text2 {
+        position: absolute;
+        transform: translate(0%, -315%);
+        text-align: center;
+        color: #e4003f;
+    }
+
     /*  모달창 버튼  */
     .modalBtn2 {
         display: inline-block;
@@ -412,6 +441,7 @@
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         /* hover 시 그림자 약간 강화 */
     }
+
     .modalBtn3 {
         display: inline-block;
         color: #ffffff;
@@ -427,13 +457,13 @@
         transition: background-color 0.3s, transform 0.3s;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
     .modalBtn3:hover {
         transform: scale(1.05);
         /* hover 시 약간 확대되는 효과 */
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         /* hover 시 그림자 약간 강화 */
     }
-
 
 
     .modal {
@@ -522,6 +552,7 @@
         font-size: 18px;
         color: #2a9791;
     }
+
     /*    토글 */
     .toggle-button {
         width: 140px;
@@ -570,7 +601,8 @@
         font-size: 24px;
         text-align: center;
     }
-    .content h5{
+
+    .content h5 {
         /*background: #aaaaaa;*/
         font-size: 26px;
         padding: 10px;
@@ -582,6 +614,7 @@
         width: 280px;
         height: 280px;
     }
+
     /* 차트 안 글씨 */
     .chart-inner-text {
         position: absolute;
@@ -590,6 +623,100 @@
         /*left: 50%;*/
         text-align: center;
         color: #e4003f;
+    }
+
+    .pie-chart__labels {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        /*margin-top: 20px;*/
+        width: 320px;
+    }
+
+    .pie-chart__labels-item, .label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pie-chart__labels-item {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 150%;
+    }
+
+    .label {
+        gap: 12px;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 15px;
+        color: #596780;
+    }
+
+    .label__color {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .first {
+        background: #fc91b7;
+    }
+
+    .second {
+        background: #f8d5d6;
+    }
+
+    .third {
+        background: #f8f2ce;
+    }
+
+    .fourth {
+        background: #d1ede5;
+    }
+
+    .fifth {
+        background: #aee3eb;
+    }
+
+    .sixth {
+        background: #e6e4dc;
+    }
+
+    .seventh {
+        background: #bfcaf2;
+    }
+
+    .eighth {
+        background: #839ee6;
+    }
+
+    .ninth {
+        background: #7C5CFC;
+    }
+
+    .tenth {
+        background: #4371ec;
+    }
+
+    .eleventh {
+        background: #063dc2;
+    }
+
+    .twelfth {
+        background: #0d0036;
+    }
+
+    .flex-box2 {
+        width: 650px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .container-title {
+        text-align: center;
+        font-size: 25px;
     }
 </style>
 
@@ -672,9 +799,10 @@
                                 </div>
                             </div>
                             <div class="recomm-Info">
-                                <h4>" 신용 추천 "</h4>
+                                <h4>" 신용카드 추천 "</h4>
 
-                                카드 소득공제가 시작되기 <br/>전엔 어떤 결제수단이든 <br/>상관없으니 혜택이 좋은<br/><span style="color:#fd328a"> 신용카드</span>를 사용해볼까요?<br/><br/>
+                                카드 소득공제가 시작되기 <br/>전엔 어떤 결제수단이든 <br/>상관없으니 혜택이 좋은<br/><span
+                                    style="color:#fd328a"> 신용카드</span>를 사용해볼까요?<br/><br/>
 
                                 <span style="font-size: 17px">(사용금액: 연봉의 25% 이하까지)</span>
 
@@ -683,11 +811,11 @@
                         </div>
                     </div>
 
-                        <div class="category-box2">
-                            <h3>📋 자주 소비한 업종 확인하기</h3>
-                            <br>
-                            <button id="openModalBtn" class="modalBtn3"><h6>자세히 알아보기</h6></button>
-                        </div>
+                    <div class="category-box2">
+                        <h3>📋 자주 소비한 업종 확인하기</h3>
+                        <br>
+                        <button id="openModalBtn" class="modalBtn3"><h6>자세히 알아보기</h6></button>
+                    </div>
                     <div class="category-box3">
                         <h4>💚추가로 혜택받기💚</h4>
                         <div class="flex-box">
@@ -698,15 +826,16 @@
                         </div>
                         자주 사용하시는 업종과 월평균 사용금액에 맞춰 체크카드를 추천해드릴게요.
                         <div class="info-box2">
-                            아래 카드를 함께 사용하면 매달 최대 <span style="font-weight: bold; font-size: 25px">17,000원</span>의 혜택을 받을 것으로 예상돼요
+                            아래 카드를 함께 사용하면 매달 최대 <span style="font-weight: bold; font-size: 25px">17,000원</span>의 혜택을 받을
+                            것으로 예상돼요
                             <span style="font-size:17px">(원더카드 FREE)</span><br/>
                             ${name}님의 3개월 평균 사용금액 : 200만원 기준
                         </div>
                         <br/>
                         <div class="recommendList">
                             <div class="cardImg-box">
-                                                                <img class="cardImg"
-                                                                     src="https://m.hanacard.co.kr/ATTACH/NEW_MOBILE/images/cardinfo/card_img/14126.png">
+                                <img class="cardImg"
+                                     src="https://m.hanacard.co.kr/ATTACH/NEW_MOBILE/images/cardinfo/card_img/14126.png">
                                 <div class="card-info">
                                     <span class="card-title">원더카드 FREE</span><br/><br/>
                                     <span style="font-size: 17px; color: #605c5c">#전가맹점 #간편결제 <br/>
@@ -715,8 +844,8 @@
                                 <button id="openModalBtn1" class="modalBtn2"><h6>자세히 알아보기</h6></button>
                             </div>
                             <div class="cardImg-box">
-                                                                <img class="cardImg"
-                                                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14133.png">
+                                <img class="cardImg"
+                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14133.png">
                                 <div class="card-info">
                                     <span class="card-title">원더카드 HAPPY</span><br/><br/>
                                     <span style="font-size: 17px; color: #605c5c">#전가맹점 #간편결제<br/>
@@ -752,42 +881,304 @@
         <h2>지난 3개월간 사용 업종 확인하기</h2>
         (월 평균 사용금액은 200만원 입니다.)
         <div class="info-box1">
-            공제시작 구간부터 체크카드 사용 시, 아끼는 세금은 <span style="font-weight: bold;">약 648,000원</span>
-            신용카드 사용 시보다 <span style="font-weight: bold;">324,000</span> 혜택을 더 받을 수 있어요.<br/>
-            신용카드 연간 혜택이 <span style="font-weight: bold;">약 32만원</span>보다 높지 않다면
-            <span style="font-weight: bold; color: #ee364f">체크카드</span> 이용이<br/> 유리해요.
+            <span style="font-weight: bold; font-size: 22px">${name}</span>님이 3개월 간 지출을 많이 한 업종은 <span style="font-weight: bold; font-size: 22px">#외식 #쇼핑 #여행</span>입니다.
         </div>
         <br/>
-        10월 사용금액 <h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
-                                            groupingUsed="true"/>
-            <span class="price-currency">(원)</span></h1><br/>
-        9월 사용금액<h1 class="price"><fmt:formatNumber value="${lastMonthSpending.totalAmount}"
-                                            groupingUsed="true"/>
-            <span class="price-currency">(원)</span></h1><br/>
-        8월 사용금액<h1 class="price"><fmt:formatNumber value="${beforeMonthSpending.totalAmount}"
-                                            groupingUsed="true"/>
-            <span class="price-currency">(원)</span></h1><br/>
+        <div class="flex-box2">
+            <div>
+                10월 사용금액<h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
+                                                            groupingUsed="true"/>
+                <span class="price-currency">(원)</span></h1></div>
+            <div>
+                9월 사용금액<h1 class="price"><fmt:formatNumber value="${lastMonthSpending.totalAmount}"
+                                                           groupingUsed="true"/>
+                <span class="price-currency">(원)</span></h1></div>
+            <div>
+                8월 사용금액<h1 class="price"><fmt:formatNumber value="${beforeMonthSpending.totalAmount}"
+                                                           groupingUsed="true"/>
+                <span class="price-currency">(원)</span></h1></div>
+        </div>
+        <br/>
+        <div class="container-title"><h3>10월 사용 업종</h3></div>
+        <div class="category-box5">
 
-        <div class="category-box">
-
-            <div><h5>이번 달 사용 업종</h5></div>
             <div class="chart3">
 
                 <canvas id="tranChart"></canvas>
             </div>
-            <div class="chart-inner-text">
-                <h3>1위</h3><h2>${categoryMonth[0].categoryBig}</h2>
+            <div class="inner-text2">
+                <h3>1위</h3>
+                <h2>${categoryMonth[0].categoryBig}</h2>
             </div>
-
-
+            <div class="pie-chart__labels">
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color first"></div>
+                        ${categoryMonth[0].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[0].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color second"></div>
+                        ${categoryMonth[1].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[1].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color third"></div>
+                        ${categoryMonth[2].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[2].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color fourth"></div>
+                        ${categoryMonth[3].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[3].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color fifth"></div>
+                        ${categoryMonth[4].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[4].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color sixth"></div>
+                        ${categoryMonth[5].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[5].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color seventh"></div>
+                        ${categoryMonth[6].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[6].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color eighth"></div>
+                        ${categoryMonth[7].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[7].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color ninth"></div>
+                        ${categoryMonth[8].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[8].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color tenth"></div>
+                        ${categoryMonth[9].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[9].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color eleventh"></div>
+                        ${categoryMonth[10].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[10].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color twelfth"></div>
+                        ${categoryMonth[11].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryMonth[11].totalAmount}" groupingUsed="true"/> 원
+                </div>
+            </div>
         </div>
 
-        <div class="modal-subtitle"><h3>☑ 체크카드 이용 시</h3></div>
+        <div class="container-title"><h3>9월 사용 업종</h3></div>
+        <div class="category-box5">
+            <div class="chart3">
 
-        <div class="modal-subtitle"><h4>☑ 신용카드 이용 시</h4></div>
+                <canvas id="tranChart2"></canvas>
+            </div>
+            <div class="inner-text2">
+                <h3>1위</h3>
+                <h2>${categoryLastMonth[0].categoryBig}</h2>
+            </div>
+            <div class="pie-chart__labels">
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color first"></div>
+                        ${categoryLastMonth[0].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[0].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color second"></div>
+                        ${categoryLastMonth[1].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[1].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color third"></div>
+                        ${categoryLastMonth[2].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[2].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color fourth"></div>
+                        ${categoryLastMonth[3].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[3].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color fifth"></div>
+                        ${categoryLastMonth[4].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[4].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color sixth"></div>
+                        ${categoryLastMonth[5].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[5].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color seventh"></div>
+                        ${categoryLastMonth[6].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[6].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color eighth"></div>
+                        ${categoryLastMonth[7].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[7].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color ninth"></div>
+                        ${categoryLastMonth[8].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[8].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color tenth"></div>
+                        ${categoryLastMonth[9].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryLastMonth[9].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <br/>
+
+            </div>
+        </div>
+
+        <div class="container-title"><h3>8월 사용 업종</h3></div>
+        <div class="category-box5">
+            <div class="chart3">
+
+                <canvas id="tranChart3"></canvas>
+            </div>
+            <div class="inner-text2">
+                <h3>1위</h3>
+                <h2>${categoryBeforeMonth[0].categoryBig}</h2>
+            </div>
+            <div class="pie-chart__labels">
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color first"></div>
+                        ${categoryBeforeMonth[0].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[0].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color second"></div>
+                        ${categoryBeforeMonth[1].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[1].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color third"></div>
+                        ${categoryBeforeMonth[2].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[2].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color fourth"></div>
+                        ${categoryBeforeMonth[3].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[3].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color fifth"></div>
+                        ${categoryBeforeMonth[4].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[4].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color sixth"></div>
+                        ${categoryBeforeMonth[5].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[5].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color seventh"></div>
+                        ${categoryBeforeMonth[6].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[6].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color eighth"></div>
+                        ${categoryBeforeMonth[7].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[7].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color ninth"></div>
+                        ${categoryBeforeMonth[8].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[8].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <div class="pie-chart__labels-item">
+                    <div class="label">
+                        <div class="label__color tenth"></div>
+                        ${categoryBeforeMonth[9].categoryBig}
+                    </div>
+                    <fmt:formatNumber value="${categoryBeforeMonth[9].totalAmount}" groupingUsed="true"/> 원
+                </div>
+                <br/>
+
+            </div>
+        </div>
+
+
     </div>
-
 </div>
+<%--    </div>--%>
+<div class="modal-subtitle"><h3>☑ 체크카드 이용 시</h3></div>
+
+<div class="modal-subtitle"><h4>☑ 신용카드 이용 시</h4></div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Chart.js 및 Datalabels 플러그인 추가 -->
@@ -871,8 +1262,104 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx3 = document.getElementById('tranChart2').getContext('2d');
 
+        var tranChart2 = new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+                labels: categories,
+                datasets: [{
+                    data: [
+                        ${categoryLastMonth[0].totalAmount},
+                        ${categoryLastMonth[1].totalAmount},
+                        ${categoryLastMonth[2].totalAmount},
+                        ${categoryLastMonth[3].totalAmount},
+                        ${categoryLastMonth[4].totalAmount},
+                        ${categoryLastMonth[5].totalAmount},
+                        ${categoryLastMonth[6].totalAmount},
+                        ${categoryLastMonth[7].totalAmount},
+                        ${categoryLastMonth[8].totalAmount},
+                        ${categoryLastMonth[9].totalAmount},
+                        ${categoryLastMonth[10].totalAmount},
+                        ${categoryLastMonth[11].totalAmount},
+                    ],
+                    backgroundColor: ['#fc91b7', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC', '#063cbe', '#063dc2', '#0d0036'],
+                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+                    // circumference: 180,
+                    rotation: 270,
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false, // 범례를 숨김
+                    },
+                },
+                tooltips: {
+                    enabled: true,
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            let label = data.labels[tooltipItem.index];
+                            let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            return label + ': ' + value;
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx4 = document.getElementById('tranChart3').getContext('2d');
 
+        var tranChart3 = new Chart(ctx4, {
+            type: 'doughnut',
+            data: {
+                labels: categories,
+                datasets: [{
+                    data: [
+                        ${categoryBeforeMonth[0].totalAmount},
+                        ${categoryBeforeMonth[1].totalAmount},
+                        ${categoryBeforeMonth[2].totalAmount},
+                        ${categoryBeforeMonth[3].totalAmount},
+                        ${categoryBeforeMonth[4].totalAmount},
+                        ${categoryBeforeMonth[5].totalAmount},
+                        ${categoryBeforeMonth[6].totalAmount},
+                        ${categoryBeforeMonth[7].totalAmount},
+                        ${categoryBeforeMonth[8].totalAmount},
+                        ${categoryBeforeMonth[9].totalAmount},
+                        ${categoryBeforeMonth[10].totalAmount},
+                        ${categoryBeforeMonth[11].totalAmount},
+                    ],
+                    backgroundColor: ['#fc91b7', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC', '#063cbe', '#063dc2', '#0d0036'],
+                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+                    // circumference: 180,
+                    rotation: 270,
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false, // 범례를 숨김
+                    },
+                },
+                tooltips: {
+                    enabled: true,
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            let label = data.labels[tooltipItem.index];
+                            let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            return label + ': ' + value;
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
 <%-- 멀티any 체크카드 --%>
 <script>
     $("#openModalBtn2").click(function () {
@@ -882,12 +1369,35 @@
         window.location.href = "/redirectToYoungHana";
     });
 </script>
+<%-- 캐러셀 --%>
 
 <!-- footer-wrapper -->
 <footer>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
+<script>
+    const inner = document.querySelector('.carousel-inner');
+    const slides = inner.querySelectorAll('.slide');
+    let idx = 0;
 
+    document.querySelector('.prev').addEventListener('click', function () {
+        idx--;
+        if (idx < 0) idx = slides.length - 1;
+        updateCarousel();
+    });
+
+    document.querySelector('.next').addEventListener('click', function () {
+        idx++;
+        if (idx >= slides.length) idx = 0;
+        updateCarousel();
+    });
+
+    function updateCarousel() {
+        const offset = -idx * 600; // 300px는 각 슬라이드의 너비
+        inner.style.transform = `translateX(${offset}px)`;
+    }
+
+</script>
 </body>
 </html>
