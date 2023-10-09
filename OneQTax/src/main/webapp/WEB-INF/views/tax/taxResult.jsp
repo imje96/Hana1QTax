@@ -318,7 +318,7 @@
                 <%--                <p>${deduction_date}</p>--%>
 
                 <div class="comment-box">
-                    <div class="commet-box-inner">
+                    <div class="comment-box-inner">
                         <div class="result-tax">
                             <h6>2023년 카드 등 소득공제액</h6>
                             <br/>
@@ -340,7 +340,7 @@
                             <button id="recommendBtn" class="pointBtn"><h6>내게 맞는 카드 추천받기</h6></button>
                         </div>
                     </div>
-                    <div class="commet-box-inner">
+                    <div class="comment-box-inner">
                         <div class="comment-info">
                             <c:choose>
                                 <c:when test="${basic_deduction > 0}">
