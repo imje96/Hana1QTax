@@ -82,6 +82,36 @@
             flex-direction: column;
             margin-bottom: 100px;
         }
+        /*  로딩 애니메이션   */
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* 투명한 검은색 배경 */
+            display: flex; /* 로더를 중앙에 위치시키기 위해 flex 사용 */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* 다른 요소 위에 위치 */
+        }
+
+        .loader {
+            display: inline-block;
+            left: 40px;
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top: 3px solid #192662;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+
     </style>
 </head>
 
@@ -124,12 +154,7 @@
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div>
                 </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
-                   style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
-                </a>
-                <hr style="width: 200px;">
+
             </div>
         </div>
 
@@ -167,8 +192,11 @@
 <%--                    <img src="../../../resources/img/character3.png" height="220px">--%>
                 </div>
                 <br/>
-                <h3>지금 바로 최대 혜택 확인해보기</h3><br/>
+                <h3>지금 바로 최대 혜택 확인해 보기</h3><br/>
                 👇 👇<br/><br/>
+                <div class="modal-background" style="display: none;">
+                    <div class="loader"></div>
+                </div>
 
                 <form action="/calculateAndInsertDeduction" method="post">
                     <button id="openModalBtn" class="modalBtn" type="submit"><h6>계산하기</h6></button>
@@ -183,12 +211,31 @@
         </div>
     </section>
 </div>
+<%-- 로딩 애니메이션 --%>
+
 <!-- footer-wrapper -->
 <footer>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
+<%-- 로딩 애니메이션 --%>
+<script>
+    document.getElementById("openModalBtn").addEventListener("click", function(event) {
+        event.preventDefault();
 
+        // 모달 배경과 로딩 애니메이션 표시
+        document.querySelector(".modal-background").style.display = "flex";
+
+        // 임시로 2초 후 로딩 애니메이션과 모달 배경을 숨기고 계산하기 버튼을 숨깁니다.
+        setTimeout(function() {
+            document.querySelector(".modal-background").style.display = "none";
+            document.getElementById("openModalBtn").style.display = "none";
+        }, 2000);
+    });
+
+
+
+</script>
 
 </body>
 </html>

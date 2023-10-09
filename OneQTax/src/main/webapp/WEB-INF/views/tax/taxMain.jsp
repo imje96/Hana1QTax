@@ -70,12 +70,7 @@
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div>
                 </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/spouseAgreement"
-                   style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
-                </a>
-                <hr style="width: 200px;">
+
             </div>
         </div>
 
@@ -87,13 +82,13 @@
                 <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
                 <%--                </h6>--%>
                 <%--                    💰--%>
-                <h2>카드황금비율(카드소득공제) 서비스 안내</h2>
+                <h2>카드황금비율 서비스 안내</h2>
                 <br/>
-                <span style="color: #615e5e"><h3>소득공제액을 미리 확인하고 관리하세요!</h3></span>
+                <span style="color: #615e5e"><h3>돈 쓰고 돌려받는 세금은 얼마나 될까? 소비금액에 대한 소득공제를 확인해 보세요</h3></span>
             </div>
 
             <div class="container2">
-
+<h3>TIP : ⍰ 박스에 마우스를 갖다 대면 추가적인 설명이 나타납니다/</h3>
                 <div class="hero-box">
                     <div class="position-relative p-4 pt-0"
                          style="text-align: center;">

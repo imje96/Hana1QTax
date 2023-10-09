@@ -32,20 +32,20 @@
 
 <style>
     #progress-bar-container li {
-    list-style: none;
-    float: left;
-    width: 50%;
-    text-align: center;
-    color: #aaa;
-    text-transform: uppercase;
-    font-size: 11px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: all ease 0.2s;
-    vertical-align: bottom;
-    height: 60px;
-    position: relative;
-}
+        list-style: none;
+        float: left;
+        width: 50%;
+        text-align: center;
+        color: #aaa;
+        text-transform: uppercase;
+        font-size: 11px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: all ease 0.2s;
+        vertical-align: bottom;
+        height: 60px;
+        position: relative;
+    }
 </style>
 
 <body>
@@ -77,6 +77,16 @@
             <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
                 <h6 style="color: black; margin-bottom: 15px;">연말정산 결과</h6>
             </a>
+            <hr style="width: 200px; margin-bottom: 15px;">
+            <a href="${pageContext.request.contextPath}/spouseAgreement"
+               style="display: block; margin-bottom: 20px;">
+                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 초대하기</div>
+            </a>
+            <hr style="width: 200px; margin-bottom: 15px;">
+            <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
+                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
+            </a>
+            <hr style="width: 200px; margin-bottom: 15px;">
             <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
             <%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
             <%--               style="display: block; margin-bottom: 20px;">--%>
@@ -119,39 +129,39 @@
                             <%--                                                                         groupingUsed="true"/>원--%>
                             <%--                            </h4>--%>
 
-                                <div class="info-item5">
-                                    <div class="info-item">
+                            <div class="info-item5">
+                                <div class="info-item">
 
 
 
-                            <c:choose>
-                                <c:when test="${totalResult.expected_tax >= 0}">
-                                    <h4><span style="color: #f84174;">납부</span>할 세금 :
-                                        <td class="text-right">
-                                            <fmt:formatNumber value="${totalResult.expected_tax}" groupingUsed="true"/>원
-                                        </td>
+                                    <c:choose>
+                                        <c:when test="${totalResult.expected_tax >= 0}">
+                                            <h4><span style="color: #f84174;">납부</span>할 세금 :
+                                                <td class="text-right">
+                                                    <fmt:formatNumber value="${totalResult.expected_tax}" groupingUsed="true"/>원
+                                                </td>
+                                            </h4>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <h4><span style="color: #f84174;">환급</span>받을 세금 :
+                                                <td class="text-right">
+                                                    <fmt:formatNumber value="${-totalResult.expected_tax}" groupingUsed="true"/>원
+                                                </td>
+                                            </h4>
+                                        </c:otherwise>
+                                    </c:choose>
+
+
+                                    <br/>
+                                    <h4><span style="color: #f84174;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
+                                                                                                         groupingUsed="true"/>원
                                     </h4>
-                                </c:when>
-                                <c:otherwise>
-                                    <h4><span style="color: #f84174;">환급</span>받을 세금 :
-                                        <td class="text-right">
-                                            <fmt:formatNumber value="${-totalResult.expected_tax}" groupingUsed="true"/>원
-                                        </td>
-                                    </h4>
-                                </c:otherwise>
-                            </c:choose>
+                                </div>
+
+                            </div>
 
 
                             <br/>
-                            <h4><span style="color: #f84174;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
-                                                                                                 groupingUsed="true"/>원
-                            </h4>
-                                    </div>
-
-                                </div>
-
-
-                                <br/>
                             <p2>&#183; 납부할 세금이 +(양수)이면 세금을 납부해야하며,<br/> -(음수)이면 세금을 환급받습니다.</p2>
                             <br/><br/>
                             <table class="table-tax">
@@ -256,259 +266,259 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                <p1><fmt:formatNumber value="${totalResult.personal_deduction}"
-                                                                      groupingUsed="true"/>원
-                                                </p1>
+                                                    <p1><fmt:formatNumber value="${totalResult.personal_deduction}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal2">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 근로소득</h4>
-                                            <br/>
-                                            소득 공제 금액 :
-                                        </div>
-                                        <div class="more">
-                                            <span> </span>
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.income_deduction}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal3">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 연금보험료</h4>
-                                            <br/>
-                                            소득 공제 금액 :
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.pension_deduction}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                     <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal4">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 주택자금/주택마련저축</h4>
-                                            <br/>
-                                            소득 공제 금액:
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal2">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 근로소득</h4>
+                                                <br/>
+                                                소득 공제 금액 :
+                                            </div>
+                                            <div class="more">
+                                                <span> </span>
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.income_deduction}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.housing_deduction}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal3">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 연금보험료</h4>
+                                                <br/>
+                                                소득 공제 금액 :
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.pension_deduction}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal4">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 주택자금/주택마련저축</h4>
+                                                <br/>
+                                                소득 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.housing_deduction}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal5">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 신용카드 등</h4>
+                                                <br/>
+                                                소득 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <span> </span>
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.card_deduction}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal6">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 추가소득</h4>
+                                                <br/>
+                                                소득 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1>0원</p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div class="flex-column">
+                                    <div class="subheading"><h4>세액공제</h4></div>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal7">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 연금계좌</h4>
+                                                <br/>
+                                                세액 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.irp_taxcredit}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal8">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">0%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 보장성보험</h4>
+                                                <br/>
+                                                세액 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.guarantee_taxcredit}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal9">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 의료비</h4>
+                                                <br/>
+                                                세액 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.medical_taxcredit}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal10">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 교육비</h4>
+                                                <br/>
+                                                세액 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.education_taxcredit}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal11">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 기부금</h4>
+                                                <br/>
+                                                소득 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.donation_taxcredit}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="total-amount-box modal-trigger" data-target="detailsModal12">
+                                        <!-- id="showModal" 추가 -->
+                                        <%--                                <div class="percent">90%달성</div>--%>
+                                        <div class="total-text-box">
+                                            <div class="total-text">
+                                                <h4>• 월세</h4>
+                                                <br/>
+                                                세액 공제 금액:
+                                            </div>
+                                            <div class="more">
+                                                <div class="textalign-right1">&gt&gt</div>
+                                                <br/>
+                                                <div class="textalign-right2">
+                                                    <p1><fmt:formatNumber value="${totalResult.rent_taxcredit}"
+                                                                          groupingUsed="true"/>원
+                                                    </p1>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                    <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal5">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 신용카드 등</h4>
-                                            <br/>
-                                            소득 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <span> </span>
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.card_deduction}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal6">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 추가소득</h4>
-                                            <br/>
-                                            소득 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1>0원</p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <br/>
                             </div>
-                            <div class="flex-column">
-                                <div class="subheading"><h4>세액공제</h4></div>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal7">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 연금계좌</h4>
-                                            <br/>
-                                            세액 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.irp_taxcredit}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal8">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">0%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 보장성보험</h4>
-                                            <br/>
-                                            세액 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.guarantee_taxcredit}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal9">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 의료비</h4>
-                                            <br/>
-                                            세액 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.medical_taxcredit}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal10">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 교육비</h4>
-                                            <br/>
-                                            세액 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.education_taxcredit}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal11">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 기부금</h4>
-                                            <br/>
-                                            소득 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.donation_taxcredit}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="total-amount-box modal-trigger" data-target="detailsModal12">
-                                    <!-- id="showModal" 추가 -->
-                                    <%--                                <div class="percent">90%달성</div>--%>
-                                    <div class="total-text-box">
-                                        <div class="total-text">
-                                            <h4>• 월세</h4>
-                                            <br/>
-                                            세액 공제 금액:
-                                        </div>
-                                        <div class="more">
-                                            <div class="textalign-right1">&gt&gt</div>
-                                            <br/>
-                                            <div class="textalign-right2">
-                                            <p1><fmt:formatNumber value="${totalResult.rent_taxcredit}"
-                                                                  groupingUsed="true"/>원
-                                            </p1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <br/>
+                            <div class="flex-container">
+                                <button type="button" class="prev-button" data-step="3">이전</button>
+                                <button type="submit" class="submit-button">계산하기</button>
                             </div>
+                        </fieldset>
                     </div>
-                    <br/>
-                    <div class="flex-container">
-                        <button type="button" class="prev-button" data-step="3">이전</button>
-                        <button type="submit" class="submit-button">계산하기</button>
-                    </div>
-                    </fieldset>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
     </div>
 </section>
 <%-- 여기서부터 모달창--%>

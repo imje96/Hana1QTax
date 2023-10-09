@@ -63,7 +63,6 @@
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
                 </a>
-                <hr style="width: 200px;">
             </div>
         </div>
 
@@ -73,7 +72,7 @@
             <div class="container-title">
                 <h2>우리가족 초대 확인하기</h2>
                 <br/>
-                <span style="color: #615e5e"><h3>연말정산에서 카드 소득공제를 가장 많이 받을 수 있도록 제안해드릴게요</h3></span>
+                <span style="color: #615e5e"><h3>우리 부부의 소득공제 현황을 파악하고 전략을 제안받아보세요</h3></span>
             </div>
             <br/><br/>
             <div class="container2">

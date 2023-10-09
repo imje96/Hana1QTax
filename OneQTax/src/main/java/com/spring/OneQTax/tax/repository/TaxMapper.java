@@ -1,5 +1,6 @@
 package com.spring.oneqtax.tax.repository;
 
+import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.tax.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -40,8 +41,9 @@ public interface TaxMapper {
     /* 우리집 돈관리 */
 
 //    SpouseRelationVO addSpouse(SpouseRelationVO spouseRelation);
-    SpouseRelationVO findByRelationId(int relationId);
-
+    SpouseRelationVO findMySpouse(int memberId);
+    // 배우자 이름 가져오기
+    MemberVO getSpouseName(int spouseId);
     List<SpouseRelationVO> selectSpouseRelationsById(int id);
     void save(int relationId);
 

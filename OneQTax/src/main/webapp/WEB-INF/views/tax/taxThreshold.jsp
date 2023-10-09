@@ -108,7 +108,7 @@
             width: 130px;
         }
         .progress-sector {
-            width: 410px;
+            width: 412px;
             display: flex;
             font-weight: 600;
             font-size: 17px;
@@ -116,7 +116,8 @@
             justify-content: space-between;
             color: black;
             margin: 11px 0 20px 0;
-            top: 44px;
+            top: 42px;
+            color: #848585;
         }
        .info-item1 {
              border: 1px solid #f6f3f3;
@@ -184,12 +185,7 @@
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div>
                 </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
-                   style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
-                </a>
-                <hr style="width: 200px;">
+
             </div>
         </div>
 
@@ -229,6 +225,7 @@
         <div class="progress-sector">
             <%--   초기 카드 실적, 이후 동적으로 변화    --%>
             <h5>| 0%</h5>
+            <h5>&nbsp;&nbsp;&nbsp;&nbsp;50%</h5>
             <h5>100% |</h5>
         </div>
         </div>
@@ -286,8 +283,9 @@
                         공제 문턱까지는 어떤 결제수단이든 상관없으니 혜택이 많은 <span style="color: #ff328b;">신용카드</span>를 쓰시는게 어떨까요?
                       </div>
                       <%--                                <img class="inputImg" src="../../../resources/img/debitcard.png" height="180">--%>
+                    <a href="${pageContext.request.contextPath}/recommCard2">
                   <button id="recommendBtn" class="pointBtn"><h6>내게 맞는 카드 추천받기</h6></button>
-
+                    </a>
                 </div>
 
 

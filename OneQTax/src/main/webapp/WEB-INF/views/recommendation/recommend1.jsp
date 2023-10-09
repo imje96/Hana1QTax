@@ -609,7 +609,6 @@
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">종합 결과 확인하기</div>
             </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
         </div>
     </div>
 

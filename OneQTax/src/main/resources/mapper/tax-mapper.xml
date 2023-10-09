@@ -201,16 +201,7 @@
                           ORDER BY r.result_time DESC
                       )
         WHERE ROWNUM = 1
-
     </select>
-
-
-    <!--  우리집 돈관리  -->
-    <!-- 우리집 돈관리  -->
-<!--    <select id="getMemberByEmail" resultType="com.spring.oneqtax.member.domain.MemberVO">-->
-<!--        select * from member-->
-<!--        where email=#{email}-->
-<!--    </select>-->
 
         <insert id="insertSpouseRelation">
             INSERT INTO spouseRelation (member_id, spouse_id, status) VALUES (#{member_id}, #{spouse_id}, #{status})
@@ -225,7 +216,18 @@
             SELECT * FROM spouseRelation WHERE id = #{id}
         </select>
 
-
+        <!--   배우자ID 찾기     -->
+        <select id="findMySpouse" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
+            select spouse_id from spouseRelation
+            where member_id=#{memberId}
+              and ROWNUM = 1
+        </select>
+        <!--  배우자 이름 찾기  -->
+    <select id="getSpouseName" resultType="com.spring.oneqtax.member.domain.MemberVO">
+        select name from member
+        where member_id=#{spouseId}
+          and ROWNUM = 1
+    </select>
         <delete id="deleteFriendRelationById">
             DELETE FROM friend_relations WHERE id = #{id}
         </delete>

@@ -59,6 +59,15 @@
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 결과</div>
             </a>
+            <hr style="width: 200px; margin-bottom: 15px;">
+            <a href="${pageContext.request.contextPath}/spouseAgreement"
+               style="display: block; margin-bottom: 20px;">
+                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 초대하기</div>
+            </a>
+            <hr style="width: 200px; margin-bottom: 15px;">
+            <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
+                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
+            </a>
 <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
 <%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
 <%--               style="display: block; margin-bottom: 20px;">--%>

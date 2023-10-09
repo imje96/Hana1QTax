@@ -48,7 +48,8 @@
         .comment-text1 h4{
             font-size: 25px;
         }
-        <%--  hover 시 텍스트 보이기      --%> .hover-text {
+        <%--  hover 시 텍스트 보이기      --%>
+        .hover-text {
             position: relative; /* popup-modal의 위치를 기준으로 설정하기 위함 */
             display: inline-block; /* container의 크기를 내용에 맞게 조절 */
             font-size: 25px;
@@ -60,8 +61,8 @@
             top: 100%; /* container 바로 아래에 위치 */
             left: 0; /* container의 왼쪽 경계에 맞춤 */
             padding: 10px;
-            background-color: white;
-            border: 1px solid #ccc;
+            background-color: #FFFFFF;
+            border: 2px solid #106e69;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             line-height: 1.5em;
             z-index: 1; /* 다른 요소 위에 표시되도록 함 */
@@ -90,6 +91,12 @@
             align-items: center;
             color: #ffffff;
             font-size: 23px;
+        }
+
+        .info-box {
+            border-radius: 10px;
+            padding: 10px;
+            width: 360px;
         }
     </style>
 </head>
@@ -133,12 +140,6 @@
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
                    style="display: block; margin-bottom: 20px;">
                     <h6 style="color: black; margin-bottom: 15px;">카드황금비율 결과</h6></a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/spouseResult"
-                   style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
-                </a>
-                <hr style="width: 200px;">
             </div>
         </div>
 
@@ -337,7 +338,9 @@
                             <button id="openModalBtn" class="modalBtn"><h6>계산 결과 상세보기</h6></button>
                             <br/>
                             <br/>
+                            <a href="${pageContext.request.contextPath}/recommCard1">
                             <button id="recommendBtn" class="pointBtn"><h6>내게 맞는 카드 추천받기</h6></button>
+                            </a>
                         </div>
                     </div>
                     <div class="comment-box-inner">
@@ -355,7 +358,7 @@
                                     <div class="comment-text2">
                                         <div class="hover-text">
                                             문화(공연/영화), 교통카드, 재래시장은 <span style="color: #ff328b; font-size: 28px;">신용카드</span>로!<br/>
-                                            <p>왜 그럴까요 ⍰</p>
+                                            <span style="font-size: 19px;">왜 그럴까요 ⍰</span>
                                                 <%--                                    <h5> 신용카드 대신 <span style="color: #ff328b;">체크카드, 현금</span>을 사용하는 것이 <br/>소득공제에 더--%>
                                                 <%--                                        좋아요.</h5>--%>
 

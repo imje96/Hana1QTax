@@ -459,35 +459,36 @@ public class TaxController {
 //        if (totalInfoFromSession != null) {
 //            // 이제 totalInfoFromSession 객체를 사용할 수 있음
 //            int totalInfoId = totalInfoFromSession.getTotalInfo_id();
-            CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
-            TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
+        CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
+        TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
 
 //            TotalTaxResultVO totalResult = totalTaxService.getTotalResultByTotalInfoId(totalInfoId);
-            TotalTaxResultVO totalResult = taxFormService.getTotalResultByTotalMemberId(memberId);
-            TotalInfoVO totalInfo = totalTaxService.getTotalInfoByMemberId(memberId);
+        TotalTaxResultVO totalResult = taxFormService.getTotalResultByTotalMemberId(memberId);
+        TotalInfoVO totalInfo = totalTaxService.getTotalInfoByMemberId(memberId);
 
 
-            int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
-            int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
-                    +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
-            int totalInfo_id = totalResult.getTotalInfo_id();
+        int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
+        int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
+                +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
+        int totalInfo_id = totalResult.getTotalInfo_id();
 
-            totalResult.setTotalInfo_id(totalInfo_id);
-            // 계산결과 DB에 저장하기
-            totalTaxService.saveResult(totalResult);
+        totalResult.setTotalInfo_id(totalInfo_id);
+        // 계산결과 DB에 저장하기
+        totalTaxService.saveResult(totalResult);
 
-            // 결과를 세션 혹은 Model에 저장하여 view에 전달
+        // 결과를 세션 혹은 Model에 저장하여 view에 전달
 //            session.setAttribute("totalInfo", totalInfo); // 세션에 저장하는 경우
-            session.setAttribute("totalResult", totalResult);
-            model.addAttribute("totalInfo", totalInfo);   // Model에 추가하는 경우 (JSP 등에서 사용)
-            model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
-            model.addAttribute("totalResult", totalResult);
-            model.addAttribute("totalBenefit", totalBenefit);
-            model.addAttribute("transaction", transaction);
-            model.addAttribute("totalTransaction", totalTransaction);
+        session.setAttribute("totalResult", totalResult);
+        model.addAttribute("totalInfo", totalInfo);   // Model에 추가하는 경우 (JSP 등에서 사용)
+        model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
+        model.addAttribute("totalResult", totalResult);
+        model.addAttribute("totalBenefit", totalBenefit);
+        model.addAttribute("transaction", transaction);
+        model.addAttribute("totalTransaction", totalTransaction);
 
         return "tax/simulationResult";
     }
+
 
     /* 배우자 공제 공유 기능 */
 
@@ -564,7 +565,17 @@ public class TaxController {
         }
         int memberId = currentUser.getMember_id();
 
-        // total_income 가져오기
+
+        // 배우자 정보 가져오기
+        SpouseRelationVO spouseInfo = spouseService.fingMySpouse(memberId);
+        int spouseId = spouseInfo.getSpouse_id();
+        MemberVO spouseInfo2 = spouseService.getSpouseName(spouseId);
+        String spouseName = spouseInfo2.getName();
+
+        model.addAttribute("spouseId",spouseId);
+        model.addAttribute("spouseName",spouseName);
+
+        // 본인 total_income 가져오기
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         double totalIncome = taxInfoVO.getTotal_income();
         double minimumAmount = taxInfoVO.getMinimum_amount();
@@ -572,19 +583,30 @@ public class TaxController {
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
         CardTaxResultVO result = taxService.getDeductionResult(memberId);
 
-        // Transform the VO objects
-//        DeductionResultVO2 transformedTransaction = transformTransaction(transaction);
-//        DeductionResultVO2 transformedResult = transformDeductionResult(result);
-//
+        // 배우자 total_income 가져오기
+        TaxInfoVO taxInfoVO2 = taxService.getTaxInfoByMemberId(spouseId);
+        double totalIncome2 = taxInfoVO2.getTotal_income();
+        double minimumAmount2 = taxInfoVO2.getMinimum_amount();
+
+        TransactionVO transaction2 = taxService.getTransactionByMemberId(spouseId);
+        CardTaxResultVO result2 = taxService.getDeductionResult(spouseId);
+
 
 //        추가
         double total1 = (totalIncome > 70000000) ? 4500000 : 6000000;
         double total2 = (totalIncome > 70000000) ? 2500000 : 3000000;
 
+        double total3 = (totalIncome2 > 70000000) ? 4500000 : 6000000;
+        double total4 = (totalIncome2 > 70000000) ? 2500000 : 3000000;
+
         // 각 항목의 퍼센트를 계산
         double totalDeductions = result.getCredit_deduction() + result.getDebit_deduction() + result.getCash_deduction() + result.getAdditional_deduction();
         double remain_deduction1 = total1 - totalDeductions; // 나머지 금액 계산
         double remain_deduction2 = total2 - result.getBasic_deduction();
+
+        double totalDeductions2 = result2.getCredit_deduction() + result2.getDebit_deduction() + result2.getCash_deduction() + result2.getAdditional_deduction();
+        double remain_deduction3 = total3 - totalDeductions2; // 나머지 금액 계산
+        double remain_deduction4 = total4 - result2.getBasic_deduction();
 
         // 그래프를 위한 값
 
@@ -613,7 +635,33 @@ public class TaxController {
         model.addAttribute("culture_total", (int) transaction.getCulture_total());
         model.addAttribute("market_total", (int) transaction.getMarket_total());
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
+        // 배우자 그래프를 위한 값
 
+        model.addAttribute("minimumAmount2", (int)minimumAmount2);
+
+        model.addAttribute("total2", (int) total3);
+        model.addAttribute("basicTotal2", (int) total4);
+        model.addAttribute("remainingDeduction3", (int) remain_deduction3);
+        model.addAttribute("remainingDeduction4", (int) remain_deduction4);
+
+        model.addAttribute("credit_deductible2", (int) result2.getCredit_deductible());
+        model.addAttribute("credit_deduction2", (int) result2.getCredit_deduction());
+        model.addAttribute("debit_deductible2", (int) result2.getDebit_deductible());
+        model.addAttribute("debit_deduction2", (int) result2.getDebit_deduction());
+        model.addAttribute("cash_deductible2", (int) result2.getCash_deductible());
+        model.addAttribute("cash_deduction2", (int) result2.getCash_deduction());
+        model.addAttribute("basic_deduction2", (int) result2.getBasic_deduction());
+        model.addAttribute("additional_deduction2", (int) result2.getAdditional_deduction());
+        model.addAttribute("total_deduction2", (int) result2.getTotal_deduction());
+        model.addAttribute("reducing_tax2", (int) result2.getReducing_tax());
+        model.addAttribute("deduction_date2", result2.getResult_date());
+
+        model.addAttribute("credit_total2", (int) transaction2.getCredit_total());
+        model.addAttribute("debit_total2", (int) transaction2.getDebit_total());
+        model.addAttribute("cash_total2", (int) transaction2.getCash_total());
+        model.addAttribute("culture_total2", (int) transaction2.getCulture_total());
+        model.addAttribute("market_total2", (int) transaction2.getMarket_total());
+        model.addAttribute("transport_total2", (int) transaction2.getTransport_total());
 
         System.out.println("서비스 결과 (컨트롤러): " + result);
         // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
@@ -654,6 +702,8 @@ public class TaxController {
     public String groupStatement() throws Exception {
         return "/group/groupStatement";
     }
+
+
 
 
     //임시 추가
@@ -727,77 +777,6 @@ public class TaxController {
 
         return "dashboard";
     }
-
-//    @GetMapping("/tranDashboard")
-//    public String viewTrnaDashboard(HttpSession session, Model model){
-//
-//        // memberId 가져오기
-//        MemberVO currentUser = getCurrentUser(session);
-//
-//        if (currentUser == null) {
-//            // 리다이렉트나 에러 메시지 처리
-//            return "redirect:/login";
-//        }
-//        int memberId = currentUser.getMember_id();
-//
-//        // total_income 가져오기
-//        TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
-//        double totalIncome = taxInfoVO.getTotal_income();
-//        double minimumAmount = taxInfoVO.getMinimum_amount();
-//
-//        TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
-//        CardTaxResultVO result = taxService.getDeductionResult(memberId);
-//
-//        // Transform the VO objects
-////        DeductionResultVO2 transformedTransaction = transformTransaction(transaction);
-////        DeductionResultVO2 transformedResult = transformDeductionResult(result);
-////
-//
-////        추가
-//        double total1 = (totalIncome > 70000000) ? 4500000 : 6000000;
-//        double total2 = (totalIncome > 70000000) ? 2500000 : 3000000;
-//
-//        // 각 항목의 퍼센트를 계산
-//        double totalDeductions = result.getCredit_deduction() + result.getDebit_deduction() + result.getCash_deduction() + result.getAdditional_deduction();
-//        double remain_deduction1 = total1 - totalDeductions; // 나머지 금액 계산
-//        double remain_deduction2 = total2 - result.getBasic_deduction();
-//
-//        // 그래프를 위한 값
-//
-//        model.addAttribute("minimumAmount", (int)minimumAmount);
-//
-//        model.addAttribute("total", (int) total1);
-//        model.addAttribute("basicTotal", (int) total2);
-//        model.addAttribute("remainingDeduction", (int) remain_deduction1);
-//        model.addAttribute("remainingDeduction2", (int) remain_deduction2);
-//
-//        model.addAttribute("credit_deductible", (int) result.getCredit_deductible());
-//        model.addAttribute("credit_deduction", (int) result.getCredit_deduction());
-//        model.addAttribute("debit_deductible", (int) result.getDebit_deductible());
-//        model.addAttribute("debit_deduction", (int) result.getDebit_deduction());
-//        model.addAttribute("cash_deductible", (int) result.getCash_deductible());
-//        model.addAttribute("cash_deduction", (int) result.getCash_deduction());
-//        model.addAttribute("basic_deduction", (int) result.getBasic_deduction());
-//        model.addAttribute("additional_deduction", (int) result.getAdditional_deduction());
-//        model.addAttribute("total_deduction", (int) result.getTotal_deduction());
-//        model.addAttribute("reducing_tax", (int) result.getReducing_tax());
-//        model.addAttribute("deduction_date", result.getResult_date());
-//
-//        model.addAttribute("credit_total", (int) transaction.getCredit_total());
-//        model.addAttribute("debit_total", (int) transaction.getDebit_total());
-//        model.addAttribute("cash_total", (int) transaction.getCash_total());
-//        model.addAttribute("culture_total", (int) transaction.getCulture_total());
-//        model.addAttribute("market_total", (int) transaction.getMarket_total());
-//        model.addAttribute("transport_total", (int) transaction.getTransport_total());
-//
-//
-//        System.out.println("서비스 결과 (컨트롤러): " + result);
-//        // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
-//        model.addAttribute("result", result);
-//        model.addAttribute("transaction", transaction);
-//
-//        return "transaction/transactionDashboard";
-//    }
 
     @GetMapping("/report")
     public String viewReport(){

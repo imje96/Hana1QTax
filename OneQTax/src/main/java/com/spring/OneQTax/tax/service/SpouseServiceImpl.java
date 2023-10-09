@@ -1,5 +1,6 @@
 package com.spring.oneqtax.tax.service;
 
+import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.member.repository.MemberMapper;
 import com.spring.oneqtax.tax.domain.SpouseRelationVO;
 import com.spring.oneqtax.tax.repository.TaxMapper;
@@ -42,8 +43,13 @@ public class SpouseServiceImpl implements SpouseService{
 
 
     @Override
-    public SpouseRelationVO getFriendRelation(int memberId) {
-        return null;
+    public SpouseRelationVO fingMySpouse(int memberId) {
+        return taxMapper.findMySpouse(memberId);
+    }
+
+    @Override
+    public MemberVO getSpouseName(int spouseId) {
+        return taxMapper.getSpouseName(spouseId);
     }
 
     @Override

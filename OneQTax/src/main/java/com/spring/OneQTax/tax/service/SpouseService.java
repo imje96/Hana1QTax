@@ -1,5 +1,6 @@
 package com.spring.oneqtax.tax.service;
 
+import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.tax.domain.SpouseRelationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +15,8 @@ public interface SpouseService {
     public void acceptInvitation(int memberId);
 
     // 조회 (Read)
-    public SpouseRelationVO getFriendRelation(int memberId);
+    public SpouseRelationVO fingMySpouse(int memberId);
+    public MemberVO getSpouseName(int spouseId);
 
 //    public SpouseRelation getFriendRelation(int memberId);
 
