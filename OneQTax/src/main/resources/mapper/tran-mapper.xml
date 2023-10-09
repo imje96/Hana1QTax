@@ -101,7 +101,26 @@
                  FROM dual
              )
     </select>
-
+    <!--  지난달 카드 & 연말정산 총 사용금액  -->
+    <select id="getLastMonthTotalAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        SELECT (ht_total + ct_total) AS totalAmount
+        FROM (
+                 SELECT
+                     (SELECT NVL(SUM(amount), 0) FROM HOMETAX_TRANSACTION WHERE SUBSTR(trandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY/MM') AND member_id=#{memberId}) AS ht_total,
+                     (SELECT NVL(SUM(amount), 0) FROM CARD_TRANSACTION WHERE SUBSTR(cardtrandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY/MM') AND member_id=#{memberId}) AS ct_total
+                 FROM dual
+             )
+    </select>
+    <!--  지지난달 & 연말정산 총 사용금액  -->
+    <select id="getBeforeMonthTotalAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+        SELECT (ht_total + ct_total) AS totalAmount
+        FROM (
+                 SELECT
+                     (SELECT NVL(SUM(amount), 0) FROM HOMETAX_TRANSACTION WHERE SUBSTR(trandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -2), 'YYYY/MM') AND member_id=#{memberId}) AS ht_total,
+                     (SELECT NVL(SUM(amount), 0) FROM CARD_TRANSACTION WHERE SUBSTR(cardtrandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -2), 'YYYY/MM') AND member_id=#{memberId}) AS ct_total
+                 FROM dual
+             )
+    </select>
     <!--  이번달 카드별 사용금액  -->
     <select id="getThisMonthTotalByCard" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
         select sum(amount) AS totalAmount
@@ -139,16 +158,101 @@
         order by totalAmount desc
     </select>
 
-    <!--  이번달 업종별 사용금액    -->
+    <!--  이번달 업종별 사용금액(카드&홈택스)    -->
     <select id="getThisMonthCategoryAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
-        select     category_big AS categoryBig,
-                   SUM(amount) AS totalAmount,
-                   COUNT(*) AS totalCount
-        from card_transaction
-        where member_id=#{memberId}
-        and SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
-        group by category_big
-        order by totalAmount desc
+
+SELECT
+    categoryBig,
+    SUM(totalAmount) AS totalAmount,
+    SUM(totalCount) AS totalCount
+FROM
+    (
+        -- 카드 트랜잭션에서의 집계
+        SELECT
+            category_big AS categoryBig,
+            SUM(amount) AS totalAmount,
+            COUNT(*) AS totalCount
+        FROM card_transaction
+        WHERE member_id=#{memberId} AND SUBSTR(cardtrandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+        GROUP BY category_big
+
+        UNION ALL -- 중복 제거 없이 두 결과를 합침
+
+        -- 홈택스 트랜잭션에서의 집계
+        SELECT
+            category_big AS categoryBig,
+            SUM(amount) AS totalAmount,
+            COUNT(*) AS totalCount
+        FROM hometax_transaction
+        WHERE member_id=#{memberId} AND SUBSTR(trandate, 1, 7) = TO_CHAR(SYSDATE, 'YYYY/MM')
+        GROUP BY category_big
+    )
+GROUP BY categoryBig
+ORDER BY totalAmount DESC
+    </select>
+    <!--  지난달 업종별 사용금액(카드&홈택스)    -->
+    <select id="getLastMonthCategoryAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+
+        SELECT
+            categoryBig,
+            SUM(totalAmount) AS totalAmount,
+            SUM(totalCount) AS totalCount
+        FROM
+            (
+                -- 카드 트랜잭션에서의 집계
+                SELECT
+                    category_big AS categoryBig,
+                    SUM(amount) AS totalAmount,
+                    COUNT(*) AS totalCount
+                FROM card_transaction
+                WHERE member_id=#{memberId} AND SUBSTR(cardtrandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY/MM')
+                GROUP BY category_big
+
+                UNION ALL -- 중복 제거 없이 두 결과를 합침
+
+                -- 홈택스 트랜잭션에서의 집계
+                SELECT
+                    category_big AS categoryBig,
+                    SUM(amount) AS totalAmount,
+                    COUNT(*) AS totalCount
+                FROM hometax_transaction
+                WHERE member_id=#{memberId} AND SUBSTR(trandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY/MM')
+                GROUP BY category_big
+            )
+        GROUP BY categoryBig
+        ORDER BY totalAmount DESC
+    </select>
+    <!--  지지난달 업종별 사용금액(카드&홈택스)    -->
+    <select id="getBeforeMonthCategoryAmount" resultType="com.spring.oneqtax.transaction.domain.CardTranVO">
+
+        SELECT
+            categoryBig,
+            SUM(totalAmount) AS totalAmount,
+            SUM(totalCount) AS totalCount
+        FROM
+            (
+                -- 카드 트랜잭션에서의 집계
+                SELECT
+                    category_big AS categoryBig,
+                    SUM(amount) AS totalAmount,
+                    COUNT(*) AS totalCount
+                FROM card_transaction
+                WHERE member_id=#{memberId} AND SUBSTR(cardtrandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY/MM')
+                GROUP BY category_big
+
+                UNION ALL -- 중복 제거 없이 두 결과를 합침
+
+                -- 홈택스 트랜잭션에서의 집계
+                SELECT
+                    category_big AS categoryBig,
+                    SUM(amount) AS totalAmount,
+                    COUNT(*) AS totalCount
+                FROM hometax_transaction
+                WHERE member_id=#{memberId} AND SUBSTR(trandate, 1, 7) = TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYY/MM')
+                GROUP BY category_big
+            )
+        GROUP BY categoryBig
+        ORDER BY totalAmount DESC
     </select>
 
     <!--  홈택스 전체 사용내역  -->

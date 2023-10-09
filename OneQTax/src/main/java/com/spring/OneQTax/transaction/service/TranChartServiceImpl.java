@@ -72,7 +72,14 @@ public class TranChartServiceImpl  implements TranChartService{
     public CardTranVO getThisMonthTotalAmount(int memberId) {
         return tranMapper.getThisMonthTotalAmount(memberId);
     }
-
+    @Override
+    public CardTranVO getLastMonthTotalAmount(int memberId) {
+        return tranMapper.getLastMonthTotalAmount(memberId);
+    }
+    @Override
+    public CardTranVO getBeforeMonthTotalAmount(int memberId) {
+        return tranMapper.getBeforeMonthTotalAmount(memberId);
+    }
     @Override
     public List<CardTranVO> getCategoryAmount(int memberId) {
         return tranMapper.getCategoryAmount(memberId);
@@ -81,6 +88,16 @@ public class TranChartServiceImpl  implements TranChartService{
     @Override
     public List<CardTranVO> getThisMonthCategoryAmount(int memberId) {
         return tranMapper.getThisMonthCategoryAmount(memberId);
+    }
+
+    @Override
+    public List<CardTranVO> getLastMonthCategoryAmount(int memberId) {
+        return tranMapper.getLastMonthCategoryAmount(memberId);
+    }
+
+    @Override
+    public List<CardTranVO> getBeforeMonthCategoryAmount(int memberId) {
+        return tranMapper.getBeforeMonthCategoryAmount(memberId);
     }
 
     /* 홈택스 전체 내역 조회 */

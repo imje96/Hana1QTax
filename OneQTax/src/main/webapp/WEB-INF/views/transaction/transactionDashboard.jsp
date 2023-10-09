@@ -306,7 +306,7 @@
     }
     .inner-text {
         position: absolute;
-        transform: translate(0%, -230%);
+        transform: translate(0%, -295%);
         /*top: 32%;*/
         /*left: 50%;*/
         text-align: center;
@@ -632,11 +632,11 @@
                 <%--                <p>${deduction_date}</p>--%>
 
                 <div class="monthly-box">
-                    <h5> 10월 사용금액 <span style="font-size: 15px">(카드&현금영수증)</span></h5>
+                    <h5> 10월 사용금액 <span style="font-size: 15px">(카드&현금영수증)</span></h5><br/>
+
                     <h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
                                                         groupingUsed="true"/>
-                        <span class="price-currency">(원)</span></h1>
-
+                        <span class="price-currency">(원)</span></h1><br/>
                     <span class="price-currency"><c:set var="now" value="<%= new java.util.Date() %>" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></span>
                 </div>
@@ -645,10 +645,10 @@
                     <div><h5>이번 달 사용 업종</h5></div>
                     <div class="chart3">
 
-                        <canvas id="deductionChart2"></canvas>
+                        <canvas id="tranChart"></canvas>
                     </div>
                     <div class="inner-text">
-                        <h3>1위  <br/><br/>${categoryMonth[0].categoryBig}</h3>
+                        <h3>1위</h3><h2>${categoryMonth[0].categoryBig}</h2>
                     </div>
                     <div class="pie-chart__labels">
                         <div class="pie-chart__labels-item">
@@ -812,9 +812,9 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const ctx2 = document.getElementById('deductionChart2').getContext('2d');
+        const ctx2 = document.getElementById('tranChart').getContext('2d');
 
-        var deductionChart2 = new Chart(ctx2, {
+        var tranChart = new Chart(ctx2, {
             type: 'doughnut',
             data: {
                 labels: categories,

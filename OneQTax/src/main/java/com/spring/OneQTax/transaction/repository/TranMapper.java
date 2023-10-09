@@ -38,6 +38,12 @@ public interface TranMapper {
     /* 이번달 카드&홈택스 총 사용금액 조회 */
     CardTranVO getThisMonthTotalAmount(int memberId);
 
+    /* 지난달 카드&홈택스 총 사용금액 조회 */
+    CardTranVO getLastMonthTotalAmount(int memberId);
+
+    /* 지난달 카드&홈택스 총 사용금액 조회 */
+    CardTranVO getBeforeMonthTotalAmount(int memberId);
+
     /* 이번달 카드별 총액 조회 */
     CardTranVO getThisMonthTotalByCard(String cardNumber);
 
@@ -52,6 +58,12 @@ public interface TranMapper {
 
     /* 이번달 업종별 사용금액 조회 */
     List<CardTranVO> getThisMonthCategoryAmount(int memberId);
+
+    /* 지난달 업종별 사용금액 조회 */
+    List<CardTranVO> getLastMonthCategoryAmount(int memberId);
+
+    /* 지지난달 업종별 사용금액 조회 */
+    List<CardTranVO> getBeforeMonthCategoryAmount(int memberId);
 
     /* 홈택스 전체 내역 조회 */
     List<HometaxTranVO> getHometaxTransaction(int memberId);

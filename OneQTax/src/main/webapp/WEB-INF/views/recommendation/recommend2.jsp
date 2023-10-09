@@ -576,6 +576,21 @@
         padding: 10px;
         margin-bottom: 20px;
     }
+
+    /*  소비 그래프  */
+    .chart3 {
+        width: 280px;
+        height: 280px;
+    }
+    /* 차트 안 글씨 */
+    .chart-inner-text {
+        position: absolute;
+        transform: translate(0%, -295%);
+        /*top: 32%;*/
+        /*left: 50%;*/
+        text-align: center;
+        color: #e4003f;
+    }
 </style>
 
 
@@ -667,7 +682,12 @@
 
                         </div>
                     </div>
-                        <h4>소비내역 확인하기</h4>
+
+                        <div class="category-box2">
+                            <h3>📋 자주 소비한 업종 확인하기</h3>
+                            <br>
+                            <button id="openModalBtn" class="modalBtn3"><h6>자세히 알아보기</h6></button>
+                        </div>
                     <div class="category-box3">
                         <h4>💚추가로 혜택받기💚</h4>
                         <div class="flex-box">
@@ -725,10 +745,54 @@
         </div>
     </div>
 </section>
+<div id="myModal" class="modal">
+    <div class="modal-content2">
+        <span class="close">&times;</span>
+        <br/>
+        <h2>지난 3개월간 사용 업종 확인하기</h2>
+        (월 평균 사용금액은 200만원 입니다.)
+        <div class="info-box1">
+            공제시작 구간부터 체크카드 사용 시, 아끼는 세금은 <span style="font-weight: bold;">약 648,000원</span>
+            신용카드 사용 시보다 <span style="font-weight: bold;">324,000</span> 혜택을 더 받을 수 있어요.<br/>
+            신용카드 연간 혜택이 <span style="font-weight: bold;">약 32만원</span>보다 높지 않다면
+            <span style="font-weight: bold; color: #ee364f">체크카드</span> 이용이<br/> 유리해요.
+        </div>
+        <br/>
+        10월 사용금액 <h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
+                                            groupingUsed="true"/>
+            <span class="price-currency">(원)</span></h1><br/>
+        9월 사용금액<h1 class="price"><fmt:formatNumber value="${lastMonthSpending.totalAmount}"
+                                            groupingUsed="true"/>
+            <span class="price-currency">(원)</span></h1><br/>
+        8월 사용금액<h1 class="price"><fmt:formatNumber value="${beforeMonthSpending.totalAmount}"
+                                            groupingUsed="true"/>
+            <span class="price-currency">(원)</span></h1><br/>
 
+        <div class="category-box">
+
+            <div><h5>이번 달 사용 업종</h5></div>
+            <div class="chart3">
+
+                <canvas id="tranChart"></canvas>
+            </div>
+            <div class="chart-inner-text">
+                <h3>1위</h3><h2>${categoryMonth[0].categoryBig}</h2>
+            </div>
+
+
+        </div>
+
+        <div class="modal-subtitle"><h3>☑ 체크카드 이용 시</h3></div>
+
+        <div class="modal-subtitle"><h4>☑ 신용카드 이용 시</h4></div>
+    </div>
+
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<!-- Chart.js 및 Datalabels 플러그인 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <%-- 모달창 --%>
 <script>
     var modal = document.getElementById("myModal");
@@ -750,6 +814,65 @@
     }
 
 </script>
+<%-- 이번 달 차트 --%>
+
+<script type="text/javascript">
+    let categories = [];
+    <c:forEach var="item" items="${categoryMonth}">
+    categories.push('${item.categoryBig}'); // EL 태그를 사용하여 JavaScript 배열에 데이터 저장
+    </c:forEach>
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx2 = document.getElementById('tranChart').getContext('2d');
+
+        var tranChart = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: categories,
+                datasets: [{
+                    data: [
+                        ${categoryMonth[0].totalAmount},
+                        ${categoryMonth[1].totalAmount},
+                        ${categoryMonth[2].totalAmount},
+                        ${categoryMonth[3].totalAmount},
+                        ${categoryMonth[4].totalAmount},
+                        ${categoryMonth[5].totalAmount},
+                        ${categoryMonth[6].totalAmount},
+                        ${categoryMonth[7].totalAmount},
+                        ${categoryMonth[8].totalAmount},
+                        ${categoryMonth[9].totalAmount},
+                        ${categoryMonth[10].totalAmount},
+                        ${categoryMonth[11].totalAmount},
+                    ],
+                    backgroundColor: ['#fc91b7', '#f8d5d6', '#f8f2ce', '#d1ede5', '#aee3eb', '#e6e4dc', '#bfcaf2', '#839ee6', '#7C5CFC', '#063cbe', '#063dc2', '#0d0036'],
+                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+                    // circumference: 180,
+                    rotation: 270,
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false, // 범례를 숨김
+                    },
+                },
+                tooltips: {
+                    enabled: true,
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            let label = data.labels[tooltipItem.index];
+                            let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            return label + ': ' + value;
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
 <%-- 멀티any 체크카드 --%>
 <script>
     $("#openModalBtn2").click(function () {
