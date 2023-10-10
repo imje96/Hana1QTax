@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--숫자를 원화로 포맷팅--%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--localTimestamp 초 까지만 출력--%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -17,15 +12,102 @@
 
     <%--    common.css--%>
     <link href="../../../resources/css/common.css" rel="stylesheet">
-    <link href="../../../resources/css/main.css" rel="stylesheet">
-    <link href="../../../resources/css/taxRefund.css" rel="stylesheet">
-
-    <%--    chartjs 추가--%>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../../resources/js/main.js"></script>
-
     <link href="../../../resources/css/tax.css" rel="stylesheet">
+    <link href="../../../resources/css/main.css" rel="stylesheet">
+
+
+    <!-- Template Stylesheet -->
+    <link
+            href="${ pageContext.request.contextPath }/resources/css/style.css"
+            rel="stylesheet">
+
+    <style>
+        .copy-text{
+            padding: 10px 30px;
+            background: #f8f2ce;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+        .container2 h3 {
+            font-size: 25px;
+        }
+
+        .inviteForm {
+            font-size: 28px;
+            font-weight: bold;
+            /* display: flex; */
+            border: 4px solid #a6c9c9;
+            box-shadow: 0 6px 17px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 40px 40px 0 40px;
+            margin: 0 0 20px 0;
+            transition: background-color 0.4s, transform 0.4s;
+        }
+
+        .inviteForm:hover {
+            transform: scale(1.05);
+            /* hover 시 약간 확대되는 효과 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            /* hover 시 그림자 약간 강화 */
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pointBtn {
+            display: inline-block;
+            color: #05413d;
+            padding: 15px 20px;
+            margin: 20px 120px;
+            width: 350px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 21px;
+            cursor: pointer;
+            background-color: #fdd0e4;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .modalBtn {
+            display: inline-block;
+            color: #05413d;
+            padding: 15px 20px;
+            margin: 20px 120px;
+            width: 350px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 21px;
+            cursor: pointer;
+            background-color: #c7dedd;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #spouseEmail {
+            height: 40px;
+            width: 250px;
+            padding: 0 20px;
+            font-size: 20px;
+        }
+
+        .text-box2 {
+            background: #eaf3f3;
+            border-radius: 10px;
+            margin: 20px 0;
+            padding: 20px 100px;
+            text-align: left;
+            width: 800px;
+            font-size: 23px;
+        }
+
+    </style>
 </head>
 
 
@@ -36,190 +118,87 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 </header>
 
+<!--contents-->
+<div style="overflow: hidden;">
 
-<section class="main">
-
-    <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
-        <br/>
-        <br/>
-        <br/>
-        <div style="padding-left: 30px;">
-            <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
-            <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxMain"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxSimulation"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">연말정산 시뮬레이션</div>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/simulationResult" style="display: block; margin-bottom: 20px;">
-                <h6 style="color: black; margin-bottom: 15px;">연말정산 결과</h6>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/spouseAgreement"
-               style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 초대하기</div>
-            </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
-                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
-            </a>
-            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
-            <%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
-            <%--               style="display: block; margin-bottom: 20px;">--%>
-            <%--                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>--%>
-            <%--            </a>--%>
-            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
-            <%--            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"--%>
-            <%--               style="display: block; margin-bottom: 20px;">--%>
-            <%--                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>--%>
-            <%--            </a>--%>
-            <%--            <hr style="width: 200px;">--%>
-        </div>
-    </div>
-    <div class="container1">
-        <div class="progress-wrapper">
-            <div id="progress-bar-container">
-                <ul>
-                    <li class="step step01 active" data-step="1">
-                        <div class="step-inner">Step 1</div>
-                    </li>
-                    <li class="step step02" data-step="2">
-                        <div class="step-inner">Step 2</div>
-                    </li>
-                    <li class="step step03">
-                        <div class="step-inner" data-step="3">Step 3</div>
-                    </li>
-                </ul>
-                <div id="line">
-                    <div id="line-progress"></div>
-                </div>
-
-                <form id="multiStepForm" method="post" action="/simulationResult">
-                    <div id="progress-content-section">
-                        <!-- Step 1 Content -->
-                        <fieldset class="section-content step1 active" data-step="1">
-                            <div class="center">
-                            <img class="inputImg3" src="../../../resources/img/character2.png" >
-                            <br/><br/>
-                            <div class="flex-box">
-
-                                <div class="info-item4">
-                                    <div class="info-item">
-                                        기존에 계산한 연말정산 결과를 불러올게요.<br/>
-                                        하단의 결과 확인하기 버튼을 눌러주세요.
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <br/>
-
-
-
-                            <form id="simulationResult" method="post" action="/taxSimulation">
-
-                                <button type="submit" class="submit-button">결과 확인하기</button>
-                            </form>
-                            <br>
-<%--                            <button type="button" class="next-button">다음</button>--%>
-
-                            </div>
-                        </fieldset>
-
-                        <!-- Step 2 Content -->
-                        <fieldset class="section-content step2" data-step="2">
-
-
-                            <br>
-                            <button type="button" class="prev-button" data-step="2">이전</button>
-                            <button type="button" class="next-button">다음</button>
-                        </fieldset>
-
-                        <!-- Step 3 Content -->
-                        <!-- 모달창 -->
-                        <fieldset class="section-content step3" data-step="3">
-
-                            <br/>
-                            <button type="button" class="prev-button" data-step="3">이전</button>
-                            <button type="submit" class="submit-button">제출하기</button>
-                        </fieldset>
-                    </div>
-                </form>
+    <section class="main">
+        <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
+            <br/>
+            <br/>
+            <br/>
+            <div style="padding-left: 30px;">
+                <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
+                <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
+                <a href="${pageContext.request.contextPath}/taxSimulationMain"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
+                </a>
+                <hr style="width: 200px; margin-bottom: 15px;">
+                <a href="${pageContext.request.contextPath}/taxSimulation"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">연말정산 시뮬레이션</div>
+                </a>
+                <hr style="width: 200px; margin-bottom: 15px;">
+                <a href="${pageContext.request.contextPath}/simulationResult" style="display: block; margin-bottom: 20px;">
+                    <h6 style="color: black; margin-bottom: 15px;">연말정산 결과</h6>
+                </a>
+                <hr style="width: 200px; margin-bottom: 15px;">
+                <a href="${pageContext.request.contextPath}/spouseAgreement"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 초대하기</div>
+                </a>
+                <hr style="width: 200px; margin-bottom: 15px;">
+                <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
+                </a>
             </div>
         </div>
-    </div>
 
 
-</section>
+        <div class="section">
+            <div class="container-title">
+                <h2>연말정산 결과 확인하기</h2>
+                <br/>
+                <span style="color: #615e5e"><h3>연말정산 시뮬레이션을 통해 계산한 결과를 확인해 보세요</h3></span>
+            </div>
+            <br/>
+            <div class="container2">
+                <img class="inputImg3" src="../../../resources/img/announce.png" ><br/>
+                <%--                <div class="copy-text"> 함께 번 돈, 똑똑하게 활용하자! 맞벌이 부부를 위한 연말정산 전략 🤵👰</div>--%>
+
+                <h3>📋 기존에 계산한 <span style="color: #ff328b; font-size: 30px;">연말정산</span> 결과 확인하기 </h3><br/><br/>
+                연말정산 결과를 확인해보고 상세내용에서 공제항목을 업데이트 할 수도 있어요
+                <br/>
+
+                <br/><br/>
+
+
+                <br/><br/>
+                <h3>   하단의 결과 확인하기 버튼을 눌러주세요.</h3><br/>
+                <%--                👇 👇<br/><br/>--%>
+
+
+                <form id="simulationResult" method="post" action="/simulationResult">
+
+                    <button type="submit" class="pointBtn">결과 확인하기</button>
+                </form>
 
 
 
+                <br/>
+                <br/>
 
+
+            </div>
+        </div>
+    </section>
+</div>
+<!-- footer-wrapper -->
 <footer>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
-
-
-
-<%--progress bar--%>
-<script>
-    let currentStep = 1;
-    // 클릭으로 이동하기
-    $(".step").click(function () {
-        $(this).addClass("active").prevAll().addClass("active");
-        $(this).nextAll().removeClass("active");
-    });
-
-    $(".step01").click(function () {
-        $("#line-progress").css("width", "8%");
-        $(".step1").addClass("active").siblings().removeClass("active");
-    });
-
-    $(".step02").click(function () {
-        $("#line-progress").css("width", "50%");
-        $(".step2").addClass("active").siblings().removeClass("active");
-    });
-
-    $(".step03").click(function () {
-        $("#line-progress").css("width", "100%");
-        $(".step3").addClass("active").siblings().removeClass("active");
-    });
-
-    // $(".step").click(function () {
-    //     let stepNum = parseInt($(this).data(`step`));
-    //
-    //     // currentStep = stepNum;
-    //     // updateStep();
-    // });
-    // 버튼으로 이동하기
-    $(".prev-button, .next-button").click(function () {
-        if ($(this).hasClass('next-button')) {
-            currentStep++;
-        } else {
-            currentStep--;
-        }
-        updateStep();
-    });
-
-    function updateStep() {
-        let progressPercentages = [0, 8, 50, 100];
-
-        $(".step").removeClass("active");
-        $(".section-content").removeClass("active");
-
-        $(`.step0${currentStep}`).addClass("active").prevAll().addClass("active");
-        $(".section-content.step" + currentStep).addClass("active");
-        $("#line-progress").css("width", progressPercentages[currentStep] + "%");
-    }
-</script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
-
 </html>

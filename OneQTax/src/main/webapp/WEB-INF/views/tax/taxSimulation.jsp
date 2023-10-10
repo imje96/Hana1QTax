@@ -68,20 +68,15 @@
             <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
             </a>
-<%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
-<%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
-<%--               style="display: block; margin-bottom: 20px;">--%>
-<%--                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>--%>
-<%--            </a>--%>
-<%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
-<%--            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"--%>
-<%--               style="display: block; margin-bottom: 20px;">--%>
-<%--                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>--%>
-<%--            </a>--%>
-<%--            <hr style="width: 200px;">--%>
         </div>
     </div>
-    <div class="container1">
+    <div class="container2">
+        <div class="container-title">
+            <h2>연말정산 결과 확인하기</h2>
+            <br/>
+            <span style="color: #615e5e"><h3>연말정산 시뮬레이션을 통해 계산한 결과를 확인해 보세요</h3></span>
+        </div>
+
         <div class="progress-wrapper">
             <div id="progress-bar-container">
                 <ul>

@@ -586,7 +586,6 @@
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">현금영수증 사용내역</div>
             </a>
-            <hr style="width: 200px;">
         </div>
     </div>
 

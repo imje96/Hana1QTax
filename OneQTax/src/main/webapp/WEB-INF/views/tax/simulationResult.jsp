@@ -46,6 +46,18 @@
         height: 60px;
         position: relative;
     }
+    .copy-text {
+        padding: 10px 30px;
+        background: #f8f2ce;
+        border-radius: 10px;
+        font-size: 21px;
+        line-height: 1.7em;
+        text-align: center;
+    }
+    .flex-container h5{
+        color: #4f4949;
+    }
+
 </style>
 
 <body>
@@ -64,17 +76,17 @@
         <div style="padding-left: 30px;">
             <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
             <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxMain"
+            <a href="${pageContext.request.contextPath}/taxSimulationMain"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxMain"
+            <a href="${pageContext.request.contextPath}/taxSimulation"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 시뮬레이션</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxSimulation" style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/simulationResult" style="display: block; margin-bottom: 20px;">
                 <h6 style="color: black; margin-bottom: 15px;">연말정산 결과</h6>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
@@ -86,7 +98,6 @@
             <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
             </a>
-            <hr style="width: 200px; margin-bottom: 15px;">
             <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
             <%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
             <%--               style="display: block; margin-bottom: 20px;">--%>
@@ -121,13 +132,8 @@
                         <!-- Step 1 Content -->
                         <fieldset class="section-content step1 active" data-step="1">
                             <%--                            <legend>STEP 1: 가족구성 정보</legend>--%>
-                            <h3>연말정산 결과</h3>
+                            <h3>✔ 연말정산 결과</h3>
                             <br/>
-
-                            <%--                            <h4>납부할 세금 :--%>
-                            <%--                                <td class="text-right"><fmt:formatNumber value="${totalResult.expected_tax}"--%>
-                            <%--                                                                         groupingUsed="true"/>원--%>
-                            <%--                            </h4>--%>
 
                             <div class="info-item5">
                                 <div class="info-item">
@@ -136,24 +142,21 @@
 
                                     <c:choose>
                                         <c:when test="${totalResult.expected_tax >= 0}">
-                                            <h4><span style="color: #f84174;">납부</span>할 세금 :
+                                            <h4><span style="color: #ff5383;">💰납부</span>할 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${totalResult.expected_tax}" groupingUsed="true"/>원
                                                 </td>
                                             </h4>
                                         </c:when>
                                         <c:otherwise>
-                                            <h4><span style="color: #f84174;">환급</span>받을 세금 :
+                                            <h4><span style="color: #ff5383;">💰환급</span>받을 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${-totalResult.expected_tax}" groupingUsed="true"/>원
                                                 </td>
                                             </h4>
                                         </c:otherwise>
                                     </c:choose>
-
-
-                                    <br/>
-                                    <h4><span style="color: #f84174;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
+                                    <h4><span style="color:#ff5383;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
                                                                                                          groupingUsed="true"/>원
                                     </h4>
                                 </div>
@@ -162,7 +165,10 @@
 
 
                             <br/>
-                            <p2>&#183; 납부할 세금이 +(양수)이면 세금을 납부해야하며,<br/> -(음수)이면 세금을 환급받습니다.</p2>
+                                <div class="copy-text">
+                                    납부할 세금이 <span style="font-weight: bold">+(양수)</span>이면 세금을 <span style="font-weight: bold; color: #1c736f">납부</span>해야하며,<br/>
+                                    <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span style="font-weight: bold; color: #1c736f">환급</span>받습니다.
+                                </div>
                             <br/><br/>
                             <table class="table-tax">
                                 <thead>
@@ -230,14 +236,17 @@
                             </table>
 
                             <br><br>
+                                <div class="flex-container">
                             <button type="button" class="next-button">추가항목 입력</button>
+                                </div>
                         </fieldset>
 
 
                         <!-- Step 2 Content -->
                         <!-- 모달창 -->
                         <fieldset class="section-content step2" data-step="2">
-                            <h3>상세보기</h3>
+                         <h3>&nbsp;&nbsp;&nbsp;&nbsp;✔ 상세보기</h3>
+
 
                             <div class="content-text">
                                 <label for="totalIncome">이미 납부한 세금 :&nbsp;&nbsp;</label>
@@ -250,6 +259,7 @@
                                 <input type="button" id="saveButton0" class="update-button" value="저장">
                             </div>
                             <br/>
+                            <div class="flex-container"><h5> 🔔 박스를 선택하여 세부 공제 항목을 업데이트 해주세요</h5></div><br/>
                             <div class="flex-container">
                                 <div class="flex-column">
                                     <div class="subheading"><h4>소득공제</h4></div>
