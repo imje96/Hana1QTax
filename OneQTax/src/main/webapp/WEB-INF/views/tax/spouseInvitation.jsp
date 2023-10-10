@@ -22,12 +22,26 @@
             rel="stylesheet">
 
     <style>
-        .copy-text{
+        .section {
+            width: 1700px;
+        }
+
+        .copy-text {
             padding: 10px 30px;
             background: #f8f2ce;
             border-radius: 10px;
-            font-size: 22px;
+            font-size: 24px;
         }
+
+        .copy-text2 {
+            background: #c7dedd;
+            border-radius: 10px;
+            font-size: 24px;
+            width: 600px;
+            padding: 10px 20px 10px 50px;
+            line-height: 2em;
+        }
+
         .container2 h3 {
             font-size: 25px;
         }
@@ -39,8 +53,16 @@
             border: 4px solid #a6c9c9;
             box-shadow: 0 6px 17px rgba(0, 0, 0, 0.4);
             border-radius: 15px;
-            padding: 40px 40px 0 40px;
+            padding: 40px 20px 0 40px;
             margin: 0 0 20px 0;
+            transition: background-color 0.4s, transform 0.4s;
+        }
+
+        .inviteForm:hover {
+            transform: scale(1.05);
+            /* hover 시 약간 확대되는 효과 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            /* hover 시 그림자 약간 강화 */
         }
 
         .form {
@@ -66,6 +88,7 @@
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .modalBtn {
             display: inline-block;
             color: #05413d;
@@ -83,6 +106,7 @@
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         #spouseEmail {
             height: 40px;
             width: 250px;
@@ -100,6 +124,13 @@
             font-size: 23px;
         }
 
+        .container2 h3 {
+            font-size: 26px;
+        }
+
+        .container2 p {
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -115,84 +146,69 @@
 <div style="overflow: hidden;">
 
     <section class="main">
-        <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
-            <br/>
-            <br/>
-            <br/>
-            <div style="padding-left: 30px;">
-                <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
-                <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/taxSimulationMain"
-                   style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
-                </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/taxSimulation"
-                   style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">연말정산 시뮬레이션</div>
-                </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/simulationResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">연말정산 결과</div>
-                </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/spouseAgreement"
-                   style="display: block; margin-bottom: 20px;">
-                    <h6 style="color: black; margin-bottom: 15px;">우리집 돈관리 초대하기</h6>
-                </a>
-                <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
-                </a>
-            </div>
-        </div>
-
 
         <div class="section">
             <div class="container-title">
-                <h2>나의 배우자 초대하기</h2>
+                <h2>💌 <span style="color: #00847d; font-size: 32px">${name}</span>님으로부터 초대장이 도착했습니다 </h2>
                 <br/>
-                <span style="color: #615e5e"><h3>배우자를 초대하여 우리 부부의 연말정산 현황을 파악하고 절세 방법을 제안받아보세요.</h3></span>
+                <span style="color: #615e5e"><h3>초대를 수락하여 우리 부부의 연말정산 현황을 파악하고 절세 혜택을 누려보세요</h3></span>
             </div>
             <br/>
             <div class="container2">
-               <div class="copy-text"> 함께 번 돈, 똑똑하게 활용하자! 맞벌이 부부를 위한 연말정산 전략 🤵👰</div>
-                <img src="../../../resources/img/spouse.png">
+                <h3>우리집, 이번 년도엔 <span style="color: #fd328a"> 환급</span>받을 수 있을까?</h3><br/>
+                <div class="copy-text"> 함께 번 돈, 똑똑하게 활용하자! 맞벌이 부부를 위한 연말정산 전략 🤵👰</div>
+                <br/>
+                부부의 지출과 절세 항목을 한 번에 파악하며 최적의 소비 전략을 제시해드릴게요.<br/><br/>
+                <img src="../../../resources/img/family.png"><br/>
 
-                <h2>💌 배우자 초대하고 <span style="color: #ff328b; font-size: 30px;">맞벌이 부부 절세 전략</span> 확인해 보기 </h2><br/><br/>
-               부부의 지출과 절세 항목을 한 번에 파악하며 최적의 소비 전략을 제시해드릴게요.<br/>
+                <h2>✔ 초대 수락하고 <span style="color: #ff328b; font-size: 30px;">맞벌이 부부 절세 전략</span> 확인해 보기</h2>
+                <br/><br/>
+                <div class="copy-text2"><h5> 우리 부부를 기준으로 절세 전략을 제안받을 수 있어요</h5>
+                    <p>상황에 맞는 절세 전략을 알아보세요</p>
+                </div>
+                <br/>
+                <div class="copy-text2"><h5> 프라이버시 걱정 마세요</h5>
+                    <p>자세한 소비내역은 공유되지 않아요</p>
+                </div>
+                <br/>
+                <div class="copy-text2"><h5>가족이 함께하면 절세 관리 더 잘할 수 있어요</h5>
+                    <p>한 번만 연결하면 따로 시간 낼 필요 없이 우리집 소득공제현황을 한눈에</p>
+                </div>
+                <br/>
 
                 <br/><br/>
                 <span style="background: #f8f2ce"> <h5>🔊 이런 분들이 사용하면 좋아요 </h5></span>
 
                 <div class="text-box2">
-                    ✅  현재 맞벌이 부부이다 / 부부가 연말정산 대상자이다
+                    ✅ 현재 맞벌이 부부이다 / 부부가 연말정산 대상자이다
                     <br/><br/>
-                    ✅  절세를 위해 공동의 소비를 전략적으로 관리하는 것에 관심이 있다
+                    ✅ 절세를 위해 공동의 소비를 전략적으로 관리하는 것에 관심이 있다
                     <br/><br/>
-                    ✅  연말정산이 복잡해서 부부의 소비 전략을 수립하는데 어려움을 느끼는 부부
+                    ✅ 연말정산이 복잡해서 부부의 소비 전략을 수립하는데 어려움을 느끼는 부부
                     <br/><br/>
-                    ✅  서로의 금융 습관을 이해하고 존중하며, 더 나은 금융전략을 찾고자 하는 부부
+                    ✅ 서로의 금융 습관을 이해하고 존중하며, 더 나은 금융전략을 찾고자 하는 부부
                     <br/><br/>
-                    ✅  프라이버시는 지키면서 절세 전략을 수립하고 싶은 부부
+                    ✅ 프라이버시는 지키면서 절세 전략을 수립하고 싶은 부부
                 </div>
                 <br/><br/>
-                배우자 연결을 위해 배우자를 등록하는 과정이 필요해요. 배우자는 1명만 등록할 수 있습니다.<br/><br/>
-                <h3>배우자의 하나카드 아이디를 입력해주세요</h3><br/>
-                👇 👇<br/><br/>
-                <div class="inviteForm">
+                <h3>서비스 이용을 위해 수락하기 버튼을 눌러주세요</h3><br/>
+                👇 👇<br/>
 
-                    <form method="post" action="/spouseAdd">
-                        <label for="spouseEmail">배우자의 하나카드 아이디: </label>
-                        <input type="email" id="spouseEmail" name="spouseEmail" placeholder="example@example.com"
-                               required><br>
-                        <button class="pointBtn" type="submit">배우자 등록하기</button>
-                    </form>
-                    <br/>
-                </div>
+                <%--                <div class="inviteForm">--%>
+<%--                <form id="spouseInviteForm" method="post">--%>
+<%--                    <button class="pointBtn" type="button" id="submitBtn">초대 수락하기</button>--%>
+<%--                <form id="spouseInviteForm" method="post">--%>
+<%--                    <input type="hidden" id="hiddenMemberId" value="${memberId}"> <!-- 이렇게 memberId를 받아옵니다. -->--%>
+<%--                    <button class="pointBtn" type="button" id="submitBtn">초대 수락하기</button>--%>
+<%--                </form>--%>
+
+                <button class="pointBtn" type="button" id="acceptBtn" data-member-id="${memberId}">수락하기</button>
+
+
                 <br/>
-                    <h3>만약, 배우자와의 연결을 해제하고 싶다면? </h3>
-                    <button class="modalBtn" type="submit">배우자 등록 해제하기</button>
+                <%--                </div>--%>
+                <br/>
+                <br/>
 
 
                 <div class="invitation">
@@ -222,20 +238,46 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    function acceptInvitation(relationId) {
-        fetch(`/friend/accept-invitation/${relationId}`, {
-            method: 'POST',
-        })
-            .then(response => {
-                if (response.ok) {
-                    alert('You are now friends!');
-                } else {
-                    alert('Failed to accept the invitation!');
+    // $(document).ready(function() {
+    //     var memberId = $("#hiddenMemberId").val();
+    //
+    //     $("#submitBtn").click(function() {
+    //         // 초대 수락 로직 실행 요청 보내기
+    //         $.post("/acceptApi/execute/" + memberId, function(data) {
+    //             if(data === "Success") {
+    //                 alert("초대가 수락되었습니다.");
+    //             } else {
+    //                 alert("오류가 발생했습니다. 다시 시도해 주세요.");
+    //             }
+    //         });
+    //     });
+    // });
+
+
+    $(document).ready(function() {
+        $("#acceptBtn").on("click", function() {
+            var memberId = $(this).data('member-id');
+
+            $.ajax({
+                type: "POST",
+                url: "/confirmInvitation/" + memberId,
+                success: function(response) {
+                    if(response === "Success") {
+                        alert("초대를 수락했습니다.");
+                    } else {
+                        alert("오류가 발생했습니다. 다시 시도해주세요.");
+                    }
+                },
+                error: function() {
+                    alert("오류가 발생했습니다. 다시 시도해주세요.");
                 }
             });
-    }
+        });
+    });
+
 
 
 </script>

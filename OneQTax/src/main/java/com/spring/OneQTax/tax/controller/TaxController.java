@@ -1,12 +1,8 @@
 package com.spring.oneqtax.tax.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.member.service.MemberService;
-import com.spring.oneqtax.naverSMS.MessageDTO;
-import com.spring.oneqtax.naverSMS.SmsResponseDTO;
-import com.spring.oneqtax.naverSMS.SmsService;
 import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.service.SpouseService;
 import com.spring.oneqtax.tax.service.TaxFormService;
@@ -19,15 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -492,13 +483,12 @@ public class TaxController {
 
     /* 배우자 공제 공유 기능 */
 
-
     @GetMapping("/spouseAdd")
     public String addFriendForm() {
-        return "tax/spouseInvation";
+        return "tax/spouseInvite";
     }
 
-    @PostMapping("/spouseAdd")
+    @PostMapping("/spouseInvite")
     public String addFriend(@RequestParam String spouseEmail, HttpSession session, RedirectAttributes redirectAttributes) {
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
@@ -522,23 +512,15 @@ public class TaxController {
         spouseService.insertSpouseRelation(spouseRelation);
         redirectAttributes.addFlashAttribute("successMessage", "Friend request sent successfully.");
 
-        return "tax/spouseAgreement";
+        return "tax/spouseInvite";
     }
 
     @RestController
     @RequestMapping("/accept")
     public class AcceptController {
 
-        @GetMapping("/{memberId}")
-        public ResponseEntity<String> acceptInvitation(@PathVariable int memberId) {
-            try {
-                spouseService.acceptInvitation(memberId);
-                return new ResponseEntity<>("Success", HttpStatus.OK);
-            } catch (Exception e) {
-                e.printStackTrace(); // 오류 메시지를 로그에 출력
-                return new ResponseEntity<>("Failure", HttpStatus.BAD_REQUEST);
-            }
-        }
+        @Autowired
+        private SpouseService spouseService;
 
         @GetMapping("/getMemberId")
         public ResponseEntity<Map<String, Integer>> getMemberId(HttpSession session) {
@@ -550,7 +532,113 @@ public class TaxController {
             response.put("memberId", memberId);
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
+
+//        @GetMapping("/{memberId}")
+//        public String acceptInvitation(@PathVariable int memberId, Model model) {
+//            model.addAttribute("memberId", memberId);
+//            return "tax/spouseInvitation";
+//        }
     }
+
+    @PostMapping("/confirmInvitation/{memberId}")
+    public ResponseEntity<String> confirmInvitation(@PathVariable int memberId) {
+        try {
+            spouseService.acceptInvitation(memberId);
+            return new ResponseEntity<>("Success", HttpStatus.OK);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+//    @RestController
+//    @RequestMapping("/accept")
+//    public class AcceptController {
+
+//        @GetMapping("/{memberId}")
+//        public ResponseEntity<String> acceptInvitation(@PathVariable int memberId) {
+//            try {
+//                spouseService.acceptInvitation(memberId);
+//                return new ResponseEntity<>("Success", HttpStatus.OK);
+//            } catch (Exception e) {
+//                e.printStackTrace(); // 오류 메시지를 로그에 출력
+//                return new ResponseEntity<>("Failure", HttpStatus.BAD_REQUEST);
+//            }
+//        }
+//
+//        @GetMapping("/getMemberId")
+//        public ResponseEntity<Map<String, Integer>> getMemberId(HttpSession session) {
+//            Map<String, Integer> response = new HashMap<>();
+//
+//            MemberVO currentUser = getCurrentUser(session);
+//            int memberId = currentUser.getMember_id();
+//
+//            response.put("memberId", memberId);
+//            return new ResponseEntity<>(response, HttpStatus.OK);
+//        }
+//    }
+@Controller
+@RequestMapping("/accept")
+public class AcceptController2 {
+
+    @GetMapping("/{memberId}")
+    public String acceptInvitation(HttpSession session, HttpServletRequest request, Model model) {
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            session.setAttribute("dest", request.getRequestURI());
+            return "redirect:/login";
+        }
+
+        // 로그인 성공 후 원래 방문하려던 페이지로 리다이렉트
+        String dest = (String) session.getAttribute("dest");
+        if (dest != null) {
+            session.removeAttribute("dest");
+            return "redirect:" + dest;
+        }
+
+        String name = currentUser.getName();
+        int memberId = currentUser.getMember_id();
+
+        SpouseRelationVO spouseInfo = spouseService.fingMySpouse(memberId);
+        int spouseId = spouseInfo.getSpouse_id();
+        MemberVO spouseInfo2 = spouseService.getSpouseName(spouseId);
+        String spouseName = spouseInfo2.getName();
+
+        model.addAttribute("name", spouseName);
+        model.addAttribute("memberId", memberId);
+
+        return "tax/spouseInvitation";
+    }
+}
+
+//    @Controller
+//    @RequestMapping("/accept")
+//    public class AcceptController2 {
+//
+//        @GetMapping("/{memberId}")
+//        public String acceptInvitation(HttpSession session, Model model) {
+//            MemberVO currentUser = getCurrentUser(session);
+//
+//            if (currentUser == null) {
+//                // 리다이렉트나 에러 메시지 처리
+//                return "redirect:/login";
+//            }
+//            String name = currentUser.getName();
+//            int memberId = currentUser.getMember_id();
+//
+//            SpouseRelationVO spouseInfo = spouseService.fingMySpouse(memberId);
+//            int spouseId = spouseInfo.getSpouse_id();
+//            MemberVO spouseInfo2 = spouseService.getSpouseName(spouseId);
+//            String spouseName = spouseInfo2.getName();
+//
+//            model.addAttribute("name", spouseName);
+//            model.addAttribute("memberId", memberId);
+//            return "tax/spouseInvitation";
+//        }
+//    }
 
 
     @GetMapping("/spouseResult")
@@ -676,26 +764,32 @@ public class TaxController {
 
     @GetMapping("/spouseAgreement")
     public String groupAgreement() throws Exception {
-        return "/tax/spouseInvitation";
+        return "tax/spouseAdd";
     }
+//    초대장 받은 페이지 임시
+    @GetMapping("/getSpouseInvitation")
+    public String spouseInvitation() throws Exception{
+        return "tax/spouseInvitation";
+    }
+
     @GetMapping("/spouseDeductionDetail")
     public String groupAccountDetail() throws Exception {
-        return "/spouse/spouseDeductionDetail";
+        return "tax/spouseDeductionDetail";
     }
     @GetMapping("/openedAccount")
     public String openedAccount() throws Exception {
-        return "/spouse/openedAccount";
+        return "tax/openedAccount";
     }
-    @GetMapping("/spouseInvite")
-    public String groupInvite() throws Exception {
-        return "/tax/spouseInvite";
-    }
+//    @GetMapping("/spouseInvite")
+//    public String groupInvite() throws Exception {
+//        return "/tax/spouseInvite";
+//    }
 
     @GetMapping("/myspouse/{memberId}")
     public String myspouse(@PathVariable int memberId, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         session.setAttribute("memberId",memberId);
-        return "/tax/myspouse";
+        return "tax/myspouse";
     }
 
     @GetMapping("/groupStatement")
