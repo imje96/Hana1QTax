@@ -402,8 +402,8 @@ p {
 }
 
 .total-amount-box:hover{
-    background: #106e69;
-    color: #FFFFFF;
+    background: #b7b7b7;
+    /*color: #FFFFFF;*/
 }
 
 .total-text-box {
@@ -412,10 +412,11 @@ p {
     display: flex;
     justify-content: space-between;
     font-size: 20px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
 }
-.textalign-right2:hover {
-    color: #FFFFFF;
-}
+
+
 .total-text-box.p {
     font-size: 15px;
 }

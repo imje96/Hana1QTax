@@ -56,8 +56,30 @@
     }
     .flex-container h5{
         color: #4f4949;
+        background: #cfe6e6;
     }
-
+    /*  인적공제부분 버튼  */
+    .choice-button input[type=radio]+label {
+        display: inline-block;
+        color: #05413d;
+        padding: 5px 15px;
+        width: 180px;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #e9eeed;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-right: 10px;
+    }
+    /* 연금보험료 모달 */
+    .modal-amount-money-variable{
+        text-align: right;
+    }
 </style>
 
 <body>
@@ -142,21 +164,21 @@
 
                                     <c:choose>
                                         <c:when test="${totalResult.expected_tax >= 0}">
-                                            <h4><span style="color: #ff5383;">💰납부</span>할 세금 :
+                                            <h4><span style="color: #ffb900;">💰납부</span>할 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${totalResult.expected_tax}" groupingUsed="true"/>원
                                                 </td>
                                             </h4>
                                         </c:when>
                                         <c:otherwise>
-                                            <h4><span style="color: #ff5383;">💰환급</span>받을 세금 :
+                                            <h4><span style="color: #ffb900;">💰환급</span>받을 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${-totalResult.expected_tax}" groupingUsed="true"/>원
                                                 </td>
                                             </h4>
                                         </c:otherwise>
                                     </c:choose>
-                                    <h4><span style="color:#ff5383;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
+                                    <h4><span style="color:#ffb900;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
                                                                                                          groupingUsed="true"/>원
                                     </h4>
                                 </div>
@@ -245,8 +267,11 @@
                         <!-- Step 2 Content -->
                         <!-- 모달창 -->
                         <fieldset class="section-content step2" data-step="2">
-                         <h3>&nbsp;&nbsp;&nbsp;&nbsp;✔ 상세보기</h3>
-
+                         <h3>&nbsp;&nbsp;&nbsp;&nbsp;✔ 상세보기</h3><br/>
+                            <div class="copy-text">
+                                추가로 <span style="font-weight: bold">환급</span>받기 <span style="font-weight: bold; color: #1c736f">납부</span>해야하며,<br/>
+                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span style="font-weight: bold; color: #1c736f">환급</span>받습니다.
+                            </div>
 
                             <div class="content-text">
                                 <label for="totalIncome">이미 납부한 세금 :&nbsp;&nbsp;</label>
@@ -332,7 +357,7 @@
                                         <%--                                <div class="percent">90%달성</div>--%>
                                         <div class="total-text-box">
                                             <div class="total-text">
-                                                <h4>• 주택자금/주택마련저축</h4>
+                                                <h4>• 주택자금/저축</h4>
                                                 <br/>
                                                 소득 공제 금액:
                                             </div>
@@ -340,7 +365,7 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1><fmt:formatNumber value="${totalResult.housing_deduction}"
+                                                    <p1 id="outsideDeductionAmount"><fmt:formatNumber value="${totalResult.housing_deduction}"
                                                                           groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
@@ -362,7 +387,7 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1><fmt:formatNumber value="${totalResult.card_deduction}"
+                                                    <p1><fmt:formatNumber value="${total_deduction}"
                                                                           groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
@@ -554,6 +579,7 @@
         <hr>
         <div class="modal-amount-box">
             <div class="modal-amount-text">
+                <br/>
                 <label for="totalIncome">총급여:</label>
                 <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)"
                        data-hidden-id="totalIncome"
@@ -822,7 +848,7 @@
                 <div class="modal-amount-money">
                     <span id="totalHousing"><fmt:formatNumber value="${totalInfo.housing_total}"
                                                               groupingUsed="true"/>원</span><br/>
-                    <p2><fmt:formatNumber value="${totalResult.housing_deduction}" groupingUsed="true"/>원</p2>
+                    <p2 id="deductionAmount"><fmt:formatNumber value="${totalResult.housing_deduction}" groupingUsed="true"/>원</p2>
                 </div>
             </div>
             <hr>
@@ -841,27 +867,21 @@
 
                     <input type="text" name="housing_loan_view" id="housing_loan_view" oninput="addCommaToNumber(this)"
                            data-hidden-id="housing_loan"
-                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>
+                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원
                     <input type="hidden" id="housing_loan" name="housing_loan" value="${totalInfo.housing_loan}"><br/>
 
-                    <%--                    <input type="text" id="housing_loan" name="health_insurance" oninput="addCommaToNumber(this)"--%>
-                    <%--                           value="<fmt:formatNumber value="${totalInfo.housing_loan}" groupingUsed="true"/>">원<br/>--%>
                     <input type="text" name="housing_account1_view" id="housing_account1_view"
                            oninput="addCommaToNumber(this)"
                            data-hidden-id="housing_account1"
                            value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>
                     <input type="hidden" id="housing_account1" name="housing_account1"
                            value="${totalInfo.housing_account1}">
-                    <%--                    <input type="text" id="housing_account1" name="employment_insurance" oninput="addCommaToNumber(this)"--%>
-                    <%--                           value="<fmt:formatNumber value="${totalInfo.housing_account1}" groupingUsed="true"/>">원<br/>--%>
                     <input type="text" name="housing_account2_view" id="housing_account2_view"
                            oninput="addCommaToNumber(this)"
                            data-hidden-id="housing_account2"
                            value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>
                     <input type="hidden" id="housing_account2" name="housing_account2"
                            value="${totalInfo.housing_account2}">
-                    <%--                    <input type="text" id="housing_account2" name="national_pension" oninput="addCommaToNumber(this)"--%>
-                    <%--                           value="<fmt:formatNumber value="${totalInfo.housing_account2}" groupingUsed="true"/>">원<br/>--%>
                 </div>
             </div>
             <div class="modal-amount-explanation">
@@ -883,7 +903,7 @@
         <form class="updateForm" action="/update" method="post">
             <h3>신용카드 및 체크카드/현금 소득공제</h3>
             <p>기준일시 : ${totalInfo.result_time}</p>
-            <p>주택임차차입금 및 청약저축금액을 확인해주세요.</p>
+            <p>카드 등 소비 소득공제를 확인해주세요.</p>
             <br/>
 
             <div class="modal-amount-box">
@@ -894,7 +914,7 @@
                 <div class="modal-amount-money">
                     <span id="totalCard"><fmt:formatNumber value="${totalTransaction}"
                                                            groupingUsed="true"/>원</span><br/>
-                    <p2><fmt:formatNumber value="${totalResult.card_deduction}" groupingUsed="true"/>원</p2>
+                    <p2><fmt:formatNumber value="${total_deduction}" groupingUsed="true"/>원</p2>
                 </div>
             </div>
             <hr>
@@ -1152,8 +1172,45 @@
         }
     });
 
+</script>
+<%-- 주택공제 금액 실시간 반영 --%>
+<script>
+    function updateTotalAmounts() {
+        // 숫자 문자열에서 쉼표를 제거하고 숫자로 변환하는 함수
+        function parseNumber(inputValue) {
+            return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
+        }
 
-    // });
+        // 각 입력란의 값을 가져옵니다.
+        const housingLoan = parseNumber(document.getElementById('housing_loan_view').value);
+        const housingAccount1 = parseNumber(document.getElementById('housing_account1_view').value);
+        const housingAccount2 = parseNumber(document.getElementById('housing_account2_view').value);
+
+        // 총납입액을 계산합니다.
+        const totalHousingAmount = housingLoan + housingAccount1 + housingAccount2;
+
+        // 총납입액을 출력 형식에 맞게 표시합니다.
+        document.getElementById('totalHousing').innerText = totalHousingAmount.toLocaleString('ko-KR') + "원";
+
+        // 소득 공제 금액을 계산하고 표시합니다.
+        const deductionAmount = totalHousingAmount * 0.4;
+        document.getElementById('deductionAmount').innerText = deductionAmount.toLocaleString('ko-KR') + "원";
+
+        // 바깥쪽 소득공제금액도 업데이트 합니다.
+        document.getElementById('outsideDeductionAmount').innerText = deductionAmount.toLocaleString('ko-KR') + "원";
+    }
+
+    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updateTotalAmounts 함수를 호출합니다.
+    document.getElementById('housing_loan_view').addEventListener('input', updateTotalAmounts);
+    document.getElementById('housing_account1_view').addEventListener('input', updateTotalAmounts);
+    document.getElementById('housing_account2_view').addEventListener('input', updateTotalAmounts);
+
+</script>
+
+
+</body>
+</html>
+
 </script>
 
 </body>

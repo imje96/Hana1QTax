@@ -144,6 +144,7 @@ public class TaxController {
         model.addAttribute("cash_deduction", (int) result.getCash_deduction());
         model.addAttribute("basic_deduction", (int) result.getBasic_deduction());
         model.addAttribute("additional_deduction", (int) result.getAdditional_deduction());
+//       여기
         model.addAttribute("total_deduction", (int) result.getTotal_deduction());
         model.addAttribute("reducing_tax", (int) result.getReducing_tax());
         model.addAttribute("deduction_date", result.getResult_date());
@@ -324,6 +325,7 @@ public class TaxController {
         CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
 
+        System.out.println("테스트 카드소득공제:" +cardResult.getTotal_deduction());
 
         // 2차 계산
         TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(totalInfo, cardResult);
@@ -334,8 +336,11 @@ public class TaxController {
         int totalInfo_id = totalResult.getTotalInfo_id();
 
         totalResult.setTotalInfo_id(totalInfo_id);
+
         // 계산결과 DB에 저장하기
         totalTaxService.saveResult(totalResult);
+
+        int total_deduction = (int) (totalResult.getCard_deduction());
 
         // 결과를 세션 혹은 Model에 저장하여 view에 전달
         session.setAttribute("totalResult", totalResult);
@@ -345,6 +350,7 @@ public class TaxController {
         model.addAttribute("totalBenefit", totalBenefit);
         model.addAttribute("transaction", transaction);
         model.addAttribute("totalTransaction", totalTransaction);
+        model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
         return "tax/simulationResult";
     }
 
@@ -476,6 +482,7 @@ public class TaxController {
         model.addAttribute("totalBenefit", totalBenefit);
         model.addAttribute("transaction", transaction);
         model.addAttribute("totalTransaction", totalTransaction);
+        model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
 
         return "tax/simulationResult";
     }
