@@ -185,6 +185,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         // 세액공제액 = 공제대상금액 - 최저한도
         minimumLimit = (int) Math.floor(totalIncome * 0.03);
         int calcMedicalTotal = calcMedical + calcMedical2 + calcMedical3 + calcFamily; // 공제대상금액
+        totalInfo.setMedical_total(calcMedicalTotal);
         calcMedicalTaxCredit = Math.max(calcMedicalTotal - minimumLimit, 0);
         totalResult.setMedical_taxcredit(calcMedicalTaxCredit);
 

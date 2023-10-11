@@ -14,6 +14,7 @@ public class TotalTaxResultVO {
     private int housing_deduction;
     private int card_deduction; // 카드등소득공제
     private int total_incomeDeduction; // 소득공제 통합
+    private int additional_deduction;
 
     /* 여기서부터 세액공제 */
     private int earned_taxcredit; // 근로세액공제

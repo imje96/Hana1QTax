@@ -582,7 +582,7 @@
         <%--        <form class="updateForm" action="/update" method="post">--%>
         <h3>인적사항</h3>
         <p>기준일시 : ${totalInfo.result_time}</p>
-        <p>인적 공제를 위한 부양가족 수 및 특별공제 항목을 확인해주세요.</p>
+        <p>인적 공제를 위한 부양가족 수 및 특별공제 항목을 입력해주세요.</p>
         <br/>
 
         <div class="modal-amount-box">
@@ -856,7 +856,7 @@
         <form class="updateForm" action="/update" method="post">
             <h3>주택자금/주택마련저축</h3>
             <p>기준일시 : ${totalInfo.result_time}</p>
-            <p>주택임차차입금 및 청약저축금액을 확인해주세요.</p>
+            <p>주택임차차입금 및 청약저축금액을 직접 입력해주세요.</p>
             <br/>
 
             <div class="modal-amount-box">
@@ -979,6 +979,86 @@
         </form>
     </div>
 </div>
+<%-- 6번 모달창 --%>
+<div class="modal_simulation" id="detailsModal6">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>추가소득</h3>
+            <p>기준일시 : ${totalInfo.result_time}</p>
+            <p>추가 소득 공제 대상 금액을 입력해 주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>세액 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="additional_deduction"><fmt:formatNumber value="${totalInfo.additional_deduction}"
+                                                               groupingUsed="true"/>원</span><br/>
+                    <p2 id="additionalDeduction"><fmt:formatNumber value="${totalResult.additional_deduction}"
+                                                                groupingUsed="true"/>원
+                    </p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <label for="medical_expense">소기업/소상공인 공재부금 :</label><br/>
+                    <label for="medical_expense2">우리사주 출연금 :</label><br/>
+                    <label for="medical_expense3">투자조합출자 공제 :</label><br/>
+                    <label for="family_medical">기타 소득공제 대상금액 :</label><br/>
+                </div>
+                <div class="modal-amount-money-variable">
+
+                    <input type="text" name="additional_deduction_view" id="additional_deductione_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="additional_deduction"
+                           value="0">원<br/>
+
+
+                    <input type="text" name="additional_deduction2_view" id="additional_deduction2_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="additional_deduction2"
+                           value="0">원<br/>
+
+
+                    <input type="text" name="medical_expense3_view" id="additional_deduction3_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="additional_deduction3"
+                           value="0">원<br/>
+
+                    <input type="text" name="additional_deduction4_view" id="additional_deduction4_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="additional_deduction4"
+                           value="0">원<br/>
+
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>소기업/소상공인 공제부금(노랑우산공제)?</p2>
+                <br/>
+                <p> &#183; 거주자가 중소기업현동조합법 제 115조에 따른 소기업/소상공인 공제에 가입하여 해당 과세기간에 납부하는 공제부금 </p>
+                <p2>투자조합출자 공제?</p2>
+                <br/>
+                <p> &#183; 출자일 또는 투자일이 속하는 과세연도의 소득금액에서 공제</p>
+                <p2>우리사주출연금?</p2>
+                <br/>
+                <p> &#183; 우리사주조합원이 자사주를 취득하기 ㅜ이하여 우리사주조합에 출자하는 경우 400만원 한도 공제</p>
+                <p2>기타 소득공제 대상금액?</p2>
+                <br/>
+                <p> &#183; 고용유지 중소기업 근로자 소득공제, 목돈 안드는 전세 이자 상환액 공제, 장기집합 투자 증권저축 등 추가 소득공제 금액</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p><br/>
+            <div class="flex-container">
+                <input type="button" id="saveButton6" class="update-button" value="저장">
+            </div>
+        </form>
+    </div>
+</div>
 <%-- 7번 모달창 --%>
 <div class="modal_simulation" id="detailsModal7">
     <div class="modal-content2">
@@ -987,7 +1067,7 @@
         <form class="updateForm" action="/update" method="post">
             <h3>연금계좌</h3>
             <p>기준일시 : ${totalInfo.result_time}</p>
-            <p>연금저축계좌 및 퇴직연금계좌 납입액을 확인해주세요.</p>
+            <p>연금저축계좌 및 퇴직연금계좌 납입액을 직접 입력해주세요.</p>
             <br/>
 
             <div class="modal-amount-box">
@@ -1033,7 +1113,7 @@
                     <input type="text" name="irp_amount_view" id="isa_amount_view"
                            oninput="addCommaToNumber(this)"
                            data-hidden-id="isa_amount"
-                           value="<fmt:formatNumber value="" groupingUsed="true"/>">원<br/>
+                           value="0">원<br/>
 
                 </div>
             </div>
@@ -1055,13 +1135,374 @@
         </form>
     </div>
 </div>
+<%-- 8번 모달창 --%>
+<div class="modal_simulation" id="detailsModal8">
+    <div class="modal-content2">
 
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>보장성 보험</h3>
+            <p>기준일시 : ${totalInfo.result_time}</p>
+            <p>보장성 보험 납입액을 입력해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>세액 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="guarantee_total"><fmt:formatNumber value="${totalInfo.guarantee_total}"
+                                                               groupingUsed="true"/>원</span><br/>
+                    <p2 id="guaranteeDeduction"><fmt:formatNumber value="${totalResult.guarantee_taxcredit}"
+                                                                groupingUsed="true"/>원
+                    </p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <label for="basic_guarantee">보장성 보험 :</label><br/>
+                    <label for="disabled_guarantee">장애인 보장성 보험 :</label><br/>
+                </div>
+                <div class="modal-amount-money-variable">
+
+                    <input type="text" name="basic_guarantee_view" id="basic_guarantee_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="basic_guarantee"
+                           value="<fmt:formatNumber value="${totalInfo.basic_guarantee}" groupingUsed="true"/>">원
+                    <input type="hidden" id="basic_guarantee" name="medical_expense"
+                           value="${totalInfo.basic_guarantee}"><br/>
+
+                    <input type="text" name="disabled_guarantee_view" id="disabled_guarantee_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="disabled_guarantee"
+                           value="<fmt:formatNumber value="${totalInfo.disabled_guarantee}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="disabled_guarantee" name="disabled_guarantee"
+                           value="${totalInfo.disabled_guarantee}">
+
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>보장성 보험?</p2>
+                <br/>
+                <p> &#183; 기본 공제 대상자를 피보험자로 하는 보자엉 조험(장애인 전용 보장성 보험 제외)의 보험료 납입액 </p>
+                <p2>장애인 보장성 보험?</p2>
+                <br/>
+                <p> &#183; 기본공제 대상자 중 장애인을 피보함자 도는 수익자로 하는 장애인 전용 보험의 보험료(보험계약 또는 보험료 납입 영수증에 장애인 전용보험으로 표시된 것을 말함)</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p><br/>
+            <div class="flex-container">
+                <input type="button" id="saveButton8" class="update-button" value="저장">
+            </div>
+        </form>
+    </div>
+</div>
+<%-- 9번 모달창 --%>
+<div class="modal_simulation" id="detailsModal9">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>의료비</h3>
+            <p>기준일시 : ${totalInfo.result_time}</p>
+            <p>의료비로 사용한 세액공제대상 금액을 입력해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>세액 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="medical_total"><fmt:formatNumber value="${totalInfo.medical_total}"
+                                                               groupingUsed="true"/>원</span><br/>
+                    <p2 id="medicalDeduction"><fmt:formatNumber value="${totalResult.medical_taxcredit}"
+                                                             groupingUsed="true"/>원
+                    </p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <label for="medical_expense">본인 의료비 :</label><br/>
+                    <label for="medical_expense2">난임시술비 :</label><br/>
+                    <label for="medical_expense3">미숙아.선천이상자 의료비 :</label><br/>
+                    <label for="family_medical">부양가족 의료비 :</label><br/>
+                </div>
+                <div class="modal-amount-money-variable">
+
+                    <input type="text" name="medical_expense_view" id="medical_expense_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="medical_expense"
+                           value="<fmt:formatNumber value="${totalInfo.medical_expense}" groupingUsed="true"/>">원
+                    <input type="hidden" id="medical_expense" name="medical_expense"
+                           value="${totalInfo.medical_expense}"><br/>
+
+                    <input type="text" name="medical_expense2_view" id="medical_expense2_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="medical_expense2"
+                           value="<fmt:formatNumber value="${totalInfo.medical_expense2}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="medical_expense2" name="medical_expense2"
+                           value="${totalInfo.medical_expense2}">
+
+                    <input type="text" name="medical_expense3_view" id="medical_expense3_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="medical_expense3"
+                           value="<fmt:formatNumber value="${totalInfo.medical_expense3}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="medical_expense3" name="medical_expense3"
+                           value="${totalInfo.medical_expense3}">
+
+                    <input type="text" name="family_medical_view" id="family_medical_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="family_medical"
+                           value="<fmt:formatNumber value="${totalInfo.family_medical}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="family_medical" name="family_medical"
+                           value="${totalInfo.family_medical}">
+
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>난임시술비?</p2>
+                <br/>
+                <p> &#183; 난임시술비란 [국민건강보험 요양급여의 기준에 관한 규칙] 별표 2 제 4호 라목에 따른 보조생식술(체내&#183;체외 인공수정 포함)에 소요된 비용 </p>
+                <p2>공제대상 제외?</p2>
+                <br/>
+                <p> &#183; 보험회사, 국민건강보험공단 등에서 보전받은 의료비 공제대상 제외</p>
+                <p> &#183; 미용&#183;성형수술비용 및 건강증진 의약품 구입비용공제대상 제외</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p><br/>
+            <div class="flex-container">
+                <input type="button" id="saveButton9" class="update-button" value="저장">
+            </div>
+        </form>
+    </div>
+</div>
+<%-- 10번 모달창 --%>
+<div class="modal_simulation" id="detailsModal10">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>교육비</h3>
+            <p>기준일시 : ${totalInfo.result_time}</p>
+            <p>교육비로 사용한 세액공제대상 금액을 입력해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>세액 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="education_total"><fmt:formatNumber value="${totalInfo.education_total}"
+                                                               groupingUsed="true"/>원</span><br/>
+                    <p2 id="educationDeduction"><fmt:formatNumber value="${totalResult.education_taxcredit}"
+                                                             groupingUsed="true"/>원
+                    </p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+
+                    <label for="edu_expense">본인 교육비 :</label><br/>
+                    <label for="children_edu">20세 미만 자녀교육비 :</label><br/>
+                    <label for="univ_edu">대학생 자녀교육비 :</label><br/>
+                    <label for="uniform_expense">교복구입비 :</label><br/>
+                </div>
+                <div class="modal-amount-money-variable">
+
+                    <input type="text" name="edu_expense_view" id="edu_expense_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="edu_expense"
+                           value="<fmt:formatNumber value="${totalInfo.medical_expense}" groupingUsed="true"/>">원
+                    <input type="hidden" id="edu_expense" name="edu_expense"
+                           value="${totalInfo.edu_expense}"><br/>
+
+                    <input type="text" name="children_edu_view" id="children_edu_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="children_edu"
+                           value="<fmt:formatNumber value="${totalInfo.children_edu}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="children_edu" name="children_edu"
+                           value="${totalInfo.children_edu}">
+
+                    <input type="text" name="univ_edu_view" id="univ_edu_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="univ_edu"
+                           value="<fmt:formatNumber value="${totalInfo.univ_edu}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="univ_edu" name="univ_edu"
+                           value="${totalInfo.univ_edu}">
+
+                    <input type="text" name="uniform_expense_view" id="uniform_expense_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="uniform_expense"
+                           value="<fmt:formatNumber value="${totalInfo.uniform_expense}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="uniform_expense" name="uniform_expense"
+                           value="${totalInfo.uniform_expense}">
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>근로자 본인 세액공제 대상?</p2>
+                <br/>
+                <p> &#183;대학원 교육비, 직업능력개발훈련시설 수강료 등 </p>
+                <p2>부양가족 세액공제 대상?</p2>
+                <br/>
+                <p> &#183; 취학 전 아동, 초/중/고생 연 300만원 한도, 대학생 900만원 한도</p>
+                <p2>교복 구입비?</p2>
+                <br/>
+                <p> &#183; 교복구입비용 연 50만원 한도</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p><br/>
+            <div class="flex-container">
+                <input type="button" id="saveButton10" class="update-button" value="저장">
+            </div>
+        </form>
+    </div>
+</div>
+<%-- 11번 모달창 --%>
+<div class="modal_simulation" id="detailsModal11">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>기부금</h3>
+            <p>기준일시 : ${totalInfo.result_time}</p>
+            <p>해당하는 항목에 기부금을 입력해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>세액 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="donation_total"><fmt:formatNumber value="${totalInfo.education_total}"
+                                                                 groupingUsed="true"/>원</span><br/>
+                    <p2 id="education_total"><fmt:formatNumber value="${totalResult.education_taxcredit}"
+                                                               groupingUsed="true"/>원
+                    </p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <label for="donation1">정치자금기부금 :</label><br/>
+                    <label for="donation2">법정기부금 :</label><br/>
+                    <label for="donation3">우리사주조합기부금 :</label><br/>
+                    <label for="religionEct_donation">지정기부금(종교기부금외) :</label><br/>
+                    <label for="religion_donation">지정기부금(종교기부금) :</label><br/>
+                </div>
+
+                <div class="modal-amount-money-variable">
+                    <input type="text" name="donation1_view" id="donation1_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="donation1"
+                           value="<fmt:formatNumber value="${totalInfo.donation1}" groupingUsed="true"/>">원
+                    <input type="hidden" id="donation1" name="donation1"
+                           value="${totalInfo.donation1}"><br/>
+
+                    <input type="text" name="donation2_view" id="donation2_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="donation2"
+                           value="<fmt:formatNumber value="${totalInfo.children_edu}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="donation2" name="donation2"
+                           value="${totalInfo.donation2}">
+
+                    <input type="text" name="donation3_view" id="donation3_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="donation3"
+                           value="<fmt:formatNumber value="${totalInfo.donation3}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="donation3" name="donation3"
+                           value="${totalInfo.donation3}">
+
+                    <input type="text" name="religionEct_donation_view" id="religionEct_donation_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="religionEct_donation"
+                           value="<fmt:formatNumber value="${totalInfo.religionEct_donation}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="religionEct_donation" name="religionEct_donation"
+                           value="${totalInfo.religionEct_donation}">
+
+                    <input type="text" name="religion_donation_view" id="religion_donation_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="religion_donation"
+                           value="<fmt:formatNumber value="${totalInfo.religion_donation}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="religion_donation" name="religion_donation"
+                           value="${totalInfo.religion_donation}">
+                </div>
+            </div>
+
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p><br/>
+            <div class="flex-container">
+                <input type="button" id="saveButton11" class="update-button" value="저장">
+            </div>
+        </form>
+    </div>
+</div>
+<%-- 12번 모달창 --%>
+<div class="modal_simulation" id="detailsModal12">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>월세</h3>
+            <p>기준일시 : ${totalInfo.result_time}</p>
+            <p>월세로 납입한 세액공제대상 금액을 입력해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>세액 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="rent_total"><fmt:formatNumber value="${totalInfo.rent_total}"
+                                                                 groupingUsed="true"/>원</span><br/>
+                    <p2 id="rentDeduction"><fmt:formatNumber value="${totalResult.rent_taxcredit}"
+                                                                  groupingUsed="true"/>원
+                    </p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+
+                    <label for="edu_expense">월세 납입액 :</label><br/>
+                </div>
+                <div class="modal-amount-money-variable">
+
+                    <input type="text" name="edu_expense_view" id="rent_total_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="rent_total"
+                           value="<fmt:formatNumber value="${totalInfo.rent_total}" groupingUsed="true"/>">원
+                    <input type="hidden" id="rent_total2" name="rent_total"
+                           value="${totalInfo.rent_total}"><br/>
+
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>공제대상?</p2>
+                <br/>
+                <p> &#183;해당 과세기간 총 급여액이 7천만원 이하 근로소득자(종합소득금액 6천만원 초과자 제외) </p>
+                <p> &#183;무주택 세대의 세대주(세대주가 주택 관련 고제를 받지 않는 경우 세대운도 가능)가 국민주택규모 또는
+                    기준시가 4억원 이하의 주택(주거용 오피스텔, 고시원 포함)을 임차하기 위해 지급하는 월세액 </p>
+
+            <div class="flex-container">
+                <input type="button" id="saveButton12" class="update-button" value="저장">
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 <footer>
-
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
-
 
 <%--progress bar--%>
 <script>
