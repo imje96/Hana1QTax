@@ -81,7 +81,7 @@ public class TaxFormSerivceImpl implements TaxFormService {
         System.out.println("calculateForm 실행:" + totalInfo);
 
         // detail 항목 계산 실행
-        totalInfo = calculateDetailDeduction(taxForm,pensionVO, housingVO, guaranteeVO,medicalVO, eduVO, donationVO, rentVO, preTaxVO, totalInfo);
+        totalInfo = calculateDetailDeduction(taxForm,pensionVO, housingVO, guaranteeVO, medicalVO, eduVO, donationVO, rentVO, preTaxVO, totalInfo);
         System.out.println("calculateDetailDeduction 실행: " + totalInfo);
         taxMapper.updateTotalInfo(totalInfo);
         return totalInfo;

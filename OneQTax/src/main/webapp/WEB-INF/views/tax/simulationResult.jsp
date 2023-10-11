@@ -489,7 +489,7 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1><fmt:formatNumber value="${totalResult.medical_taxcredit}"
+                                                    <p1 id="outsideMedicalDeduction"><fmt:formatNumber value="${totalResult.medical_taxcredit}"
                                                                           groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
@@ -510,7 +510,7 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1><fmt:formatNumber value="${totalResult.education_taxcredit}"
+                                                    <p1 id="outsideEduDeduction"><fmt:formatNumber value="${totalResult.education_taxcredit}"
                                                                           groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
@@ -1208,8 +1208,9 @@
             <h3>의료비</h3>
             <p>기준일시 : ${totalInfo.result_time}</p>
             <p>의료비로 사용한 세액공제대상 금액을 입력해주세요.</p>
-            <br/>
-
+            <span style="color: #af0332"><h5> * 의료비 세액공제는 총급여액의 3%를 초과한 금액에 대해서 공제가능합니다.</h5></span>
+            <span style="color: #af0332">  <h5>(나의 의료비 공제 시작 금액 :  <fmt:formatNumber value="${totalInfo.total_income2*0.03}"
+                              groupingUsed="true"/>원)</h5></span><br/>
             <div class="modal-amount-box">
                 <div class="modal-amount-text">
                     <h5>총 납입액</h5>
@@ -1627,6 +1628,12 @@
         if (document.getElementById('saveButton7')) {
             document.getElementById('saveButton7').addEventListener('click', updatePart7);
         }
+        if (document.getElementById('saveButton9')) {
+            document.getElementById('saveButton9').addEventListener('click', updatePart9);
+        }
+        if (document.getElementById('saveButton10')) {
+            document.getElementById('saveButton10').addEventListener('click', updatePart10);
+        }
 
         function updatePart0() {
             let data = {
@@ -1710,6 +1717,40 @@
             sendUpdateRequest(data);
             console.log("데이터를 보냅니다:");
         }
+        // 의료비
+        function updatePart9() {
+            let data = {
+                // updateType: 'Part9',
+                medicalVO: {
+                    medical_expense: document.getElementById('medical_expense').value,
+                    medical_expense2: document.getElementById('medical_expense2').value,
+                    medical_expense3: document.getElementById('medical_expense3').value,
+                    family_medical: document.getElementById('family_medical').value,
+                }
+            };
+            // 데이터 출력
+            console.log("Data to be sent:", data);
+
+            sendUpdateRequest(data);
+            console.log("데이터를 보냅니다:");
+        }
+
+        function updatePart10() {
+            let data = {
+                // updateType: 'Part10',
+                eduVO: {
+                    edu_expense: document.getElementById('edu_expense').value,
+                    children_edu: document.getElementById('children_edu').value,
+                    univ_edu: document.getElementById('univ_edu').value,
+                    uniform_expense: document.getElementById('uniform_expense').value,
+                }
+            };
+            // 데이터 출력
+            console.log("Data to be sent:", data);
+
+            sendUpdateRequest(data);
+            console.log("데이터를 보냅니다:");
+        }
 
         function sendUpdateRequest(data) {
             $.ajax({
@@ -1764,6 +1805,7 @@
     document.getElementById('housing_account2_view').addEventListener('input', updateHousingAmounts);
 
 </script>
+<%-- 연금계좌 계산--%>
 <script>
     function updatePensionAmounts() {
         // 숫자 문자열에서 쉼표를 제거하고 숫자로 변환하는 함수
@@ -1794,6 +1836,75 @@
     document.getElementById('irp_amount_view').addEventListener('input', updatePensionAmounts);
 
 </script>
+<%-- 의료비 계산--%>
+<script>
+    function updateMedicalAmounts() {
+        // 숫자 문자열에서 쉼표를 제거하고 숫자로 변환하는 함수
+        function parseNumber(inputValue) {
+            return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
+        }
+
+        // 각 입력란의 값을 가져옵니다.
+        const medical_expense = parseNumber(document.getElementById('medical_expense_view').value);
+        const medical_expense2 = parseNumber(document.getElementById('medical_expense2_view').value);
+        const medical_expense3 = parseNumber(document.getElementById('medical_expense3_view').value);
+        const family_medical = parseNumber(document.getElementById('family_medical_view').value);
+
+        // 총납입액을 계산
+        const medical_total = medical_expense + medical_expense2 + medical_expense3 + family_medical;
+        // 총납입액을 출력 형식에 맞게 표시
+        document.getElementById('medical_total').innerText = medical_total.toLocaleString('ko-KR') + "원";
+
+        // 세액 공제 금액을 계산
+        const medicalDeduction = medical_expense * 0.15 + medical_expense2 * 0.3 + medical_expense3 * 0.2 + family_medical * 0.15;
+        document.getElementById('medicalDeduction').innerText = medicalDeduction.toLocaleString('ko-KR') + "원";
+
+        // 바깥쪽 세액공제금액도 업데이트
+        document.getElementById('outsideMedicalDeduction').innerText = medicalDeduction.toLocaleString('ko-KR') + "원";
+    }
+
+    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updatePensionAmounts 함수를 호출합니다.
+    document.getElementById('medical_expense_view').addEventListener('input', updateMedicalAmounts);
+    document.getElementById('medical_expense2_view').addEventListener('input', updateMedicalAmounts);
+    document.getElementById('medical_expense3_view').addEventListener('input', updateMedicalAmounts);
+    document.getElementById('family_medical_view').addEventListener('input', updateMedicalAmounts);
+
+</script>
+<%-- 교육비 계산--%>
+<script>
+    function updateEduAmounts() {
+        // 숫자 문자열에서 쉼표를 제거하고 숫자로 변환하는 함수
+        function parseNumber(inputValue) {
+            return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
+        }
+
+        // 각 입력란의 값을 가져옵니다.
+        const edu_expense = parseNumber(document.getElementById('edu_expense_view').value);
+        const children_edu = parseNumber(document.getElementById('children_edu_view').value);
+        const univ_edu = parseNumber(document.getElementById('univ_edu_view').value);
+        const uniform_expense = parseNumber(document.getElementById('uniform_expense_view').value);
+
+        // 총납입액을 계산
+        const education_total = edu_expense + children_edu + univ_edu + uniform_expense;
+        // 총납입액을 출력 형식에 맞게 표시
+        document.getElementById('education_total').innerText = education_total.toLocaleString('ko-KR') + "원";
+
+        // 세액 공제 금액을 계산
+        const educationDeduction = education_total * 0.15;
+        document.getElementById('educationDeduction').innerText = educationDeduction.toLocaleString('ko-KR') + "원";
+
+        // 바깥쪽 세액공제금액도 업데이트
+        document.getElementById('outsideEduDeduction').innerText = educationDeduction.toLocaleString('ko-KR') + "원";
+    }
+
+    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updatePensionAmounts 함수를 호출합니다.
+    document.getElementById('edu_expense_view').addEventListener('input', updateEduAmounts);
+    document.getElementById('children_edu_view').addEventListener('input', updateEduAmounts);
+    document.getElementById('univ_edu_view').addEventListener('input', updateEduAmounts);
+    document.getElementById('uniform_expense_view').addEventListener('input', updateEduAmounts);
+
+</script>
+
 
 </body>
 </html>

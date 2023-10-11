@@ -302,7 +302,6 @@ public class TaxController {
         System.out.println("아이디값 확인2:" + totalInfo.getTotalInfo_id());
         totalInfo = taxFormService.updateForm(totalInfo, bigDTO, cardResult);
         System.out.println("컨트롤러 update 호출 후: "+totalInfo);
-//        taxFormService.updateAndSaveForm(totalInfo);
 
         response.put("status", "success");
         return response;
@@ -351,6 +350,7 @@ public class TaxController {
         model.addAttribute("transaction", transaction);
         model.addAttribute("totalTransaction", totalTransaction);
         model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
+        System.out.println(totalResult.getMedical_taxcredit());
         return "tax/simulationResult";
     }
 
@@ -450,16 +450,10 @@ public class TaxController {
         int memberId = currentUser.getMember_id();
 
         // 세션에서 totalInfo 객체를 가져옴
-//        TotalInfoVO totalInfoFromSession = (TotalInfoVO) session.getAttribute("totalInfo");
 
-        // totalInfoFromSession 객체를 사용할 수 있음
-//        if (totalInfoFromSession != null) {
-//            // 이제 totalInfoFromSession 객체를 사용할 수 있음
-//            int totalInfoId = totalInfoFromSession.getTotalInfo_id();
         CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
 
-//            TotalTaxResultVO totalResult = totalTaxService.getTotalResultByTotalInfoId(totalInfoId);
         TotalTaxResultVO totalResult = taxFormService.getTotalResultByTotalMemberId(memberId);
         TotalInfoVO totalInfo = totalTaxService.getTotalInfoByMemberId(memberId);
 
@@ -468,13 +462,13 @@ public class TaxController {
         int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
                 +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
         int totalInfo_id = totalResult.getTotalInfo_id();
+        int medical_minimum = (int) (totalInfo.getTotal_income2() * 0.03);
 
         totalResult.setTotalInfo_id(totalInfo_id);
         // 계산결과 DB에 저장하기
         totalTaxService.saveResult(totalResult);
 
         // 결과를 세션 혹은 Model에 저장하여 view에 전달
-//            session.setAttribute("totalInfo", totalInfo); // 세션에 저장하는 경우
         session.setAttribute("totalResult", totalResult);
         model.addAttribute("totalInfo", totalInfo);   // Model에 추가하는 경우 (JSP 등에서 사용)
         model.addAttribute("cardResult", cardResult);   // Model에 추가하는 경우 (JSP 등에서 사용)
@@ -483,6 +477,7 @@ public class TaxController {
         model.addAttribute("transaction", transaction);
         model.addAttribute("totalTransaction", totalTransaction);
         model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
+        model.addAttribute("medical_minimum", medical_minimum);
 
         return "tax/simulationResult";
     }

@@ -173,9 +173,9 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         int calcFamily = 0; // 부양가족 계산
         int calcMedicalTaxCredit = 0; // 세액공제액 계산
 
-        calcMedical = (int) Math.floor(medical_expense * 0.3);
-        calcMedical2 = (int) Math.floor(medical_expense2 * 0.2);
-        calcMedical3 = (int) Math.floor(medical_expense3 * 0.15);
+        calcMedical = (int) Math.floor(totalInfo.getMedical_expense() * 0.15);
+        calcMedical2 = (int) Math.floor(totalInfo.getMedical_expense2() * 0.3);
+        calcMedical3 = (int) Math.floor(totalInfo.getMedical_expense3() * 0.2);
         if (family_medical > 7000000) {
             calcFamily = (int) Math.floor(7000000 * 0.15);
         } else {
@@ -184,10 +184,13 @@ public class TotalTaxServiceImpl implements TotalTaxService {
 
         // 세액공제액 = 공제대상금액 - 최저한도
         minimumLimit = (int) Math.floor(totalIncome * 0.03);
+        System.out.println(minimumLimit);
         int calcMedicalTotal = calcMedical + calcMedical2 + calcMedical3 + calcFamily; // 공제대상금액
         totalInfo.setMedical_total(calcMedicalTotal);
-        calcMedicalTaxCredit = Math.max(calcMedicalTotal - minimumLimit, 0);
-        totalResult.setMedical_taxcredit(calcMedicalTaxCredit);
+//        calcMedicalTaxCredit = Math.max(calcMedicalTotal - minimumLimit, 0);
+
+//        totalResult.setMedical_taxcredit(calcMedicalTaxCredit);
+        totalResult.setMedical_taxcredit(calcMedicalTotal);
 
         /* 교육비 */
         // 교육비 공제대상금액 * 15%
