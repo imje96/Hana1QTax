@@ -25,7 +25,7 @@ public class TotalTaxResultVO {
     private int education_taxcredit;
     private int donation_taxcredit;
     private int rent_taxcredit;
-    private int total_taxcredit; // 세액공제 통합=예상공제액
+    private int total_taxcredit; // 세액공제 통합
     private int tax_base; // 과세표준
     private int calculated_amount; // 산출세액
     private int determined_tax; // 결정세액

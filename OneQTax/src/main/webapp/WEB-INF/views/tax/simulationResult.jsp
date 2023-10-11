@@ -166,7 +166,7 @@
 
                                     <c:choose>
                                         <c:when test="${totalResult.expected_tax >= 0}">
-                                            <h4><span style="color: #ffb900;">💰납부</span>할 세금 :
+                                            <h4><span style="color: #ff7cf1;">💸납부</span>할 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${totalResult.expected_tax}"
                                                                       groupingUsed="true"/>원

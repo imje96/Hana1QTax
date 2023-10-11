@@ -62,7 +62,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         int housing_account1 = totalInfo.getHousing_account1();
         int housing_account2 = totalInfo.getHousing_account2();
 
-        int card_deduction = totalInfo.getCard_deduction(); // 소득공제
+        int card_deduction = (int)(cardResult.getTotal_deduction()); // 소득공제
         int credit_deduction = totalInfo.getCredit_deduction();
         int debit_deduction = totalInfo.getDebit_deduction();
         int cash_deduction = totalInfo.getCash_deduction();
@@ -297,7 +297,7 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         } else if (taxbase <= 500000000) {
             calculated_amount = (int) Math.floor(94060000 + (taxbase - 300000000) * 0.40);
         } else if (taxbase <= 1000000000) {
-            calculated_amount = (int) Math.floor(174600000 + (taxbase - 500000000) * 0.42);
+            calculated_amount = (int) Math.floor(174060000 + (taxbase - 500000000) * 0.42);
         } else {
             calculated_amount = (int) Math.floor(384060000 + (taxbase - 1000000000) * 0.45);
         }
@@ -344,9 +344,11 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         totalResult.setEarned_taxcredit(finalCalc);
 
         /* 세액공제 통합 */
-        int total_taxCredit = children_amount + calcIrpTax + calcGuarantee + calcMedicalTaxCredit + calcEdu
+        int total_taxCredit = children_amount + calcIrpTax + calcGuarantee + calcMedicalTotal + calcEdu
                 + calcDonationTaxcredit + calcRent + finalCalc;
         totalResult.setTotal_taxcredit(total_taxCredit);
+
+        System.out.println("66만원 행방 :" + finalCalc);
 
         /* 결정세액 */
         determined_tax = Math.max(calculated_amount - total_taxCredit, 0); // 결정세액

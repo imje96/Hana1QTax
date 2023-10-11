@@ -303,10 +303,12 @@ public class TaxController {
         totalInfo = taxFormService.updateForm(totalInfo, bigDTO, cardResult);
         System.out.println("컨트롤러 update 호출 후: "+totalInfo);
 
+
+
         response.put("status", "success");
         return response;
     }
-
+    // 세부항목 저장 후 2차 계산
     @PostMapping("/saveDetail")
     public String saveTotalInfo(Model model, HttpSession session) {
         // memberId 가져오기
@@ -324,11 +326,11 @@ public class TaxController {
         CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
 
-        System.out.println("테스트 카드소득공제:" +cardResult.getTotal_deduction());
-
+        System.out.println("테스트 카드소득공제:" +cardResult);
         // 2차 계산
         TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(totalInfo, cardResult);
 
+        System.out.println("2차 계산:"+ totalResult);
         int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
         int totalTransaction = (int) (transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total()
                 + transaction.getCulture_total() + transaction.getMarket_total() + transaction.getTransport_total());
@@ -395,6 +397,7 @@ public class TaxController {
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         transaction = taxService.getTransactionByMemberId(memberId);
         // 카드소득공제 결과 가져오기
+
         cardResult = taxService.getDeductionResult(memberId);
         int calculationId = cardResult.getCalculation_id();
 
@@ -429,6 +432,7 @@ public class TaxController {
         model.addAttribute("totalBenefit", totalBenefit);
         model.addAttribute("transaction", transaction);
         model.addAttribute("totalTransaction", totalTransaction);
+        model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
         return "tax/simulationResult";
     }
 
