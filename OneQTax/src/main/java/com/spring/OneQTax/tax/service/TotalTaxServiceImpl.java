@@ -155,9 +155,9 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         int remainingAmount = 7000000 - calcPension;
         int calcIrp = (irp_amount > remainingAmount) ? remainingAmount : irp_amount;
 
-        // 3) 합산금액 700만원
+        // 3) 합산금액 700만원(총급여액 5천5백만원 초과자는 12%)
         int totalEligible = calcPension + calcIrp;
-        calcIrpTax = (int) Math.floor(totalEligible * 0.15);
+        calcIrpTax = (totalIncome > 55000000) ? (int) Math.floor(totalEligible * 0.12) : (int) Math.floor(totalEligible * 0.15);
 
         totalResult.setIrp_taxcredit(calcIrpTax);
 

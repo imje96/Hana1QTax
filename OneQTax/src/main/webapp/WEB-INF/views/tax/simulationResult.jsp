@@ -29,7 +29,6 @@
 </head>
 
 
-
 <style>
     #progress-bar-container li {
         list-style: none;
@@ -46,6 +45,7 @@
         height: 60px;
         position: relative;
     }
+
     .copy-text {
         padding: 10px 30px;
         background: #f8f2ce;
@@ -54,12 +54,14 @@
         line-height: 1.7em;
         text-align: center;
     }
-    .flex-container h5{
+
+    .flex-container h5 {
         color: #4f4949;
         background: #cfe6e6;
     }
+
     /*  인적공제부분 버튼  */
-    .choice-button input[type=radio]+label {
+    .choice-button input[type=radio] + label {
         display: inline-block;
         color: #05413d;
         padding: 5px 15px;
@@ -76,8 +78,9 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-right: 10px;
     }
+
     /* 연금보험료 모달 */
-    .modal-amount-money-variable{
+    .modal-amount-money-variable {
         text-align: right;
     }
 </style>
@@ -161,25 +164,27 @@
                                 <div class="info-item">
 
 
-
                                     <c:choose>
                                         <c:when test="${totalResult.expected_tax >= 0}">
                                             <h4><span style="color: #ffb900;">💰납부</span>할 세금 :
                                                 <td class="text-right">
-                                                    <fmt:formatNumber value="${totalResult.expected_tax}" groupingUsed="true"/>원
+                                                    <fmt:formatNumber value="${totalResult.expected_tax}"
+                                                                      groupingUsed="true"/>원
                                                 </td>
                                             </h4>
                                         </c:when>
                                         <c:otherwise>
                                             <h4><span style="color: #ffb900;">💰환급</span>받을 세금 :
                                                 <td class="text-right">
-                                                    <fmt:formatNumber value="${-totalResult.expected_tax}" groupingUsed="true"/>원
+                                                    <fmt:formatNumber value="${-totalResult.expected_tax}"
+                                                                      groupingUsed="true"/>원
                                                 </td>
                                             </h4>
                                         </c:otherwise>
                                     </c:choose>
-                                    <h4><span style="color:#ffb900;">혜택</span>받는 공제액 :<fmt:formatNumber value="${totalBenefit}"
-                                                                                                         groupingUsed="true"/>원
+                                    <h4><span style="color:#ffb900;">혜택</span>받는 공제액 :<fmt:formatNumber
+                                            value="${totalBenefit}"
+                                            groupingUsed="true"/>원
                                     </h4>
                                 </div>
 
@@ -187,10 +192,12 @@
 
 
                             <br/>
-                                <div class="copy-text">
-                                    납부할 세금이 <span style="font-weight: bold">+(양수)</span>이면 세금을 <span style="font-weight: bold; color: #1c736f">납부</span>해야하며,<br/>
-                                    <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span style="font-weight: bold; color: #1c736f">환급</span>받습니다.
-                                </div>
+                            <div class="copy-text">
+                                납부할 세금이 <span style="font-weight: bold">+(양수)</span>이면 세금을 <span
+                                    style="font-weight: bold; color: #1c736f">납부</span>해야하며,<br/>
+                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span
+                                    style="font-weight: bold; color: #1c736f">환급</span>받습니다.
+                            </div>
                             <br/><br/>
                             <table class="table-tax">
                                 <thead>
@@ -202,7 +209,8 @@
                                 </thead>
                                 <tbody class="table-hover">
                                 <tr>
-                                    <td class="text-left">1) <span style="color: black; font-weight: 600" >근로소득금액</span></td>
+                                    <td class="text-left">1) <span style="color: black; font-weight: 600">근로소득금액</span>
+                                    </td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.income_final}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -214,7 +222,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">3) <span style="color: black; font-weight: 600" > (=) 과세표준</span></td>
+                                    <td class="text-left">3) <span
+                                            style="color: black; font-weight: 600"> (=) 과세표준</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.tax_base}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -223,7 +232,8 @@
                                     <td class="text-left">&nbsp&nbsp&nbsp&nbspx 기본세율</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">4) <span style="color: black; font-weight: 600" > (=) 산출세액</span></td>
+                                    <td class="text-left">4) <span
+                                            style="color: black; font-weight: 600"> (=) 산출세액</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.calculated_amount}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -235,7 +245,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">5) <span style="color: black; font-weight: 600" > (=) 결정세액</span></td>
+                                    <td class="text-left">5) <span
+                                            style="color: black; font-weight: 600"> (=) 결정세액</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.determined_tax}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -247,7 +258,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp6) <span style="color: black; font-weight: 600" > (=) 납부예상세금</span> </td>
+                                    <td class="text-left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp6) <span
+                                            style="color: black; font-weight: 600"> (=) 납부예상세금</span></td>
                                     <td class="text-right"><fmt:formatNumber value="${totalResult.expected_tax}"
                                                                              groupingUsed="true"/>원
                                     </td>
@@ -258,19 +270,21 @@
                             </table>
 
                             <br><br>
-                                <div class="flex-container">
-                            <button type="button" class="next-button">추가항목 입력</button>
-                                </div>
+                            <div class="flex-container">
+                                <button type="button" class="next-button">추가항목 입력</button>
+                            </div>
                         </fieldset>
 
 
                         <!-- Step 2 Content -->
                         <!-- 모달창 -->
                         <fieldset class="section-content step2" data-step="2">
-                         <h3>&nbsp;&nbsp;&nbsp;&nbsp;✔ 상세보기</h3><br/>
+                            <h3>&nbsp;&nbsp;&nbsp;&nbsp;✔ 상세보기</h3><br/>
                             <div class="copy-text">
-                                추가로 <span style="font-weight: bold">환급</span>받기 <span style="font-weight: bold; color: #1c736f">납부</span>해야하며,<br/>
-                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span style="font-weight: bold; color: #1c736f">환급</span>받습니다.
+                                추가로 <span style="font-weight: bold">환급</span>받기 <span
+                                    style="font-weight: bold; color: #1c736f">납부</span>해야하며,<br/>
+                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span
+                                    style="font-weight: bold; color: #1c736f">환급</span>받습니다.
                             </div>
 
                             <div class="content-text">
@@ -284,7 +298,8 @@
                                 <input type="button" id="saveButton0" class="update-button" value="저장">
                             </div>
                             <br/>
-                            <div class="flex-container"><h5> 🔔 박스를 선택하여 세부 공제 항목을 업데이트 해주세요</h5></div><br/>
+                            <div class="flex-container"><h5> 🔔 박스를 선택하여 세부 공제 항목을 업데이트 해주세요</h5></div>
+                            <br/>
                             <div class="flex-container">
                                 <div class="flex-column">
                                     <div class="subheading"><h4>소득공제</h4></div>
@@ -365,8 +380,9 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1 id="outsideDeductionAmount"><fmt:formatNumber value="${totalResult.housing_deduction}"
-                                                                          groupingUsed="true"/>원
+                                                    <p1 id="outsideDeductionAmount"><fmt:formatNumber
+                                                            value="${totalResult.housing_deduction}"
+                                                            groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
                                             </div>
@@ -430,8 +446,9 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1><fmt:formatNumber value="${totalResult.irp_taxcredit}"
-                                                                          groupingUsed="true"/>원
+                                                    <p1 id=outsideIrpPensionDeduction><fmt:formatNumber
+                                                            value="${totalResult.irp_taxcredit}"
+                                                            groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
                                             </div>
@@ -684,7 +701,9 @@
                         해당하는 경우 나이제한을 적용받지 아니함</p>
                     <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
                 </div>
-                <input type="button" id="saveButton1" class="update-button" value="저장">
+                <div class="flex-container">
+                    <input type="button" id="saveButton1" class="update-button" value="저장">
+                </div>
                 <br/>
                 <br/>
                 <br/>
@@ -694,10 +713,8 @@
                 <br/>
                 <br/>
                 <br/>
-
             </div>
         </div>
-        <%--        </form>--%>
     </div>
 </div>
 <%-- 2번 모달창--%>
@@ -824,8 +841,10 @@
             <p> &#183; 공무원 연금, 군인연금, 사립학교 교직원 연금, 별정 우체국 연금 등 납입한 연금보험료 공제</p>
         </div>
         <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-        <%--            <input type="submit" class="update-button" value="저장">--%>
-        <input type="button" id="saveButton2" class="update-button" value="저장">
+
+        <div class="flex-container">
+            <input type="button" id="saveButton2" class="update-button" value="저장">
+        </div>
         </form>
     </div>
 </div>
@@ -848,7 +867,9 @@
                 <div class="modal-amount-money">
                     <span id="totalHousing"><fmt:formatNumber value="${totalInfo.housing_total}"
                                                               groupingUsed="true"/>원</span><br/>
-                    <p2 id="deductionAmount"><fmt:formatNumber value="${totalResult.housing_deduction}" groupingUsed="true"/>원</p2>
+                    <p2 id="deductionAmount"><fmt:formatNumber value="${totalResult.housing_deduction}"
+                                                               groupingUsed="true"/>원
+                    </p2>
                 </div>
             </div>
             <hr>
@@ -890,8 +911,9 @@
                 <p> &#183; 과세기간 종료일 현재 무주택 세대의 세대주(세대주가 주택관련 공제를 받지 않는 경우 세대원도 가능)<br/>로서 근로소득이 있는 자</p>
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-            <%--            <input type="button" class="update-button" value="저장">--%>
-            <input type="button" id="saveButton3" class="update-button" value="저장">
+            <div class="flex-container">
+                <input type="button" id="saveButton3" class="update-button" value="저장">
+            </div>
         </form>
     </div>
 </div>
@@ -951,8 +973,85 @@
                 <p> &#183; 신용카드를 사용하여 그 대가를 지급하는 금액</p>
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
-            <input type="button" class="update-button" value="저장">
-            <%--            <input type="button" id="saveButton5" class="update-button" value="저장">--%>
+            <div class="flex-container">
+                <input type="button" class="update-button" value="저장">
+            </div>
+        </form>
+    </div>
+</div>
+<%-- 7번 모달창 --%>
+<div class="modal_simulation" id="detailsModal7">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+        <form class="updateForm" action="/update" method="post">
+            <h3>연금계좌</h3>
+            <p>기준일시 : ${totalInfo.result_time}</p>
+            <p>연금저축계좌 및 퇴직연금계좌 납입액을 확인해주세요.</p>
+            <br/>
+
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h5>총 납입액</h5>
+                    <h5>세액 공제 금액</h5>
+                </div>
+                <div class="modal-amount-money">
+                    <span id="irpPension_total"><fmt:formatNumber value="${totalInfo.irpPension_total}"
+                                                                  groupingUsed="true"/>원</span><br/>
+                    <p2 id="irpPensionDeduction"><fmt:formatNumber value="${totalResult.irp_taxcredit}"
+                                                                   groupingUsed="true"/>원
+                    </p2>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-amount-box">
+                <div class="modal-amount-text">
+                    <h3></h3>
+                    <label for="pension_amount">연금저축계좌(퇴직연금 미포함) :</label><br/>
+
+                    <label for="irp_amount">연금계좌(IRP)(퇴직연금 포함) :</label><br/>
+
+                    <label for="irp_amount">ISA계좌 :</label><br/>
+
+                </div>
+                <div class="modal-amount-money-variable">
+
+                    <input type="text" name="pension_amount_view" id="pension_amount_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="pension_amount"
+                           value="<fmt:formatNumber value="${totalInfo.pension_amount}" groupingUsed="true"/>">원
+                    <input type="hidden" id="pension_amount" name="pension_amount"
+                           value="${totalInfo.pension_amount}"><br/>
+
+                    <input type="text" name="irp_amount_view" id="irp_amount_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="irp_amount"
+                           value="<fmt:formatNumber value="${totalInfo.irp_amount}" groupingUsed="true"/>">원<br/>
+                    <input type="hidden" id="irp_amount" name="irp_amount"
+                           value="${totalInfo.irp_amount}">
+
+                    <input type="text" name="irp_amount_view" id="isa_amount_view"
+                           oninput="addCommaToNumber(this)"
+                           data-hidden-id="isa_amount"
+                           value="<fmt:formatNumber value="" groupingUsed="true"/>">원<br/>
+
+                </div>
+            </div>
+            <div class="modal-amount-explanation">
+                <p2>연금저축 납입액?</p2>
+                <br/>
+                <p> &#183; 근로자 본인 명의로 2001.1.1 이후에 연금저축에 가입하여 해당 과세기간에 납입한 금액</p>
+                <p2>퇴직연금 납입액?</p2>
+                <br/>
+                <p> &#183; 확정기여형(DC형) 퇴직연금제도 또는 개인형퇴직연금(IRP) 제도에 근로자가 부담하는 부담금(확정기여형 퇴직연금 등 회사부담액 제외)</p>
+                <p2>ISA 만기 추가 납입액</p2>
+                <br/>
+                <p> &#183; 개인종합자산관리계좌(ISA) 만기 시 혜당 계좌 잔액의 전부 또는 일부를 연금계좌로 납입한 금액</p>
+            </div>
+            <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p><br/>
+            <div class="flex-container">
+                <input type="button" id="saveButton7" class="update-button" value="저장">
+            </div>
         </form>
     </div>
 </div>
@@ -1084,6 +1183,9 @@
         if (document.getElementById('saveButton3')) {
             document.getElementById('saveButton3').addEventListener('click', updatePart3);
         }
+        if (document.getElementById('saveButton7')) {
+            document.getElementById('saveButton7').addEventListener('click', updatePart7);
+        }
 
         function updatePart0() {
             let data = {
@@ -1153,6 +1255,21 @@
             console.log("데이터를 보냅니다:");
         }
 
+        function updatePart7() {
+            let data = {
+                // updateType: 'Part7',
+                pensionVO: {
+                    pension_amount: document.getElementById('pension_amount').value,
+                    irp_amount: document.getElementById('irp_amount').value,
+                }
+            };
+            // 데이터 출력
+            console.log("Data to be sent:", data);
+
+            sendUpdateRequest(data);
+            console.log("데이터를 보냅니다:");
+        }
+
         function sendUpdateRequest(data) {
             $.ajax({
 
@@ -1175,7 +1292,7 @@
 </script>
 <%-- 주택공제 금액 실시간 반영 --%>
 <script>
-    function updateTotalAmounts() {
+    function updateHousingAmounts() {
         // 숫자 문자열에서 쉼표를 제거하고 숫자로 변환하는 함수
         function parseNumber(inputValue) {
             return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
@@ -1200,19 +1317,44 @@
         document.getElementById('outsideDeductionAmount').innerText = deductionAmount.toLocaleString('ko-KR') + "원";
     }
 
-    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updateTotalAmounts 함수를 호출합니다.
-    document.getElementById('housing_loan_view').addEventListener('input', updateTotalAmounts);
-    document.getElementById('housing_account1_view').addEventListener('input', updateTotalAmounts);
-    document.getElementById('housing_account2_view').addEventListener('input', updateTotalAmounts);
+    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updateHousingAmounts 함수를 호출합니다.
+    document.getElementById('housing_loan_view').addEventListener('input', updateHousingAmounts);
+    document.getElementById('housing_account1_view').addEventListener('input', updateHousingAmounts);
+    document.getElementById('housing_account2_view').addEventListener('input', updateHousingAmounts);
 
 </script>
+<script>
+    function updatePensionAmounts() {
+        // 숫자 문자열에서 쉼표를 제거하고 숫자로 변환하는 함수
+        function parseNumber(inputValue) {
+            return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
+        }
 
+        // 각 입력란의 값을 가져옵니다.
+        /* 연금계좌 */
+        const pension = parseNumber(document.getElementById('pension_amount_view').value);
+        const irp = parseNumber(document.getElementById('irp_amount_view').value);
+
+        // 총납입액을 계산
+        const irpPension_total = pension + irp;
+        // 총납입액을 출력 형식에 맞게 표시
+        document.getElementById('irpPension_total').innerText = irpPension_total.toLocaleString('ko-KR') + "원";
+
+        // 세액 공제 금액을 계산
+        const irpPensionDeduction = irpPension_total * 0.12;
+        document.getElementById('irpPensionDeduction').innerText = irpPensionDeduction.toLocaleString('ko-KR') + "원";
+
+        // 바깥쪽 세액공제금액도 업데이트
+        document.getElementById('outsideIrpPensionDeduction').innerText = irpPensionDeduction.toLocaleString('ko-KR') + "원";
+    }
+
+    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updatePensionAmounts 함수를 호출합니다.
+    document.getElementById('pension_amount_view').addEventListener('input', updatePensionAmounts);
+    document.getElementById('irp_amount_view').addEventListener('input', updatePensionAmounts);
+
+</script>
 
 </body>
 </html>
 
-</script>
 
-</body>
-
-</html>
