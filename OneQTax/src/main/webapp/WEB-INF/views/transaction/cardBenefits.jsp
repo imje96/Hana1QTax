@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%-- 문자열 바꾸기 --%>
 <!DOCTYPE html>
-<html lang="en">
+<head lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -30,8 +30,12 @@
     <!-- Add Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
-
-</head>
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 
 
 <style>
@@ -543,7 +547,7 @@
     /*    */
 
 </style>
-
+</head>
 
 <body>
 

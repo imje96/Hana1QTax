@@ -7,6 +7,12 @@
     <title>TaxCalculator</title>
     <!--css 파일 연결-->
     <link rel="stylesheet" href="../../resources/css/TaxCalculatorStyle.css">
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 </head>
 <body>
 <main>

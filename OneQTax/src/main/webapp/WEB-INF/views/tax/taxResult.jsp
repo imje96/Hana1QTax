@@ -37,11 +37,12 @@
     <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
             rel="stylesheet">
-    <%--    <style type="text/css">--%>
-    <%--        * {--%>
-    <%--            font-family: 'Noto Sans KR', sans-serif !important;--%>
-    <%--        }--%>
-    <%--    </style>--%>
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 
 
     <style>

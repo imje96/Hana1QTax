@@ -30,8 +30,13 @@
     <!-- Add Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 
-</head>
 
 
 <style>
@@ -577,7 +582,7 @@
         margin-bottom: 20px;
     }
 </style>
-
+</head>
 
 <body>
 

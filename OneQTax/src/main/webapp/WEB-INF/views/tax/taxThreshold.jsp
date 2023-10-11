@@ -24,40 +24,14 @@
 
     <link href="../../../resources/css/tax.css" rel="stylesheet">
 
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 
     <style>
-        /*.progress-container {*/
-        /*    position: relative;*/
-        /*    width: 300px;*/
-        /*    height: 40px; !* 높이를 적절히 조정합니다. *!*/
-        /*    border-radius: 15px;*/
-        /*    background-color: #f2f2f2;*/
-        /*    overflow: visible; !* 이 값을 보이게 설정합니다. *!*/
-        /*}*/
-
-        /*.progress-bar {*/
-        /*    height: 100%;*/
-        /*    line-height: 40px; !* line-height를 container의 높이와 동일하게 설정합니다. *!*/
-        /*    border-radius: 15px;*/
-        /*    background: linear-gradient(to right, #76c7c0, #bfe6ba);*/
-        /*}*/
-
-        /*.progress-remaining {*/
-        /*    height: 100%;*/
-        /*    border-radius: 15px;*/
-        /*    background-color: #f2f2f2; !* 적절한 회색 색상을 선택합니다. *!*/
-        /*}*/
-
-        /*.progress-text {*/
-        /*    position: absolute;*/
-        /*    line-height: 30px;*/
-        /*    color: #106e69;*/
-        /*    top: -60%;*/
-        /*    left: 50%;*/
-        /*    transform: translate(-50%, -50%);*/
-        /*    font-size: 30px;*/
-        /*    background: #5CAFFC;*/
-        /*}*/
 
         .chart-cover {
             width: 450px;

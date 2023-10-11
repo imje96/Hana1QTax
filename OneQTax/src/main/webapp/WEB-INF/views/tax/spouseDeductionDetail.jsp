@@ -11,7 +11,14 @@
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
             integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
             crossorigin="anonymous"></script>
-</head>
+
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
+
 <style>
 
     .main {
@@ -250,6 +257,7 @@
         margin-top: 30px;
     }
 </style>
+</head>
 <body>
 <div class="main">
     <%@ include file="../common/header.jsp" %>

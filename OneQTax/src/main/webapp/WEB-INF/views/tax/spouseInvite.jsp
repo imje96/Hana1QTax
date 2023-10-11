@@ -17,6 +17,13 @@
 
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
     <style>
         .copy-text{
             padding: 10px 30px;

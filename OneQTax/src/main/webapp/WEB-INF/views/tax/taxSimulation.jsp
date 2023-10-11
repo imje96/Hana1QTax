@@ -26,6 +26,13 @@
     <script src="../../../resources/js/main.js"></script>
 
     <link href="../../../resources/css/tax.css" rel="stylesheet">
+
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 </head>
 
 

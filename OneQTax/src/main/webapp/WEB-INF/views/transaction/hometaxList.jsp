@@ -25,14 +25,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="../../../resources/css/tax.css" rel="stylesheet">
 
-
-    <%--    <!-- Add Bootstrap CSS -->--%>
-<%--        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">--%>
-
-    <!-- font awseom -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-</head>
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 
 <style>
     *, ::after, ::before {
@@ -178,6 +178,7 @@
     }
 </style>
 
+</head>
 
 <body>
 

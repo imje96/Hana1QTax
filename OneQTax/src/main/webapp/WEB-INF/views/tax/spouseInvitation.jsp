@@ -20,7 +20,12 @@
     <link
             href="${ pageContext.request.contextPath }/resources/css/style.css"
             rel="stylesheet">
-
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
     <style>
         .section {
             width: 1700px;
