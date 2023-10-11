@@ -14,7 +14,18 @@
 
     <!-- font awseom -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
+    <script>
+        window.embeddedChatbotConfig = {
+            chatbotId: "aAn7wOmZmfF1MQ-xG1wpb",
+            domain: "www.chatbase.co"
+        }
+    </script>
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 </head>
 <body>
 <div class="wrap">
@@ -142,6 +153,7 @@
                     </div>
 
                     <div class="userinfo-box">
+
 
                         <div class="login-wrap">
                             <div class="login-info">

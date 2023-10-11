@@ -26,6 +26,13 @@
     <script src="../../../resources/js/main.js"></script>
 
     <link href="../../../resources/css/tax.css" rel="stylesheet">
+
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 </head>
 
 
@@ -79,6 +86,31 @@
         margin-right: 10px;
     }
 
+    .detailBtn {
+        display: inline-block;
+        color: #05413d;
+        padding: 7px;
+        width: 150px;
+        border: none;
+        border-radius: 7px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #fdd0e4;
+        /*margin-left: 425px;*/
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .detailBtn:hover {
+        background-color: #fa63a5;
+        /* hover 시 배경색 변경 */
+        transform: scale(1.05);
+        /* hover 시 약간 확대되는 효과 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        /* hover 시 그림자 약간 강화 */
+    }
     /* 연금보험료 모달 */
     .modal-amount-money-variable {
         text-align: right;
@@ -166,7 +198,7 @@
 
                                     <c:choose>
                                         <c:when test="${totalResult.expected_tax >= 0}">
-                                            <h4><span style="color: #ff7cf1;">💸납부</span>할 세금 :
+                                            <h4><span style="color: #ff7cf1; font-size: 32px">💸납부</span>할 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${totalResult.expected_tax}"
                                                                       groupingUsed="true"/>원
@@ -174,7 +206,7 @@
                                             </h4>
                                         </c:when>
                                         <c:otherwise>
-                                            <h4><span style="color: #ffb900;">💰환급</span>받을 세금 :
+                                            <h4><span style="color: #ffb900; font-size:32px;">💰환급</span>받을 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${-totalResult.expected_tax}"
                                                                       groupingUsed="true"/>원
@@ -199,6 +231,10 @@
                                     style="font-weight: bold; color: #1c736f">환급</span>받습니다.
                             </div>
                             <br/><br/>
+                                <div class="flex-container">
+                                <h3>계산 결과 확인하기</h3>
+                                </div>
+                            <br/>
                             <table class="table-tax">
                                 <thead>
                                 <tr>
@@ -281,10 +317,15 @@
                         <fieldset class="section-content step2" data-step="2">
                             <h3>&nbsp;&nbsp;&nbsp;&nbsp;✔ 상세보기</h3><br/>
                             <div class="copy-text">
-                                추가로 <span style="font-weight: bold">환급</span>받기 <span
-                                    style="font-weight: bold; color: #1c736f">납부</span>해야하며,<br/>
-                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span
-                                    style="font-weight: bold; color: #1c736f">환급</span>받습니다.
+                                <span style="font-size: 27px">  <h5>아직 늦지 않았어요, 추가로 환급 받기 🍯TIP</h5></span>
+                                IRP로 최대 약 118만원 환급 받기 👉
+
+                                <a href="/redirectToHanaIrp">
+                              <span style="font-weight: bold; border-radius: 10px;background: #fbcfe3; padding: 5px"> 자세히 알아보기</span></a>
+<br/>
+                                  <span style="font-size: 22px; font-weight: bold">[연금계좌]</span> 박스를 눌러 세액공제 금액을 확인해보세요
+<%--                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span--%>
+<%--                                    style="font-weight: bold; color: #1c736f">환급</span>받습니다.--%>
                             </div>
 
                             <div class="content-text">
@@ -1904,7 +1945,12 @@
     document.getElementById('uniform_expense_view').addEventListener('input', updateEduAmounts);
 
 </script>
+<script>
+    $(document).on('click', '#detailBtn', function() {
+        window.location.href = "/redirectToHanaIrp";
+    });
 
+</script>
 
 </body>
 </html>

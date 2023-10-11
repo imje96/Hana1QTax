@@ -15,12 +15,6 @@
     <link href="../../../resources/css/tax.css" rel="stylesheet">
     <link href="../../../resources/css/main.css" rel="stylesheet">
 
-    <%--    <script defer--%>
-    <%--            src="${ pageContext.request.contextPath }/resources/assets_portal/plugins/fontawesome/js/all.min.js"></script>--%>
-
-    <%--    <!-- App CSS -->--%>
-    <%--    <link id="theme-style" rel="stylesheet"--%>
-    <%--          href="${ pageContext.request.contextPath }/resources/assets_portal/css/portal.css">--%>
 
 
 
@@ -194,6 +188,16 @@
             <%--            </div>--%>
         </div>
     </section>
+</div>
+<%-- 챗봇 --%>
+<div id="iframeWrapper" style="width: 0; position: fixed; top: 10%; right: 0; height: 80%; overflow-x: hidden; transition: 0.5s;">
+    <iframe
+            id="chatIframe"
+            src="https://www.chatbase.co/chatbot-iframe/aAn7wOmZmfF1MQ-xG1wpb"
+            width="100%"
+            height="100%"
+            frameborder="0">
+    </iframe>
 </div>
 
 <!-- footer-wrapper -->

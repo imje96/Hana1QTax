@@ -21,96 +21,107 @@
             href="${ pageContext.request.contextPath }/resources/css/style.css"
             rel="stylesheet">
 
-    <style>
-        .copy-text{
-            padding: 10px 30px;
-            background: #f8f2ce;
-            border-radius: 10px;
-            font-size: 24px;
+    <script>
+        window.embeddedChatbotConfig = {
+            chatbotId: "aAn7wOmZmfF1MQ-xG1wpb",
+            domain: "www.chatbase.co"
         }
-        .container2 h3 {
-            font-size: 25px;
-        }
+    </script>
+    <script
+            src="https://www.chatbase.co/embed.min.js"
+            chatbotId="aAn7wOmZmfF1MQ-xG1wpb"
+            domain="www.chatbase.co"
+            defer>
+    </script>
 
-        .inviteForm {
-            font-size: 28px;
-            font-weight: bold;
-            /* display: flex; */
-            border: 4px solid #a6c9c9;
-            box-shadow: 0 6px 17px rgba(0, 0, 0, 0.4);
-            border-radius: 15px;
-            padding: 40px 40px 0 40px;
-            margin: 0 0 20px 0;
-            transition: background-color 0.4s, transform 0.4s;
-        }
+<style>
+    .copy-text{
+        padding: 10px 30px;
+        background: #f8f2ce;
+        border-radius: 10px;
+        font-size: 24px;
+    }
+    .container2 h3 {
+        font-size: 25px;
+    }
 
-        .inviteForm:hover {
-            transform: scale(1.05);
-            /* hover 시 약간 확대되는 효과 */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-            /* hover 시 그림자 약간 강화 */
-        }
-        .form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .inviteForm {
+        font-size: 28px;
+        font-weight: bold;
+        /* display: flex; */
+        border: 4px solid #a6c9c9;
+        box-shadow: 0 6px 17px rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+        padding: 40px 40px 0 40px;
+        margin: 0 0 20px 0;
+        transition: background-color 0.4s, transform 0.4s;
+    }
 
-        .pointBtn {
-            display: inline-block;
-            color: #05413d;
-            padding: 15px 20px;
-            margin: 20px 120px;
-            width: 350px;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 21px;
-            cursor: pointer;
-            background-color: #fdd0e4;
-            font-weight: 600;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .modalBtn {
-            display: inline-block;
-            color: #05413d;
-            padding: 15px 20px;
-            margin: 20px 120px;
-            width: 350px;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 21px;
-            cursor: pointer;
-            background-color: #c7dedd;
-            font-weight: 600;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        #spouseEmail {
-            height: 40px;
-            width: 250px;
-            padding: 0 20px;
-            font-size: 20px;
-        }
+    .inviteForm:hover {
+        transform: scale(1.05);
+        /* hover 시 약간 확대되는 효과 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        /* hover 시 그림자 약간 강화 */
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .text-box2 {
-            background: #eaf3f3;
-            border-radius: 10px;
-            margin: 20px 0;
-            padding: 20px 100px;
-            text-align: left;
-            width: 800px;
-            font-size: 23px;
-        }
+    .pointBtn {
+        display: inline-block;
+        color: #05413d;
+        padding: 15px 20px;
+        margin: 20px 120px;
+        width: 350px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 21px;
+        cursor: pointer;
+        background-color: #fdd0e4;
+        font-weight: 600;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .modalBtn {
+        display: inline-block;
+        color: #05413d;
+        padding: 15px 20px;
+        margin: 20px 120px;
+        width: 350px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 21px;
+        cursor: pointer;
+        background-color: #c7dedd;
+        font-weight: 600;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    #spouseEmail {
+        height: 40px;
+        width: 250px;
+        padding: 0 20px;
+        font-size: 20px;
+    }
 
-    </style>
+    .text-box2 {
+        background: #eaf3f3;
+        border-radius: 10px;
+        margin: 20px 0;
+        padding: 20px 100px;
+        text-align: left;
+        width: 800px;
+        font-size: 23px;
+    }
+
+</style>
 </head>
-
-
 <body>
 
 
@@ -184,6 +195,20 @@
                 </form>
 
 
+                <!-- 아이콘 이미지 -->
+<%--                <img src="../../../resources/img/chatbot.png" id="iconImage" style="cursor:pointer;">--%>
+
+                <!-- iframe -->
+                <div id="iframeWrapper" style="width: 0; position: fixed; top: 10%; right: 0; height: 80%; overflow-x: hidden; transition: 0.5s;">
+                    <iframe
+                            id="chatIframe"
+                            src="https://www.chatbase.co/chatbot-iframe/aAn7wOmZmfF1MQ-xG1wpb"
+                            width="100%"
+                            height="80%"
+                            frameborder="0">
+                    </iframe>
+                </div>
+
 
                 <br/>
                 <br/>
@@ -199,6 +224,17 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.getElementById('iconImage').addEventListener('click', function() {
+        var iframeWrapper = document.getElementById('iframeWrapper');
+        if (iframeWrapper.style.width === "0px" || iframeWrapper.style.width === "") {
+            iframeWrapper.style.width = "400px";  /* 원하는 iframe 너비로 설정 */
+        } else {
+            iframeWrapper.style.width = "0";
+        }
+    });
+</script>
+
 
 </body>
 </html>

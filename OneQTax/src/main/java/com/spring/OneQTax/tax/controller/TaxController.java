@@ -884,4 +884,10 @@ public class AcceptController2 {
         return "transaction/report";
     }
 
+    // 하나은행 IRP 페이지로 이동
+    @GetMapping("/redirectToHanaIrp")
+    public String redirectToHanaIrp() {
+        return "redirect:https://pension.kebhana.com/rpc/hhom/kr/rpc08220601.do";
+    }
+
 }

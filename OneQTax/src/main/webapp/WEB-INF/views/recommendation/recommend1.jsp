@@ -467,7 +467,7 @@
     }
 
     .modal-subtitle {
-        width: 700px;
+        width: 600px;
         text-align: center;
     }
 
@@ -832,7 +832,39 @@
             신용카드 사용 시보다 <span style="font-weight: bold;">324,000</span> 혜택을 더 받을 수 있어요.<br/>
             신용카드 연간 혜택이 <span style="font-weight: bold;">약 32만원</span>보다 높지 않다면
             <span style="font-weight: bold; color: #ee364f">체크카드</span> 이용이<br/> 유리해요.
-        </div>
+        </div><br/>
+        <table class="table-fill">
+
+            <thead>
+            <tr>
+                <th class="text-left"><span style="margin-left: 40px; color: black; font-size: bold">구분</span></th>
+                <th class="text-left">지출액</th>
+                <th class="text-left">공제금액</th>
+
+            </tr>
+            </thead>
+            <tbody class="table-hover">
+            <tr>
+                <td class="text-left">공제문턱 (연봉의 25%)</td>
+                <td class="text-left"> 1500 만원</td>
+                <td class="text-left">300 만원</td>
+            </tr>
+            <tr>
+                <td class="text-left">소득공제를 최대로 받기 위해<br/> <span style="font-weight: bold; color: #ee364f">신용카드</span>를 주로 사용하는 경우</td>
+                <td class="text-left"><span style="font-weight: bold; color: #ee364f"> 3500 만원</span></td>
+                <td class="text-left">300 만원</td>
+            </tr>
+            <tr>
+                <td class="text-left">신용카드와 <span style="font-weight: bold; color: #ee364f">직불카드/현금영수증</span>을<br/> 함께 사용하는 경우</td>
+                <td class="text-left"><span style="font-weight: bold; color: #ee364f">2500 만원</span></td>
+                <td class="text-left">300 만원</td>
+            </tr>
+
+            </tbody>
+        </table>
+<%--        <div class="info-box3">--%>
+<%--            <h5>소득공제를 최대로 받기 위해 신용카드를 </h5>--%>
+<%--        </div>--%>
         <br/>
         <div class="modal-subtitle"><h3>☑ 체크카드 이용 시</h3></div>
         <img class="inputImg4" src="../../../resources/img/debitDeduction.png">
