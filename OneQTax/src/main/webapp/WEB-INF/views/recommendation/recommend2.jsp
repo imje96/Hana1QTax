@@ -881,7 +881,7 @@
         <span class="close">&times;</span>
         <br/>
         <h2>지난 3개월간 사용 업종 확인하기</h2>
-        (월 평균 사용금액은 200만원 입니다.)
+        (월 평균 사용금액은 약 214만원 입니다.)
         <div class="info-box1">
             <span style="font-weight: bold; font-size: 22px">${name}</span>님이 3개월 간 지출을 많이 한 업종은 <span style="font-weight: bold; font-size: 22px">#외식 #쇼핑 #여행</span>입니다.
         </div>

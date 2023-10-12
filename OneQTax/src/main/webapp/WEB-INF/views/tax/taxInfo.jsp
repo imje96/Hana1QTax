@@ -65,35 +65,13 @@
             flex-direction: column;
             margin-bottom: 100px;
         }
-        /*  로딩 애니메이션   */
-        .modal-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.2); /* 투명한 검은색 배경 */
-            display: flex; /* 로더를 중앙에 위치시키기 위해 flex 사용 */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; /* 다른 요소 위에 위치 */
-        }
 
-        .loader {
-            display: inline-block;
-            left: 40px;
-            width: 80px;
-            height: 80px;
-            border: 5px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top: 3px solid #192662;
-            animation: spin 1s linear infinite;
+        /* 로딩*/
+        .modal-background img {
+            width: 200px; /* 원하는 크기로 조정 */
+            height: 200px;
+            transform: translateX(40%);
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
 
     </style>
 </head>
@@ -154,32 +132,14 @@
             <div class="container2">
                 <div class="flex-box">
 
-<%--                    <img src="../../../resources/img/character4.png" height="200px">--%>
                     <div class="conversation-box">
                         <img src="../../../resources/img/conversation.png" height="300px">
-<%--                        <div class="info-item5">--%>
-<%--                            <div class="info-item">--%>
-<%--                                체크카드나 현금영수증 혜택이 좋다던데... <br/>--%>
-<%--                                계속 신용카드 써도 될까?--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <br/>--%>
-<%--                        <div class="info-item6">--%>
-<%--                            <div class="info-item">--%>
-<%--                                아직 하나원큐택스 안 써봤어?<br/>--%>
-<%--                                연말정산에 유리한 소비전략도 다 알려주잖아--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
 
                     </div>
-<%--                    <img src="../../../resources/img/character3.png" height="220px">--%>
                 </div>
                 <br/>
                 <h3>지금 바로 최대 혜택 확인해 보기</h3><br/>
                 👇 👇<br/><br/>
-                <div class="modal-background" style="display: none;">
-                    <div class="loader"></div>
-                </div>
 
                 <form action="/calculateAndInsertDeduction" method="post">
                     <button id="openModalBtn" class="modalBtn" type="submit"><h6>계산하기</h6></button>
@@ -189,36 +149,46 @@
                     <button class="pointBtn"><h6>결과보기</h6></button>
                 </a>
                 <br/>
+
+                <!-- 로딩 svg 추가 -->
+                <div class="modal-background" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+                    <img src="../../../resources/img/loading3.svg?v=${Math.random()}" > <!-- 임시 캐시 우회 -->
+                </div>
+
+
             </div>
 
         </div>
     </section>
 </div>
-<%-- 로딩 애니메이션 --%>
+
 
 <!-- footer-wrapper -->
 <footer>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
-<%-- 로딩 애니메이션 --%>
+<%-- 로딩 애니메이션--%>
 <script>
     document.getElementById("openModalBtn").addEventListener("click", function(event) {
         event.preventDefault();
 
-        // 모달 배경과 로딩 애니메이션 표시
-        document.querySelector(".modal-background").style.display = "flex";
+        const modalBackground = document.querySelector(".modal-background");
+        modalBackground.style.display = "flex";
 
-        // 임시로 2초 후 로딩 애니메이션과 모달 배경을 숨기고 계산하기 버튼을 숨깁니다.
+        // SVG 애니메이션 시작
+        const svgImage = modalBackground.querySelector("img");
+        setTimeout(() => {
+            svgImage.classList.add("show-img");
+        }, 100); // 약간의 딜레이 후 애니메이션 시작
+
+        // 2초 후 SVG 팝업과 버튼 숨기기
         setTimeout(function() {
-            document.querySelector(".modal-background").style.display = "none";
+            svgImage.classList.remove("show-img");
+            modalBackground.style.display = "none";
             document.getElementById("openModalBtn").style.display = "none";
         }, 2000);
     });
-
-
-
 </script>
-
 </body>
 </html>

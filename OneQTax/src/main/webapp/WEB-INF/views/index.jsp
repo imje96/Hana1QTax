@@ -74,11 +74,11 @@
                             </button>
                         </a>
                         <div class="dropdown-content">
-                            <a href="#">소득공제 안내</a>
+                            <a href="${pageContext.request.contextPath}/taxMain">소득공제 안내</a>
                             <a href="#">소비 문턱 넘기기</a>
                             <a href="#">카드황금비율 계산</a>
                             <a href="#">카드황금비율 결과</a>
-                            <a href="#">우리집 돈관리</a>
+
                         </div>
                     </div>
 
@@ -91,6 +91,8 @@
                             <a href="#">연말정산 안내</a>
                             <a href="#">연말정산 시뮬레이션</a>
                             <a href="#">연말정산 결과</a>
+                            <a href="#">우리집 돈관리 초대하기</a>
+                            <a href="#">우리집 돈관리 리포트</a>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -99,9 +101,11 @@
                         </button>
                         </a>
                         <div class="dropdown-content">
-                            <a href="#">카드관리</a>
-                            <a href="#">사용내역</a>
-                            <a href="#">내혜택확인</a>
+                            <a href="#">대시보드</a>
+                            <a href="#">내 카드 확인하기</a>
+                            <a href="#">실적 확인하기</a>
+                            <a href="#">카드 사용내역</a>
+                            <a href="#">현금영수증 사용내역</a>
                         </div>
                     </div>
                     <div class="dropdown">

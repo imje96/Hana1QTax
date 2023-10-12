@@ -119,7 +119,12 @@
         width: 800px;
         font-size: 23px;
     }
-
+    /* 로딩*/
+    .modal-background img {
+        width: 200px; /* 원하는 크기로 조정 */
+        height: 200px;
+        transform: translateX(40%);
+    }
 </style>
 </head>
 <body>
@@ -140,7 +145,7 @@
             <div style="padding-left: 30px;">
                 <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
                 <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/taxSimulationMain"
+                <a href="${pageContext.request.contextPath}/simulationMain"
                    style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
                 </a>
@@ -208,16 +213,18 @@
                             frameborder="0">
                     </iframe>
                 </div>
-
-
                 <br/>
                 <br/>
-
-
             </div>
         </div>
     </section>
 </div>
+
+<!-- 로딩 svg 추가 -->
+<div class="modal-background" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
+    <img src="../../../resources/img/loading3.svg?v=${Math.random()}" > <!-- 임시 캐시 우회 -->
+</div>
+
 <!-- footer-wrapper -->
 <footer>
 
@@ -234,7 +241,30 @@
         }
     });
 </script>
+<%-- 로딩 애니메이션 --%>
+<script>
+    document.getElementById("simulationResult").addEventListener("submit", function(event) {
+        event.preventDefault();
 
+        const modalBackground = document.querySelector(".modal-background");
+        modalBackground.style.display = "flex";
+
+        // SVG 애니메이션 시작
+        const svgImage = modalBackground.querySelector("img");
+        setTimeout(() => {
+            svgImage.classList.add("show-img");
+        }, 100); // 약간의 딜레이 후 애니메이션 시작
+
+        // 800ms 후 SVG 팝업 숨기고 페이지 이동
+        setTimeout(() => {
+            svgImage.classList.remove("show-img");
+            modalBackground.style.display = "none";
+
+            // 이제 form을 제출하여 페이지 이동
+            event.target.submit();
+        }, 800);
+    });
+</script>
 
 </body>
 </html>

@@ -24,10 +24,12 @@
 
 
     <style>
-        .side-nav {
-            font-family: 'Noto Sans KR', sans-serif !important;
+        .copy-text{
+            padding: 10px 30px;
+            background: #f8f2ce;
+            border-radius: 10px;
+            font-size: 24px;
         }
-
     </style>
 </head>
 
@@ -84,10 +86,10 @@
                 <h2>카드황금비율 서비스 안내</h2>
                 <br/>
                 <span style="color: #615e5e"><h3>돈 쓰고 돌려받는 세금은 얼마나 될까? 소비금액에 대한 소득공제를 확인해 보세요</h3></span>
-            </div>
+            </div><br/>
 
             <div class="container2">
-<h3>TIP : ⍰ 박스에 마우스를 갖다 대면 추가적인 설명이 나타납니다/</h3>
+                <div class="copy-text"> 🍯TIP : ⍰ 박스에 마우스를 갖다 대면 추가적인 설명이 나타납니다</div>
                 <div class="hero-box">
                     <div class="position-relative p-4 pt-0"
                          style="text-align: center;">
@@ -113,7 +115,8 @@
                             <h6>카드소득공제를 받으려면 얼마를 사용해야 할까?<span style="color: #ff328b">조회</span>하세요</h6>
                             <div style="padding: 10px;">
                                 <a href="${pageContext.request.contextPath }/taxThreshold">
-                                    <span style="color: #106e69;background: #b1e8e6;font-weight: bold">소비 문턱 넘기기</span> </a>
+                                    <button class="pointBtn2"><h6>소비 문턱 넘기기</h6></button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -121,10 +124,11 @@
                     <div class="flex-box" style="text-align: center;">
                         <div class="text-box3">
                             <br/>
-                            <h6>연말정산에서 <span style="color: #ff328b">카드 소득공제</span>를 가장 많이 받을 수 있도록 제안해드려요</h6>
+                            <h6>연말정산에서 <span style="color: #ff328b">카드 소득공제</span>를 가장 많이 받을 수 있도록 계산해드려요</h6>
                             <div style="padding: 10px;">
-                                <a href="${pageContext.request.contextPath }/getLatestDeductionResult">
-                                    <span style="color: #106e69;background: #b1e8e6;font-weight: bold">카드 황금비율</span></a>
+                                <a href="${pageContext.request.contextPath }/taxInfo">
+                                    <button class="pointBtn2"><h6>카드 황금비율 알아보기</h6></button>
+                                </a>
                             </div>
                         </div>
                         <div class="inputImg2">
@@ -138,12 +142,13 @@
                         </div>
                         <div class="text-box3">
                             <br/>
-                            <h6>배우자의 소득공제 현황과 <span style="color: #ff328b">카드 사용 황금비율</span>을 확인해보세요</h6>
+                            <h6>이미 계산한 <span style="color: #ff328b">카드 사용 황금비율 결과</span>을 확인해보세요</h6>
 
                             <div style="padding: 10px;">
-                                <a class="btn btn-primary"
-                                   href="${pageContext.request.contextPath }/consult/consultForm">
-                                    <span style="color: #106e69;background: #b1e8e6;font-weight: bold">우리집 돈관리</span> </a>
+                                <a href="${pageContext.request.contextPath }/getLatestDeductionResult">
+                                    <button class="pointBtn2"><h6>소비 문턱 넘기기</h6></button>
+                                </a>
+
                             </div>
                         </div>
                     </div>

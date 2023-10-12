@@ -33,6 +33,19 @@
             domain="www.chatbase.co"
             defer>
     </script>
+    <style>
+        .section-content.active button {
+            text-align: center;
+        }
+        .text-color{
+            color: #fd328a;
+        }
+        .container-title {
+            text-align: center;
+            margin-left: 100px;
+        }
+    </style>
+
 </head>
 
 
@@ -53,7 +66,7 @@
         <div style="padding-left: 30px;">
             <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
             <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxMain"
+            <a href="${pageContext.request.contextPath}/simulationMain"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
             </a>
@@ -79,9 +92,9 @@
     </div>
     <div class="container2">
         <div class="container-title">
-            <h2>연말정산 결과 확인하기</h2>
+            <h2>연말정산 시뮬레이션</h2>
             <br/>
-            <span style="color: #615e5e"><h3>연말정산 시뮬레이션을 통해 계산한 결과를 확인해 보세요</h3></span>
+            <span style="color: #615e5e"><h3>조건별 연말정산 시뮬레이션을 통해 절세 현황을 확인해보세요</h3></span>
         </div>
 
         <div class="progress-wrapper">
@@ -102,43 +115,47 @@
                 </div>
 
                 <form id="multiStepForm" method="post" action="/taxSimulation">
-                    <div id="progress-content-section">
+                    <div id="progress-content-section2">
                         <!-- Step 1 Content -->
                         <fieldset class="section-content step1 active" data-step="1">
-                            <%--                            <legend>STEP 1: 가족구성 정보</legend>--%>
-                            <h3>STEP 1: 총급여정보</h3>
+                            <br/>
+                            <div class="text-color">
+                            <h3>STEP 1: 총급여정보</h3><br/>
+                            </div>
 
-                            <h2>Q2. 손님의 총급여 정보를 알려주세요</h2>
+                            <h2>Q1. 손님의 총급여 정보를 알려주세요</h2><br/>
                             <label>총급여 정보</label><br/>
-                            <p2>총급여란? 연봉에서 식대나 보육수당 같은 '비과세 소득'을 뺀 금액을 말합니다.</p2>
+                            <p>총급여란? 연봉에서 식대나 보육수당 같은 <br/>'비과세 소득'을 뺀 금액을 말합니다.</p>
                             <br/>
                             <br/>
 
-                                <p2>홈택스에서 전년도 총급여정보를 가져왔어요.<br/> 총급여 금액을 확인하고, 실제 금액을 입력해 정확한 정보를 확인해보세요.</p2>
+                            <p>홈택스에서 전년도 총급여정보를 가져왔어요.<br/> 총급여 금액을 확인하고, 실제 금액을 입력해 <br/>정확한 정보를 확인해보세요.</p>
                             <br/>
                             <br/>
-                                <div>
-                                    <label for="totalIncome">총급여:</label>
-<%--                                    <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalIncome}" groupingUsed="true"/>">--%>
-<%--                                    원--%>
-<%--                                    <input type="hidden" id="totalIncome" name="totalIncome">--%>
-                                    <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" data-hidden-id="totalIncome" value="<fmt:formatNumber value="${totalIncome}" groupingUsed="true"/>">
-                                    원
-                                    <input type="hidden" id="totalIncome" name="taxFormVO.totalIncome" value="${totalIncome}">
+                            <div>
+                                <label for="totalIncome">총급여:</label>
+                                <%--                                    <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" value="<fmt:formatNumber value="${totalIncome}" groupingUsed="true"/>">--%>
+                                <%--                                    원--%>
+                                <%--                                    <input type="hidden" id="totalIncome" name="totalIncome">--%>
+                                <input type="text" name="totalIncome_view" id="totalIncome_view" oninput="addCommaToNumber(this)" data-hidden-id="totalIncome" value="<fmt:formatNumber value="${totalIncome}" groupingUsed="true"/>">
+                                원
+                                <input type="hidden" id="totalIncome" name="taxFormVO.totalIncome" value="${totalIncome}">
 
-                                </div>
+                            </div>
                             <br/>
-
-
                             <br>
+                            <span style="margin-left: 130px">
                             <button type="button" class="next-button">다음</button>
+                            </span>
                         </fieldset>
 
                         <!-- Step 2 Content -->
                         <fieldset class="section-content step2" data-step="2">
-                            <h3>STEP 2: 가족구성 정보</h3>
-
-                            <h2>Q2. 손님의 가족 구성정보를 알려주세요</h2>
+                            <br/>
+                            <div class="text-color">
+                            <h3>STEP 2: 가족구성 정보</h3><br/>
+                            </div>
+                            <h2>Q2. 손님의 가족 구성정보를 알려주세요</h2><br/>
                             <label>배우자 공제 유/무:</label>
                             <div class="choice-button">
                                 <input type="radio" id="spouseDeduction_yes" name="spouseDeduction" value="yes">
@@ -157,7 +174,7 @@
                                 <option value="5">5명</option>
                                 <option value="6">6명</option>
                             </select>
-                            <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
+                            <p>거주자와 생계를 같이하는 연간 소득금액 합계액<br/> 100만원 이하인 부양가족</p>
                             <br/>
                             <label for="adoptedChild">출산/입양 자녀 수(세액공제):</label><br/>
                             <select name="taxFormVO.adoptedChild" id="adoptedChild"
@@ -173,16 +190,20 @@
                             <p>연말정산 적용기간에 출산하거나 입양신고 자녀</p>
 
                             <br>
+                            <span style="margin-left: 50px">
                             <button type="button" class="prev-button" data-step="2">이전</button>
                             <button type="button" class="next-button">다음</button>
+                            </span>
                         </fieldset>
 
                         <!-- Step 3 Content -->
                         <!-- 모달창 -->
                         <fieldset class="section-content step3" data-step="3">
-                            <h3>STEP 3: 부양가족 정보</h3>
-
-                            <h2>Q3. 손님의 부양가족 정보를 알려주세요</h2>
+                            <br/>
+                            <div class="text-color">
+                            <h3>STEP 3: 부양가족 정보</h3><br/>
+                            </div>
+                            <h2>Q3. 손님의 부양가족 정보를 알려주세요</h2><br/>
 
                             <label for="directAncestor">직계존속 수:</label><br/>
                             <select name="taxFormVO.directAncestor" id="directAncestor"
@@ -195,7 +216,7 @@
                                 <option value="5">5명</option>
                                 <option value="6">6명</option>
                             </select>
-                            <p>거주자와 생계를 같이하는 연간 소득금액 합계액 100만원 이하인 부양가족</p>
+                            <p>거주자와 생계를 같이하는 연간 소득금액 합계액<br/> 100만원 이하인 부양가족</p>
                             <br/>
                             <label for="siblings">형제/자매 수:</label><br/>
                             <select name="taxFormVO.siblings" id="siblings" class="content-dropdown">
@@ -247,8 +268,10 @@
                                 <label for="singleParent_no">X</label>
                             </div>
                             <br/>
+                            <span style="margin-left: 50px">
                             <button type="button" class="prev-button" data-step="3">이전</button>
                             <button type="submit" class="submit-button">제출하기</button>
+                                <span
                         </fieldset>
                     </div>
                 </form>
@@ -319,47 +342,6 @@
         $(".section-content.step" + currentStep).addClass("active");
         $("#line-progress").css("width", progressPercentages[currentStep] + "%");
     }
-</script>
-<%-- form 대신 jason 형태로 보내기--%>
-<script>
-    // $(document).ready(function() {
-    //     $(".submit-button").on("click", function(event) {
-    //         event.preventDefault();
-    //
-    //         const spouseDeductionValue = document.querySelector('input[name="spouseDeduction"]:checked');
-    //         const womanDeductionValue = document.querySelector('input[name="womanDeduction"]:checked');
-    //         const singleParentValue = document.querySelector('input[name="singleParent"]:checked');
-    //
-    //         const data = {
-    //             totalIncome: document.getElementById('totalIncome').value,
-    //             spouseDeduction: spouseDeductionValue ? spouseDeductionValue.value : null,
-    //             child: document.getElementById('child').value,
-    //             adoptedChild: document.getElementById('adoptedChild').value,
-    //             directAncestor: document.getElementById('directAncestor').value,
-    //             siblings: document.getElementById('siblings').value,
-    //             senior: document.getElementById('senior').value,
-    //             disability: document.getElementById('disability').value,
-    //             womanDeduction: womanDeductionValue ? womanDeductionValue.value : null,
-    //             singleParent: singleParentValue ? singleParentValue.value : null
-    //         };
-    //
-    //         $.ajax({
-    //             url: "/taxSimulation",
-    //             type: "POST",
-    //             contentType: "application/json",
-    //             data: JSON.stringify(data),
-    //             success: function(response) {
-    //                 // 성공 시 처리
-    //             },
-    //             error: function(error) {
-    //                 // 실패 시 처리
-    //             }
-    //         });
-    //     });
-    // });
-
-
-
 </script>
 
 </body>

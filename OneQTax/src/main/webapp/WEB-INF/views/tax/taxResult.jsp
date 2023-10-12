@@ -99,6 +99,16 @@
             padding: 10px;
             width: 360px;
         }
+        .text-box2 {
+            background: #eaf3f3;
+            border-radius: 10px;
+            margin: 20px 0;
+            padding: 20px 50px 5px 100px;
+            text-align: left;
+            font-size: 22px;
+            width: 900px;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 

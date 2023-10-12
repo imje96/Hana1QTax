@@ -115,6 +115,7 @@
     .modal-amount-money-variable {
         text-align: right;
     }
+
 </style>
 
 <body>
@@ -133,7 +134,7 @@
         <div style="padding-left: 30px;">
             <h3 style="color: #065859; margin-bottom: 15px;">연말정산 플래너</h3>
             <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/taxSimulationMain"
+            <a href="${pageContext.request.contextPath}/simulationMain"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">연말정산 안내</div>
             </a>
@@ -603,10 +604,18 @@
                                 </div>
                             </div>
                             <br/>
-                            <div class="flex-container">
-                                <button type="button" class="prev-button" data-step="3">이전</button>
-                                <button type="submit" class="submit-button">계산하기</button>
-                            </div>
+<%--                            <div class="flex-container">--%>
+<%--                                <button type="button" class="prev-button" data-step="3">이전</button>--%>
+<%--                                <button type="submit" class="submit-button" id="deductionCalc">계산하기</button>--%>
+<%--                            </div>--%>
+
+                            <form id="deductionForm" method="post" action="yourActionURL">
+                                <div class="flex-container">
+                                    <button type="button" class="prev-button" data-step="3">이전</button>
+                                    <button type="submit" class="submit-button" id="deductionCalc">계산하기</button>
+                                </div>
+                            </form>
+
                         </fieldset>
                     </div>
                 </form>
@@ -1587,6 +1596,7 @@
     }
 
 </script>
+
 <%--모달 표시 및 숨기기--%>
 <script>
     const triggers = document.querySelectorAll('.modal-trigger');

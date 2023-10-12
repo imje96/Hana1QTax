@@ -272,6 +272,10 @@ public class TaxController {
         return "tax/taxCalculator";
     }
 
+    @GetMapping("/simulationMain")
+    public String simulaitonMain(HttpSession session, Model model){
+        return "tax/simulationMain";
+    }
 
 
     @PostMapping("/updateDetail")

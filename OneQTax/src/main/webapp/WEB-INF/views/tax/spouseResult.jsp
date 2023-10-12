@@ -391,8 +391,8 @@
                                 <div class="comment-text1">
                                     <h2>별돌이의 소비 제안💫</h2>
                                     <div class="consumption-comment">
-                                            <h3><span style="color: #ff328b; font-size: 25px;">결제</span>는 &nbsp;<span
-                                                    style="color: #106e69; font-size: 25px;">${currentUser.name}</span>님의 카드로 사용하는 것을 제안드려요❕ </h3>
+                                            <h3><span
+                                                    style="color: #106e69; font-size: 25px;">${currentUser.name}</span> 님의 카드로 <span style="color: #ff328b; font-size: 25px;">결제</span>하는 것을 제안드려요❕</h3>
                                     </div>
                                         <div class="hover-text">
                                             <span style="width:630px; text-align: right; color: #4f4949"><p>&nbsp;&nbsp;&nbsp;&nbsp; 왜 그럴까요 ⍰</p></span>
