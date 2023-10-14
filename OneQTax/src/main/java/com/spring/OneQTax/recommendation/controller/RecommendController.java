@@ -82,7 +82,7 @@ public class RecommendController {
 
 
     /* 종합결과*/
-    @GetMapping("/recommedResult")
+    @GetMapping("/recommendResult")
     public String recommedResult(HttpSession session, Model model) {
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
@@ -98,7 +98,7 @@ public class RecommendController {
         model.addAttribute("name", name);
 
 
-        return "recommendation/recommedResult";
+        return "recommendation/recommendResult";
     }
 
 

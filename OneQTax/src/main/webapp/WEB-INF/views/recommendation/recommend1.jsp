@@ -581,6 +581,10 @@
         padding: 10px;
         margin-bottom: 20px;
     }
+    .container-title {
+        text-align: center;
+        font-size: 25px;
+    }
 </style>
 </head>
 
@@ -610,8 +614,7 @@
                 <h6 style="color: black; margin-bottom: 15px;">소득공제 카드 추천받기</h6>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/recommCard2"
-               style="display: block; margin-bottom: 20px;">
+            <a href="${pageContext.request.contextPath}/recommendResult" style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">종합 결과 확인하기</div>
             </a>
         </div>
@@ -675,7 +678,7 @@
                         <br>
                         <button id="openModalBtn" class="modalBtn3"><h6>자세히 알아보기</h6></button>
                     </div>
-                    <div class="category-box3">
+                    <div class="category-box3">(알뜰교통 +α)
                         <h4>💚추가로 혜택받기💚</h4>
                         <div class="flex-box">
                             <span style="font-weight:bold; font-size:23px;"> ${name}</span>님이 주로 사용한 업종은&nbsp; <span
@@ -738,7 +741,7 @@
                             <div id="contentA" class="content">
                                 <h5>대중교통 혜택 카드</h5>
                                 <div class="info-box4">
-                                    아래 카드를 함께 사용하면 교통업종에서 매달 최대 <span style="font-weight: bold; font-size: 25px">12,000</span> 원 혹은  <span style="font-weight: bold; font-size: 25px">30%</span> 혜택을 받을
+                                    아래 카드를 함께 사용하면 교통업종에서 매달 최대 <span style="font-weight: bold; font-size: 25px">12,000</span> 원 혹은  <span style="font-weight: bold; font-size: 25px">20% </span>(알뜰교통 +α) 혜택을 받을
                                     수 있어요
                                 </div>
                                 <div class="recommendList">
@@ -781,16 +784,16 @@
                             <div id="contentB" class="content" style="display: none;">
                                 <h5>영화관 혜택 카드</h5>
                                 <div class="info-box4">
-                                    아래 카드를 함께 사용하면 영화관 업종에서 매달 최대 <span style="font-weight: bold; font-size: 25px">4,000</span> 원 혜택을 받을 수 있어요
+                                    아래 카드를 함께 사용하면 영화관 업종에서 매달 최대 <span style="font-weight: bold; font-size: 25px">5,000</span> 머니 혜택을 받을 수 있어요
                                 </div>
                                 <div class="recommendList">
                                     <div class="cardImg-box">
                                         <img class="cardImg"
-                                             src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/03496.png">
+                                             src="https://m.hanacard.co.kr/ATTACH/NEW_MOBILE/images/cardinfo/card_img/12223.png">
                                         <div class="card-info">
-                                            <span class="card-title">CLUB SK(클럽 SK)카드</span><br/><br/>
-                                            <span style="font-size: 17px; color: #605c5c">#SK텔레콤 #SK주유소 <br/>
-                                       #마트 #학원 </span>
+                                            <span class="card-title">1Q My Lunch</span><br/><br/>
+                                            <span style="font-size: 17px; color: #605c5c">#요식10%적립 #영화5천머니 <br/>
+                                       #레저 #주유 </span>
                                         </div>
                                         <button id="openModalBtn9" class="modalBtn2"><h6>자세히 알아보기</h6></button>
                                     </div>

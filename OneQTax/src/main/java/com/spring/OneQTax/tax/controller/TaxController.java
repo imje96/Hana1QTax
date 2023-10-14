@@ -193,6 +193,30 @@ public class TaxController {
 
     // 스케줄링으로 매일 카드소득공제 계산을 실행하기
 
+    // 새로고침으로 공제 계산하기
+    @GetMapping("/calculateAndInsertDeduction")
+    public String calculateAndInsertDeduction2(HttpSession session, RedirectAttributes redirectAttributes) {
+        // member_id 먼저 가져오기
+        MemberVO currentUser = getCurrentUser(session);
+
+        if (currentUser == null) {
+            // 로그인이 되어있지 않으면 로그인 페이지로 리디렉션
+            return "redirect:/login"; // 로그인 페이지 URL로 리디렉션
+        }
+
+        int memberId = currentUser.getMember_id();
+
+        // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
+        CardTaxResultVO result = taxService.processDeductionForMember(memberId);
+
+        if (result == null) {
+            // 오류 발생 시 오류 페이지로 리디렉션
+            return "redirect:/error"; // 오류 페이지 URL로 리디렉션
+        }
+
+        // 다른 JSP 페이지로 리디렉션
+        return "redirect:/getLatestDeductionResult"; // taxResult 컨트롤러로 이동
+    }
 
 
     // 소비 문턱넘기기 페이지로 이동

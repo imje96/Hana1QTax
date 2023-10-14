@@ -1120,7 +1120,6 @@
                             <%--                        ${cardList[5].limit}--%>
                         </div>
                     </div>
-
                     <div class="chart-cover">
                         <div class="flex-text">
                             <div><h3>(주)KB국민카드</h3></div>
@@ -1134,7 +1133,8 @@
                             <h5>총한도</h5>
                             <h3>430만원</h3>
                         </div>
-                    </div>
+                    </div><br/>
+                    <p2>※ 위의 한도는 단기카드대출, 장기카드대출, 현금서비스 등을 포함하지 않은 단순 카드이용금액입니다.</p2>
                 </div>
             </div>
         </div>
@@ -1289,7 +1289,7 @@
                 duration: 500,
                 step: function (now, fx) {
                     if (fx.prop === "width") {
-                        $(gaugeSelector).parent().siblings('.flex-text').find('.progress-text').html(textPercentage.toFixed(2) + "% <span style='font-size: 20px; color: #6e6969;'>이용</span>");
+                        $(gaugeSelector).parent().siblings('.flex-text').find('.progress-text').html(visualUsedPercentage.toFixed(2) + "% <span style='font-size: 20px; color: #e3003f;'>이용 가능</span>");
                     }
                 }
             });

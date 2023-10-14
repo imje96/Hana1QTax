@@ -73,7 +73,7 @@
             display: block;
             border-radius: 10px;
             padding: 10px 20px;
-            width: 590px;
+            width: 600px;
             font-size: 20px;
             text-align: left;
         }
@@ -100,7 +100,8 @@
             width: 360px;
         }
         .text-box2 {
-            background: #eaf3f3;
+            /*background: #eaf3f3;*/
+            background: #106e69;
             border-radius: 10px;
             margin: 20px 0;
             padding: 20px 50px 5px 100px;
@@ -108,6 +109,7 @@
             font-size: 22px;
             width: 900px;
             letter-spacing: 1px;
+            color: white;
         }
     </style>
 </head>
@@ -156,24 +158,16 @@
 
 
         <div class="section">
-            <%--            <div class="container-xxl py-5">--%>
-            <%--            <div class="container-title" data-wow-delay="0.1s" style="max-width: 600px;">--%>
             <div class="container-title">
-                <%--                <h6 class="text-primary">--%>
-                <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
-                <%--                </h6>--%>
-                <%--                    💰--%>
                 <h2>카드황금비율 계산 결과</h2>
                 <br/>
                 <span style="color: #615e5e"><h3>카드소득공제현황을 파악해보고 유리한 소비 전략을 제안받아보세요</h3></span>
-            </div>
+            </div><br/>
 
 
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <%--                    <div class="container1">--%>
-                    <%--                        <h2>계산결과</h2>--%>
                     <span style="color: #0d736c; font-size: 23px;"><h3>계산결과</h3></span>
                     <hr style="width: 200px; height: 4px; background-color: #018c8d; margin-top:10px; margin-bottom: 10px;">
                     <br/>
@@ -313,19 +307,20 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <%--                </div>--%>
                 </div>
             </div>
 
 
             <div class="time" style="text-align: right">
+                최종 계산 일자 :
                 <c:set var="formattedTimestamp" value="${fn:substring(deduction_date, 0, 19)}"/>
                 ${formattedTimestamp}
-                <a href=""${pageContext.request.contextPath}/calculateAndInsertDeduction"
-                onclick="window.location.reload(); return false;">
-                <img src="../../../resources/img/refresh.png" height="30"></a>
+                <a href="${pageContext.request.contextPath}/calculateAndInsertDeduction"
+                   onclick="this.href=this.href; return true;">
+                    <img src="../../../resources/img/refresh.png" height="30"></a>
             </div>
+
+
             <div class="container2">
                 <%--                <p>${deduction_date}</p>--%>
 
@@ -369,13 +364,13 @@
                                     <div class="comment-text2">
                                         <div class="hover-text">
                                             문화(공연/영화), 교통카드, 재래시장은 <span style="color: #ff328b; font-size: 28px;">신용카드</span>로!<br/>
-                                            <span style="font-size: 19px;">왜 그럴까요 ⍰</span>
+                                            <span style="font-size: 22px;">왜 그럴까요 ⍰</span>
                                                 <%--                                    <h5> 신용카드 대신 <span style="color: #ff328b;">체크카드, 현금</span>을 사용하는 것이 <br/>소득공제에 더--%>
                                                 <%--                                        좋아요.</h5>--%>
 
                                             <div class="popup-modal">
-                                                <span style="color: #0d6565;">  <p>* 같은 1만원을 쓰더라도 체크카드는 3,000원, 신용카드는 1,500원만 공제되니까요 *</p></span>
-                                                문화관련은 <span style="color: #ff328b;">30~40%</span>, 교통카드는 <span style="color: #ff328b;">40~80%</span>, 재래시장은 <span
+                                                <span style="color: #0d6565;">  <p1>체크카드 사용이 좋은 이유는 같은 1만원을 쓰더라도 체크카드는 3,000원, 신용카드는 1,500원만 공제되기 때문이에요.</p1></span><br/>
+                                                다만, 문화관련은 <span style="color: #ff328b;">30~40%</span>, 교통카드는 <span style="color: #ff328b;">40~80%</span>, 재래시장은 <span
                                                     style="color: #ff328b;">40~50%</span>,<br/>
                                                 결제수단에 상관없이 공제가 되니 혜택이 좋은 신용카드를 쓰는 것이<br/> 유리해요.
                                             </div>

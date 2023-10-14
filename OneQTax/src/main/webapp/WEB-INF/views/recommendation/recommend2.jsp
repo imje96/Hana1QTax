@@ -751,7 +751,7 @@
                 <div style="color: grey; margin-bottom: 15px;">소득공제 카드 추천받기</div>
             </a>
             <hr style="width: 200px; margin-bottom: 15px;">
-            <a href="${pageContext.request.contextPath}/recommCard2"
+            <a href="${pageContext.request.contextPath}/recommendResult"
                style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">종합 결과 확인하기</div>
             </a>
@@ -831,7 +831,7 @@
                             아래 카드를 함께 사용하면 매달 최대 <span style="font-weight: bold; font-size: 25px">17,000원</span>의 혜택을 받을
                             것으로 예상돼요
                             <span style="font-size:17px">(원더카드 FREE)</span><br/>
-                            ${name}님의 3개월 평균 사용금액 : 200만원 기준
+                            ${name}님의 3개월 평균 사용금액 : 200만원대 기준
                         </div>
                         <br/>
                         <div class="recommendList">

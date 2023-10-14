@@ -69,7 +69,7 @@
 
                 <div class="drops">
                     <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/taxSimulation">
+                        <a href="${pageContext.request.contextPath}/simulationMain">
                             <button class="dropbtn">연말정산플래너
                             </button>
                         </a>

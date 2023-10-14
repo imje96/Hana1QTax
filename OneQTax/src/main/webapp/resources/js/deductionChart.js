@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     labels: {
                         usePointStyle: true,
                         font: {
-                            size: 15 // 여기에 fontSize를 설정합니다.
+                            size: 16, // 여기에 fontSize를 설정합니다.
+                            weight: 'bold'
                         }
                     },
                  },
@@ -117,7 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     display: true,
                     position: 'bottom',
                     labels: {
-                        usePointStyle: true, // 이 설정을 사용하여 원 모양 이미지를 활성화
+                        usePointStyle: true,
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
                     }
                 },
                 // datalabels: {

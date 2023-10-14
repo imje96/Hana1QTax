@@ -6,8 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%-- 문자열 바꾸기 --%>
 <!DOCTYPE html>
-<head lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>HanaOneTax</title>
@@ -917,8 +915,7 @@
                 duration: 500,
                 step: function (now, fx) {
                     if (fx.prop === "width") {
-                        var currentPercentage = (now / 100) * actualPercentage;
-                        $('.progress-text').text(currentPercentage.toFixed(2) + "%");
+                        $('.progress-text').text(actualPercentage.toFixed(2) + "%");
                     }
                 }
             });

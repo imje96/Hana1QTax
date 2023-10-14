@@ -159,7 +159,48 @@
             border-radius: 10px;
             font-size: 24px;
         }
+        /* hover 시 팝업창*/
+        .comment-text1 h4{
+            font-size: 25px;
+        }
+        <%--  hover 시 텍스트 보이기      --%>
+        .hover-text {
+            position: relative; /* popup-modal의 위치를 기준으로 설정하기 위함 */
+            display: inline-block; /* container의 크기를 내용에 맞게 조절 */
+            font-size: 25px;
+        }
 
+        .popup-modal {
+            display: none;
+            position: absolute;
+            top: 100%; /* container 바로 아래에 위치 */
+            left: 0; /* container의 왼쪽 경계에 맞춤 */
+            padding: 10px;
+            background-color: #FFFFFF;
+            border: 2px solid #106e69;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            line-height: 1.5em;
+            z-index: 1; /* 다른 요소 위에 표시되도록 함 */
+        }
+
+        .hover-text:hover .popup-modal {
+            display: block;
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: 590px;
+            font-size: 20px;
+            text-align: left;
+        }
+        .hover-text:hover .popup-modal p{
+            font-size: 16px;
+        }
+        .comment-text2 {
+            margin: 30px 0 30px 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #615e5e;
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -216,18 +257,25 @@
                 <h2>연말정산 안내</h2>
                 <br/>
                 <span style="color: #615e5e"><h3>올해는 13월의 월급을 받을 수 있을까? 연말정산을 미리 확인해보고 환급액을 예상해보세요</h3></span>
+                <br/><br/>
+                <span style="color: #ff328b">
+                    <h2> 13월의 월급? vs 세금 폭탄?</h2></span>
             </div>
-<br/>
+
+                <br/>
             <div class="container2">
-                <div class="copy-text"> 🍯TIP : ⍰ 박스에 마우스를 갖다 대면 추가적인 설명이 나타납니다</div><br/>
-                <div class="hero-box">
-                    <div class="position-relative p-4 pt-0"
-                         style="text-align: center;">
+                <div class="hover-text">
+                <div class="copy-text"> 🍯TIP : ⍰ 박스에 마우스를 가져다 대면 추가적인 설명이 나타납니다</div>
+
+                    <div class="popup-modal">
+                        손님께 도움을 드릴 설명창이에요. 페이지에 있는 ⍰를 확인해주세요😊<br/>
+                        <span style="color: #0d6565;"> 이제 아래의 연말정산 시작하기 버튼을 눌러보세요</span>👇👇
+
                     </div>
                 </div>
 
-                <div class="list-box" style="padding-top: 30px;">
 
+                <div class="list-box" style="padding-top: 30px;">
                     <div class="flex-box" style="text-align: center;">
                         <div class="inputImg2">
                             <img src="../../../resources/img/tax3.png">

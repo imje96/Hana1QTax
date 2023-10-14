@@ -51,7 +51,9 @@ public class SmsService {
         headers.set("x-ncp-apigw-signature-v2", makeSignature(time));
 
         List<MessageDTO> messages = new ArrayList<>();
-        messages.add(messageDto);
+//        messages.add(messageDto);
+        messages.add(new MessageDTO(messageDto.getTo(), messageDto.getContent()));
+
 
         SmsRequestDTO request = SmsRequestDTO.builder()
                 .type("lMS")
@@ -73,32 +75,6 @@ public class SmsService {
 
         return response;
     }
-
-//    public SmsResponseDTO sendSms(String recipientPhoneNumber, String content) throws JsonProcessingException, UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, URISyntaxException {
-//        Long time = System.currentTimeMillis();
-//        List<MessageDTO> messages = new ArrayList<>();
-//        messages.add(new MessageDTO(recipientPhoneNumber, content));
-//
-//        SmsRequestDTO smsRequest = new SmsRequestDTO("SMS", "COMM", "82", senderNumber, "내용", messages);
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String jsonBody = objectMapper.writeValueAsString(smsRequest);
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.set("x-ncp-apigw-timestamp", time.toString());
-//        headers.set("x-ncp-iam-access-key", this.accessKey);
-//        String sig = makeSignature(time); //암호화
-//        headers.set("x-ncp-apigw-signature-v2", sig);
-//
-//        HttpEntity<String> body = new HttpEntity<>(jsonBody, headers);
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-//        SmsResponseDTO smsResponse = restTemplate.postForObject(new URI("https://sens.apigw.ntruss.com/sms/v2/services/" + this.serviceId + "/messages"), body, SmsResponseDTO.class);
-//
-//        return smsResponse;
-//
-//    }
 
     public String makeSignature(Long time) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
 
