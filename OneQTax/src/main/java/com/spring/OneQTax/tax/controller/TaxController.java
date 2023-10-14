@@ -191,6 +191,10 @@ public class TaxController {
         return "tax/taxInfo"; // 이동하려는 JSP 페이지 URL로 리디렉션
     }
 
+    // 스케줄링으로 매일 카드소득공제 계산을 실행하기
+
+
+
     // 소비 문턱넘기기 페이지로 이동
     @GetMapping("/taxThreshold")
     public String taxThreshold(HttpSession session, Model model) {

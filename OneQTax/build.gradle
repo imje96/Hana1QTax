@@ -67,7 +67,9 @@ dependencies {
 
 	// coolsms
 	implementation 'net.nurigo:sdk:4.2.7'
-// 외부
+	// 로그
+	implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32' //
+
 }
 
 tasks.named('test') {

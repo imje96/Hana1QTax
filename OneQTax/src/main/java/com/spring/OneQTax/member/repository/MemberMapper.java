@@ -4,6 +4,8 @@ import com.spring.oneqtax.member.domain.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface MemberMapper {
 //    @Param("password") 제외
@@ -12,7 +14,7 @@ public interface MemberMapper {
     /* 우리집 돈관리 */
     MemberVO getMemberByEmail(String spouseEmail);
 
-//    List<Member> getAllMember();
+    List<MemberVO> getAllMember();
 //    Member selectNameOfMember(String email);
 //    Member loginMember(HashMap<String, String> loginData);
 //    public MemberVO loginMember(LoginVO loginVO);

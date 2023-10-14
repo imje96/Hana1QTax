@@ -24,11 +24,10 @@
     </select>
 
     <!-- 회원 전체 조회 -->
-<!--    <select id="getAllMember" parameterType="com.spring.oneqtax.member.domain.MemberVO"-->
-<!--            resultType="com.spring.oneqtax.member.domain.MemberVO">-->
-<!--        SELECT *-->
-<!--        FROM member-->
-<!--    </select>-->
+    <select id="getAllMember" resultType="com.spring.oneqtax.member.domain.MemberVO">
+        SELECT *
+        FROM member
+    </select>
 
 
 <!--    <select id="selectNameOfMember" parameterType="String" resultType="com.spring.oneqtax.member.domain.MemberVO">-->

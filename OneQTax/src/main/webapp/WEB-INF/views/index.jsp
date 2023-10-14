@@ -66,7 +66,21 @@
                         <img class="imgLogo" src="../../../resources/img/logo.png" height="65">
                     </a>
                 </div>
+
                 <div class="drops">
+                    <div class="dropdown">
+                        <a href="${pageContext.request.contextPath}/taxSimulation">
+                            <button class="dropbtn">연말정산플래너
+                            </button>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#">연말정산 안내</a>
+                            <a href="#">연말정산 시뮬레이션</a>
+                            <a href="#">연말정산 결과</a>
+                            <a href="#">우리집 돈관리 초대하기</a>
+                            <a href="#">우리집 돈관리 리포트</a>
+                        </div>
+                    </div>
                     <div class="dropdown">
                         <a href="${pageContext.request.contextPath}/taxMain">
                             <button class="dropbtn">카드황금비율관리
@@ -79,20 +93,6 @@
                             <a href="#">카드황금비율 계산</a>
                             <a href="#">카드황금비율 결과</a>
 
-                        </div>
-                    </div>
-
-                    <div class="dropdown">
-                        <a href="${pageContext.request.contextPath}/taxSimulation">
-                            <button class="dropbtn">연말정산플래너
-                            </button>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="#">연말정산 안내</a>
-                            <a href="#">연말정산 시뮬레이션</a>
-                            <a href="#">연말정산 결과</a>
-                            <a href="#">우리집 돈관리 초대하기</a>
-                            <a href="#">우리집 돈관리 리포트</a>
                         </div>
                     </div>
                     <div class="dropdown">

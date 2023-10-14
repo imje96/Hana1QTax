@@ -141,9 +141,15 @@
                 <h3>지금 바로 최대 혜택 확인해 보기</h3><br/>
                 👇 👇<br/><br/>
 
-                <form action="/calculateAndInsertDeduction" method="post">
-                    <button id="openModalBtn" class="modalBtn" type="submit"><h6>계산하기</h6></button>
+                <form id="taxCalculate" action="/calculateAndInsertDeduction" method="post">
+                    <button class="modalBtn" type="submit"><h6>계산하기</h6></button>
                 </form>
+
+<%--                <form id="simulationResult" method="post" action="/simulationResult">--%>
+<%--                    <button type="submit" class="pointBtn">결과 확인하기</button>--%>
+<%--                </form>--%>
+
+
                 <br/>
                 <a href="${pageContext.request.contextPath}/getLatestDeductionResult">
                     <button class="pointBtn"><h6>결과보기</h6></button>
@@ -170,11 +176,48 @@
 </footer>
 <%-- 로딩 애니메이션--%>
 <script>
-    document.getElementById("openModalBtn").addEventListener("click", function(event) {
+    // document.getElementById("taxCalculate").addEventListener("submit", function(event) {
+    //     event.preventDefault();
+    //
+    //     const modalBackground = document.querySelector(".modal-background");
+    //     modalBackground.style.display = "flex";
+    //
+    //     // SVG 애니메이션 시작
+    //     const svgImage = modalBackground.querySelector("img");
+    //     setTimeout(() => {
+    //         svgImage.classList.add("show-img");
+    //     }, 100); // 약간의 딜레이 후 애니메이션 시작
+    //
+    //     setTimeout(() => {
+    //         svgImage.classList.remove("show-img");
+    //         modalBackground.style.display = "none";
+    //
+    //         // 이제 form을 제출하여 페이지 이동
+    //         event.target.submit();
+    //     }, 800);
+
+        <%--// 2초 후 SVG 팝업과 버튼 숨기기--%>
+        // setTimeout(function() {
+        //     svgImage.classList.remove("show-img");
+        //     modalBackground.style.display = "none";
+        //     document.getElementById("openModalBtn").style.display = "none";
+        // }, 2000);
+    // });
+
+
+
+</script>
+
+<script>
+    document.getElementById("taxCalculate").addEventListener("submit", function(event) {
         event.preventDefault();
 
         const modalBackground = document.querySelector(".modal-background");
         modalBackground.style.display = "flex";
+
+        // 버튼 숨기기
+        const taxCalculateBtn = document.getElementById("taxCalculate");
+        taxCalculateBtn.style.display = "none";
 
         // SVG 애니메이션 시작
         const svgImage = modalBackground.querySelector("img");
@@ -182,13 +225,14 @@
             svgImage.classList.add("show-img");
         }, 100); // 약간의 딜레이 후 애니메이션 시작
 
-        // 2초 후 SVG 팝업과 버튼 숨기기
-        setTimeout(function() {
+        // 800ms 후 SVG 팝업 숨기고 form 제출
+        setTimeout(() => {
             svgImage.classList.remove("show-img");
             modalBackground.style.display = "none";
-            document.getElementById("openModalBtn").style.display = "none";
-        }, 2000);
+        }, 800);
     });
+
 </script>
+
 </body>
 </html>

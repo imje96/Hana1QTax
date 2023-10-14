@@ -35,21 +35,29 @@ public class TaxServiceImpl implements TaxService {
         TaxInfoVO taxInfoVO = taxMapper.getTaxInfoByMemberId(memberId);
         TransactionVO transactionVO = taxMapper.getTransactionByMemberId(memberId);
 
-        // 기존에 계산한 정보를 가져오는 로직
-        CardTaxResultVO existingResult = getDeductionResult(taxInfoVO.getCalculation_id());
+        try {
 
-        if(existingResult != null) {
-            return existingResult;  // 기존의 결과를 반환
-        } else {
 
-            // 없을 경우 계산 로직 수행
-            CardTaxResultVO result = calculateDeduction(taxInfoVO, transactionVO);
+            // 기존에 계산한 정보를 가져오는 로직
+            CardTaxResultVO existingResult = getDeductionResult(taxInfoVO.getCalculation_id());
 
-            // 결과를 데이터베이스에 저장
-            insertDeductionResult(result, memberId);
+            if (existingResult != null) {
+                return existingResult;  // 기존의 결과를 반환
+            } else {
 
-            // 저장된 결과를 반환 (또는 저장 당시의 객체를 반환)
-            return result;
+                // 없을 경우 계산 로직 수행
+                CardTaxResultVO result = calculateDeduction(taxInfoVO, transactionVO);
+
+                // 결과를 데이터베이스에 저장
+                insertDeductionResult(result, memberId);
+
+                // 저장된 결과를 반환 (또는 저장 당시의 객체를 반환)
+                return result;
+            }
+        } catch (Exception e){
+            // 오류를 무시
+            e.printStackTrace(); // 또는 로깅 등의 오류 처리
+            return null; // 또는 다른 값 또는 예외 처리 로직에 따라 반환
         }
     }
 

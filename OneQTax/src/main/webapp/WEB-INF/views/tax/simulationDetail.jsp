@@ -195,7 +195,6 @@
 
 
                 <form id="simulationResult" method="post" action="/simulationResult">
-
                     <button type="submit" class="pointBtn">결과 확인하기</button>
                 </form>
 
