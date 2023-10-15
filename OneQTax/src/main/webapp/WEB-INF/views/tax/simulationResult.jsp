@@ -155,6 +155,54 @@
         background: #e6ecea;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+    /*  초대장 팝업  */
+    .invitationPopup{
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+    }
+    .popupText{
+        position: relative;
+        width: 580px;
+        height: 250px;
+        margin: 400px 850px;
+        padding: 20px 30px;
+        background-color: white;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 2.5em;
+    }
+
+    .yesBtn {
+        /*display: inline-block;*/
+        color: #FFFFFF;
+        padding: 10px 10px;
+        margin: 30px 10px 20px 10px;
+        width: 200px;
+        height: 50px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #00857e;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .popupText button:hover {
+        background-color: #106e69;
+        /* hover 시 배경색 변경 */
+        transform: scale(1.05);
+        /* hover 시 약간 확대되는 효과 */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        /* hover 시 그림자 약간 강화 */
+    }
 
 </style>
 
@@ -198,6 +246,38 @@
             </a>
         </div>
     </div>
+
+<%-- 우리집 돈관리 초대장 팝업  --%>
+    <c:if test="${totalResult.personal_deduction > 1500000}">
+        <div id="popup" class="invitationPopup">
+            <div class="popupText" >
+                <span class="close" onclick="closePopup()">&times;</span>
+                <br/>
+                <h2>더 효과적인 절세를 위해 <br/> 맞벌이 부부를 위한 절세전략을 알려드릴까요?</h2>
+                <button class="yesBtn" onclick="goToLink()">자세히 알아보기</button>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const popup = document.getElementById('popup');
+                setTimeout(function() {
+                    popup.style.display = 'block';
+                }, 2000); // 2초 뒤에 팝업 표시
+            });
+
+            function goToLink() {
+                location.href = "${pageContext.request.contextPath}/spouseAgreement";
+            }
+
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+
+        </script>
+    </c:if>
+
+
+
     <div class="container1">
         <div class="progress-wrapper">
             <div id="progress-bar-container">
@@ -234,7 +314,7 @@
                                             </h4>
                                         </c:when>
                                         <c:otherwise>
-                                            <h4><span style="color: #ffb900; font-size:32px;">💰환급</span>받을 세금 :
+                                            <h4><span style="color: #ff7cf1; font-size:32px;">💰환급</span>받을 세금 :
                                                 <td class="text-right">
                                                     <fmt:formatNumber value="${-totalResult.expected_tax}"
                                                                       groupingUsed="true"/>원
