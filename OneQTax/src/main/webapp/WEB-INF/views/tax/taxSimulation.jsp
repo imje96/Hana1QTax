@@ -158,14 +158,14 @@
                             <h2>Q2. 손님의 가족 구성정보를 알려주세요</h2><br/>
                             <label>배우자 공제 유/무:</label>
                             <div class="choice-button">
-                                <input type="radio" id="spouseDeduction_yes" name="spouseDeduction" value="yes">
-                                <label for="spouseDeduction_yes">O</label>
+                                <input type="radio" id="spouseDeduction" name="spouseDeduction" value="yes">
+                                <label for="spouseDeduction">O</label>
                                 <input type="radio" id="spouseDeduction_no" name="taxFormVO.spouseDeduction" value="no">
                                 <label for="spouseDeduction_no">X</label>
                             </div>
                             <br/>
                             <label for="child">만 20세 이하 자녀 수(세액공제):</label><br/>
-                            <select name="child" id="child" class="content-dropdown">
+                            <select name="taxFormVO.child" id="child" class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
                                 <option value="2">2명</option>
@@ -181,7 +181,7 @@
                                     class="content-dropdown">
                                 <option value="0">0명</option>
                                 <option value="1">1명</option>
-                                <foption value="2">2명</foption>
+                                <option value="2">2명</option>
                                 <option value="3">3명</option>
                                 <option value="4">4명</option>
                                 <option value="5">5명</option>
@@ -271,7 +271,7 @@
                             <span style="margin-left: 50px">
                             <button type="button" class="prev-button" data-step="3">이전</button>
                             <button type="submit" class="submit-button">제출하기</button>
-                                <span
+                            </span>
                         </fieldset>
                     </div>
                 </form>
@@ -316,12 +316,7 @@
         $(".step3").addClass("active").siblings().removeClass("active");
     });
 
-    // $(".step").click(function () {
-    //     let stepNum = parseInt($(this).data(`step`));
-    //
-    //     // currentStep = stepNum;
-    //     // updateStep();
-    // });
+
     // 버튼으로 이동하기
     $(".prev-button, .next-button").click(function () {
         if ($(this).hasClass('next-button')) {

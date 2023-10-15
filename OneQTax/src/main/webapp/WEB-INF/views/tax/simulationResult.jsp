@@ -167,9 +167,9 @@
     }
     .popupText{
         position: relative;
-        width: 580px;
+        width: 700px;
         height: 250px;
-        margin: 400px 850px;
+        margin: 400px 800px;
         padding: 20px 30px;
         background-color: white;
         border-radius: 5px;
@@ -253,7 +253,8 @@
             <div class="popupText" >
                 <span class="close" onclick="closePopup()">&times;</span>
                 <br/>
-                <h2>더 효과적인 절세를 위해 <br/> 맞벌이 부부를 위한 절세전략을 알려드릴까요?</h2>
+                <h2>👩‍❤️‍👨 함께라면 더 큰 절세의 기쁨을!<br/>
+                    배우자와 더 효율적으로 절세할 수 방법을 알려드릴게요</h2>
                 <button class="yesBtn" onclick="goToLink()">자세히 알아보기</button>
             </div>
         </div>
@@ -272,12 +273,36 @@
             function closePopup() {
                 document.getElementById('popup').style.display = 'none';
             }
-
         </script>
     </c:if>
+    <c:if test="${totalResult.irp_taxcredit > 100000}">
+        <div id="popup" class="invitationPopup">
+            <div class="popupText" >
+                <span class="close" onclick="closePopup()">&times;</span>
+                <br/>
+                <h2>아직 실망하지 마세요 💁<br/>
+                    카드 황금비율 관리를 통해 환급 확률을 높일 수 있어요
+                    </h2>
+                <button class="yesBtn" onclick="goToLink2()">자세히 알아보기</button>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const popup = document.getElementById('popup');
+                setTimeout(function() {
+                    popup.style.display = 'block';
+                }, 2000); // 2초 뒤에 팝업 표시
+            });
 
+            function goToLink2() {
+                location.href = "${pageContext.request.contextPath}/taxInfo";
+            }
 
-
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
+    </c:if>
     <div class="container1">
         <div class="progress-wrapper">
             <div id="progress-bar-container">
@@ -886,12 +911,6 @@
                 <br/>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>
         </div>
     </div>
@@ -978,9 +997,6 @@
                 <br/>
                 <p2>국민연금 납입공제 :</p2>
                 <br/>
-                <%--                    <label for="healthInsurance">건강보험료 납입공제 :</label><br/>--%>
-                <%--                    <label for="employmentInsurance">고용보험료 납입공제 :</label><br/>--%>
-                <%--                    <label for="nationalPension">국민연금 납입공제 :</label><br/>--%>
                 <label for="other_pension">기타연금 납입공제 :</label><br/>
 
 
@@ -989,28 +1005,14 @@
                 <div class="modal-amount-money-variable">
                     <p2><fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>원</p2>
                     <br/>
-                    <%--                    <input type="text" name="healthInsurance_view" id="healthInsurance_view" oninput="addCommaToNumber(this)"--%>
-                    <%--                           data-hidden-id="healthInsurance" value="<fmt:formatNumber value="${totalInfo.health_insurance}" groupingUsed="true"/>">원<br/>--%>
-                    <%--                    <input type="hidden" id="healthInsurance" name="healthInsurance" value="${totalInfo.health_insurance}">--%>
                     <p2><fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>원</p2>
                     <br/>
-
-                    <%--                    <input type="text" name="employmentInsurance_view" id="employmentInsurance_view" oninput="addCommaToNumber(this)"--%>
-                    <%--                           data-hidden-id="employmentInsurance" value="<fmt:formatNumber value="${totalInfo.employment_insurance}" groupingUsed="true"/>">원<br/>--%>
-                    <%--                    <input type="hidden" id="employmentInsurance" name="employmentInsurance" value="${totalInfo.employment_insurance}">--%>
-                    <%--                    --%>
                     <p2><fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>원</p2>
                     <br/>
-
-                    <%--                    <input type="text" name="nationalPension_view" id="nationalPension_view" oninput="addCommaToNumber(this)"--%>
-                    <%--                           data-hidden-id="nationalPension" value="<fmt:formatNumber value="${totalInfo.national_pension}" groupingUsed="true"/>">원<br/>--%>
-                    <%--                    <input type="hidden" id="nationalPension" name="nationalPension" value="${totalInfo.national_pension}">--%>
                     <input type="text" name="otherPension_view" id="otherPension_view" oninput="addCommaToNumber(this)"
                            data-hidden-id="other_pension"
                            value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>
                     <input type="hidden" id="other_pension" name="other_pension" value="${totalInfo.other_pension}">
-                    <%--                    <input type="text" id="otherPension" name="national_pension" oninput="addCommaToNumber(this)"--%>
-                    <%--                           value="<fmt:formatNumber value="${totalInfo.other_pension}" groupingUsed="true"/>">원<br/>--%>
                 </div>
             </div>
         </div>
@@ -1952,6 +1954,40 @@
     });
 
 </script>
+<%-- 인적공제 금액 실시간 반영 --%>
+<script>
+    $(document).ready(function() {
+        var initialPersonalDeduction = parseFloat("${totalResult.personal_deduction}");
+
+        function updateDeductionAmount() {
+            var deductionPerPerson = 1500000;  // 인적공제 기본 금액
+            var seniorBonus = 1000000; // 경로우대
+            var disabilityPerPerson = 2000000;
+
+            // 선택된 값에 따라 공제액 변경
+            var childDeduction = $('#child').val() * deductionPerPerson;
+            var adoptedChildDeduction = $('#adoptedChild').val() * deductionPerPerson;
+            var directAncestorDeduction = $('#directAncestor').val() * deductionPerPerson;
+            var siblingsDeduction = $('#siblings').val() * deductionPerPerson;
+            var seniorDeduction = $('#senior').val() * seniorBonus;
+            var disabilityDeduction = $('#disability').val() * disabilityPerPerson;
+
+            // 총 공제액을 계산
+            var totalDeduction = initialPersonalDeduction + childDeduction + adoptedChildDeduction + directAncestorDeduction
+                + siblingsDeduction + seniorDeduction + disabilityDeduction;
+
+            // 금액 형식으로 변환 (콤마 포함)
+            var formattedDeduction = totalDeduction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            // 계산된 총 공제액을 화면에 업데이트
+            $('.modal-amount-money p2').html(formattedDeduction + '원');
+        }
+
+        // child와 directAncestor 값이 변경될 때마다 updateDeductionAmount 함수를 호출
+        $('#child, #adoptedChild, #directAncestor, #siblings, #senior, #disability').change(updateDeductionAmount);
+    });
+</script>
+
 <%-- 주택공제 금액 실시간 반영 --%>
 <script>
     function updateHousingAmounts() {
