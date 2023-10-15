@@ -434,7 +434,7 @@
         display: flex;
         -ms-flex-direction: column;
         flex-direction: column;
-        /* width: 100%; */
+        width: 700px;
         pointer-events: auto;
         background-color: #fff;
         background-clip: padding-box;
@@ -1152,7 +1152,7 @@
                     </div>
                     생활요금
                 </div>
-                &nbsp;&nbsp; 아파트관리비, 전기세, 가스비 &nbsp; <span class="point"> 10%</span> 청구할인<br/>
+                &nbsp;&nbsp; 아파트관리비, 전기세, 가스비 &nbsp; <span class="point"> 10% </span> 청구할인<br/>
             </div>
             <div class="flex-box">
                 <div class="icon-box">
@@ -1161,7 +1161,7 @@
                     </div>
                     병원&약국
                 </div>
-                &nbsp;&nbsp; 병원 및 약국&nbsp; <span class="point"> 10%</span>청구할인<br/>
+                &nbsp;&nbsp; 병원 및 약국&nbsp; <span class="point"> 10% </span>청구할인<br/>
             </div>
             <div class="flex-box">
                 <div class="icon-box">
@@ -1170,7 +1170,7 @@
                     </div>
                     주유/택시
                 </div>
-                &nbsp;&nbsp; SK에너지, GS칼텍스, S-OIL, 현대오일뱅크알뜰주유소&nbsp; <span class="point"> 10%</span>청구할인<br/>
+                &nbsp;&nbsp; SK에너지, GS칼텍스, S-OIL, 현대오일뱅크알뜰주유소&nbsp; <span class="point"> 10% </span>청구할인<br/>
             </div>
             <div class="flex-box">
                 <div class="icon-box">
@@ -1179,12 +1179,29 @@
                     </div>
                     커피
                 </div>
-                &nbsp;&nbsp;스타벅스, 커피빈, 이디야, 폴바셋, 투썸플레이스, 블루보틀&nbsp; <span class="point"> 10%</span> 청구할인<br/>
+                &nbsp;&nbsp;스타벅스, 커피빈, 이디야, 폴바셋, 투썸플레이스, 블루보틀&nbsp; <span class="point"> 10% </span> 청구할인<br/>
             </div>
-            <%--            • 모든 가맹점&nbsp; <span class="point"> 0.3-1.0%</span> 적립<br/>--%>
-            <%--            • 온라인쇼핑, 통신/교통/자동이체 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
-            <%--            • 주유 <span class="point"> 5만원당 3천원</span> 청구할인<br/>--%>
-            <%--            • 아파트관리비/4대보험 <span class="point"> 10만원 당 5천머니</span> 적립<br/>--%>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg2">
+                        <i class="fa-solid fa-jug-detergent" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    주유/택시
+                </div>
+                &nbsp;&nbsp; 세탁특공대, 크린토피아, 세탁업종 <span class="point"> 10% </span>청구할인<br/>
+            </div>
+            <div class="flex-box">
+                <div class="icon-box">
+                    <div class="icon-bg2">
+                        <i class="fas fa-house" style="font-size: 25px; color: #FFFFFF"></i>
+                    </div>
+                    무이자할부
+                </div>
+                &nbsp;&nbsp; 국내 5만원 이상 결제건 <span class="point"> 2~3개월 </span> 무이자 할부<br/>
+            </div>
+
+
+
         </div>
     </div>
 

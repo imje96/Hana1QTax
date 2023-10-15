@@ -139,6 +139,20 @@
             box-shadow: 5px 2px 11px rgba(0, 0, 0, 0.1);
         }
 
+        .comment-text2 {
+            font-weight: bold;
+            width: 800px;
+            line-height: 2em;
+            background: white;
+            border-radius: 15px;
+            padding: 10px 20px 10px 30px;
+            /*margin-left: 180px;*/
+            margin: 30px 0 30px 10px;
+            font-size: 20px;
+            color: black;
+            box-shadow: 5px 2px 11px rgba(0, 0, 0, 0.1);
+        }
+
         .text-box2 {
             background: #eaf3f3;
             border-radius: 10px;
@@ -146,6 +160,8 @@
             padding: 20px 50px;
             text-align: left;
             width: 1000px;
+            display: flex;
+            justify-content: space-evenly;
         }
 
         .consumption-comment {
@@ -173,6 +189,7 @@
             left: 0; /* container의 왼쪽 경계에 맞춤 */
             padding: 10px;
             background-color: #FFFFFF;
+            color: black;
             border: 2px solid #106e69;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             line-height: 1.5em;
@@ -192,13 +209,6 @@
             font-size: 16px;
         }
 
-        .comment-text2 {
-            margin: 30px 0 30px 10px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #615e5e;
-            text-align: right;
-        }
 
         .flex-box {
             display: flex;
@@ -246,7 +256,8 @@
                     <div style="color: grey; margin-bottom: 15px;">연말정산 시뮬레이션</div>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/simulationResult" style="display: block; margin-bottom: 20px;">
+                <a href="${pageContext.request.contextPath}/simulationResult"
+                   style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">연말정산 결과</div>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
@@ -263,13 +274,8 @@
 
 
         <div class="section">
-            <%--            <div class="container-xxl py-5">--%>
-            <%--            <div class="container-title" data-wow-delay="0.1s" style="max-width: 600px;">--%>
             <div class="container-title">
-                <%--                <h6 class="text-primary">--%>
-                <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
-                <%--                </h6>--%>
-                <%--                    💰--%>
+
                 <h2>우리집 돈관리</h2>
                 <br/>
                 <span style="color: #615e5e"><h3>맞벌이 부부 절세 및 소비 전략을 확인해 보세요</h3></span>
@@ -384,90 +390,96 @@
                 <h2>💡 맞벌이 부부 카드소득공제 TIP</h2><br/>
 
                 <div class="text-box2">
-                    <c:choose>
-                        <c:when test="${basic_deduction > 0}">
-                            <div class="character-box2">
-                                <img src="../../../resources/img/character5.png" height="180">
-                                <div class="comment-text1">
-                                    <h2>별돌이의 소비 제안💫</h2>
-                                    <div class="consumption-comment">
-                                            <h3><span
-                                                    style="color: #106e69; font-size: 25px;">${currentUser.name}</span> 님의 카드로 <span style="color: #ff328b; font-size: 25px;">결제</span>하는 것을 제안드려요❕</h3>
+                    <div class="character-box2">
+                        <img src="../../../resources/img/character5.png" height="180">
+                        <div class="comment-text1">
+                            <h2>별돌이의 소비 제안💫</h2>
+                            <div class="consumption-comment">
+                                <h3><span
+                                        style="color: #106e69; font-size: 25px;">${currentUser.name}</span> 님의 카드로 <span
+                                        style="color: #ff328b; font-size: 25px;">결제</span>하는 것을 제안드려요❕</h3>
+                            </div>
+
+                            <h5> ☑ 1년간 소비금액이 많다면 <span
+                                    style="color: #ff328b; font-size: 22px;">소득이 상대적으로 높은 </span>배우자에게 몰아서 <br/>&nbsp;&nbsp;&nbsp;&nbsp;공제
+                                한도를 채우는 것이 좋아요</h5>
+                            <h5> ☑ 1년간 소비금액이 많지 않다면 <span style="color: #ff328b; font-size: 22px;">소득이 상대적으로 적은 </span>배우자에게
+                                몰아서 <br/>&nbsp;&nbsp;&nbsp;&nbsp;공제 한도를 채우는 것이 좋아요</h5>
+
+                            <div class="flex-box">
+                                <div class="hover-text">
+                                    <span style="text-align: right; font-size: 20px; margin-left: 100px; color: #4f4949">&nbsp;&nbsp;&nbsp;&nbsp; 왜 그럴까요 ⍰</span>
+                                    <div class="popup-modal">
+                                        <span style="color: #0d6565;">카드 소득공제금액을 채우기 전까지는 연봉이 높은 ${currentUser.name}님의 소비가, 그 이후엔 배우자님의 소비가 유리해요.</span><br/>
+                                        소득이 높은 쪽은 보통 <span style="color: #ff328b;">세율도 높기 </span>때문에 소비 소득공제를 통해 <span
+                                            style="color: #ff328b;">세금 <br/>공제액을 높이는</span> 것이 필요해요.
                                     </div>
-                                        <div class="hover-text">
-                                            <span style="width:630px; text-align: right; color: #4f4949"><p>&nbsp;&nbsp;&nbsp;&nbsp; 왜 그럴까요 ⍰</p></span>
-                                            <div class="popup-modal">
-                                                <span style="color: #0d6565;">카드 소득공제금액을 채우기 전까지는 연봉이 높은 ${currentUser.name}님의 소비가, 그 이후엔 배우자님의 소비가 유리해요.</span><br/>
-                                                소득이 높은 쪽은 보통 <span style="color: #ff328b;">세율도 높기 </span>때문에 소비 소득공제를 통해 <span style="color: #ff328b;">세금 <br/>공제액을 높이는</span> 것이 필요해요.
-
-                                        </div>
-                                    </div>
-
-
-                                    <h5> ☑ 1년간 소비금액이 많다면 <span
-                                            style="color: #ff328b; font-size: 22px;">연봉이 상대적으로 많은 </span>배우자에게 몰아서 <br/>&nbsp;&nbsp;&nbsp;&nbsp;공제
-                                        한도를 채우는 것이 좋아요</h5>
-                                    <h5>   ☑ 1년간 소비금액이 많지 않다면 <span style="color: #ff328b; font-size: 22px;">연봉이 상대적으로 적은 </span>배우자에게
-                                            몰아서 <br/>&nbsp;&nbsp;&nbsp;&nbsp;공제 한도를 채우는 것이 좋아요</h5><br/>
                                 </div>
                             </div>
-
-                        </c:when>
-                        <c:when test="${remainingDeduction == 0}">
-                            <div class="text">
-
-                                소비 황금 비율 달성!<br>
-                                이미 최대 환급을 받고 있으니<br/>
-                                혜택이 큰 <span style="color: #ff328b;">신용카드</span>를 사용해볼까요?
-                            </div>
-                            <img class="inputImg" src="../../../resources/img/debitcard.png" height="180">
-                        </c:when>
-                    </c:choose>
-                    <%--                    <p2>✔️ 카드소득공제는 일반소득공제와 추가소득공제로 구성되어있어요.</p2>--%>
-                    <%--                    <br/><br/>--%>
-                    <%--                    <p2>✔️ 카드 등 소득공제는 총 급여액의 25%를 초과한 금액부터 가능해요.</p2>--%>
-                    <%--                    <br/>--%>
-                    <%--                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(총 급여액은 연봉에서 식대나 보육 수당 같은 ‘비과세 소득’을 뺀 금액을 의미해요.)</p>--%>
-                    <%--                    <br/>--%>
-                    <%--                    <p2>✔️ 기본공제항목은 결제수단이 신용카드, 체크/직불카드, 현금영수증인 것을 의미해요.</p2>--%>
-                    <%--                    <br/><br/>--%>
-                    <%--                    <p2>✔️ 추가공제항목에는 도서/공연 등의 문화비, 전통시장, 대중교통에서 사용한 금액이 해당돼요</p2>--%>
-                    <%--                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(단, 총급여가 7천만원을 초과하는 경우는 문화비 공제를 받을 수 없어요)</p><br/>--%>
+                        </div>
+                    </div>
                 </div>
-                <br/>
+                <h2> 맞벌이 부부 인적공제 TIP</h2><br/>
+
+                <div class="text-box2">
+                    <div class="comment-text2">
+                        <h2>부양가족 공제 제안 👨‍👩‍👧‍👦</h2>
+                        <div class="consumption-comment">
+                            <h3><span
+                                    style="color: #106e69; font-size: 25px;">${spouseName}</span> 님이 <span
+                                    style="color: #ff328b; font-size: 25px;">인적공제</span>받는 것을 제안드려요❕</h3>
+                        </div>
+                        <br/>
+                        <h5> ☑ 부양가족 기본공제는<span
+                                style="color: #ff328b; font-size: 22px;"> 소득이 높은 </span>배우자에게 몰아서 공제를 받는 것이 유리해요</h5>
+                        <h5> ☑ 종합소득세는 많이 벌수록 많은 소득세를 내야 하는 누진세율 구조로 되어 있어,<br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;맞벌이 부부 연말정산에서는 소득이 높은 쪽으로 공제를 받는 게 세액 상 유리한 부분이 있어요</h5>
+                        <div class="hover-text">
+                            <div class="flex-box">
+
+                                <span style="font-size: 20px; color: #4f4949; margin-left: 270px;">추가 설명 보기 ⍰</span>
+                            </div>
+                            <div class="popup-modal">
+                                맞벌이 부부가 부양가족으로 100만 원을 공제받는다고 해볼게요.<br/> 과세표준이 35% 구간에 해당하는 배우자라면 35만 원,
+                                과세표준이 24% 구간에 해당하는 배우자라면 24만 원을 줄이는 효과가 발생해요.<br/>
+                                그러므로 부양가족 기본공제는 소득이 높은 배우자에게 몰아주는 게 유리해요.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2> 맞벌이 부부 의료비 공제 TIP</h2><br/>
+                <div class="text-box2">
+                    <div class="comment-text2">
+                        <h2>의료비 소비 제안 🏥</h2>
+                        <div class="consumption-comment">
+                            <h3><span
+                                    style="color: #106e69; font-size: 25px;">${spouseName}</span> 님의 카드로 <span
+                                    style="color: #ff328b; font-size: 25px;">결제</span>하는 것을 제안드려요❕</h3>
+                        </div>
+                        <br/>
+                        <h5> ☑ 의료비는 총 급여액의 3%를 초과해야되기 때문에 <span
+                                style="color: #ff328b; font-size: 22px;">연봉이 상대적으로 적은 </span>배우자가<br/>&nbsp;&nbsp;&nbsp;&nbsp;지출하는
+                            것이 유리해요</h5>
+                        <h5> ☑ 부양가족 의료비는 인적공제 대상자만 포함되기 때문에 의료비 사용 대상<span
+                                style="color: #ff328b; font-size: 22px;"> 부양가족의<br/> &nbsp;&nbsp;&nbsp;&nbsp;인적공제도 </span>의료비
+                            공제를 받을 배우자에게 몰아서 공제를 받는 것이 유리해요</h5>
+                        <div class="hover-text">
+                            <div class="flex-box">
+
+                                <span style="font-size: 20px; color: #4f4949; margin-left: 270px;">추가 설명 보기 ⍰</span>
+                            </div>
+                            <div class="popup-modal">
+                                의료비는 자격요건이나 소득, 나이에 제한이 없어요. 배우자가 소득이 많더라도 본인 카드로 결제했다면 본인 의료비로 공제 가능해요.<br/>
+                                또, 부양가족인 부모님이나 형제자매를 위해 쓴 의료비도 신청 가능해요. 여기에 <span style="color: #0d6565;">산후조리원 비용이나 건강검진 비용, 시력교정용 안경, 콘택트렌즈</span>
+                                의료비 공제에 해당하니 누락되는 것 없이 꼼꼼히 챙기셔야 해요
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/><br/>
             </div>
 
 
-<%--            <div class="container2">--%>
-<%--                <div class="comment-box">--%>
-<%--                    <div class="comment-box-inner">--%>
-<%--                        <div class="comment-info">--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${basic_deduction > 0}">--%>
-<%--                                    <div class="character-box">--%>
-<%--                                        <img class="inputImg" src="../../../resources/img/character1.png" height="180">--%>
-<%--                                        <div class="comment-text1">--%>
-<%--                                            <h2>별돌이의 소비 제안💫</h2>--%>
-<%--                                            <h5> 신용카드 대신 <span style="color: #ff328b; font-size: 25px;">체크카드, 현금</span>을<br/>--%>
-<%--                                                사용하는 것이 소득공제에 더 좋아요.</h5>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-
-<%--                                </c:when>--%>
-<%--                                <c:when test="${remainingDeduction == 0}">--%>
-<%--                                    <div class="text">--%>
-
-<%--                                        소비 황금 비율 달성!<br>--%>
-<%--                                        이미 최대 환급을 받고 있으니<br/>--%>
-<%--                                        혜택이 큰 <span style="color: #ff328b;">신용카드</span>를 사용해볼까요?--%>
-<%--                                    </div>--%>
-<%--                                    <img class="inputImg" src="../../../resources/img/debitcard.png" height="180">--%>
-<%--                                </c:when>--%>
-<%--                            </c:choose>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
         </div>
     </section>
 </div>

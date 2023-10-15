@@ -822,9 +822,9 @@
                         <h4>💚추가로 혜택받기💚</h4>
                         <div class="flex-box">
                             <span style="font-weight:bold; font-size:23px;"> ${name}</span>님이 주로 사용한 업종은&nbsp; <span
-                                style="font-weight: bold; color: #2a9791; font-size: 25px"># 마트&nbsp;</span> <span
-                                style="font-weight: bold; color: #2a9791;font-size: 25px"># 여행&nbsp;</span>
-                            <span style="font-weight: bold; color: #2a9791;font-size: 25px"># 외식&nbsp;</span>입니다.<br/>
+                                style="font-weight: bold; color: #2a9791; font-size: 25px"># 외식&nbsp;</span> <span
+                                style="font-weight: bold; color: #2a9791;font-size: 25px"># 쇼핑&nbsp;</span>
+                            <span style="font-weight: bold; color: #2a9791;font-size: 25px"># 여행&nbsp;</span>입니다.<br/>
                         </div>
                         자주 사용하시는 업종과 월평균 사용금액에 맞춰 체크카드를 추천해드릴게요.
                         <div class="info-box2">

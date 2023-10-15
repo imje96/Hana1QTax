@@ -729,6 +729,48 @@
                 text-align: center;
                 font-size: 25px;
             }
+
+            .comment-text1 h4{
+                font-size: 25px;
+            }
+            <%--  hover 시 텍스트 보이기      --%>
+            .hover-text {
+                position: relative; /* popup-modal의 위치를 기준으로 설정하기 위함 */
+                display: inline-block; /* container의 크기를 내용에 맞게 조절 */
+                font-size: 25px;
+            }
+
+            .popup-modal {
+                display: none;
+                position: absolute;
+                top: 100%; /* container 바로 아래에 위치 */
+                left: 0; /* container의 왼쪽 경계에 맞춤 */
+                padding: 10px;
+                background-color: #FFFFFF;
+                border: 2px solid #106e69;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                line-height: 1.5em;
+                z-index: 1; /* 다른 요소 위에 표시되도록 함 */
+            }
+
+            .hover-text:hover .popup-modal {
+                display: block;
+                border-radius: 10px;
+                padding: 10px 20px;
+                width: 600px;
+                font-size: 20px;
+                text-align: left;
+            }
+            .hover-text:hover .popup-modal p{
+                font-size: 16px;
+            }
+            .comment-text2 {
+                margin: 30px 0 30px 10px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #615e5e;
+                text-align: right;
+            }
         </style>
     </head>
 
@@ -781,14 +823,14 @@
 
                     <%--                    <div class="title">소득공제 기반 카드추천</div>--%>
                     <div class="category-box4"><br/>
-                        <h4><span style="color: black; font-size: 28px;">소득공제에 유리한 </span>카드 추천</h4>
+                        <h4><span style="color: black; font-size: 28px;">💚소득공제에 유리한 </span>카드 추천💚</h4>
                         <div class="recommendList">
                             <div class="cardImg-box">
-                                <div class="card-title2">💚일상생활용💚</div>
+                                <div class="card-title2">일상생활용🧭</div>
                                 <img class="cardImg"
                                      src="https://m.hanacard.co.kr/ATTACH/NEW_MOBILE/images/cardinfo/card_img/13278.png" width="296px">
                                 <div class="card-info">
-                                    <span class="card-title">MULTI Any 체크카드</span><br/><br/>#딜리버리 #쇼핑
+                                    <span class="card-title">MULTI Any 체크카드</span><br/><br/>
                                     <span style="font-size: 17px; color: #605c5c">#전가맹점 #페이 결제<br/>#딜리버리 #쇼핑</span>
                                 </div>
                             </div>
@@ -819,28 +861,36 @@
                     </div>
 
                         <div class="info-box2">
-                            위의 카드 조합으로 사용하면 매달 최대 <span style="font-weight: bold; font-size: 25px">92,000원</span>의 혜택을 받을
+                            위의 카드 조합으로 사용하면 매달 최대 <span style="font-weight: bold; font-size: 25px">67,000원</span> 상당의 혜택을 받을
                             것으로 예상돼요
+
+                            <div class="hover-text">
+                                ⍰
+                                <div class="popup-modal">
+                                    <span style="color: #0d6565; font-weight: bold">Multi Any 체크카드 120만원 사용 시</span><br/>
+                                    쇼핑 적립 0.6% & 딜리버리 적립 0.8% => 8천원<br/>
+                                    <span style="color: #0d6565; font-weight: bold">알뜰교통 my pass 마패 신용카드 50만원 사용 시</span><br/>
+                                    대중교통 20% 청구할인 & 편의점 10% 청구할인 & 커피 10% 청구할인 => 3만원<br/>
+                                    <span style="color: #0d6565; font-weight: bold">1Q My Lunch 신용카드 30만원 사용 시</span><br/>
+                                    영화 적립 5천 하나머니 적립 & 요식 적립 10% & 레저 및 통식 적립 7% => 2만 9천원<br/>
+                                </div>
+                            </div>
                             <span style="font-size:17px"></span><br/>
-                            ${name}님의 3개월 평균 사용금액 : 200만원 기준<br/><br/>
-                            <p>* 최대 혜택금액은 영역별 최대 혜택 한도를 산출한 것으로 개인별 소비패턴에 따라 혜택 금액이 달라질 수 있습니다.</p>
+                            ${name}님의 3개월 평균 사용금액 : 200만원 기준
+                            <br/><br/> <p>* 최대 혜택금액은 영역별 최대 혜택 한도를 산출한 것으로 개인별 소비패턴에 따라 혜택 금액이 달라질 수 있습니다.</p>
                         </div>
+
 
 
                     <div class="category-box3">
-                        <h4>💚추가로 혜택받기💚</h4>
+                        <h4>만약, 신용카드를 써야 한다면?</h4>
                         <div class="flex-box">
-                            <span style="font-weight:bold; font-size:23px;"> ${name}</span>님이 주로 사용한 업종은&nbsp; <span
-                                style="font-weight: bold; color: #2a9791; font-size: 25px"># 마트&nbsp;</span> <span
-                                style="font-weight: bold; color: #2a9791;font-size: 25px"># 여행&nbsp;</span>
-                            <span style="font-weight: bold; color: #2a9791;font-size: 25px"># 외식&nbsp;</span>입니다.<br/>
+                            체크카드 대신&nbsp;<span style="font-weight:bold; font-size:23px;">원더카드 Free</span>를 사용해보세요<br/>
                         </div>
-                        자주 사용하시는 업종과 월평균 사용금액에 맞춰 체크카드를 추천해드릴게요.
                         <div class="info-box2">
-                            아래 카드를 함께 사용하면 매달 최대 <span style="font-weight: bold; font-size: 25px">17,000원</span>의 혜택을 받을
-                            것으로 예상돼요
-                            <span style="font-size:17px">(원더카드 FREE)</span><br/>
-                            ${name}님의 3개월 평균 사용금액 : 200만원 기준
+                            대중교통, 영화 및 문화용 카드와 아래 카드를 함께 사용하면<br/> 매달 최대 <span style="font-weight: bold; font-size: 25px">17,000원</span> 상당의 혜택, 총 <span style="font-weight: bold; font-size: 25px">76,000원</span> 상당의 혜택받을
+                            것으로 예상돼요<br/>
+
                         </div>
                         <br/>
                         <div class="recommendList">
@@ -854,33 +904,12 @@
                                 </div>
                                 <button id="openModalBtn1" class="modalBtn2"><h6>자세히 알아보기</h6></button>
                             </div>
-                            <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14133.png">
-                                <div class="card-info">
-                                    <span class="card-title">원더카드 HAPPY</span><br/><br/>
-                                    <span style="font-size: 17px; color: #605c5c">#전가맹점 #간편결제<br/>
-                                            #마트/주유/커피
-                                        </span>
-                                </div>
-                                <button id="openModalBtn2" class="modalBtn2"><h6>자세히 알아보기</h6></button>
-                            </div>
-                            <div class="cardImg-box">
-                                <img class="cardImg"
-                                     src="https://www.hanacard.co.kr/ATTACH/NEW_HOMEPAGE/images/cardinfo/card_img/14134.png">
-                                <div class="card-info">
-                                    <span class="card-title">원더카드 T</span><br/><br/>
-                                    <span style="font-size: 17px; color: #605c5c"> #SK통신/T우주 #T멤버십<br/>
-                                            #SK주유/11번가/마트
-                                        </span>
-                                </div>
-                                <button id="openModalBtn3" class="modalBtn2"><h6>자세히 알아보기</h6></button>
-                            </div>
+
                         </div>
                         <p>* 최대 혜택금액은 영역별 최대 혜택 한도를 산출한 것으로 개인별 소비패턴에 따라 혜택 금액이 달라질 수 있습니다.</p>
                     </div>
                 </div>
-
+            </div>
             </div>
         </div>
     </div>
