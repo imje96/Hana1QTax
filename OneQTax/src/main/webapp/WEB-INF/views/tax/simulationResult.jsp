@@ -1143,9 +1143,9 @@
                     <input type="text" id="transportTotal" name="transportTotal" oninput="addCommaToNumber(this)"
                            value="<fmt:formatNumber value="${transaction.transport_total}" groupingUsed="true"/>">원<br/>
                     <input type="text" id="marketTotal" name="marketTotal" oninput="addCommaToNumber(this)"
-                           value="<fmt:formatNumber value="${transaction.market_total}" groupingUsed="true"/>">원<br/>
+                           value="<fmt:formatNumber value="${marketTotal}" groupingUsed="true"/>">원<br/>
                     <input type="text" id="cultureTotal" name="cultureTotal" oninput="addCommaToNumber(this)"
-                           value="<fmt:formatNumber value="${transaction.culture_total}" groupingUsed="true"/>">원<br/>
+                           value="<fmt:formatNumber value="${cultureTotal}" groupingUsed="true"/>">원<br/>
                 </div>
             </div>
             <div class="modal-amount-explanation">

@@ -454,6 +454,9 @@ public class TaxController {
         int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
                         +transaction.getCulture_total1()+transaction.getCulture_total2()+transaction.getMarket_total1()+transaction.getMarket_total2()+transaction.getTransport_total());
         int totalInfo_id = totalResult.getTotalInfo_id();
+        int marketTotal = (int) (transaction.getMarket_total1() + transaction.getMarket_total2());
+        int cultureTotal = (int) (transaction.getCulture_total1() + transaction.getCulture_total2());
+
 
         totalResult.setTotalInfo_id(totalInfo_id);
         // 계산결과 DB에 저장하기
@@ -466,6 +469,8 @@ public class TaxController {
         model.addAttribute("totalResult", totalResult);
         model.addAttribute("totalBenefit", totalBenefit);
         model.addAttribute("transaction", transaction);
+        model.addAttribute("marketTotal", marketTotal);
+        model.addAttribute("cultureTotal", cultureTotal);
         model.addAttribute("totalTransaction", totalTransaction);
         model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
         return "tax/simulationResult";

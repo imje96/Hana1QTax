@@ -229,8 +229,12 @@
         setTimeout(() => {
             svgImage.classList.remove("show-img");
             modalBackground.style.display = "none";
+
+            // 여기서 form을 수동으로 제출 -> event.preventDefault 때문에
+            document.getElementById("taxCalculate").submit();
         }, 800);
     });
+
 
 </script>
 

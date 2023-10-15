@@ -22,6 +22,8 @@ public class TransactionVO {
     private double market_total1;
     private double market_total2;
     private double transport_total;
+    private double market_total;
+    private double culture_total;
 }
 
 
