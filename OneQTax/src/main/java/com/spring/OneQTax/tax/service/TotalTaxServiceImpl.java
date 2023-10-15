@@ -148,16 +148,16 @@ public class TotalTaxServiceImpl implements TotalTaxService {
 
         /* 연금계좌 */
         int calcIrpTax = 0;
-        // 1) 연금저축보험 최대 400만원
-        int calcPension = (pension_amount > 4000000) ? 4000000 : pension_amount;
+        // 1) 연금저축보험 최대 600만원
+        int calcPension = (pension_amount > 6000000) ? 6000000 : pension_amount;
 
-        // 2) IRP 최대 700만원, 하지만 전체 (연금저축보험 + IRP) 합은 700만원을 넘을 수 없다.
-        int remainingAmount = 7000000 - calcPension;
+        // 2) IRP 최대 900만원, 하지만 전체 (연금저축보험 + IRP) 합은 700만원을 넘을 수 없다.
+        int remainingAmount = 15000000 - calcPension;
         int calcIrp = (irp_amount > remainingAmount) ? remainingAmount : irp_amount;
 
-        // 3) 합산금액 700만원(총급여액 5천5백만원 초과자는 12%)
+        // 3) 합산금액 700만원(총급여액 5천5백만원 초과자는 13.2%)
         int totalEligible = calcPension + calcIrp;
-        calcIrpTax = (totalIncome > 55000000) ? (int) Math.floor(totalEligible * 0.12) : (int) Math.floor(totalEligible * 0.15);
+        calcIrpTax = (totalIncome > 55000000) ? (int) Math.floor(totalEligible * 0.132) : (int) Math.floor(totalEligible * 0.165);
 
         totalResult.setIrp_taxcredit(calcIrpTax);
 

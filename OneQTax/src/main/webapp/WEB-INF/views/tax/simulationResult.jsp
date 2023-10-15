@@ -111,9 +111,49 @@
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         /* hover 시 그림자 약간 강화 */
     }
+
+    /* 납부할 세금 창 */
+    .info-item5 {
+        border: 1px solid #f6f3f3;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        width: 700px;
+        padding: 10px 25px;
+        font-size: 26px;
+        text-align: center;
+        background: #00857e;
+        line-height: 2.7;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .info-item {
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     /* 연금보험료 모달 */
     .modal-amount-money-variable {
         text-align: right;
+    }
+
+    /*  색 변화   */
+    .yellow-background {
+        background-color: #fbcfe3 !important
+    }
+
+    .total-amount-box {
+        padding: 15px 25px;
+        border: 1px solid #ebf1f1;
+        margin: 0 25px 8px 25px;
+        font-size: 18px;
+        border-radius: 15px;
+        width: 300px;
+        background: #e6ecea;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
 </style>
@@ -156,17 +196,6 @@
             <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
                 <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
             </a>
-            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
-            <%--            <a href="${pageContext.request.contextPath}/taxCalculator"--%>
-            <%--               style="display: block; margin-bottom: 20px;">--%>
-            <%--                <div style="color: grey; margin-bottom: 15px;">연말정산 계산기</div>--%>
-            <%--            </a>--%>
-            <%--            <hr style="width: 200px; margin-bottom: 15px;">--%>
-            <%--            <a href="${pageContext.request.contextPath}/getLatestDeductionResult"--%>
-            <%--               style="display: block; margin-bottom: 20px;">--%>
-            <%--                <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>--%>
-            <%--            </a>--%>
-            <%--            <hr style="width: 200px;">--%>
         </div>
     </div>
     <div class="container1">
@@ -195,8 +224,6 @@
 
                             <div class="info-item5">
                                 <div class="info-item">
-
-
                                     <c:choose>
                                         <c:when test="${totalResult.expected_tax >= 0}">
                                             <h4><span style="color: #ff7cf1; font-size: 32px">💸납부</span>할 세금 :
@@ -221,8 +248,23 @@
                                     </h4>
                                 </div>
 
+                                <c:choose>
+                                    <c:when test="${totalResult.expected_tax >= 0}">
+                                        <img src="../../../resources/img/cryingCharacter.png" height="200px">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="../../../resources/img/smileCharacter.png" height="200px">
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
-
+                            <c:choose>
+                                <c:when test="${totalResult.expected_tax >= 0}">
+                                    <div class="info-item2"><h3>추가로 공제받을 수 있는 항목이 있는지 확인해보세요💸</h3></div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="info-item2"><h3>축하드려요!! 환급을 받을 수 있어요💰</h3></div>
+                                </c:otherwise>
+                            </c:choose>
 
                             <br/>
                             <div class="copy-text">
@@ -232,9 +274,9 @@
                                     style="font-weight: bold; color: #1c736f">환급</span>받습니다.
                             </div>
                             <br/><br/>
-                                <div class="flex-container">
+                            <div class="flex-container">
                                 <h3>계산 결과 확인하기</h3>
-                                </div>
+                            </div>
                             <br/>
                             <table class="table-tax">
                                 <thead>
@@ -322,11 +364,11 @@
                                 IRP로 최대 약 118만원 환급 받기 👉
 
                                 <a href="/redirectToHanaIrp">
-                              <span style="font-weight: bold; border-radius: 10px;background: #fbcfe3; padding: 5px"> 자세히 알아보기</span></a>
-<br/>
-                                  <span style="font-size: 22px; font-weight: bold">[연금계좌]</span> 박스를 눌러 세액공제 금액을 확인해보세요
-<%--                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span--%>
-<%--                                    style="font-weight: bold; color: #1c736f">환급</span>받습니다.--%>
+                                    <span style="font-weight: bold; border-radius: 10px;background: #fbcfe3; padding: 5px"> 자세히 알아보기</span></a>
+                                <br/>
+                                <span style="font-size: 22px; font-weight: bold">[연금계좌]</span> 박스를 눌러 세액공제 금액을 확인해보세요
+                                <%--                                <span style="font-weight: bold; margin-left: 126px">-(음수)</span>이면 세금을 <span--%>
+                                <%--                                    style="font-weight: bold; color: #1c736f">환급</span>받습니다.--%>
                             </div>
 
                             <div class="content-text">
@@ -475,8 +517,13 @@
                                 </div>
                                 <div class="flex-column">
                                     <div class="subheading"><h4>세액공제</h4></div>
-                                    <div class="total-amount-box modal-trigger" data-target="detailsModal7">
-                                        <!-- id="showModal" 추가 -->
+<%--                                    <div class="total-amount-box modal-trigger" data-target="detailsModal7">--%>
+                                    <div class="total-amount-box modal-trigger
+    <c:if test="${totalResult.irp_taxcredit == 0}">yellow-background</c:if>"
+                                         data-target="detailsModal7">
+
+
+                                    <!-- id="showModal" 추가 -->
                                         <%--                                <div class="percent">90%달성</div>--%>
                                         <div class="total-text-box">
                                             <div class="total-text">
@@ -531,8 +578,9 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1 id="outsideMedicalDeduction"><fmt:formatNumber value="${totalResult.medical_taxcredit}"
-                                                                          groupingUsed="true"/>원
+                                                    <p1 id="outsideMedicalDeduction"><fmt:formatNumber
+                                                            value="${totalResult.medical_taxcredit}"
+                                                            groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
                                             </div>
@@ -552,8 +600,9 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1 id="outsideEduDeduction"><fmt:formatNumber value="${totalResult.education_taxcredit}"
-                                                                          groupingUsed="true"/>원
+                                                    <p1 id="outsideEduDeduction"><fmt:formatNumber
+                                                            value="${totalResult.education_taxcredit}"
+                                                            groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
                                             </div>
@@ -604,10 +653,10 @@
                                 </div>
                             </div>
                             <br/>
-<%--                            <div class="flex-container">--%>
-<%--                                <button type="button" class="prev-button" data-step="3">이전</button>--%>
-<%--                                <button type="submit" class="submit-button" id="deductionCalc">계산하기</button>--%>
-<%--                            </div>--%>
+                            <%--                            <div class="flex-container">--%>
+                            <%--                                <button type="button" class="prev-button" data-step="3">이전</button>--%>
+                            <%--                                <button type="submit" class="submit-button" id="deductionCalc">계산하기</button>--%>
+                            <%--                            </div>--%>
 
                             <form id="deductionForm" method="post" action="yourActionURL">
                                 <div class="flex-container">
@@ -958,7 +1007,7 @@
             <div class="modal-amount-explanation">
                 <p2>주택임차 차입금?</p2>
                 <br/>
-                <p> &#183; 과세기간 종료일 현재 무주택 세대의 세대주(세대주가 주택관련 공제를 받지 않는 경우 세대원도 가능)<br/>로서 근로소득이 있는 자</p>
+                <p> &#183; 과세기간 종료일 현재 무주택 세대의 세대주(세대주가 주택관련 공제를 받지 않는 경우 세대원도 가능)로서 근로소득이 있는 자</p>
             </div>
             <p>* 대상금액을 기준으로 조건에 따라 단순 계산한 금액으로 실제 공제금액과 다를 수 있습니다.</p>
             <div class="flex-container">
@@ -1047,9 +1096,9 @@
                 </div>
                 <div class="modal-amount-money">
                     <span id="additional_deduction"><fmt:formatNumber value="${totalInfo.additional_deduction}"
-                                                               groupingUsed="true"/>원</span><br/>
+                                                                      groupingUsed="true"/>원</span><br/>
                     <p2 id="additionalDeduction"><fmt:formatNumber value="${totalResult.additional_deduction}"
-                                                                groupingUsed="true"/>원
+                                                                   groupingUsed="true"/>원
                     </p2>
                 </div>
             </div>
@@ -1203,9 +1252,9 @@
                 </div>
                 <div class="modal-amount-money">
                     <span id="guarantee_total"><fmt:formatNumber value="${totalInfo.guarantee_total}"
-                                                               groupingUsed="true"/>원</span><br/>
+                                                                 groupingUsed="true"/>원</span><br/>
                     <p2 id="guaranteeDeduction"><fmt:formatNumber value="${totalResult.guarantee_taxcredit}"
-                                                                groupingUsed="true"/>원
+                                                                  groupingUsed="true"/>원
                     </p2>
                 </div>
             </div>
@@ -1259,8 +1308,9 @@
             <p>기준일시 : ${totalInfo.result_time}</p>
             <p>의료비로 사용한 세액공제대상 금액을 입력해주세요.</p>
             <span style="color: #af0332"><h5> * 의료비 세액공제는 총급여액의 3%를 초과한 금액에 대해서 공제가능합니다.</h5></span>
-            <span style="color: #af0332">  <h5>(나의 의료비 공제 시작 금액 :  <fmt:formatNumber value="${totalInfo.total_income2*0.03}"
-                              groupingUsed="true"/>원)</h5></span><br/>
+            <span style="color: #af0332">  <h5>(나의 의료비 공제 시작 금액 :  <fmt:formatNumber
+                    value="${totalInfo.total_income2*0.03}"
+                    groupingUsed="true"/>원)</h5></span><br/>
             <div class="modal-amount-box">
                 <div class="modal-amount-text">
                     <h5>총 납입액</h5>
@@ -1270,7 +1320,7 @@
                     <span id="medical_total"><fmt:formatNumber value="${totalInfo.medical_total}"
                                                                groupingUsed="true"/>원</span><br/>
                     <p2 id="medicalDeduction"><fmt:formatNumber value="${totalResult.medical_taxcredit}"
-                                                             groupingUsed="true"/>원
+                                                                groupingUsed="true"/>원
                     </p2>
                 </div>
             </div>
@@ -1349,9 +1399,9 @@
                 </div>
                 <div class="modal-amount-money">
                     <span id="education_total"><fmt:formatNumber value="${totalInfo.education_total}"
-                                                               groupingUsed="true"/>원</span><br/>
+                                                                 groupingUsed="true"/>원</span><br/>
                     <p2 id="educationDeduction"><fmt:formatNumber value="${totalResult.education_taxcredit}"
-                                                             groupingUsed="true"/>원
+                                                                  groupingUsed="true"/>원
                     </p2>
                 </div>
             </div>
@@ -1432,7 +1482,7 @@
                 </div>
                 <div class="modal-amount-money">
                     <span id="donation_total"><fmt:formatNumber value="${totalInfo.education_total}"
-                                                                 groupingUsed="true"/>원</span><br/>
+                                                                groupingUsed="true"/>원</span><br/>
                     <p2 id="education_total"><fmt:formatNumber value="${totalResult.education_taxcredit}"
                                                                groupingUsed="true"/>원
                     </p2>
@@ -1512,9 +1562,9 @@
                 </div>
                 <div class="modal-amount-money">
                     <span id="rent_total"><fmt:formatNumber value="${totalInfo.rent_total}"
-                                                                 groupingUsed="true"/>원</span><br/>
+                                                            groupingUsed="true"/>원</span><br/>
                     <p2 id="rentDeduction"><fmt:formatNumber value="${totalResult.rent_taxcredit}"
-                                                                  groupingUsed="true"/>원
+                                                             groupingUsed="true"/>원
                     </p2>
                 </div>
             </div>
@@ -1543,9 +1593,9 @@
                 <p> &#183;무주택 세대의 세대주(세대주가 주택 관련 고제를 받지 않는 경우 세대운도 가능)가 국민주택규모 또는
                     기준시가 4억원 이하의 주택(주거용 오피스텔, 고시원 포함)을 임차하기 위해 지급하는 월세액 </p>
 
-            <div class="flex-container">
-                <input type="button" id="saveButton12" class="update-button" value="저장">
-            </div>
+                <div class="flex-container">
+                    <input type="button" id="saveButton12" class="update-button" value="저장">
+                </div>
             </div>
         </form>
     </div>
@@ -1554,8 +1604,7 @@
 <footer>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
-
-<%--progress bar--%>
+<%-- 업데이트 진행률 --%>
 <script>
     let currentStep = 1;
     // 클릭으로 이동하기
@@ -1875,7 +1924,7 @@
         document.getElementById('irpPension_total').innerText = irpPension_total.toLocaleString('ko-KR') + "원";
 
         // 세액 공제 금액을 계산
-        const irpPensionDeduction = irpPension_total * 0.12;
+        const irpPensionDeduction = irpPension_total * 0.132;
         document.getElementById('irpPensionDeduction').innerText = irpPensionDeduction.toLocaleString('ko-KR') + "원";
 
         // 바깥쪽 세액공제금액도 업데이트
@@ -1964,5 +2013,3 @@
 
 </body>
 </html>
-
-
