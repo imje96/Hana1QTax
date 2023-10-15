@@ -113,6 +113,18 @@
             background: #d9e3e3;
             line-height: 1.7;
         }
+        .comment-info {
+            margin: 20px 50px 0 50px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            line-height: 1.7;
+            background: #d9e3e3;
+            border-radius: 10px;
+            box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
     </style>
 

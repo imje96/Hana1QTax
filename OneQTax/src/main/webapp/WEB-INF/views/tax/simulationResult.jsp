@@ -281,7 +281,7 @@
                 <span class="close" onclick="closePopup()">&times;</span>
                 <br/>
                 <h2>아직 실망하지 마세요 💁<br/>
-                    카드 황금비율 관리를 통해 환급 확률을 높일 수 있어요
+                    카드 황금비율 관리를 통해 환급 가능성을 높일 수 있어요
                     </h2>
                 <button class="yesBtn" onclick="goToLink2()">자세히 알아보기</button>
             </div>

@@ -94,12 +94,8 @@
                     <div class="position-relative p-4 pt-0"
                          style="text-align: center;">
                         <h4 style="padding-top: 50px;">
-<%--                            <span class="text-primary">관리부터 분석</span>까지, 내 모든 금융 자산을 <span--%>
-<%--                                style="color: #ff328b;">한번에!</span>--%>
                             올해 카드 소득공제 얼마 받게 될까? <span style="color: #ff328b;"> 결제수단</span>을 연동해보세요!
                         </h4>
-                        <%--                        <img class="img-fluid" style="width: 50%; height: 50%;"--%>
-                        <%--                             src="${pageContext.request.contextPath }/resources/img/debitcard.png" alt="">--%>
                         <br/><p>카드와 홈택스를 연동하고 소득공제 혜택을 확인하세요.</p>
                     </div>
                 </div>
@@ -108,11 +104,11 @@
 
                     <div class="flex-box" style="text-align: center;">
                         <div class="inputImg2">
-                            <img src="../../../resources/img/tax3.png">
+                            <img src="../../../resources/img/taxMain1.png">
                         </div>
                         <div class="text-box3">
                             <br/>
-                            <h6>카드소득공제를 받으려면 얼마를 사용해야 할까?<span style="color: #ff328b">조회</span>하세요</h6>
+                            <h6>카드소득공제를 받으려면 얼마를 사용해야 할까?<span style="color: #ff328b"> 조회</span>하세요</h6>
                             <div style="padding: 10px;">
                                 <a href="${pageContext.request.contextPath }/taxThreshold">
                                     <button class="pointBtn2"><h6>소비 문턱 넘기기</h6></button>
@@ -124,7 +120,7 @@
                     <div class="flex-box" style="text-align: center;">
                         <div class="text-box3">
                             <br/>
-                            <h6>연말정산에서 <span style="color: #ff328b">카드 소득공제</span>를 가장 많이 받을 수 있도록 계산해드려요</h6>
+                            <h6>연말정산에서 <span style="color: #ff328b">카드 소득공제</span>를 가장 많이 받을 수 있도록 알려드려요</h6>
                             <div style="padding: 10px;">
                                 <a href="${pageContext.request.contextPath }/taxInfo">
                                     <button class="pointBtn2"><h6>카드 황금비율 알아보기</h6></button>
@@ -132,13 +128,13 @@
                             </div>
                         </div>
                         <div class="inputImg2">
-                            <img src="../../../resources/img/tax3.png">
+                            <img src="../../../resources/img/taxMain2.png">
                         </div>
                     </div>
                     <br/><br/>
                     <div class="flex-box" style="text-align: center;">
                         <div class="inputImg2">
-                            <img src="../../../resources/img/tax3.png">
+                            <img src="../../../resources/img/taxMain3.png" height="120px">
                         </div>
                         <div class="text-box3">
                             <br/>
@@ -152,51 +148,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <%--                        <div class="col-12 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">--%>
-                    <%--                            <div class="service-item rounded overflow-hidden">--%>
-                    <%--                                <div class="position-relative p-4 pt-0"--%>
-                    <%--                                     style="text-align: center;">--%>
-                    <%--                                    <div>--%>
-                    <%--                                        <img alt="" style="width: 10%; height: 10%;" class="mt-4 mb-3"--%>
-                    <%--                                             src="../../../resources/img/tax3.png">--%>
-                    <%--                                    </div>--%>
-                    <%--                                    <h6>배우자와의 카드 사용 황금비율을 찾아보세요</h6>--%>
-                    <%--                                    <h6>--%>
-                    <%--                                        원큐택스에서 <span style="color: #ff328b">분석</span>하세요--%>
-                    <%--                                    </h6>--%>
-                    <%--                                    <div style="padding: 10px;">--%>
-                    <%--                                        <a class="btn btn-primary"--%>
-                    <%--                                           href="${pageContext.request.contextPath }/consult/togetherConsultForm">부부--%>
-                    <%--                                            설계 하기</a>--%>
-                    <%--                                    </div>--%>
-                    <%--                                </div>--%>
-                    <%--                            </div>--%>
-                    <%--                        </div>--%>
-                    <div class="col-12 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded overflow-hidden">
-                            <div class="funcionality1" style="text-align: center;">
-<%--                                <div class="mt-3">--%>
-<%--                                    <img alt="" style="width: 10%; height: 10%;" class="mt-4 mb-3"--%>
-<%--                                         src="../../../resources/img/tax3.png">--%>
-<%--                                </div>--%>
-<%--                                <h6>이전에 설계한</h6>--%>
-<%--                                <h6>--%>
-<%--                                    <span style="color: #ff328b">연말정산 내역을</span> 확인하세요--%>
-<%--                                </h6>--%>
-<%--                                <div style="padding: 10px;">--%>
-<%--                                    <a class="btn btn-primary"--%>
-<%--                                       href="${pageContext.request.contextPath }/consult/consultLogList">--%>
-<%--                                        나의 설계내역 확인하기</a>--%>
-<%--                                </div>--%>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-            <%--            </div>--%>
-        </div>
     </section>
 </div>
 <%-- 챗봇 --%>

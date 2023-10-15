@@ -74,7 +74,7 @@
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
             /* hover 시 그림자 약간 강화 */
         }
-
+        /* 버 */
         /*  아코디언  */
         .modal {
             display: none;
@@ -112,13 +112,6 @@
             height: 50px;
         }
 
-        /*.accordion-body {*/
-        /*    max-height: 0;*/
-        /*    overflow: hidden;*/
-        /*    transition: max-height 0.3s ease;*/
-        /*    padding: 0 15px;*/
-        /*    border-top: none;  !* 추가: 아코디언 바디의 상단 테두리 제거 *!*/
-        /*}*/
         .accordion-body {
             max-height: 0;
             padding: 0 15px;
@@ -256,10 +249,10 @@
             <div class="container-title">
                 <h2>연말정산 안내</h2>
                 <br/>
-                <span style="color: #615e5e"><h3>올해는 13월의 월급을 받을 수 있을까? 연말정산을 미리 확인해보고 환급액을 예상해보세요</h3></span>
+                <span style="color: #615e5e"><h3>올해는 13월의 월급을 받을 수 있을까? 연말정산을 미리 확인해보고 환급액을 예상해 보세요</h3></span>
                 <br/><br/>
-                <span style="color: #ff328b">
-                    <h2> 13월의 월급? vs 세금 폭탄?</h2></span>
+                <h2> <span style="color: #ff328b">
+                   13월의 월급? vs 세금 폭탄? </span>연말정산 시작하기로 확인해 보세요</h2>
             </div>
 
                 <br/>
@@ -278,7 +271,7 @@
                 <div class="list-box" style="padding-top: 30px;">
                     <div class="flex-box" style="text-align: center;">
                         <div class="inputImg2">
-                            <img src="../../../resources/img/tax3.png">
+                            <img src="../../../resources/img/simulationMain3.png">
                         </div>
                         <div class="text-box3">
                             <br/>
@@ -306,7 +299,7 @@
                     <br/><br/>
                     <div class="flex-box" style="text-align: center;">
                         <div class="inputImg2">
-                            <img src="../../../resources/img/tax3.png">
+                            <img src="../../../resources/img/simulationMain2.png">
                         </div>
                         <div class="text-box3">
                             <br/>
