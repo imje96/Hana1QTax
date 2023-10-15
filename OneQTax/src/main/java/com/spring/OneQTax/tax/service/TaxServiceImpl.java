@@ -72,8 +72,10 @@ public class TaxServiceImpl implements TaxService {
         double creditTotal = transaction.getCredit_total();
         double debitTotal = transaction.getDebit_total();
         double cashTotal = transaction.getCash_total();
-        double cultureTotal = transaction.getCulture_total();
-        double marketTotal = transaction.getMarket_total();
+        double cultureTotal1 = transaction.getCulture_total1();
+        double cultureTotal2 = transaction.getCulture_total2();
+        double marketTotal1 = transaction.getMarket_total1();
+        double marketTotal2 = transaction.getMarket_total2();
         double transportTotal = transaction.getTransport_total();
 
         // 공제전 계산금액
@@ -102,15 +104,16 @@ public class TaxServiceImpl implements TaxService {
 
         // 연봉이 7천만원 초과이면 도서문화비 제외
         if (totalIncome > 70000000) {
-            cultureTotal = 0;
+            cultureTotal1 = 0;
+            cultureTotal2 = 0;
         }
 
         // 전체 공제가능액
-        double totalDeductible = creditTotal * 0.15 + (debitTotal + cashTotal + cultureTotal) * 0.3 + (marketTotal + transportTotal) * 0.4;
+        double totalDeductible = creditTotal * 0.15 + (debitTotal + cashTotal + cultureTotal1) * 0.3 + (cultureTotal2 + marketTotal1) * 0.4  + marketTotal2 * 0.5 + transportTotal * 0.8;
         // 공제 제외액
         double except1 = minimumAmount * 0.15;
         double except2 = creditTotal * 0.15 + (minimumAmount - creditTotal) * 0.3;
-        double except3 = creditTotal * 0.15 + (debitTotal + cashTotal + cultureTotal) * 0.3 + (minimumAmount - creditTotal - debitTotal - cashTotal - cultureTotal) * 0.4;
+        double except3 = creditTotal * 0.15 + (debitTotal + cashTotal + (cultureTotal1+cultureTotal2)) * 0.3 +  (minimumAmount - creditTotal - debitTotal - cashTotal - (cultureTotal1+cultureTotal2)) * 0.4;
 
         // 추가공제가능액(additional deductible) 계산
         double result1 = 0;
@@ -120,13 +123,10 @@ public class TaxServiceImpl implements TaxService {
         // 공제가능금액 result 계산
 
         //  result 1 : 신용카드금액 >= 최저사용금액
-        //  (creditTotal) * 0.15 + (debitTotal + cashTotal + cultureTotal) * 0.3 + (marketTotal + transportTotal) * 0.4 - except1;
         result1 = totalDeductible - except1;
         //  result 2 : 신용카드 + 체크카드+ 현금영수증 + 도서문화 >= 최저사용금액
-        //  (debitTotal + cashTotal + cultureTotal) * 0.3 + (marketTotal + transportTotal) * 0.4 - (minimumAmount - creditTotal) * 0.3;
         result2 = totalDeductible - except2;
         //  result 3 : 신용카드 + 체크카드+ 현금영수증 + 도서문화 + 전통시장 + 대중교통 >= 최저사용금액
-        //  (marketTotal + transportTotal) * 0.4 - (minimumAmount - creditTotal - debitTotal - cashTotal - cultureTotal) * 0.4;
         result3 = totalDeductible - except3;
         // 임시 계산 tempD = 공제가능금액-공제한도 = result1 - basicLimit
         double tempD1 = result1 - basicLimit;
@@ -163,9 +163,9 @@ public class TaxServiceImpl implements TaxService {
             // 추가공제액 연봉이 7천만원 이하 -> additionalLimit이 300
             // 추가공제액 연봉이 7천만원 초과 -> additionalLimit이 200 (db에 저장됨)
 
-            cultureDeduction = Math.min(cultureTotal * 0.3, additionalLimit);
-            marketDeduction = Math.min(marketTotal * 0.4, additionalLimit - cultureDeduction);
-            transportDeduction = Math.min(transportTotal * 0.4, additionalLimit - cultureDeduction - marketDeduction);
+            cultureDeduction = Math.min((cultureTotal1 * 0.3 + cultureTotal2 * 0.4), additionalLimit);
+            marketDeduction = Math.min((marketTotal1 * 0.4 + marketTotal2 * 0.5), additionalLimit - cultureDeduction);
+            transportDeduction = Math.min(transportTotal * 0.8, additionalLimit - cultureDeduction - marketDeduction);
 
             additionalDeduction = cultureDeduction + marketDeduction + transportDeduction;
 
@@ -182,9 +182,9 @@ public class TaxServiceImpl implements TaxService {
             basicDeduction = creditDeduction + debitDeduction + cashDeduction;
 
             // 추가공제액 계산
-            cultureDeduction = Math.min(cultureTotal * 0.3, additionalLimit);
+            cultureDeduction = Math.min((cultureTotal1 * 0.3 + cultureTotal2 * 0.4), additionalLimit);
             marketDeduction = Math.min(debitTotal * 0.4, additionalLimit - cultureDeduction);
-            transportDeduction = Math.min(cashTotal * 0.4, additionalLimit - cultureDeduction - marketDeduction);
+            transportDeduction = Math.min(cashTotal * 0.8, additionalLimit - cultureDeduction - marketDeduction);
 
             additionalDeduction = cultureDeduction + marketDeduction + transportDeduction;
 
@@ -201,14 +201,14 @@ public class TaxServiceImpl implements TaxService {
             basicDeduction = creditDeduction + debitDeduction + cashDeduction;
 
             // 추가공제액 계산
-            cultureDeduction = Math.min(cultureTotal * 0.3, additionalLimit);
+            cultureDeduction = Math.min((cultureTotal1 * 0.3 + cultureTotal2 * 0.4), additionalLimit);
             marketDeduction = Math.min(debitTotal * 0.4, additionalLimit - cultureDeduction);
-            transportDeduction = Math.min(cashTotal * 0.4, additionalLimit - cultureDeduction - marketDeduction);
+            transportDeduction = Math.min(cashTotal * 0.8, additionalLimit - cultureDeduction - marketDeduction);
 
             additionalDeduction = cultureDeduction + marketDeduction + transportDeduction;
 
             // 4) 기본공제 항목 + 도서문화 항목 합산금액이 최저사용금액을 넘길 때 (항목별 계산 불가)
-        } else if (creditTotal + debitTotal + cashTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + cultureTotal) {
+        } else if (creditTotal + debitTotal + cashTotal < minimumAmount && minimumAmount <= creditTotal + debitTotal + cashTotal + (cultureTotal1 + cultureTotal2)) {
             creditDeductible = 0;
             debitDeductible = 0;
             cashDeductible = 0;
@@ -216,7 +216,7 @@ public class TaxServiceImpl implements TaxService {
             basicDeduction = Math.min(result2, basicLimit);
 
             // 추가공제액 계산
-            tempMin = Math.min(tempD2, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
+            tempMin = Math.min(tempD2, (cultureTotal1 * 0.3 + (cultureTotal2 + marketTotal1) * 0.4 + marketTotal2 * 0.5 + transportTotal * 0.8));
             additionalDeduction = Math.min(tempMin, additionalLimit);
 
             // 5) 모든 항목을 다 합친 금액이 최저사용금액을 넘길 때 (항목별 계산불가)
@@ -228,7 +228,7 @@ public class TaxServiceImpl implements TaxService {
             basicDeduction = Math.min(result3, basicLimit);
 
             // 추가공제액 계산
-            tempMin = Math.min(tempD3, (cultureTotal * 0.3 + marketTotal * 0.4 + transportTotal * 0.4));
+            tempMin = Math.min(tempD3, (cultureTotal1 * 0.3 + (cultureTotal2 + marketTotal1) * 0.4 + marketTotal2 * 0.5 + transportTotal * 0.8));
             additionalDeduction = Math.min(tempMin, additionalLimit);
         }
 

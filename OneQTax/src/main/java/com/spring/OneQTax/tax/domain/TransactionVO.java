@@ -17,8 +17,10 @@ public class TransactionVO {
     private double credit_total;
     private double debit_total;
     private double cash_total;
-    private double culture_total;
-    private double market_total;
+    private double culture_total1;
+    private double culture_total2;
+    private double market_total1;
+    private double market_total2;
     private double transport_total;
 }
 

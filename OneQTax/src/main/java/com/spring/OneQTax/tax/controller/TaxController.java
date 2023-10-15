@@ -155,8 +155,8 @@ public class TaxController {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) transaction.getCulture_total());
-        model.addAttribute("market_total", (int) transaction.getMarket_total());
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
+        model.addAttribute("market_total", (int) (transaction.getMarket_total1()+transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
 
 
@@ -244,7 +244,7 @@ public class TaxController {
 
         // 기본항목 총합 & 추가항목 총합
         double basicTotal = transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total();
-        double additionalTotal = transaction.getCulture_total() + transaction.getMarket_total() + transaction.getTransport_total();
+        double additionalTotal = transaction.getCulture_total1() + transaction.getCulture_total2() + transaction.getMarket_total1() + transaction.getMarket_total2() + transaction.getTransport_total();
         double transactionTotal = basicTotal + additionalTotal;
         double remainingThreshold = taxInfoVO.getMinimum_amount() - basicTotal;
 
@@ -253,8 +253,8 @@ public class TaxController {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) transaction.getCulture_total());
-        model.addAttribute("market_total", (int) transaction.getMarket_total());
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
+        model.addAttribute("market_total", (int) (transaction.getMarket_total1() + transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
         // 최저사용액
         model.addAttribute("minimum_amount", (int) taxInfoVO.getMinimum_amount());
@@ -368,7 +368,7 @@ public class TaxController {
         System.out.println("2차 계산:"+ totalResult);
         int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
         int totalTransaction = (int) (transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total()
-                + transaction.getCulture_total() + transaction.getMarket_total() + transaction.getTransport_total());
+                + transaction.getCulture_total1() + transaction.getCulture_total2() + transaction.getMarket_total1() + transaction.getMarket_total2() + transaction.getTransport_total());
         int totalInfo_id = totalResult.getTotalInfo_id();
 
         totalResult.setTotalInfo_id(totalInfo_id);
@@ -452,7 +452,7 @@ public class TaxController {
 
         int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
         int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
-                        +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
+                        +transaction.getCulture_total1()+transaction.getCulture_total2()+transaction.getMarket_total1()+transaction.getMarket_total2()+transaction.getTransport_total());
         int totalInfo_id = totalResult.getTotalInfo_id();
 
         totalResult.setTotalInfo_id(totalInfo_id);
@@ -499,7 +499,7 @@ public class TaxController {
 
         int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
         int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
-                +transaction.getCulture_total()+transaction.getMarket_total()+transaction.getTransport_total());
+                +transaction.getCulture_total1()+transaction.getCulture_total2()+transaction.getMarket_total1()+transaction.getMarket_total2()+transaction.getTransport_total());
         int totalInfo_id = totalResult.getTotalInfo_id();
         int medical_minimum = (int) (totalInfo.getTotal_income2() * 0.03);
 
@@ -756,8 +756,8 @@ public class AcceptController2 {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) transaction.getCulture_total());
-        model.addAttribute("market_total", (int) transaction.getMarket_total());
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
+        model.addAttribute("market_total", (int) (transaction.getMarket_total1()+transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
         // 배우자 그래프를 위한 값
 
@@ -783,8 +783,8 @@ public class AcceptController2 {
         model.addAttribute("credit_total2", (int) transaction2.getCredit_total());
         model.addAttribute("debit_total2", (int) transaction2.getDebit_total());
         model.addAttribute("cash_total2", (int) transaction2.getCash_total());
-        model.addAttribute("culture_total2", (int) transaction2.getCulture_total());
-        model.addAttribute("market_total2", (int) transaction2.getMarket_total());
+        model.addAttribute("culture_total2", (int) (transaction2.getCulture_total1()+transaction2.getCulture_total2()));
+        model.addAttribute("market_total2", (int) (transaction2.getMarket_total1()+transaction2.getMarket_total2()));
         model.addAttribute("transport_total2", (int) transaction2.getTransport_total());
 
         System.out.println("서비스 결과 (컨트롤러): " + result);
@@ -895,8 +895,8 @@ public class AcceptController2 {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) transaction.getCulture_total());
-        model.addAttribute("market_total", (int) transaction.getMarket_total());
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
+        model.addAttribute("market_total", (int) (transaction.getMarket_total1()+transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
 
 
