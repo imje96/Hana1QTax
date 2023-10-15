@@ -59,7 +59,7 @@
                 </div>
                     <div class="drops">
                         <div class="dropdown">
-                            <a href="${pageContext.request.contextPath}/taxSimulation">
+                            <a href="${pageContext.request.contextPath}/simulationMain">
                                 <button class="dropbtn">연말정산플래너
                                 </button>
                             </a>
@@ -109,15 +109,6 @@
                                 <a href="#">카드안내</a>
                             </div>
                         </div>
-                    <%--                    <div class="dropdown">--%>
-                    <%--                        <button class="dropbtn">커뮤니티--%>
-                    <%--                            <i class="fa fa-caret-down"></i>--%>
-                    <%--                        </button>--%>
-                    <%--                        <div class="dropdown-content">--%>
-                    <%--                            <a href="#">세테크tip</a>--%>
-                    <%--                            <a href="#">절세게시판</a>--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
 
                 </div>
             </div>

@@ -342,7 +342,7 @@
                                                                                      groupingUsed="true"/>원
                             </div>
                         </div>
-                        <p> * 연봉 : 6000 만원 기준 <br><br></p>
+                        <p> * 총급여액 : 6000 만원 기준 <br><br></p>
                     </div>
                     <br/>
                     <div class="chart-box-inner3">
@@ -381,6 +381,7 @@
                                                                                      groupingUsed="true"/>원
                             </div>
                         </div>
+                        <p> * 총급여액 : 5000 만원 기준 <br><br></p>
                     </div>
                     <script src="../../resources/js/deductionChart.js"></script>
                     <script src="../../resources/js/deductionChart2.js"></script>

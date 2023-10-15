@@ -26,9 +26,10 @@ body{
 .login_section{
     min-height: 100vh;
     display: flex;
-    align-items:center;
+    align-items: center;
     position: relative;
-    justify-content:center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .accounts_container{

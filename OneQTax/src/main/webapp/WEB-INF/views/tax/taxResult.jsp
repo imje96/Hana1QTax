@@ -275,12 +275,14 @@
                             </tr>
                             <tr>
                                 <td class="text-left">대중교통</td>
-                                <td class="text-left">40%</td>
+                                <td class="text-left">80%</td>
                                 <td class="text-left">80%</td>
                             </tr>
                             </tbody>
                         </table>
                         <br/>
+                        <p>&nbsp;&nbsp;&nbsp; * 단, 문화비 항목인 영화관람료 소득공제는 23년 7월 1일 이후 결제분부터 합산됩니다</p>
+                        <br/><br/>
                         <h3>급여별 총 한도액</h3><br/>
                         <table class="table-fill">
 

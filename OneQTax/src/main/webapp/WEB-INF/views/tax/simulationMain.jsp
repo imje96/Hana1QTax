@@ -74,7 +74,6 @@
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
             /* hover 시 그림자 약간 강화 */
         }
-        /* 버 */
         /*  아코디언  */
         .modal {
             display: none;
@@ -250,14 +249,14 @@
                 <h2>연말정산 안내</h2>
                 <br/>
                 <span style="color: #615e5e"><h3>올해는 13월의 월급을 받을 수 있을까? 연말정산을 미리 확인해보고 환급액을 예상해 보세요</h3></span>
-                <br/><br/>
+                <br/><br/> <br/>
                 <h2> <span style="color: #ff328b">
-                   13월의 월급? vs 세금 폭탄? </span>연말정산 시작하기로 확인해 보세요</h2>
+                    13월의 월급? vs 세금 폭탄? </span><span style="font-size: 24px">연말정산 시작하기로 확인해 보세요</span></h2>
             </div>
-
                 <br/>
             <div class="container2">
                 <div class="hover-text">
+                    <br/>
                 <div class="copy-text"> 🍯TIP : ⍰ 박스에 마우스를 가져다 대면 추가적인 설명이 나타납니다</div>
 
                     <div class="popup-modal">

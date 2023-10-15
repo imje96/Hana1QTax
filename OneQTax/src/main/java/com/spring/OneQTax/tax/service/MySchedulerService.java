@@ -58,8 +58,6 @@ public class MySchedulerService {
 //        // 모든 회원 가져오기
 //        List<MemberVO> allMembers = memberService.getAllMember();
 //
-////        for (MemberVO member : allMembers) {
-////            int memberId = member.getMember_id();
 //        int memberId = 23;
 //            List<CardListVO> selectedCards = tranChart.getCardList(memberId);
 //
@@ -85,16 +83,15 @@ public class MySchedulerService {
 //                }
 //            }
 //        }
-////    }
 //
-////    private String getCardTypeByCardNumber(String cardNumber, List<CardListVO> selectedCards) {
-////        if (selectedCards.get(0).getCard_number().equals(cardNumber)) {
-////            return "type1";
-////        } else if (selectedCards.size() > 1 && selectedCards.get(1).getCard_number().equals(cardNumber)) {
-////            return "type2";
-////        }
-////        return "unknown";
-////    }
+//    private String getCardTypeByCardNumber(String cardNumber, List<CardListVO> selectedCards) {
+//        if (selectedCards.get(0).getCard_number().equals(cardNumber)) {
+//            return "type1";
+//        } else if (selectedCards.size() > 1 && selectedCards.get(1).getCard_number().equals(cardNumber)) {
+//            return "type2";
+//        }
+//        return "unknown";
+//    }
 //
 //    private String generateBenefitMessage(long totalAmount, String cardType) {
 //        String benefitMessage = "";
@@ -132,6 +129,5 @@ public class MySchedulerService {
 //        }
 //        return benefitMessage;
 //    }
-//
-//}
+
 }

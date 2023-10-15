@@ -25,36 +25,30 @@
                 max-width:60%;
             }
         }
-
+        .flex-box{
+            display: flex;
+            width: 1280px;
+            justify-content: flex-start;
+            margin-bottom: 30px;
+        }
     </style>
     <!--Custom Css-->
 </head>
 <body>
 
-
-<header>
-    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-</header>
-
 <section class="login_section">
+    <div class="flex-box">
+    <h1> <img class="imgLogo" src="../../../resources/img/logo.png" height="75">로그인페이지 입니다</h1><br/><br/>
+    </div>
     <div class="container outer_container accounts_container">
         <div class="row h-100">
             <div class="col col-sm-12 col-md-12 col-lg-8 m-0 p-0 w-100 h-100 accounts_col">
                 <div class="accounts_image w-100 h-100">
                     <img src="https://img.freepik.com/free-vector/accounting-and-audit-concept_1284-65155.jpg?t=st=1694016228~exp=1694016828~hmac=c653dfbb1f5c945da89845ff0ca15c963330fe07e3656672998cbb66bd497653" alt="accounts_image" class="img-fluid w-100 h-100" />
-<%--                    <img class="imgLogo" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/ad7e21133290575.61ba2672d7ab4.png" alt="accounts_image" >--%>
-<%--                    <img class="imgLogo" src="../../../resources/img/loginimage.jpg" alt="accounts_image" >--%>
 
                 </div>
-                <!--accounts_image-->
             </div>
-            <!--account_col-->
             <div class="col col-sm-12 col-md-12 col-lg-4 m-0 p-0 accounts_col">
-
-<%--                form action="/login" method="post"--%>
-<%--                <input type="submit" value="Login">--%>
-
-                <!--accounts_forms-->
                 <div class="accounts_forms  w-100 h-100" id="login">
                     <div class="title  mt-4 p-4 w-100">
                         <h1>로그인</h1>

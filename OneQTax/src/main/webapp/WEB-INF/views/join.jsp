@@ -74,45 +74,5 @@
         });
     }
 </script>
-<%--<script>--%>
 
-<%--    function joinForm(){--%>
-<%--    $(document).ready(function() {--%>
-<%--        $("#joinForm").submit(function (event) {--%>
-
-<%--        const id = $("#id").val();--%>
-<%--        const password = $("#password").val();--%>
-<%--        const name = $("#name").val();--%>
-<%--        const email = $("#email").val();--%>
-<%--        const phone = $("#phone").val();--%>
-
-<%--        const data = {--%>
-<%--            id: id,--%>
-<%--            password: password,--%>
-<%--            name: name,--%>
-<%--            email: email,--%>
-<%--            phone: phone--%>
-<%--        }--%>
-
-<%--        $.ajax({--%>
-<%--            type: "POST",--%>
-<%--            url: "/joinMember",--%>
-<%--            data: JSON.stringify(data),--%>
-<%--            contentType: 'application/json',--%>
-<%--            success: function (response) {--%>
-<%--                if (response === "회원등록성공") {--%>
-<%--                    alert("회원가입 성공");--%>
-<%--                    var link = document.createElement("a");--%>
-<%--                    link.href = "/";--%>
-<%--                    link.click();--%>
-<%--                } else {--%>
-<%--                    console.error("회원가입 실패");--%>
-<%--                }--%>
-
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-<%--    });--%>
-<%--    }--%>
-<%--</script>--%>
 </html>
