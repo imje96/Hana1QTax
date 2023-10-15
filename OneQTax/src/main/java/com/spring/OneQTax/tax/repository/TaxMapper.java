@@ -44,6 +44,8 @@ public interface TaxMapper {
     SpouseRelationVO findMySpouse(int memberId);
     // 배우자 이름 가져오기
     MemberVO getSpouseName(int spouseId);
+
+    List<SpouseRelationVO> getSpouseRealtionStatus(int memberId);
     List<SpouseRelationVO> selectSpouseRelationsById(int id);
     void save(int relationId);
 

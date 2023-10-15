@@ -455,7 +455,7 @@ section.visual {
 
 .mySlides {
     width: 1000px;
-    height: 350px;
+    height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -583,12 +583,12 @@ section.visual {
     border-radius: 20px;
     box-shadow: 10px 10px 27px rgba(0, 0, 0, 0.06);
     padding-bottom: 20px;
-
+    height: 350px;
 }
 
 .login-wrap .login-info p.tit {
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     color: #333;
 }
@@ -600,7 +600,7 @@ section.visual {
     height: 52px;
     line-height: 52px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 18px;
     color: #fff;
     background: #00857e;
     border-radius: 8px;
@@ -834,6 +834,7 @@ section.sectors .list li a {
     position: relative;
     align-items: center;
     justify-content: center;
+    padding: 0 30px;
 }
 
 section.sectors .list li a img {
@@ -976,6 +977,7 @@ section.journal .inner {
 section.journal .list {
     display: flex;
     justify-content: space-between;
+    width: 1080px;
 }
 
 section.journal .list li {
@@ -1054,44 +1056,6 @@ section.journal .list.motion li:nth-child(4) {
         transform: translateY(200px);
     }
 }
-
-
-/* section MainContent*/
-
-/* 수정 추가*/
-/*section.main {*/
-/*    !*display: flex;*!*/
-/*    justify-content: center;*/
-/*    !* align-items: center;*/
-
-/*    width: 100%; *!*/
-/*    padding: 200px 200px 50px 200px;*/
-/*}*/
-
-/*.main .inner {*/
-/*    display: flex;*/
-/*    text-align: center;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    width: 1400px;*/
-/*    padding-top: 120px;*/
-/*    margin: 20px 0;*/
-/*}*/
-
-/*.contents .main .title {*/
-/*    width: 100%;*/
-/*    height: 80%;*/
-/*    position: absolute;*/
-/*    left: 0;*/
-/*    top: 50%;*/
-/*    transform: translateY(-50%);*/
-/*    font-family: 'hana-medium' , serif;*/
-/*    font-weight: bold;*/
-/*    text-align: center;*/
-/*    color: #fff;*/
-/*    font-size: 70px;*/
-/*    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);*/
-/*}*/
 
 
 /*footer*/

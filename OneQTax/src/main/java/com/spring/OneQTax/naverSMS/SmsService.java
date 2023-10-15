@@ -2,6 +2,9 @@ package com.spring.oneqtax.naverSMS;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.oneqtax.tax.domain.SpouseRelationVO;
+import com.spring.oneqtax.tax.repository.TaxMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 
@@ -41,6 +44,9 @@ public class SmsService {
     @Value("${naver-cloud-sms.senderPhone}")
     private String phone;
 
+    @Autowired
+    private TaxMapper taxMapper;
+
     public SmsResponseDTO sendSms(MessageDTO messageDto) throws JsonProcessingException, RestClientException, URISyntaxException, InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         Long time = System.currentTimeMillis();
 
@@ -74,6 +80,17 @@ public class SmsService {
         SmsResponseDTO response = restTemplate.postForObject(new URI("https://sens.apigw.ntruss.com/sms/v2/services/"+ serviceId +"/messages"), httpBody, SmsResponseDTO.class);
 
         return response;
+    }
+
+    // 초대 수락하면 문자 발송
+    public void checkRelationStatus(int memberId) throws Exception {
+        List<SpouseRelationVO> result = taxMapper.getSpouseRealtionStatus(memberId);
+        if(!result.isEmpty() && result.get(0).getStatus().equals("Y")) {
+            MessageDTO messageDto = new MessageDTO();
+            messageDto.setTo(""); // 수신자 번호를 설정하세요.
+            messageDto.setContent("배우자님이 우리집 돈 관리 초대를 수락하셨습니다. 하나원큐택스에서 우리 부부 절세 전략을 확인해 보세요."); // 원하는 메시지 내용을 설정하세요.
+//            SmsResponseDTO response = sendSms(messageDto);
+        }
     }
 
     public String makeSignature(Long time) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {

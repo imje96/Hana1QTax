@@ -216,6 +216,13 @@
             SELECT * FROM spouseRelation WHERE id = #{id}
         </select>
 
+        <select id="getSpouseRealtionStatus" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
+            SELECT * FROM SpouseRelation
+            WHERE spouse_id = #{memberId}
+            ORDER BY relation_id DESC
+                FETCH FIRST 1 ROWS ONLY
+        </select>
+
         <!--   배우자ID 찾기     -->
         <select id="findMySpouse" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
             select spouse_id from spouseRelation

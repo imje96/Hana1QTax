@@ -44,7 +44,7 @@ body{
 
 .accounts_image img{
     width: 760px;
-    height: 560px;
+    height: 650px !important;
     object-fit: cover;
     object-position: center;
     border-top-left-radius: 10px;

@@ -4,6 +4,8 @@ import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.tax.domain.SpouseRelationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public interface SpouseService {
 
     // 초대 수락
@@ -18,6 +20,7 @@ public interface SpouseService {
     public SpouseRelationVO fingMySpouse(int memberId);
     public MemberVO getSpouseName(int spouseId);
 
+    public List<SpouseRelationVO> getSpouseRealtionStatus(int memberId);
 //    public SpouseRelation getFriendRelation(int memberId);
 
     // 수정 (Update)

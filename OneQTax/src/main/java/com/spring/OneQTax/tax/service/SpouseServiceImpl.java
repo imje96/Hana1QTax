@@ -7,6 +7,8 @@ import com.spring.oneqtax.tax.repository.TaxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SpouseServiceImpl implements SpouseService{
 
@@ -50,6 +52,11 @@ public class SpouseServiceImpl implements SpouseService{
     @Override
     public MemberVO getSpouseName(int spouseId) {
         return taxMapper.getSpouseName(spouseId);
+    }
+
+    @Override
+    public List<SpouseRelationVO> getSpouseRealtionStatus(int memberId) {
+        return taxMapper.getSpouseRealtionStatus(memberId);
     }
 
     @Override

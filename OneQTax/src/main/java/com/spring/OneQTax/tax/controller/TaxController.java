@@ -3,6 +3,7 @@ package com.spring.oneqtax.tax.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.oneqtax.member.domain.MemberVO;
 import com.spring.oneqtax.member.service.MemberService;
+import com.spring.oneqtax.naverSMS.SmsService;
 import com.spring.oneqtax.tax.domain.*;
 import com.spring.oneqtax.tax.service.SpouseService;
 import com.spring.oneqtax.tax.service.TaxFormService;
@@ -33,6 +34,8 @@ public class TaxController {
     private MemberService memberService;
     @Autowired
     private SpouseService spouseService;
+    @Autowired
+    private SmsService smsService;
 
 
 
@@ -557,8 +560,6 @@ public class TaxController {
     @RequestMapping("/accept")
     public class AcceptController {
 
-        @Autowired
-        private SpouseService spouseService;
 
         @GetMapping("/getMemberId")
         public ResponseEntity<Map<String, Integer>> getMemberId(HttpSession session) {
@@ -570,18 +571,15 @@ public class TaxController {
             response.put("memberId", memberId);
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
-
-//        @GetMapping("/{memberId}")
-//        public String acceptInvitation(@PathVariable int memberId, Model model) {
-//            model.addAttribute("memberId", memberId);
-//            return "tax/spouseInvitation";
-//        }
     }
 
     @PostMapping("/confirmInvitation/{memberId}")
     public ResponseEntity<String> confirmInvitation(@PathVariable int memberId) {
         try {
             spouseService.acceptInvitation(memberId);
+
+            // 초대를 수락한 후에 문자 메시지를 보내는 로직을 호출
+            smsService.checkRelationStatus(memberId);
             return new ResponseEntity<>("Success", HttpStatus.OK);
         } catch(Exception e) {
             e.printStackTrace();
