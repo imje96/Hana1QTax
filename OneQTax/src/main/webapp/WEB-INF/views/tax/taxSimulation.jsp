@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--localTimestamp 초 까지만 출력--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -252,6 +253,8 @@
                                 <option value="6">6명</option>
                             </select>
                             <br/><br/>
+                            멤버아이디 ${memberId}
+<%--                            <c:if test="${memberId != 23}">--%>
                             <label>부녀자 여부:</label>
                             <div class="choice-button">
                                 <input type="radio" id="woman_yes" name="taxFormVO.womanDeduction" value="yes">
@@ -268,6 +271,7 @@
                                 <label for="singleParent_no">X</label>
                             </div>
                             <br/>
+<%--                            </c:if>--%>
                             <span style="margin-left: 50px">
                             <button type="button" class="prev-button" data-step="3">이전</button>
                             <button type="submit" class="submit-button">제출하기</button>

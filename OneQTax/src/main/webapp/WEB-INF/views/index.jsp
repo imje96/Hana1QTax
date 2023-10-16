@@ -9,7 +9,7 @@
     <!--script-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <%--  옆에서 나오는 기능  --%>
-<%--    <script src="../../resources/js/scrolla.jquery.min.js"></script>--%>
+    <script src="../../resources/js/scrolla.jquery.min.js"></script>
     <script src="../../resources/js/main.js"></script>
 
 
@@ -182,7 +182,7 @@
 
             <section class="sectors">
                 <div class="inner">
-                    <div class="text animate" data-animate="motion">
+                    <div class="text animate" >
                         <%--                        <p class="tit">이런 서비스 어떠세요</p>--%>
                         <h1 class="title">이런 서비스는 어떠세요</h1>
                         <%--                        <p>Luxury crew apparel curated across oceans,<br>--%>
@@ -191,7 +191,7 @@
                         <%--                            버튼--%>
                         <%--                          <a href="#">explore</a>--%>
                     </div>
-                    <ul class="list animate" data-animate="motion">
+                    <ul class="list animate" >
                         <li><a href="${pageContext.request.contextPath}/taxMain">
                             <div class="add">
                                 똑똑하게 절세하고 혜택 받기<br><br>

@@ -408,6 +408,7 @@ public class TaxController {
 
 //        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
         model.addAttribute("totalIncome", (int)totalIncome);
+        model.addAttribute("memberId", memberId);
         return "tax/taxSimulation";
     }
 
@@ -471,6 +472,7 @@ public class TaxController {
         model.addAttribute("transaction", transaction);
         model.addAttribute("marketTotal", marketTotal);
         model.addAttribute("cultureTotal", cultureTotal);
+        model.addAttribute("memberId", memberId);
         model.addAttribute("totalTransaction", totalTransaction);
         model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
         return "tax/simulationResult";
@@ -519,6 +521,7 @@ public class TaxController {
         model.addAttribute("totalResult", totalResult);
         model.addAttribute("totalBenefit", totalBenefit);
         model.addAttribute("transaction", transaction);
+        model.addAttribute("memberId",memberId);
         model.addAttribute("totalTransaction", totalTransaction);
         model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
         model.addAttribute("medical_minimum", medical_minimum);
