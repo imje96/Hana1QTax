@@ -169,7 +169,7 @@
         position: relative;
         width: 700px;
         height: 250px;
-        margin: 400px 800px;
+        margin: 400px 660px;
         padding: 20px 30px;
         background-color: white;
         border-radius: 5px;
@@ -204,6 +204,33 @@
         /* hover 시 그림자 약간 강화 */
     }
 
+    /*  기납부세액 안내 버튼  */
+    .detail-button {
+        color: #FFFFFF;
+        width: 100px;
+        height: 50px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        background-color: #083936;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        justify-content: center;
+        font-weight: 200;
+    }
+    .detail-button:hover {
+        background-color: #042a27;
+        transform: scale(1.05);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+    .tr {
+        font-size: 17px !important;
+    }
 </style>
 
 <body>
@@ -280,8 +307,9 @@
             <div class="popupText" >
                 <span class="close" onclick="closePopup()">&times;</span>
                 <br/>
-                <h2>아직 실망하지 마세요 💁<br/>
-                    카드 황금비율 관리를 통해 환급 가능성을 높일 수 있어요
+                <h2>
+                    아직 늦지 않았어요 💁<br/>
+                    카드 황금비율 관리를 통해 환급액을 높일 수 있어요
                     </h2>
                 <button class="yesBtn" onclick="goToLink2()">자세히 알아보기</button>
             </div>
@@ -477,14 +505,18 @@
                             </div>
 
                             <div class="content-text">
-                                <label for="totalIncome">이미 납부한 세금 :&nbsp;&nbsp;</label>
+                                <label for="totalIncome">&nbsp;&nbsp;이미 납부한 세금 : &nbsp;&nbsp;</label>
                                 <input type="text" name="repayment_tax_view" id="prepayment_tax_view"
                                        oninput="addCommaToNumber(this)" data-hidden-id="prepayment_tax"
                                        value="<fmt:formatNumber value="${totalInfo.prepayment_tax}" groupingUsed="true"/>">
                                 &nbsp;원
                                 <input type="hidden" id="prepayment_tax" name="prepayment_tax"
-                                       value="${totalInfo.prepayment_tax}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                       value="${totalInfo.prepayment_tax}">&nbsp;&nbsp;&nbsp;
                                 <input type="button" id="saveButton0" class="update-button" value="저장">
+
+                                <div class="detail-button" data-target="detailsModal13">
+                                참고
+                                </div>
                             </div>
                             <br/>
                             <div class="flex-container"><h5> 🔔 박스를 선택하여 세부 공제 항목을 업데이트 해주세요</h5></div>
@@ -1682,6 +1714,63 @@
         </form>
     </div>
 </div>
+<div class="modal_simulation" id="detailsModal13">
+    <div class="modal-content2">
+
+        <span class="close">&times;</span>
+            <h3>이미 납부한 세금 참고</h3>
+        <div class="modal-amount-explanation">
+            <p> &#183; 근로소득 간이세액표를 참고하여 원천징수된 연봉별 소득세 및 지방세를 안내드릴게요.</p>
+            <p> &#183; 아래의 간이세액표는 1인 가구 기준이며, 세액 비율은 100%를 기준으로 합니다. </p>
+        </div>
+            <br/>
+        <table class="table-fill">
+            <thead>
+            <tr>
+                <th class="text-left">월급여액(천원)<br/><p>비과세 및 학자금 제외</p></th>
+                <th class="text-left">공제대상<br/>가족 1명</th>
+                <th class="text-left">공제대상<br/>가족 2명</th>
+                <th class="text-left">공제대상<br/>가족 3명</th>
+
+            </tr>
+            </thead>
+            <tbody class="table-hover">
+            <tr>
+                <td class="text-left">4,000</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,485,240 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,254,240 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 780,600 </span>원</td>
+            </tr>
+            <tr>
+                <td class="text-left">4,500</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,955,760 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,724,760 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,210,800 </span>원</td>
+            </tr>
+            <tr>
+                <td class="text-left">5,000</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,513,040 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,253,240 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,698,840 </span>원</td>
+            </tr>
+            <tr>
+                <td class="text-left">5,500</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 3,027,120 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,764,320 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,169,480 </span>원</td>
+            </tr>
+            <tr>
+                <td class="text-left">6,000</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 3,541,080 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 3,275,400 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,640,240 </span>원</td>
+            </tr>
+            </tbody>
+        </table>
+<br/>
+        * 예시: 월급여액이 6000만원 & 공제대상가족이 본인 1명인 경우,<br/>  (소득세 268,270 + 지방세 26,820) * 12 = 3,541,080원 도출
+
+</div>
 
 <footer>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
@@ -1730,7 +1819,11 @@
 
 <%--모달 표시 및 숨기기--%>
 <script>
-    const triggers = document.querySelectorAll('.modal-trigger');
+    // 두 가지 클래스를 모두 쿼리하여 NodeList를 하나로 합치기
+    const trigger1 = Array.from(document.querySelectorAll('.modal-trigger'));
+    const trigger2 = Array.from(document.querySelectorAll('.detail-button'));
+    const triggers = [...trigger1, ...trigger2];
+
     triggers.forEach(trigger => {
         trigger.addEventListener('click', function () {
             const targetId = this.getAttribute('data-target');
@@ -1745,11 +1838,6 @@
         closeBtn.addEventListener('click', function () {
             modal.style.display = 'none';
         });
-
-        // modal-content를 클릭하면 모달이 닫히지 않도록 수정
-        // modal.querySelector('.modal-content').addEventListener('click', function (event) {
-        //     event.stopPropagation();
-        // });
     });
 
     window.addEventListener('click', function (event) {
@@ -1759,7 +1847,6 @@
     });
 
 </script>
-
 
 <script>
     function addCommaToNumber(inputElem) {

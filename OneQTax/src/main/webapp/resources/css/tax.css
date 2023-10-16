@@ -891,6 +891,7 @@ td.text-right {
 .modal-content2 {
     background-color: #fefefe;
     margin: auto;
+    margin-bottom: 300px;
     padding: 50px 100px 50px 100px;
     border: 1px solid #d2d0d0;
     width: 30%;
@@ -928,7 +929,7 @@ td.text-right {
 }
 
 input[type="text"] {
-    width: 300px;
+    width: 200px;
     height: 30px;
     padding: 5px;
     font-size: 20px;

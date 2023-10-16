@@ -819,7 +819,7 @@ section.sectors .list {
 }
 
 section.sectors .list li {
-    width: 21vw;
+    width: 23vw;
     height: 12vw;
     border-radius: 20px;
     overflow: hidden;
