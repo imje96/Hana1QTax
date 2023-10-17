@@ -866,6 +866,7 @@
 
                             <div class="hover-text">
                                 ⍰
+                            ${name}님의 3개월 평균 사용금액 : 200만원 기준
                                 <div class="popup-modal">
                                     <span style="color: #0d6565; font-weight: bold">Multi Any 체크카드 120만원 사용 시</span><br/>
                                     쇼핑 적립 0.6% & 딜리버리 적립 0.8% => 8천원<br/>
@@ -875,8 +876,6 @@
                                     영화 적립 5천 하나머니 적립 & 요식 적립 10% & 레저 및 통식 적립 7% => 2만 9천원<br/>
                                 </div>
                             </div>
-                            <span style="font-size:17px"></span><br/>
-                            ${name}님의 3개월 평균 사용금액 : 200만원 기준
                             <br/><br/> <p>* 최대 혜택금액은 영역별 최대 혜택 한도를 산출한 것으로 개인별 소비패턴에 따라 혜택 금액이 달라질 수 있습니다.</p>
                         </div>
 

@@ -539,7 +539,7 @@
                     <div class="header-container">
                         <h3 class="section-header">카드 사용내역</h3>
                         <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
+                            <span>📅 2023 10/1 - 10/17</span>
                         </div>
                     </div>
 <%--                    <a href="/transactionList" class="detailBtn"><h6>더보기 +</h6></a>--%>
@@ -559,24 +559,24 @@
                             <td>
                                 🛵 배달의 민족
                             </td>
-                            <td>2023-10-12</td>
+                            <td>2023/10/17</td>
                             <td>25,000 원</td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                🚌 버스
+                            </td>
+                            <td>2023/10/17</td>
+                            <td>2,400 원</td>
 
                         </tr>
                         <tr>
                             <td>
                                 ☕ 스타벅스 철산점
                             </td>
-                            <td>2023-10-12</td>
+                            <td>2023/10/17</td>
                             <td>6,800 원</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                🏦 이마트 철산점
-                            </td>
-                            <td>2023-10-12</td>
-                            <td>29,980 원</td>
 
                         </tr>
                         </tbody>
@@ -587,7 +587,7 @@
                     <div class="header-container">
                         <h3 class="section-header">현금영수증 사용내역</h3>
                         <div class="date-selector">
-                            <span>📅 2023 10/1 - 10/12</span>
+                            <span>📅 2023 10/1 - 10/17</span>
                         </div>
                     </div>
                     <button class="detailBtn" onclick="location.href='/hometaxList'"><h6>더보기 +</h6></button>
@@ -606,7 +606,7 @@
                             <td>
                                 ☕ 와밀커피
                             </td>
-                            <td>2023-10-09</td>
+                            <td>2023/10/15</td>
                             <td>5,600 원</td>
 
                         </tr>
@@ -614,7 +614,7 @@
                             <td>
                                 🥘 김가네
                             </td>
-                            <td>2023-10-11</td>
+                            <td>2023/10/14</td>
                             <td>15,000 원</td>
 
                         </tr>
@@ -622,8 +622,8 @@
                             <td>
                                 📚 교보문고
                             </td>
-                            <td>2023-10-02</td>
-                            <td>14,000 원</td>
+                            <td>2023/10/14</td>
+                            <td>14,900 원</td>
 
                         </tr>
                         </tbody>

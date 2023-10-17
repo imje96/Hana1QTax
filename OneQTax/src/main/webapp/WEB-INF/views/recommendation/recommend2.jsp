@@ -711,7 +711,7 @@
     }
 
     .flex-box2 {
-        width: 650px;
+        width: 550px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -1176,10 +1176,6 @@
     </div>
 </div>
 <%--    </div>--%>
-<div class="modal-subtitle"><h3>☑ 체크카드 이용 시</h3></div>
-
-<div class="modal-subtitle"><h4>☑ 신용카드 이용 시</h4></div>
-</div>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

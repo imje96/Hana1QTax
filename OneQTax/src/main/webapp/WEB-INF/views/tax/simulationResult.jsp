@@ -537,7 +537,7 @@
                                                 <div class="textalign-right1">&gt&gt</div>
                                                 <br/>
                                                 <div class="textalign-right2">
-                                                    <p1><fmt:formatNumber value="${totalResult.personal_deduction}"
+                                                    <p1 id="outsidePersonalDeduction"><fmt:formatNumber value="${totalResult.personal_deduction}"
                                                                           groupingUsed="true"/>원
                                                     </p1>
                                                 </div>
@@ -1281,8 +1281,12 @@
             <h3>연금계좌</h3>
             <p>기준일시 : ${totalInfo.result_time}</p>
             <p>연금저축계좌 및 퇴직연금계좌 납입액을 직접 입력해주세요.</p>
-            <br/>
 
+            <span style="color: #af0332">
+            연금저축계좌 최대 납입가능액 : 600만원
+            <br/>
+                연금계좌(IRP) 최대 납입가능액 : 900만원</span>
+            <br/><br/>
             <div class="modal-amount-box">
                 <div class="modal-amount-text">
                     <h5>총 납입액</h5>
@@ -1721,49 +1725,55 @@
             <h3>이미 납부한 세금 참고</h3>
         <div class="modal-amount-explanation">
             <p> &#183; 근로소득 간이세액표를 참고하여 원천징수된 연봉별 소득세 및 지방세를 안내드릴게요.</p>
-            <p> &#183; 아래의 간이세액표는 1인 가구 기준이며, 세액 비율은 100%를 기준으로 합니다. </p>
+            <p> &#183; 세액 비율은 100%를 기준으로 합니다. 실제 납부액은 이와 다를 수 있습니다. </p>
         </div>
             <br/>
         <table class="table-fill">
             <thead>
             <tr>
-                <th class="text-left">월급여액(천원)<br/><p>비과세 및 학자금 제외</p></th>
+                <th class="text-left">월급여액<br/><p>비과세 및 학자금 제외</p></th>
                 <th class="text-left">공제대상<br/>가족 1명</th>
                 <th class="text-left">공제대상<br/>가족 2명</th>
                 <th class="text-left">공제대상<br/>가족 3명</th>
+                <th class="text-left">공제대상<br/>가족 4명</th>
 
             </tr>
             </thead>
             <tbody class="table-hover">
             <tr>
-                <td class="text-left">4,000</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 1,485,240 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 1,254,240 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 780,600 </span>원</td>
+                <td class="text-left">4,000 만원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,388,760 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 638,400 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 491,520 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 422,160</span>원</td>
             </tr>
             <tr>
-                <td class="text-left">4,500</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 1,955,760 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 1,724,760 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 1,210,800 </span>원</td>
+                <td class="text-left">4,500 만원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,066,520</span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,072,200 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 899,040 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 725,640 </span>원</td>
             </tr>
             <tr>
-                <td class="text-left">5,000</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 2,513,040 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 2,253,240 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 1,698,840 </span>원</td>
+                <td class="text-left">5,000 만원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,868,600 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,704,720 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,457,280 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,217,520</span>원</td>
             </tr>
             <tr>
-                <td class="text-left">5,500</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 3,027,120 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 2,764,320 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 2,169,480 </span>원</td>
+                <td class="text-left">5,500 만원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 3,650,520 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,424,360 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,176,920 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 1,929,360 </span>원</td>
             </tr>
             <tr>
-                <td class="text-left">6,000</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 3,541,080 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 3,275,400 </span>원</td>
-                <td class="text-left"><span style="color: black; font-size: 20px"> 2,640,240 </span>원</td>
+                <td class="text-left">6,000 만원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 4,428,120 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 3,139,560 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,892,120 </span>원</td>
+                <td class="text-left"><span style="color: black; font-size: 20px"> 2,644,560 </span>원</td>
             </tr>
             </tbody>
         </table>
@@ -2042,38 +2052,42 @@
 
 </script>
 <%-- 인적공제 금액 실시간 반영 --%>
-<script>
-    $(document).ready(function() {
-        var initialPersonalDeduction = parseFloat("${totalResult.personal_deduction}");
+    <script>
+        $(document).ready(function() {
+            var initialPersonalDeduction = parseFloat("${totalResult.personal_deduction}");
 
-        function updateDeductionAmount() {
-            var deductionPerPerson = 1500000;  // 인적공제 기본 금액
-            var seniorBonus = 1000000; // 경로우대
-            var disabilityPerPerson = 2000000;
+            function updateDeductionAmount() {
+                var deductionPerPerson = 1500000;  // 인적공제 기본 금액
+                var seniorBonus = 1000000; // 경로우대
+                var disabilityPerPerson = 2000000;
 
-            // 선택된 값에 따라 공제액 변경
-            var childDeduction = $('#child').val() * deductionPerPerson;
-            var adoptedChildDeduction = $('#adoptedChild').val() * deductionPerPerson;
-            var directAncestorDeduction = $('#directAncestor').val() * deductionPerPerson;
-            var siblingsDeduction = $('#siblings').val() * deductionPerPerson;
-            var seniorDeduction = $('#senior').val() * seniorBonus;
-            var disabilityDeduction = $('#disability').val() * disabilityPerPerson;
+                // 선택된 값에 따라 공제액 변경
+                var childDeduction = $('#child').val() * deductionPerPerson;
+                var adoptedChildDeduction = $('#adoptedChild').val() * deductionPerPerson;
+                var directAncestorDeduction = $('#directAncestor').val() * deductionPerPerson;
+                var siblingsDeduction = $('#siblings').val() * deductionPerPerson;
+                var seniorDeduction = $('#senior').val() * seniorBonus;
+                var disabilityDeduction = $('#disability').val() * disabilityPerPerson;
 
-            // 총 공제액을 계산
-            var totalDeduction = initialPersonalDeduction + childDeduction + adoptedChildDeduction + directAncestorDeduction
-                + siblingsDeduction + seniorDeduction + disabilityDeduction;
+                // 총 공제액을 계산
+                var totalDeduction = initialPersonalDeduction + childDeduction + adoptedChildDeduction + directAncestorDeduction
+                    + siblingsDeduction + seniorDeduction + disabilityDeduction;
 
-            // 금액 형식으로 변환 (콤마 포함)
-            var formattedDeduction = totalDeduction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                // 금액 형식으로 변환 (콤마 포함)
+                var formattedDeduction = totalDeduction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-            // 계산된 총 공제액을 화면에 업데이트
-            $('.modal-amount-money p2').html(formattedDeduction + '원');
-        }
+                // 계산된 총 공제액을 화면에 업데이트
+                $('.modal-amount-money p2').html(formattedDeduction + '원');
 
-        // child와 directAncestor 값이 변경될 때마다 updateDeductionAmount 함수를 호출
-        $('#child, #adoptedChild, #directAncestor, #siblings, #senior, #disability').change(updateDeductionAmount);
-    });
-</script>
+                // "outsidePersonalDeduction" 요소의 값을 업데이트
+                $('#outsidePersonalDeduction').html(formattedDeduction + '원');
+            }
+
+            // child와 directAncestor 값이 변경될 때마다 updateDeductionAmount 함수를 호출
+            $('#child, #adoptedChild, #directAncestor, #siblings, #senior, #disability').change(updateDeductionAmount);
+        });
+    </script>
+
 
 <%-- 주택공제 금액 실시간 반영 --%>
 <script>

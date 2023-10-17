@@ -84,12 +84,15 @@ public class SmsService {
 
     // 초대 수락하면 문자 발송
     public void checkRelationStatus(int memberId) throws Exception {
+        System.out.println("checkRelationStatus is called.");
+
+
         List<SpouseRelationVO> result = taxMapper.getSpouseRealtionStatus(memberId);
         if(!result.isEmpty() && result.get(0).getStatus().equals("Y")) {
             MessageDTO messageDto = new MessageDTO();
-            messageDto.setTo(""); // 수신자 번호를 설정하세요.
+            messageDto.setTo("01027653402"); // 수신자 번호를 설정하세요.
             messageDto.setContent("배우자님이 우리집 돈 관리 초대를 수락하셨습니다. 하나원큐택스에서 우리 부부 절세 전략을 확인해 보세요."); // 원하는 메시지 내용을 설정하세요.
-//            SmsResponseDTO response = sendSms(messageDto);
+            SmsResponseDTO response = sendSms(messageDto);
         }
     }
 

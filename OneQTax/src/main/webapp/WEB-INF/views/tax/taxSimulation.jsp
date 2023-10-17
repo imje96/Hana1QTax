@@ -253,7 +253,6 @@
                                 <option value="6">6명</option>
                             </select>
                             <br/><br/>
-                            멤버아이디 ${memberId}
 <%--                            <c:if test="${memberId != 23}">--%>
                             <label>부녀자 여부:</label>
                             <div class="choice-button">

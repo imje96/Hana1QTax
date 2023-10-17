@@ -189,7 +189,7 @@
                         <tr>
                             <th class="text-left">항목</th>
                             <th class="text-left">사용금액</th>
-                            <th class="text-left">공제가능금액</th>
+                            <th class="text-left">공제가능금액</th>ㅊ
                             <th class="text-left">공제율</th>
                             <th class="text-left">공제액</th>
                         </tr>

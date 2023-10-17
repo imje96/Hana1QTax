@@ -64,11 +64,11 @@
                                 </button>
                             </a>
                             <div class="dropdown-content">
-                                <a href="#">연말정산 안내</a>
-                                <a href="#">연말정산 시뮬레이션</a>
-                                <a href="#">연말정산 결과</a>
-                                <a href="#">우리집 돈관리 초대하기</a>
-                                <a href="#">우리집 돈관리 리포트</a>
+<%--                                <a href="#">연말정산 안내</a>--%>
+<%--                                <a href="#">연말정산 시뮬레이션</a>--%>
+<%--                                <a href="#">연말정산 결과</a>--%>
+<%--                                <a href="#">우리집 돈관리 초대하기</a>--%>
+<%--                                <a href="#">우리집 돈관리 리포트</a>--%>
                             </div>
                         </div>
                         <div class="dropdown">
@@ -77,13 +77,13 @@
                                     <%--                                                        <i class="fa fa-caret-down"></i>--%>
                                 </button>
                             </a>
-                            <div class="dropdown-content">
-                                <a href="${pageContext.request.contextPath}/taxMain">소득공제 안내</a>
-                                <a href="#">소비 문턱 넘기기</a>
-                                <a href="#">카드황금비율 계산</a>
-                                <a href="#">카드황금비율 결과</a>
+<%--                            <div class="dropdown-content">--%>
+<%--                                <a href="${pageContext.request.contextPath}/taxMain">소득공제 안내</a>--%>
+<%--                                <a href="#">소비 문턱 넘기기</a>--%>
+<%--                                <a href="#">카드황금비율 계산</a>--%>
+<%--                                <a href="#">카드황금비율 결과</a>--%>
 
-                            </div>
+<%--                            </div>--%>
                         </div>
                         <div class="dropdown">
                             <a href="${pageContext.request.contextPath}/tranDashboard">
@@ -91,11 +91,11 @@
                                 </button>
                             </a>
                             <div class="dropdown-content">
-                                <a href="#">대시보드</a>
-                                <a href="#">내 카드 확인하기</a>
-                                <a href="#">실적 확인하기</a>
-                                <a href="#">카드 사용내역</a>
-                                <a href="#">현금영수증 사용내역</a>
+<%--                                <a href="#">대시보드</a>--%>
+<%--                                <a href="#">내 카드 확인하기</a>--%>
+<%--                                <a href="#">실적 확인하기</a>--%>
+<%--                                <a href="#">카드 사용내역</a>--%>
+<%--                                <a href="#">현금영수증 사용내역</a>--%>
                             </div>
                         </div>
                         <div class="dropdown">
@@ -104,9 +104,9 @@
                                 </button>
                             </a>
                             <div class="dropdown-content">
-                                <a href="#">카드한눈에보기</a>
-                                <a href="#">추천카드</a>
-                                <a href="#">카드안내</a>
+<%--                                <a href="#">카드한눈에보기</a>--%>
+<%--                                <a href="#">추천카드</a>--%>
+<%--                                <a href="#">카드안내</a>--%>
                             </div>
                         </div>
 

@@ -239,6 +239,9 @@ public class TaxServiceImpl implements TaxService {
 
         CardTaxResultVO resultVO = new CardTaxResultVO();
 
+        totalDeduction = (totalDeduction <= 0) ? 0 : totalDeduction;
+        reducing_tax = (reducing_tax <= 0) ? 0 : reducing_tax;
+
         resultVO.setCalculation_id(taxInfo.getCalculation_id());  // 이 부분 추가
         resultVO.setCredit_deductible(creditDeductible);
         resultVO.setCredit_deduction(creditDeduction);
