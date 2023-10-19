@@ -150,6 +150,7 @@ public class TaxController {
 //       여기
         model.addAttribute("total_deduction", (int) result.getTotal_deduction());
         model.addAttribute("reducing_tax", (int) result.getReducing_tax());
+        model.addAttribute("remaining_tax", (int) result.getRemaining_tax());
         model.addAttribute("deduction_date", result.getResult_date());
 
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
@@ -759,6 +760,7 @@ public class AcceptController2 {
         model.addAttribute("additional_deduction", (int) result.getAdditional_deduction());
         model.addAttribute("total_deduction", (int) result.getTotal_deduction());
         model.addAttribute("reducing_tax", (int) result.getReducing_tax());
+        model.addAttribute("remaining_tax", (int) result.getRemaining_tax());
         model.addAttribute("deduction_date", result.getResult_date());
 
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
@@ -898,6 +900,7 @@ public class AcceptController2 {
         model.addAttribute("additional_deduction", (int) result.getAdditional_deduction());
         model.addAttribute("total_deduction", (int) result.getTotal_deduction());
         model.addAttribute("reducing_tax", (int) result.getReducing_tax());
+        model.addAttribute("remaining_tax", (int) result.getRemaining_tax());
         model.addAttribute("deduction_date", result.getResult_date());
 
         model.addAttribute("credit_total", (int) transaction.getCredit_total());

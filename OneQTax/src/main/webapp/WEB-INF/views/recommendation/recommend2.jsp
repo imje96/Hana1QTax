@@ -535,7 +535,12 @@
         justify-content: space-between;
     }
 
-
+    .inner-text4 {
+        position: absolute;
+        transform: translate(0%, -270%);
+        text-align: center;
+        color: #e4003f;
+    }
     /* 실적 구간 */
     .limits-info {
         display: flex;
@@ -888,28 +893,28 @@
         <br/>
         <div class="flex-box2">
             <div>
-                10월 사용금액<h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
+                8월 사용금액<h1 class="price"><fmt:formatNumber value="${thisMonthSpending.totalAmount}"
                                                             groupingUsed="true"/>
                 <span class="price-currency">(원)</span></h1></div>
             <div>
-                9월 사용금액<h1 class="price"><fmt:formatNumber value="${lastMonthSpending.totalAmount}"
+                7월 사용금액<h1 class="price"><fmt:formatNumber value="${lastMonthSpending.totalAmount}"
                                                            groupingUsed="true"/>
                 <span class="price-currency">(원)</span></h1></div>
             <div>
-                8월 사용금액<h1 class="price"><fmt:formatNumber value="${beforeMonthSpending.totalAmount}"
+                6월 사용금액<h1 class="price"><fmt:formatNumber value="${beforeMonthSpending.totalAmount}"
                                                            groupingUsed="true"/>
                 <span class="price-currency">(원)</span></h1></div>
         </div>
         <br/>
-        <div class="container-title"><h3>10월 사용 업종</h3></div>
+        <div class="container-title"><h3>8월 사용 업종</h3></div>
         <div class="category-box5">
 
             <div class="chart3">
 
                 <canvas id="tranChart"></canvas>
             </div>
-            <div class="inner-text2">
-                <h3>1위</h3>
+            <div class="inner-text4">
+                <h3>1위<br/></h3>
                 <h2>${categoryMonth[0].categoryBig}</h2>
             </div>
             <div class="pie-chart__labels">
@@ -983,24 +988,10 @@
                     </div>
                     <fmt:formatNumber value="${categoryMonth[9].totalAmount}" groupingUsed="true"/> 원
                 </div>
-                <div class="pie-chart__labels-item">
-                    <div class="label">
-                        <div class="label__color eleventh"></div>
-                        ${categoryMonth[10].categoryBig}
-                    </div>
-                    <fmt:formatNumber value="${categoryMonth[10].totalAmount}" groupingUsed="true"/> 원
-                </div>
-                <div class="pie-chart__labels-item">
-                    <div class="label">
-                        <div class="label__color twelfth"></div>
-                        ${categoryMonth[11].categoryBig}
-                    </div>
-                    <fmt:formatNumber value="${categoryMonth[11].totalAmount}" groupingUsed="true"/> 원
-                </div>
             </div>
         </div>
 
-        <div class="container-title"><h3>9월 사용 업종</h3></div>
+        <div class="container-title"><h3>7월 사용 업종</h3></div>
         <div class="category-box5">
             <div class="chart3">
 
@@ -1086,7 +1077,7 @@
             </div>
         </div>
 
-        <div class="container-title"><h3>8월 사용 업종</h3></div>
+        <div class="container-title"><h3>6월 사용 업종</h3></div>
         <div class="category-box5">
             <div class="chart3">
 

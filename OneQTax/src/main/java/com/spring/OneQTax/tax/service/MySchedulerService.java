@@ -53,12 +53,12 @@ public class MySchedulerService {
     }
 
 //        @Scheduled(fixedRate = 60000)
-    @Scheduled(cron = "0 57 12 * * ?")  // 매일 정오에 실행
+    @Scheduled(cron = "0 0 12 * * ?")  // 매일 정오에 실행
     public void sendScheduledSms() {
         // 모든 회원 가져오기
 //        List<MemberVO> allMembers = memberService.getAllMember();
 
-        int memberId = 23;
+        int memberId = 24;
         List<CardListVO> selectedCards = tranChart.getCardList(memberId);
 
 //            for (CardListVO card : selectedCards) {
@@ -103,7 +103,7 @@ public class MySchedulerService {
         String benefitMessage = "";
         int memberId = 23;
         List<CardListVO> selectedCards = tranChart.getCardList(memberId);
-        String cardName = selectedCards.get(1).getCard_name();
+        String cardName = selectedCards.get(0).getCard_name();
 
         if ("type1".equals(cardType)) {
             long diff1 = 400000 - totalAmount;
@@ -132,7 +132,7 @@ public class MySchedulerService {
                         + "하나원큐택스에서 혜택과 함께 아낄 수 있는 세금도 확인해 보세요. ";
             } else {
                 long diff = 300000 - totalAmount;
-                benefitMessage = "곧 " + cardName + "카드의 실적을 충족할 수 있어요. " + '\n' + diff + "원 더 이용하고 30만원 실적 혜택을 받으세요." + '\n'  + '\n'  + "더 현명하게 자산관리하는 방법! " + '\n'
+                benefitMessage = "곧 " + cardName + "카드의 실적을 충족할 수 있어요. " + '\n' + diff + "원 더 이용하고 40만원 실적 혜택을 받으세요." + '\n'  + '\n'  + "더 현명하게 자산관리하는 방법! " + '\n'
                         + "하나원큐택스에서 혜택과 함께 아낄 수 있는 세금도 확인해 보세요. ";
             }
         }

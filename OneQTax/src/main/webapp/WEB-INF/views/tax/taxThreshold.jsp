@@ -219,7 +219,9 @@
                         <br/>
 
                         <div class="info-box">
-                            <div class="info-item2">공제 시작까지 남은 금액:&nbsp;0 원</div>
+                            <c:set var="calculatedValue" value="${minimum_amount - basicTotal}" />
+                            <fmt:formatNumber value="${calculatedValue}" groupingUsed="true" var="formattedValue"/>
+                            <div class="info-item2">공제 시작까지 남은 금액:<br/>${formattedValue}원</div>
                         </div>
                     </div>
 <%--                    <script src="../../resources/js/thresholdChart.js"></script>--%>

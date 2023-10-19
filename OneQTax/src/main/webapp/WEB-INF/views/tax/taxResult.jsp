@@ -46,9 +46,10 @@
 
 
     <style>
-        .comment-text1 h4{
+        .comment-text1 h4 {
             font-size: 25px;
         }
+
         <%--  hover 시 텍스트 보이기      --%>
         .hover-text {
             position: relative; /* popup-modal의 위치를 기준으로 설정하기 위함 */
@@ -77,9 +78,11 @@
             font-size: 20px;
             text-align: left;
         }
-        .hover-text:hover .popup-modal p{
+
+        .hover-text:hover .popup-modal p {
             font-size: 16px;
         }
+
         .comment-text2 {
             margin: 30px 0 30px 10px;
             font-size: 20px;
@@ -87,6 +90,7 @@
             color: #615e5e;
             text-align: right;
         }
+
         .flex-box {
             display: flex;
             align-items: center;
@@ -99,6 +103,7 @@
             padding: 10px;
             width: 360px;
         }
+
         .text-box2 {
             /*background: #eaf3f3;*/
             background: #106e69;
@@ -110,6 +115,64 @@
             width: 900px;
             letter-spacing: 1px;
             color: white;
+        }
+
+        .copy-text {
+            padding: 10px 30px;
+            background: #f8f2ce;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+
+        .copy-text2 {
+            background: #f1f1f1;
+            border-radius: 10px;
+            font-size: 26px;
+            width: 800px;
+            padding: 10px 20px 10px 50px;
+            line-height: 2em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hover-text2 {
+            position: relative;
+            display: inline-block;
+            font-size: 25px;
+            width: 800px;
+            text-align: center;
+        }
+        .bar-container {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #bebbbb;
+            display: flex;
+            overflow: hidden; /* 이 속성을 추가하여 넘치는 부분을 숨깁니다. */
+            border-radius: 15px; /* 컨테이너에 둥근 모서리를 추가합니다. */
+        }
+
+        .bar {
+            height: 100%;
+            transition: width 0.5s; /* 애니메이션 효과를 위해 추가, 필요 없으면 제거해도 됩니다. */
+        }
+
+        .bar1 {
+            background: #e4003f;
+        }
+
+        .bar2 {
+            background: #cfdfd2;
+        }
+        .flex-box2 {
+            display: flex;
+            width: 800px;
+            align-items: center;
+            font-size: 23px;
+            justify-content: space-between;
+        }
+        .percent-box{
+            background: #e3e3e3;
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 10px;
         }
     </style>
 </head>
@@ -162,7 +225,8 @@
                 <h2>카드황금비율 계산 결과</h2>
                 <br/>
                 <span style="color: #615e5e"><h3>카드소득공제현황을 파악해보고 유리한 소비 전략을 제안받아보세요</h3></span>
-            </div><br/>
+            </div>
+            <br/>
 
 
             <div id="myModal" class="modal">
@@ -189,7 +253,7 @@
                         <tr>
                             <th class="text-left">항목</th>
                             <th class="text-left">사용금액</th>
-                            <th class="text-left">공제가능금액</th>ㅊ
+                            <th class="text-left">공제가능금액</th>
                             <th class="text-left">공제율</th>
                             <th class="text-left">공제액</th>
                         </tr>
@@ -335,11 +399,13 @@
                             <br/>
                             <%--                            남은 최대 공제액 <fmt:formatNumber value="${remainingDeduction}" groupingUsed="true"/>원--%>
 
-                           <div class="flex-box">
-                             아낄 수 있는 세금 : &nbsp;<span
+                            <div class="flex-box">
+                                지금까지 아낀 세금 : &nbsp;<span
                                     style="font-weight: bold; font-size: 28px; color: #ffa2ca"><fmt:formatNumber
                                     value="${reducing_tax}" groupingUsed="true"/> 원</span>
-                           </div>
+                            </div>
+
+
                         </div>
                         <div class="btn-container">
 
@@ -347,7 +413,7 @@
                             <br/>
                             <br/>
                             <a href="${pageContext.request.contextPath}/recommCard1">
-                            <button id="recommendBtn" class="pointBtn"><h6>내게 맞는 카드 추천받기</h6></button>
+                                <button id="recommendBtn" class="pointBtn"><h6>내게 맞는 카드 추천받기</h6></button>
                             </a>
                         </div>
                     </div>
@@ -365,14 +431,16 @@
                                     </div>
                                     <div class="comment-text2">
                                         <div class="hover-text">
-                                            문화(공연/영화), 교통카드, 재래시장은 <span style="color: #ff328b; font-size: 28px;">신용카드</span>로!<br/>
+                                            문화(공연/영화), 교통카드, 재래시장은 <span
+                                                style="color: #ff328b; font-size: 28px;">신용카드</span>로!<br/>
                                             <span style="font-size: 22px;">왜 그럴까요 ⍰</span>
                                                 <%--                                    <h5> 신용카드 대신 <span style="color: #ff328b;">체크카드, 현금</span>을 사용하는 것이 <br/>소득공제에 더--%>
                                                 <%--                                        좋아요.</h5>--%>
 
                                             <div class="popup-modal">
                                                 <span style="color: #0d6565;">  <p1>체크카드 사용이 좋은 이유는 같은 1만원을 쓰더라도 체크카드는 3,000원, 신용카드는 1,500원만 공제되기 때문이에요.</p1></span><br/>
-                                                다만, 문화관련은 <span style="color: #ff328b;">30~40%</span>, 교통카드는 <span style="color: #ff328b;">40~80%</span>, 재래시장은 <span
+                                                다만, 문화관련은 <span style="color: #ff328b;">30~40%</span>, 교통카드는 <span
+                                                    style="color: #ff328b;">40~80%</span>, 재래시장은 <span
                                                     style="color: #ff328b;">40~50%</span>,<br/>
                                                 결제수단에 상관없이 공제가 되니 혜택이 좋은 신용카드를 쓰는 것이<br/> 유리해요.
                                             </div>
@@ -393,7 +461,45 @@
                         </div>
                     </div>
                 </div>
-                <br/>
+                <br/><br/>
+                    <span style="text-align: center;"><h2>이렇게 쓰면 최대로 공제받을 수 있어요💰</h2></span><br/><br/>
+                <div class="copy-text2">
+
+                    * 추가로 아낄 수 있는 세금 : &nbsp;<span
+                        style="font-weight: bold; font-size: 28px; color: #ff458b"><fmt:formatNumber
+                        value="${remaining_tax}" groupingUsed="true"/> 원</span>
+                    <br/>
+                    <div class="hover-text2">
+                    <h6>카드 황금 비율 </h6>
+                    </div>
+
+                    <div class="bar-container">
+                        <div class="bar bar1"></div>
+                        <div class="bar bar2"></div>
+                    </div>
+                    <div class="flex-box2">
+
+                      <div class="percent-box">
+                        <h5>체크카드 사용: <span id="ratio1Value"></span>%</h5>
+                         <h5> <span
+                                 style="font-weight: bold; font-size: 28px; color: #ff458b"><fmt:formatNumber value="${(basicTotal - basic_deduction) / 0.3}"
+                                                                                                              groupingUsed="true"/></span> 만원</h5>
+                          <p>(기본 공제)</p>
+                      </div>
+                        <div class="percent-box">
+                        <h5>신용카드 사용: <span id="ratio2Value"></span>%</h5>
+                           <h5> <span
+                                   style="font-weight: bold; font-size: 28px; color: #ff458b"><fmt:formatNumber value="${(basicTotal - additional_deduction) / 0.8}"
+                                                                                                                groupingUsed="true"/></span> 만원</h5>
+                        <p>(대중교통 업종으로 사용할 시)</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
                 <br/>
                 <br/>
                 <span style="text-align: center;"><h2>소득공제 현황 보기📊</h2></span>
@@ -403,9 +509,10 @@
                     <div class="chart-box">
                         <div class="chart-box-inner">
                             <div class="hover-text">
-                            <h3>전체 카드소득공제 현황 ⍰</h3><br/>
-                                <div class="popup-modal" >
-                                    <h5><span style="font-size: 21px; color: #096e65">전체 카드소득공제란?</span> 기본 소득공제와 추가소득공제를 더한 것이에요. </h5>
+                                <h3>전체 카드소득공제 현황 ⍰</h3><br/>
+                                <div class="popup-modal">
+                                    <h5><span style="font-size: 21px; color: #096e65">전체 카드소득공제란?</span> 기본 소득공제와
+                                        추가소득공제를 더한 것이에요. </h5>
                                     * 추가 소득공제(문화, 교통카드, 재래시장 업종)
                                 </div>
                             </div>
@@ -421,15 +528,9 @@
                                 <canvas id="deductionChart1"></canvas>
                             </div>
                             <div class="info-box">
-
-                                <%--                            <div class="info-item">일반공제액:&nbsp;<fmt:formatNumber value="${basic_deduction}"--%>
-                                <%--                                                                                 groupingUsed="true"/>원--%>
-                                <%--                            </div>--%>
-                                <%--                            <div class="info-item">추가공제액:&nbsp;<fmt:formatNumber value="${additional_deduction}"--%>
-                                <%--                                                                                 groupingUsed="true"/>원--%>
-                                <%--                            </div>--%>
-                                <div class="info-item2">전체 남은 공제가능액:&nbsp;<fmt:formatNumber value="${remainingDeduction}"
-                                                                                         groupingUsed="true"/>원
+                                <div class="info-item2">전체 남은 공제가능액:&nbsp;<fmt:formatNumber
+                                        value="${remainingDeduction}"
+                                        groupingUsed="true"/>원
 
                                 </div>
                             </div>
@@ -437,9 +538,10 @@
                         <br/>
                         <div class="chart-box-inner">
                             <div class="hover-text">
-                            <h3>기본 카드소득공제 현황 ⍰</h3><br/>
-                                <div class="popup-modal" >
-                                    <h5><span style="font-size: 21px; color: #096e65">기본 카드소득공제란?</span> 신용카드, 체크/직불카드, 현금영수증 사용액에
+                                <h3>기본 카드소득공제 현황 ⍰</h3><br/>
+                                <div class="popup-modal">
+                                    <h5><span style="font-size: 21px; color: #096e65">기본 카드소득공제란?</span> 신용카드, 체크/직불카드,
+                                        현금영수증 사용액에
                                         따라 기본적으로 공제되는 것을 의미해요.</h5>
                                 </div>
                             </div>
@@ -533,6 +635,23 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var ratio1 = ${((basicTotal - basic_deduction) / 0.3) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 100};
+        var ratio2 = ${((basicTotal - additional_deduction) / 0.8) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 100};
+
+        <%--var ratio1_10scale = ${((basicTotal - basic_deduction) / 0.3) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 10};--%>
+        <%--var ratio2_10scale = ${((basicTotal - additional_deduction) / 0.8) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 10};--%>
+
+        $('.bar1').css('width', ratio1 + '%');
+        $('.bar2').css('width', ratio2 + '%');
+
+        // HTML 요소에 값 설정
+        $('#ratio1Value').text(Math.round(ratio1));
+        $('#ratio2Value').text(Math.round(ratio2));
+    });
+</script>
 
 
 </body>

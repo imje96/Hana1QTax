@@ -27,10 +27,10 @@
     <insert id="insertDeductionResult" parameterType="com.spring.oneqtax.tax.domain.CardTaxResultVO">
         INSERT INTO incometax_result (calculation_id, total_id, credit_deductible, credit_deduction, debit_deductible,
                                       debit_deduction, cash_deductible, cash_deduction, basic_deduction,
-                                      additional_deduction, total_deduction, reducing_tax)
+                                      additional_deduction, total_deduction, reducing_tax, remaining_tax)
         VALUES (#{calculation_id}, #{total_id}, #{credit_deductible}, #{credit_deduction}, #{debit_deductible},
                 #{debit_deduction}, #{cash_deductible}, #{cash_deduction}, #{basic_deduction}, #{additional_deduction},
-                #{total_deduction}, #{reducing_tax})
+                #{total_deduction}, #{reducing_tax}, #{remaining_tax})
     </insert>
 
     <!-- 카드공제결과 찾아오기 -->

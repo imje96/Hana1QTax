@@ -308,7 +308,7 @@
                 <span class="close" onclick="closePopup()">&times;</span>
                 <br/>
                 <h2>
-                    아직 늦지 않았어요 💁<br/>
+                    추가로 환급받는 방법💁<br/>
                     카드 황금비율 관리를 통해 환급액을 높일 수 있어요
                     </h2>
                 <button class="yesBtn" onclick="goToLink2()">자세히 알아보기</button>
@@ -323,7 +323,7 @@
             });
 
             function goToLink2() {
-                location.href = "${pageContext.request.contextPath}/taxInfo";
+                location.href = "${pageContext.request.contextPath}/taxThreshold";
             }
 
             function closePopup() {
@@ -1260,7 +1260,7 @@
                 <p> &#183; 출자일 또는 투자일이 속하는 과세연도의 소득금액에서 공제</p>
                 <p2>우리사주출연금?</p2>
                 <br/>
-                <p> &#183; 우리사주조합원이 자사주를 취득하기 ㅜ이하여 우리사주조합에 출자하는 경우 400만원 한도 공제</p>
+                <p> &#183; 우리사주조합원이 자사주를 취득하기 위하여 우리사주조합에 출자하는 경우 400만원 한도 공제</p>
                 <p2>기타 소득공제 대상금액?</p2>
                 <br/>
                 <p> &#183; 고용유지 중소기업 근로자 소득공제, 목돈 안드는 전세 이자 상환액 공제, 장기집합 투자 증권저축 등 추가 소득공제 금액</p>

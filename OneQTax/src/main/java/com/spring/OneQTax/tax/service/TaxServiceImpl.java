@@ -96,6 +96,7 @@ public class TaxServiceImpl implements TaxService {
         double additionalDeduction = 0;
         double totalDeduction = 0;
         double reducing_tax = 0; // 아끼는 세금
+        double remaining_tax = 0; // 추가로 아낄 수 있는 세금
 
         // 임시 추가공제액 계산을 위한 변수 -> ResultVO 추가 여부 미정
         double cultureDeduction = 0;
@@ -236,11 +237,15 @@ public class TaxServiceImpl implements TaxService {
         totalDeduction = basicDeduction + additionalDeduction;
         // 아끼는 세금 = 전체공제금액 * 세금공제율
         reducing_tax = totalDeduction * deduction_rate;
+        // 추가로 아낄 수 있는 세금
+        remaining_tax = (totalIncome > 70000000) ? (4500000 * deduction_rate) - reducing_tax
+                : (6000000 * deduction_rate) - reducing_tax;
 
         CardTaxResultVO resultVO = new CardTaxResultVO();
 
         totalDeduction = (totalDeduction <= 0) ? 0 : totalDeduction;
         reducing_tax = (reducing_tax <= 0) ? 0 : reducing_tax;
+
 
         resultVO.setCalculation_id(taxInfo.getCalculation_id());  // 이 부분 추가
         resultVO.setCredit_deductible(creditDeductible);
@@ -253,6 +258,7 @@ public class TaxServiceImpl implements TaxService {
         resultVO.setAdditional_deduction(additionalDeduction);
         resultVO.setTotal_deduction(totalDeduction);
         resultVO.setReducing_tax(reducing_tax);
+        resultVO.setRemaining_tax(remaining_tax);
         return resultVO;
     }
 

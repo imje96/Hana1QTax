@@ -21,5 +21,6 @@ public class CardTaxResultVO {
     private double additional_deduction;
     private double total_deduction;
     private double reducing_tax;
+    private double remaining_tax; //추가로 아낄있는 세금
     private String result_date;
 }

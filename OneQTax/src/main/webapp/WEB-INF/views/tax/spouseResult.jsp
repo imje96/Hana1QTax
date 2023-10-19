@@ -18,6 +18,8 @@
     <%--    common.css--%>
     <link href="../../../resources/css/common.css" rel="stylesheet">
     <link href="../../../resources/css/main.css" rel="stylesheet">
+    <link href="../../../resources/css/taxRefund.css" rel="stylesheet">
+    <link href="../../../resources/css/tax.css" rel="stylesheet">
 
     <%--    chartjs 추가--%>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -222,6 +224,20 @@
             padding: 10px;
             width: 360px;
         }
+        .table-fill {
+            background: white;
+            border-radius: 3px;
+            border-collapse: collapse;
+            height: 200px;
+            margin: auto;
+            margin-top: 5px;
+            max-width: 800px;
+            padding: 5px;
+            width: 100%;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            animation: float 5s infinite;
+            height: 300px;
+        }
     </style>
 </head>
 
@@ -388,6 +404,36 @@
                 </div>
                 <%--                        <span style="font-weight: bold; color: #fd328a;">--%>
                 <br/><br/>
+                <h2> 맞벌이 부부 연말정산 종합 결과</h2><br/>
+
+                <table class="table-fill">
+                    <thead>
+                    <tr>
+                        <th class="text-left"><span style="color: #423e3e; font-size: 28px">연말정산 대상 항목</span></th>
+                        <th class="text-left"><span style="color: #423e3e; font-size: 28px">본인 ${currentUser.name}</span></th>
+                        <th class="text-left"><span style="color: #423e3e; font-size: 28px">배우자 ${spouseName} 손님</span></th>
+
+                    </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                    <tr>
+                        <td class="text-left"><span style="color: black; font-size: 28px">카드 소득 공제</span></td>
+                        <td class="text-left"><span style="color: black; font-size: 35px">✔️👰</span></td>
+                        <td class="text-left"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-left"><span style="color: black; font-size: 28px">부양가족 공제</span></td>
+                        <td class="text-left"></td>
+                        <td class="text-left"><span style="color: black; font-size: 35px">✔️🤵</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-left"><span style="color: black; font-size: 28px">의료비 공제</span></td>
+                        <td class="text-left"></td>
+                        <td class="text-left"><span style="color: black; font-size: 35px">✔️🤵</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+<br/><br/>
                 <h2>💡 맞벌이 부부 카드소득공제 TIP</h2><br/>
 
                 <div class="text-box2">
@@ -409,7 +455,9 @@
 
                             <div class="flex-box">
                                 <div class="hover-text">
-                                    <span style="text-align: right; font-size: 20px; margin-left: 100px; color: #4f4949">&nbsp;&nbsp;&nbsp;&nbsp; 왜 그럴까요 ⍰</span>
+                                    <div class="flex-box">
+                                    <span style="text-align: right; font-size: 20px; color: #4f4949">왜 그럴까요 ⍰</span>
+                                    </div>
                                     <div class="popup-modal">
                                         <span style="color: #0d6565;">카드 소득공제금액을 채우기 전까지는 연봉이 높은 ${currentUser.name}님의 소비가, 그 이후엔 배우자님의 소비가 유리해요.</span><br/>
                                         소득이 높은 쪽은 보통 <span style="color: #ff328b;">세율도 높기 </span>때문에 소비 소득공제를 통해 <span
