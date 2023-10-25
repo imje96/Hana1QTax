@@ -60,16 +60,16 @@
 
 - 연말정산 세액계산 방법으로 확인하는 연말정산 플래너 및 카드 황금비율 서비스
   
-## 2-2. 서비스 아키텍처
+## 2-4. 서비스 아키텍처
 [서비스아키텍처]<img src="/OneQTax/readme_src/service_architecture.PNG"/>
 
-## 2-3. 시스템 아키텍처
+## 2-5. 시스템 아키텍처
 [시스템아키텍처]<img src="/OneQTax/readme_src/system_architecture.PNG"/>
 
-## 2-4. ERD 
+## 2-6. ERD 
 [ERD]<img src="/OneQTax/readme_src/erd.PNG"/>
 
-## 2-5. 적용기술
+## 2-7. 적용기술
 [적용기술]<img src="/OneQTax/readme_src/skill.PNG"/>
 
 - 네이버 SMS
