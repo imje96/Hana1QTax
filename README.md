@@ -3,7 +3,7 @@
 
 # 1. 프로젝트 개요
 ## 1-1. 프로젝트 기획 배경
-<img src="/OneQTax/readme_src/about_1qtax1.PNG"/>
+<img src="/OneQTax/readme_src/about_1qtax.PNG"/>
 <img src="/OneQTax/readme_src/about_1qtax2.PNG"/>
 
 ## 1-2. 타사 서비스와의 비교 분석
@@ -13,7 +13,7 @@
 <img src="/OneQTax/readme_src/expected_effect.PNG"/>
 
 ## 1-4. 프로젝트 일정
-<img src="/OneQTax/readme_src/gantt_chart.PNG"/>
+<img src="/OneQTax/readme_src/ganttchart.PNG"/>
 
 
 # 2. 프로젝트 구성 
@@ -41,13 +41,12 @@
 [![시연영상](video.PNG)](https://youtu.be/VABckpc8zD0)
 
 # 4. 자기 소개
-| 이름 | 임지은 | <img src="" width="100px"/> |
+| 이름 | 임지은 | <img src="/OneQTax/readme_src/imje_photo" width="100px"/> |
 | :--- | :--- | :--- |
 | 메일 | <jieun3402@naver.com>  |  |
 | Frontend Skill |  HTML, CSS, Javascript | |
 | Backend Skill |  JAVA, Spring Boot, Oracle DBMS | |
-| 자격증 | ADsP | 2023.06 | 
-|  | SQLD | 2022.12 | 
-| 경력사항 | ddd | 2023.10 | 
+| 자격증 | ADsP | 2020.07 | 
+| 경력사항 | NHN다이퀘스트 | 2023.10 | 
 | 교육<br/>이수사항 | 하나금융티아이 채용연계형 교육 1200시간 <br/> ( 한국폴리텍대학교 광명융합기술교육원 - 데이터분석과 ) | 2023.03 - 2023.10 | 
 | 
