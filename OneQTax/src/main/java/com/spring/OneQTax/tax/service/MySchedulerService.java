@@ -52,43 +52,42 @@ public class MySchedulerService {
         }
     }
 
-//        @Scheduled(fixedRate = 60000)
     @Scheduled(cron = "0 0 12 * * ?")  // 매일 정오에 실행
     public void sendScheduledSms() {
         // 모든 회원 가져오기
-//        List<MemberVO> allMembers = memberService.getAllMember();
+        List<MemberVO> allMembers = memberService.getAllMember();
 
-        int memberId = 24;
-        List<CardListVO> selectedCards = tranChart.getCardList(memberId);
+        for (MemberVO member : allMembers) {
+            List<CardListVO> selectedCards = tranChart.getCardList(member.getMember_id());
 
-//            for (CardListVO card : selectedCards) {
-        String cardNumber = selectedCards.get(1).getCard_number();
-        CardTranVO tran = tranChart.getThisMonthTotalByCard(cardNumber);
-        long totalAmount = tran.getTotalAmount();
-        String cardType = getCardTypeByCardNumber(cardNumber, selectedCards);
-        String benefitMessage = generateBenefitMessage(totalAmount, cardType);
+            for (CardListVO card : selectedCards) {
+                String cardNumber = card.getCard_number();
+                CardTranVO tran = tranChart.getThisMonthTotalByCard(cardNumber);
+                long totalAmount = tran.getTotalAmount();
+                String cardType = getCardTypeByCardNumber(cardNumber, selectedCards);
+                String benefitMessage = generateBenefitMessage(totalAmount, cardType);
 
-        long threshold1 = (long)(0.8 * 300000);
-        long threshold2 = (long)(0.8 * 600000);
-        long threshold3 = (long)(0.8 * 1200000);
+                int threshold1 = (int) (0.8 * 300000);
+                int threshold2 = (int) (0.8 * 600000);
+                int threshold3 = (int) (0.8 * 1200000);
 
-        // 80% 달성 메시지만 전송하기 위한 로직
-        if ( (totalAmount >= threshold3 && totalAmount < 1200000) ||
-                (totalAmount >= threshold2 && totalAmount < 600000) ||
-                (totalAmount >= threshold1 && totalAmount < 300000) ) {
-            MessageDTO messageDto = new MessageDTO();
-            messageDto.setTo("01027653402");
-            messageDto.setContent(benefitMessage);
+                // 80% 달성 메시지만 전송하기 위한 로직
+                if ((totalAmount >= threshold3 && totalAmount < 1200000) ||
+                        (totalAmount >= threshold2 && totalAmount < 600000) ||
+                        (totalAmount >= threshold1 && totalAmount < 300000)) {
+                    MessageDTO messageDto = new MessageDTO();
+                    messageDto.setTo(""); // 수신자 번호 추가
+                    messageDto.setContent(benefitMessage);
 
-            try {
-                SmsResponseDTO response = smsService.sendSms(messageDto);
-            } catch (Exception e) {
-                e.printStackTrace();
+                    try {
+                        SmsResponseDTO response = smsService.sendSms(messageDto);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
-
-
 
     private String getCardTypeByCardNumber(String cardNumber, List<CardListVO> selectedCards) {
         if (selectedCards.get(0).getCard_number().equals(cardNumber)) {
@@ -132,7 +131,7 @@ public class MySchedulerService {
                         + "하나원큐택스에서 혜택과 함께 아낄 수 있는 세금도 확인해 보세요. ";
             } else {
                 long diff = 300000 - totalAmount;
-                benefitMessage = "곧 " + cardName + "카드의 실적을 충족할 수 있어요. " + '\n' + diff + "원 더 이용하고 40만원 실적 혜택을 받으세요." + '\n'  + '\n'  + "더 현명하게 자산관리하는 방법! " + '\n'
+                benefitMessage = "곧 " + cardName + "카드의 실적을 충족할 수 있어요. " + '\n' + diff + "원 더 이용하고 40만원 실적 혜택을 받으세요." + '\n' + '\n' + "더 현명하게 자산관리하는 방법! " + '\n'
                         + "하나원큐택스에서 혜택과 함께 아낄 수 있는 세금도 확인해 보세요. ";
             }
         }

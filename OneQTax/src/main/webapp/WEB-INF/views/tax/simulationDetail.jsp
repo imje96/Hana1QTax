@@ -180,7 +180,6 @@
             <br/>
             <div class="container2">
                 <img class="inputImg3" src="../../../resources/img/announce.png" ><br/>
-                <%--                <div class="copy-text"> 함께 번 돈, 똑똑하게 활용하자! 맞벌이 부부를 위한 연말정산 전략 🤵👰</div>--%>
 
                 <h3>📋 기존에 계산한 <span style="color: #ff328b; font-size: 30px;">연말정산</span> 결과 확인하기 </h3><br/><br/>
                 연말정산 결과를 확인해보고 상세내용에서 공제항목을 업데이트 할 수도 있어요
@@ -199,10 +198,6 @@
                 </form>
 
 
-                <!-- 아이콘 이미지 -->
-<%--                <img src="../../../resources/img/chatbot.png" id="iconImage" style="cursor:pointer;">--%>
-
-                <!-- iframe -->
                 <div id="iframeWrapper" style="width: 0; position: fixed; top: 10%; right: 0; height: 80%; overflow-x: hidden; transition: 0.5s;">
                     <iframe
                             id="chatIframe"
@@ -248,18 +243,15 @@
         const modalBackground = document.querySelector(".modal-background");
         modalBackground.style.display = "flex";
 
-        // SVG 애니메이션 시작
         const svgImage = modalBackground.querySelector("img");
         setTimeout(() => {
             svgImage.classList.add("show-img");
         }, 100); // 약간의 딜레이 후 애니메이션 시작
 
-        // 800ms 후 SVG 팝업 숨기고 페이지 이동
         setTimeout(() => {
             svgImage.classList.remove("show-img");
             modalBackground.style.display = "none";
 
-            // 이제 form을 제출하여 페이지 이동
             event.target.submit();
         }, 800);
     });

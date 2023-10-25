@@ -102,7 +102,6 @@ $(document).ready(function() {
     if (!isNaN(num) && num.trim() != "") {
     inputElem.value = parseFloat(num).toLocaleString('en-US');
 
-    // 연관된 숨겨진 입력 필드의 값을 갱신합니다.
     let hiddenFieldId = inputElem.getAttribute("data-hidden-id");
     document.getElementById(hiddenFieldId).value = num;
 } else {
@@ -110,7 +109,6 @@ $(document).ready(function() {
 }
 }
 
-    // 모든 "view" 입력 필드의 초기값 설정
     function setInitialValues() {
     let viewInputs = document.querySelectorAll('input[data-hidden-id]');
 

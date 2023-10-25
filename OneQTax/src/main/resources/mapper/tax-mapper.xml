@@ -53,17 +53,15 @@
     </select>
 
     <select id="getTotalInfoByMemberId" resultType="com.spring.oneqtax.tax.domain.TotalInfoVO">
-        SELECT * FROM (
-                          SELECT t                                                                                                                                          .*
-                          FROM TAX_INFO d
-                                   JOIN TOTAL_INFO t ON d.calculation_id = t.calculation_id
-                                   JOIN totaltax_result r ON t.totalInfo_id = r.totalInfo_id
-                          WHERE d.member_id = #{memberId}
-                          ORDER BY r.result_time DESC
-                      )
+        SELECT *
+        FROM (SELECT t.*
+              FROM TAX_INFO d
+                       JOIN TOTAL_INFO t ON d.calculation_id = t.calculation_id
+                       JOIN totaltax_result r ON t.totalInfo_id = r.totalInfo_id
+              WHERE d.member_id = #{memberId}
+              ORDER BY r.result_time DESC)
         WHERE ROWNUM = 1
     </select>
-
 
 
     <!--  연말정산 계산정보 저장  -->
@@ -81,7 +79,7 @@
          CHILDREN_EDU, UNIV_EDU, UNIFORM_EXPENSE, DONATION_TOTAL, DONATION1,
          DONATION2, DONATION3, RELIGIONECT_DONATION, RELIGION_DONATION, RENT_TOTAL,
          DETERMINED_TAX, PREPAYMENT_TAX, EXPECTED_TAX, RESULT_TIME)
-        VALUES ( #{calculation_id}, #{total_income2}, #{income_deduction}, #{income_final},
+        VALUES (#{calculation_id}, #{total_income2}, #{income_deduction}, #{income_final},
                 #{personal_deduction}, #{taxpayer_deduction}, #{spouse_deduction}, #{children_deduction},
                 #{adopted_deduction},
                 #{directAnc_deduction}, #{siblings_deduction}, #{senior_deduction}, #{disability_deduction},
@@ -163,25 +161,22 @@
 
     <!--  공제 계산결과 저장  -->
 
-        <insert id="insertTaxResult" parameterType="com.spring.oneqtax.tax.domain.TotalTaxResultVO">
-            INSERT INTO totaltax_result (
-                totalInfo_id, income_deduction, income_final,
-                personal_deduction, pension_deduction, housing_deduction,
-                card_deduction, total_incomeDeduction, earned_taxcredit,
-                children_taxcredit, irp_taxcredit, guarantee_taxcredit,
-                medical_taxcredit, education_taxcredit, donation_taxcredit,
-                rent_taxcredit, total_taxcredit, tax_base, calculated_amount,
-                determined_tax, prepayment_tax, expected_tax, result_time
-            ) VALUES (
-                         #{totalInfo_id}, #{income_deduction}, #{income_final},
-                         #{personal_deduction}, #{pension_deduction}, #{housing_deduction},
-                         #{card_deduction}, #{total_incomeDeduction}, #{earned_taxcredit},
-                         #{children_taxcredit}, #{irp_taxcredit}, #{guarantee_taxcredit},
-                         #{medical_taxcredit}, #{education_taxcredit}, #{donation_taxcredit},
-                         #{rent_taxcredit}, #{total_taxcredit}, #{tax_base}, #{calculated_amount},
-                         #{determined_tax}, #{prepayment_tax}, #{expected_tax}, (sysdate)
-                     )
-        </insert>
+    <insert id="insertTaxResult" parameterType="com.spring.oneqtax.tax.domain.TotalTaxResultVO">
+        INSERT INTO totaltax_result (totalInfo_id, income_deduction, income_final,
+                                     personal_deduction, pension_deduction, housing_deduction,
+                                     card_deduction, total_incomeDeduction, earned_taxcredit,
+                                     children_taxcredit, irp_taxcredit, guarantee_taxcredit,
+                                     medical_taxcredit, education_taxcredit, donation_taxcredit,
+                                     rent_taxcredit, total_taxcredit, tax_base, calculated_amount,
+                                     determined_tax, prepayment_tax, expected_tax, result_time)
+        VALUES (#{totalInfo_id}, #{income_deduction}, #{income_final},
+                #{personal_deduction}, #{pension_deduction}, #{housing_deduction},
+                #{card_deduction}, #{total_incomeDeduction}, #{earned_taxcredit},
+                #{children_taxcredit}, #{irp_taxcredit}, #{guarantee_taxcredit},
+                #{medical_taxcredit}, #{education_taxcredit}, #{donation_taxcredit},
+                #{rent_taxcredit}, #{total_taxcredit}, #{tax_base}, #{calculated_amount},
+                #{determined_tax}, #{prepayment_tax}, #{expected_tax}, (sysdate))
+    </insert>
     <!-- 공제결과 조회  -->
     <select id="getTotalResultByTotalInfoId" resultType="com.spring.oneqtax.tax.domain.TotalTaxResultVO">
         SELECT *
@@ -192,52 +187,61 @@
     </select>
     <!-- 공제결과 조회(회원아이디로조회)  -->
     <select id="getTotalResultByTotalMemberId" resultType="com.spring.oneqtax.tax.domain.TotalTaxResultVO">
-        SELECT * FROM (
-                          SELECT r.*
-                          FROM TAX_INFO d
-                                   JOIN TOTAL_INFO t ON d.calculation_id = t.calculation_id
-                                   JOIN totaltax_result r ON t.totalInfo_id = r.totalInfo_id
-                          WHERE d.member_id = #{memberId}
-                          ORDER BY r.result_time DESC
-                      )
+        SELECT *
+        FROM (SELECT r.*
+              FROM TAX_INFO d
+                       JOIN TOTAL_INFO t ON d.calculation_id = t.calculation_id
+                       JOIN totaltax_result r ON t.totalInfo_id = r.totalInfo_id
+              WHERE d.member_id = #{memberId}
+              ORDER BY r.result_time DESC)
         WHERE ROWNUM = 1
     </select>
 
-        <insert id="insertSpouseRelation">
-            INSERT INTO spouseRelation (member_id, spouse_id, status) VALUES (#{member_id}, #{spouse_id}, #{status})
-        </insert>
+    <insert id="insertSpouseRelation">
+        INSERT INTO spouseRelation (member_id, spouse_id, status)
+        VALUES (#{member_id}, #{spouse_id}, #{status})
+    </insert>
 
-        <update id="updateStatusToY">
-            UPDATE spouseRelation SET status = 'Y'
-            WHERE member_id = #{memberId} OR spouse_id = #{memberId}
-        </update>
+    <update id="updateStatusToY">
+        UPDATE spouseRelation
+        SET status = 'Y'
+        WHERE member_id = #{memberId}
+           OR spouse_id = #{memberId}
+    </update>
 
-        <select id="selectSpouseRelationsById" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
-            SELECT * FROM spouseRelation WHERE id = #{id}
-        </select>
+    <select id="selectSpouseRelationsById" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
+        SELECT *
+        FROM spouseRelation
+        WHERE id = #{id}
+    </select>
 
-        <select id="getSpouseRealtionStatus" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
-            SELECT * FROM SpouseRelation
-            WHERE spouse_id = #{memberId}
-            ORDER BY relation_id DESC
-                FETCH FIRST 1 ROWS ONLY
-        </select>
+    <select id="getSpouseRealtionStatus" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
+        SELECT *
+        FROM SpouseRelation
+        WHERE spouse_id = #{memberId}
+        ORDER BY relation_id DESC
+            FETCH FIRST 1 ROWS ONLY
+    </select>
 
-        <!--   배우자ID 찾기     -->
-        <select id="findMySpouse" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
-            select spouse_id from spouseRelation
-            where member_id=#{memberId}
-              and ROWNUM = 1
-        </select>
-        <!--  배우자 이름 찾기  -->
-    <select id="getSpouseName" resultType="com.spring.oneqtax.member.domain.MemberVO">
-        select name from member
-        where member_id=#{spouseId}
+    <!--   배우자ID 찾기     -->
+    <select id="findMySpouse" resultType="com.spring.oneqtax.tax.domain.SpouseRelationVO">
+        select spouse_id
+        from spouseRelation
+        where member_id = #{memberId}
           and ROWNUM = 1
     </select>
-        <delete id="deleteFriendRelationById">
-            DELETE FROM friend_relations WHERE id = #{id}
-        </delete>
+    <!--  배우자 이름 찾기  -->
+    <select id="getSpouseName" resultType="com.spring.oneqtax.member.domain.MemberVO">
+        select name
+        from member
+        where member_id = #{spouseId}
+          and ROWNUM = 1
+    </select>
+    <delete id="deleteFriendRelationById">
+        DELETE
+        FROM friend_relations
+        WHERE id = #{id}
+    </delete>
 
 
 </mapper>

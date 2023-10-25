@@ -40,7 +40,6 @@ public interface TaxMapper {
 
     /* 우리집 돈관리 */
 
-//    SpouseRelationVO addSpouse(SpouseRelationVO spouseRelation);
     SpouseRelationVO findMySpouse(int memberId);
     // 배우자 이름 가져오기
     MemberVO getSpouseName(int spouseId);

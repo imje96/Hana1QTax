@@ -19,13 +19,7 @@
     <script src="../../../resources/js/scrolla.jquery.min.js"></script>
     <script src="../../../resources/js/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- font awseom -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
-            rel="stylesheet">
+
 </head>
 <body>
 <%--<div class="wrap">--%>
@@ -33,21 +27,6 @@
     <header>
         <%@ include file="common/header.jsp" %>
     </header>
-
-    <!-- <div class="section1">
-        <h1>섹션1</h1>
-    </div>  -->
-    <!--
-        <div class="section2">
-
-            <h1>섹션2</h1>
-        </div>
-        <div class="section3">
-            <h1>섹션3</h1>
-        </div> -->
-
-
-    <!-- 추가 -->
 <%-- 카드 리스트 --%>
 <style>
     body {
@@ -560,13 +539,10 @@
                                         </svg>
                                     </div>
                                     <div class="pie-chart">
-<%--                                        <canvas id="myChart2" height="220px" width="220px"></canvas>--%>
                                         <canvas id="deductionChart2" height="220px" width="220px"></canvas>
                                      </div>
 
-<%--                                    <div class="chart2">--%>
-<%--                                        <canvas id="deductionChart2"></canvas>--%>
-<%--                                    </div>--%>
+
 
                                     <script src="../../resources/js/deductionChart.js"></script>
                                     <!-- Chart.js 및 Datalabels 플러그인 추가 -->
@@ -626,14 +602,12 @@
                             </div>
                         </div>
                     </div>
-<%--                </div>--%>
 
                     </main>
 
     </div>
 
-<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>--%>
-<%--    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>--%>
+
 <script>
     const slideContainer = document.querySelector(".slideshowContents");
     const slides = document.querySelectorAll(".slide");
@@ -674,10 +648,8 @@
         goToSlide(currentSlide);
     });
 
-    // Initialize button visibility
     updateButtonVisibility();
 
-    // Initialize slide position
     goToSlide(currentSlide);
 
 
@@ -705,7 +677,6 @@
                 }]
             },
             options: {
-                // 그래프 옵션 설정
             }
         });
     });

@@ -15,9 +15,5 @@ public interface MemberMapper {
     MemberVO getMemberByEmail(String spouseEmail);
 
     List<MemberVO> getAllMember();
-//    Member selectNameOfMember(String email);
-//    Member loginMember(HashMap<String, String> loginData);
-//    public MemberVO loginMember(LoginVO loginVO);
 
-//    public MemberVO join(MemberVO memberVO);
 }

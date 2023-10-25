@@ -77,7 +77,7 @@ public class SmsService {
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-        SmsResponseDTO response = restTemplate.postForObject(new URI("https://sens.apigw.ntruss.com/sms/v2/services/"+ serviceId +"/messages"), httpBody, SmsResponseDTO.class);
+        SmsResponseDTO response = restTemplate.postForObject(new URI("https://sens.apigw.ntruss.com/sms/v2/services/" + serviceId + "/messages"), httpBody, SmsResponseDTO.class);
 
         return response;
     }
@@ -88,10 +88,10 @@ public class SmsService {
 
 
         List<SpouseRelationVO> result = taxMapper.getSpouseRealtionStatus(memberId);
-        if(!result.isEmpty() && result.get(0).getStatus().equals("Y")) {
+        if (!result.isEmpty() && result.get(0).getStatus().equals("Y")) {
             MessageDTO messageDto = new MessageDTO();
-            messageDto.setTo("01027653402"); // 수신자 번호를 설정하세요.
-            messageDto.setContent("배우자님이 우리집 돈 관리 초대를 수락하셨습니다. 하나원큐택스에서 우리 부부 절세 전략을 확인해 보세요."); // 원하는 메시지 내용을 설정하세요.
+            messageDto.setTo(""); // 수신자 번호
+            messageDto.setContent("배우자님이 우리집 돈 관리 초대를 수락하셨습니다. 하나원큐택스에서 우리 부부 절세 전략을 확인해 보세요.");
             SmsResponseDTO response = sendSms(messageDto);
         }
     }

@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-<%--    chartjs 추가--%>
+    <%--    chartjs 추가--%>
     <title>Deduction Result</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -18,20 +18,6 @@
     <link href="../../../resources/css/tax.css" rel="stylesheet">
     <link href="../../../resources/css/main.css" rel="stylesheet">
 
-    <%--    <script defer--%>
-    <%--            src="${ pageContext.request.contextPath }/resources/assets_portal/plugins/fontawesome/js/all.min.js"></script>--%>
-
-    <%--    <!-- App CSS -->--%>
-    <%--    <link id="theme-style" rel="stylesheet"--%>
-    <%--          href="${ pageContext.request.contextPath }/resources/assets_portal/css/portal.css">--%>
-
-    <!-- Favicon -->
-    <link
-            href="${ pageContext.request.contextPath }/resources/img/favicon.ico"
-            rel="icon">
-
-
-    <!-- Template Stylesheet -->
     <link
             href="${ pageContext.request.contextPath }/resources/css/style.css"
             rel="stylesheet">
@@ -41,19 +27,7 @@
     <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
             rel="stylesheet">
-    <%--    <style type="text/css">--%>
-    <%--        * {--%>
-    <%--            font-family: 'Noto Sans KR', sans-serif !important;--%>
-    <%--        }--%>
-    <%--    </style>--%>
 
-
-    <style>
-        .side-nav {
-            font-family: 'Noto Sans KR', sans-serif !important;
-        }
-
-    </style>
 </head>
 
 
@@ -70,26 +44,33 @@
     <section class="main">
 
 
-
         <div class="aside" style="width: 20%; float: left; font-family: 'Noto Sans KR', sans-serif !important">
             <div style="padding-left: 30px;">
                 <h3 style="color: #018c8d; margin-bottom: 15px;">카드황금비율관리</h3>
                 <hr style="width: 200px; height: 5px; background-color: #018c8d; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
                     <h6 style="color: black;">소득공제 안내</h6>
                 </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
                 <a href="${pageContext.request.contextPath}/taxInfo" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 플래너</div></a>
+                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 플래너</div>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">소비 문턱넘기기</div>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">카드황금비율 결과</div>
+                </a>
                 <hr style="width: 200px; margin-bottom: 15px;">
-                <a href="${pageContext.request.contextPath}/getLatestDeductionResult" style="display: block; margin-bottom: 20px;">
-                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div></a>
+                <a href="${pageContext.request.contextPath}/getLatestDeductionResult"
+                   style="display: block; margin-bottom: 20px;">
+                    <div style="color: grey; margin-bottom: 15px;">우리집 돈관리</div>
+                </a>
                 <hr style="width: 200px;">
             </div>
         </div>
@@ -130,14 +111,12 @@
 
 
             </div>
-            <%--            </div>--%>
         </div>
     </section>
     <section class="graph">
         <canvas id="deductionChart"></canvas>
 
         <script src="../../resources/js/deductionChart.js"></script>
-
 
 
     </section>

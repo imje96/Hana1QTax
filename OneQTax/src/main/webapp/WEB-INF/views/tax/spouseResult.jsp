@@ -231,7 +231,7 @@
             height: 200px;
             margin: auto;
             margin-top: 5px;
-            max-width: 800px;
+            max-width: 900px;
             padding: 5px;
             width: 100%;
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -367,7 +367,7 @@
                         <span style="color: #8b8b8b; font-size: 20px;">
                             달성금액 : <span style="color: #ff328b;"><fmt:formatNumber value="${total_deduction2}"
                                                                                    groupingUsed="true"/></span>/<fmt:formatNumber
-                                value="${total}"
+                                value="${total2}"
                                 groupingUsed="true"/> 원</span>
                         </div>
                         <p>(기준금액 = 기본공제한도 + 추가공제한도)</p>
@@ -385,7 +385,7 @@
                      <span style="color: #8b8b8b; font-size: 20px;">
                             달성금액 : <span style="color: #ff328b;"><fmt:formatNumber value="${basic_deduction2}"
                                                                                    groupingUsed="true"/></span>/<fmt:formatNumber
-                             value="${basicTotal}"
+                             value="${basicTotal2}"
                              groupingUsed="true"/> 원</span>
                         </div>
                         <p>(기준금액 = 기본공제한도)</p>
@@ -397,14 +397,14 @@
                                                                                      groupingUsed="true"/>원
                             </div>
                         </div>
-                        <p> * 총급여액 : 5000 만원 기준 <br><br></p>
+                        <p> * 총급여액 : 9000 만원 기준 <br><br></p>
                     </div>
                     <script src="../../resources/js/deductionChart.js"></script>
                     <script src="../../resources/js/deductionChart2.js"></script>
                 </div>
                 <%--                        <span style="font-weight: bold; color: #fd328a;">--%>
                 <br/><br/>
-                <h2> 맞벌이 부부 연말정산 종합 결과</h2><br/>
+                <h2> <span style="background: #fafdcf">맞벌이 부부 연말정산 종합 결과 📄</h2><br/>
 
                 <table class="table-fill">
                     <thead>
@@ -418,22 +418,22 @@
                     <tbody class="table-hover">
                     <tr>
                         <td class="text-left"><span style="color: black; font-size: 28px">카드 소득 공제</span></td>
-                        <td class="text-left"><span style="color: black; font-size: 35px">✔️👰</span></td>
                         <td class="text-left"></td>
+                        <td class="text-left"><span style="color: black; font-size: 35px">✔️🤵</span></td>
                     </tr>
                     <tr>
                         <td class="text-left"><span style="color: black; font-size: 28px">부양가족 공제</span></td>
-                        <td class="text-left"></td>
-                        <td class="text-left"><span style="color: black; font-size: 35px">✔️🤵</span></td>
+                        <td class="text-left">100만원 기준 <span style="color: #ff328b; font-size: 35px">24만원</span> 절세</td>
+                        <td class="text-left"><span style="color: black; font-size: 35px">✔️🤵 </span>100만원 기준 <span style="color: #ff328b; font-size: 35px">35만원</span> 절세</td>
                     </tr>
                     <tr>
                         <td class="text-left"><span style="color: black; font-size: 28px">의료비 공제</span></td>
-                        <td class="text-left"></td>
-                        <td class="text-left"><span style="color: black; font-size: 35px">✔️🤵</span></td>
+                        <td class="text-left"><span style="color: black; font-size: 35px">✔️👰  </span>의료비 문턱 <span style="color: #ff328b; font-size: 35px">180만원</span></td>
+                        <td class="text-left">의료비 문턱 <span style="color: #ff328b; font-size: 35px">270만원</span></td>
                     </tr>
                     </tbody>
                 </table>
-<br/><br/>
+<br/><br/><br/><br/>
                 <h2>💡 맞벌이 부부 카드소득공제 TIP</h2><br/>
 
                 <div class="text-box2">
@@ -443,7 +443,7 @@
                             <h2>별돌이의 소비 제안💫</h2>
                             <div class="consumption-comment">
                                 <h3><span
-                                        style="color: #106e69; font-size: 25px;">${currentUser.name}</span> 님의 카드로 <span
+                                        style="color: #106e69; font-size: 25px;">${spouseName}</span> 님의 카드로 <span
                                         style="color: #ff328b; font-size: 25px;">결제</span>하는 것을 제안드려요❕</h3>
                             </div>
 
@@ -459,7 +459,7 @@
                                     <span style="text-align: right; font-size: 20px; color: #4f4949">왜 그럴까요 ⍰</span>
                                     </div>
                                     <div class="popup-modal">
-                                        <span style="color: #0d6565;">카드 소득공제금액을 채우기 전까지는 연봉이 높은 ${currentUser.name}님의 소비가, 그 이후엔 배우자님의 소비가 유리해요.</span><br/>
+                                        <span style="color: #0d6565;">카드 소득공제금액을 채우기 전까지는 연봉이 높은 ${spouseName}님의 소비가, 그 이후엔 ${currentUser.name}님의 소비가 유리해요.</span><br/>
                                         소득이 높은 쪽은 보통 <span style="color: #ff328b;">세율도 높기 </span>때문에 소비 소득공제를 통해 <span
                                             style="color: #ff328b;">세금 <br/>공제액을 높이는</span> 것이 필요해요.
                                     </div>
@@ -502,7 +502,7 @@
                         <h2>의료비 소비 제안 🏥</h2>
                         <div class="consumption-comment">
                             <h3><span
-                                    style="color: #106e69; font-size: 25px;">${spouseName}</span> 님의 카드로 <span
+                                    style="color: #106e69; font-size: 25px;">${currentUser.name}</span> 님의 카드로 <span
                                     style="color: #ff328b; font-size: 25px;">결제</span>하는 것을 제안드려요❕</h3>
                         </div>
                         <br/>

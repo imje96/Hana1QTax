@@ -79,10 +79,7 @@
         <div class="section">
             <%--            <div class="container-xxl py-5">--%>
             <div class="container-title">
-                <%--                <h6 class="text-primary">--%>
-                <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
-                <%--                </h6>--%>
-                <%--                    💰--%>
+
                 <h2>카드황금비율 서비스 안내</h2>
                 <br/>
                 <span style="color: #615e5e"><h3>돈 쓰고 돌려받는 세금은 얼마나 될까? 소비금액에 대한 소득공제를 확인해 보세요</h3></span>
@@ -90,15 +87,6 @@
 
             <div class="container2">
                 <div class="copy-text"> 🍯TIP : ⍰ 박스에 마우스를 갖다 대면 추가적인 설명이 나타납니다</div>
-<%--                <div class="hero-box">--%>
-<%--                    <div class="position-relative p-4 pt-0"--%>
-<%--                         style="text-align: center;">--%>
-<%--                        <h4 style="padding-top: 50px;">--%>
-<%--                            올해 카드 소득공제 얼마 받게 될까? <span style="color: #ff328b;"> 결제수단</span>을 연동해보세요!--%>
-<%--                        </h4>--%>
-<%--                        <br/><p>카드와 홈택스를 연동하고 소득공제 혜택을 확인하세요.</p>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
 
                 <div class="list-box" style="padding-top: 30px;">
 

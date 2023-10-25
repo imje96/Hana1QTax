@@ -125,14 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 },
-                // datalabels: {
-                //     color: 'black',
-                //     formatter: function(value, context) {
-                //         return ((value / totalDeductions) * 100).toFixed(2) + '%';
-                //     },
-                //     anchor: 'end',
-                //     align: 'top',
-                // }
+
             }
         }
     });

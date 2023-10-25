@@ -51,7 +51,6 @@ public class TranController {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
         int memberId = currentUser.getMember_id();
@@ -76,7 +75,6 @@ public class TranController {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
         int memberId = currentUser.getMember_id();
@@ -120,7 +118,6 @@ public class TranController {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
         int memberId = currentUser.getMember_id();
@@ -225,19 +222,12 @@ public class TranController {
                         " <span style=\"color: #0c716b;\">60만원</span> 실적 혜택을 받으세요.";
             } else {
                 long diff = 300000 - totalAmount;
-                benefitMessage = "아직 실적을 충족하지 못했어요. <br/>"  + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원 더 이용하고<br/>" +
+                benefitMessage = "아직 실적을 충족하지 못했어요. <br/>" + "<span style=\"color: #e4003f;\">" + diff + "</span>&nbsp;원 더 이용하고<br/>" +
                         " <span style=\"color: #0c716b;\">30만원</span> 실적 혜택을 받으세요.";
             }
         }
         return benefitMessage;
     }
-
-
-//    @GetMapping("/getTotalAmount")
-//    public long getTotalAmount(@RequestParam String cardNumber) {
-//        // 카드 번호를 기반으로 DB에서 카드의 사용 금액 가져오기
-//        return tranChart.getThisMonthTotalByCard(cardNumber);
-//    }
 
     /* 카드 사용내역 */
     @GetMapping("/transactionList")
@@ -336,6 +326,7 @@ public class TranController {
     public String redirectToMultiAny() {
         return "redirect:https://www.hanacard.co.kr/OPI41000000D.web?schID=pcd&mID=PI41013823P&CD_PD_SEQ=13823";
     }
+
     @GetMapping("/redirectToYoungHana")
     public String redirectToYoungHana() {
         return "redirect:https://www.hanacard.co.kr/OPI41000000D.web?schID=pcd&mID=PI41013798P&CD_PD_SEQ=13798&";

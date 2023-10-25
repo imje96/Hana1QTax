@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 #progress-bar-container li .step-inner {
     position: absolute;
     width: 100%;
@@ -27,6 +28,7 @@
     box-shadow: 0 2px 13px -1px rgba(0, 0, 0, 0.2);
     transition: all ease 0.25s;
 }
+
 #progress-bar-container li:hover::after {
     background: #555;
 }
@@ -53,12 +55,12 @@
     width: 8%;
     height: 100%;
     background-color: #9ae7d7;
-    /*background: linear-gradient(to right #207893 0%, #2ea3b7 100%);*/
     position: absolute;
     z-index: 2;
     border-radius: 50px;
     transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.25);
 }
+
 #progress-content-section {
     position: relative;
     top: 100px;
@@ -105,13 +107,13 @@
 }
 
 
-
 .section-content h3 {
     /*color: #555;*/
     text-transform: uppercase;
     /*margin: 0 30px;*/
     font-size: 25px;
 }
+
 /* p태그 글자 크기 */
 .section-content p {
     font-size: 20px;
@@ -142,10 +144,12 @@
     display: block;
     opacity: 1;
 }
+
 .progress-wrapper {
     margin: auto;
     max-width: 1080px;
 }
+
 #progress-bar-container {
     position: relative;
     width: 1200px;
@@ -153,6 +157,7 @@
     height: 100%;
     margin-top: 65px;
 }
+
 #progress-bar-container ul {
     padding-top: 15px;
     z-index: 999;
@@ -160,6 +165,7 @@
     width: 100%;
     margin-top: -40px;
 }
+
 #progress-bar-container li::before {
     /*content: " ";*/
     display: block;
@@ -176,6 +182,7 @@
     border: 2px solid #fff;
     background-color: #fdbebe;
 }
+
 #progress-bar-container li {
     list-style: none;
     float: left;
@@ -191,6 +198,7 @@
     height: 60px;
     position: relative;
 }
+
 @keyframes FadeInUp {
     0% {
         transform: translateY(15px);
@@ -202,23 +210,6 @@
     }
 }
 
-/* 폼 양식 부분*/
-
-/*.section-content {*/
-/*    font-family: 'Arial', sans-serif;*/
-/*    margin: 20px;*/
-/*    padding: 20px;*/
-/*    border: 1px solid #ad1818;*/
-/*    border-radius: 10px;*/
-/*}*/
-
-/*h2 {*/
-/*    color: #333;*/
-/*    !*font-size: 40px;*!*/
-/*    margin-bottom: 20px;*/
-/*}*/
-
-
 
 p {
     color: #777;
@@ -226,7 +217,7 @@ p {
     margin: 10px 0;
 }
 
-.content-dropdown{
+.content-dropdown {
     width: 400px;
     height: 50px;
     padding: 8px 12px;
@@ -275,64 +266,46 @@ p {
     transition: background-color 0.3s, transform 0.3s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .update-button:hover {
     background-color: #b60535;
     transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
-/*.choice-button {*/
-/*    padding: 10px 20px;*/
-/*    margin-right: 10px;*/
-/*    border: none;*/
-/*    background-color: #e9e9e9;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.choice-button.active {*/
-/*    background-color: #007BFF;*/
-/*    color: #fff;*/
-/*}*/
 
 .choice-button {
     padding: 15px 0;
 }
 
 
-.choice-button input[type=radio]{
+.choice-button input[type=radio] {
     display: none;
 }
-.choice-button input[type=radio]+label{
+
+.choice-button input[type=radio] + label {
 
     display: inline-block;
     color: #05413d;
-    /* 글자색 변경 */
     padding: 10px 15px;
-    /* 패딩 */
     width: 180px;
     border: none;
-    /* 테두리 없음 */
     border-radius: 5px;
-    /* 둥근 모서리 */
     text-align: center;
     text-decoration: none;
     font-size: 18px;
-    /* 폰트 크기 변경 */
     cursor: pointer;
     background-color: #e9eeed;
-    /* 배경색 추가 */
     transition: background-color 0.3s, transform 0.3s;
-    /* 부드러운 전환 효과 추가 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* 그림자 추가 */
     margin-right: 10px;
 }
 
-.choice-button input[type=radio]+label:hover {
+.choice-button input[type=radio] + label:hover {
     background: #05413d;
     color: #FFFFFF;
 }
 
-.choice-button input[type=radio]:checked+label{
+.choice-button input[type=radio]:checked + label {
     background-color: #106e69;
     color: #ffffff;
 }
@@ -349,41 +322,30 @@ p {
 }
 
 
-
 /* 다음/이전 버튼 */
 .prev-button,
 .next-button {
     display: inline-block;
     color: #FFFFFF;
-    /* 글자색 변경 */
     padding: 10px 10px;
     margin-right: 10px;
     width: 150px;
     height: 50px;
     border: none;
-    /* 테두리 없음 */
     border-radius: 5px;
-    /* 둥근 모서리 */
     text-align: center;
     text-decoration: none;
     font-size: 18px;
-    /* 폰트 크기 변경 */
     cursor: pointer;
     background-color: #00857e;
-    /* 배경색 추가 */
     transition: background-color 0.3s, transform 0.3s;
-    /* 부드러운 전환 효과 추가 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* 그림자 추가 */
 }
 
 .next-button:hover {
     background-color: #106e69;
-    /* hover 시 배경색 변경 */
     transform: scale(1.05);
-    /* hover 시 약간 확대되는 효과 */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    /* hover 시 그림자 약간 강화 */
 }
 
 /* 모달 관련 */
@@ -391,8 +353,6 @@ p {
     padding: 15px 25px;
     border: 1px solid #ebf1f1;
     margin: 0 25px 8px 25px;
-    /*display: flex;*/
-    /*justify-content: space-between;*/
     font-size: 18px;
     border-radius: 15px;
     width: 300px;
@@ -400,14 +360,13 @@ p {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.total-amount-box:hover{
+.total-amount-box:hover {
     background: #989a9a;
     color: #FFFFFF;
 }
 
 .total-text-box {
     padding-top: 5px;
-    /*border: 1px solid black;*/
     display: flex;
     justify-content: space-between;
     font-size: 20px;
@@ -423,35 +382,23 @@ p {
 .more {
     cursor: pointer;
 }
+
 .modal {
-    /*display: none;*/
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*background-color: rgba(0, 0, 0, 0.7);*/
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 400px; /* Location of the box */
+
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 400px;
     padding-left: 170px;
-    /*left: 0;*/
-    /*top: 0;*/
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 
 }
 
 .modal-content {
-    /*background-color: #fefefe;*/
-    /*margin: 15% auto;*/
-    /*padding: 20px;*/
-    /*border: 1px solid #888;*/
-    /*width: 80%;*/
     background-color: #fefefe;
     margin: auto;
     padding: 50px;
@@ -474,8 +421,6 @@ p {
 }
 
 
-
-
 /*fieldset*/
 
 fieldset {
@@ -484,16 +429,13 @@ fieldset {
 }
 
 
-/* 연말정산 계산 부분 모달 */
-
-
 /* 연말정산 세부 모달 */
-.flex-container{
+.flex-container {
     display: flex;
     justify-content: center;
 }
+
 .flex-column {
-    /*display: flex;*/
 }
 
 .subheading h4 {
@@ -503,7 +445,7 @@ fieldset {
     text-align: center;
 }
 
-.content-text{
+.content-text {
     display: flex;
     align-items: center;
     justify-content: center;

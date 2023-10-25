@@ -1,4 +1,3 @@
-// 사용자 정보 입력하면 무작위로 본인인증번호 보냄
 function sendSmsRequest() {
     const phoneNumber = document.getElementById('phoneNumber').value;
 
@@ -7,7 +6,7 @@ function sendSmsRequest() {
 
     const requestData = {
         recipientPhoneNumber: phoneNumber,
-        content: '[하나안심서비스] 하나안심카드서비스 사용을 위해 인증번호 [' + ouathNum + '] 를 입력하세요.',
+        content: '[하나원큐택스서비스] 하나원큐택스 서비스를 위해 [' + ouathNum + '] 를 입력하세요.',
         ouathNum: ouathNum // 생성한 무작위 숫자 할당
     };
 
@@ -29,7 +28,6 @@ function sendSmsRequest() {
 }
 
 
-// 본인인증 메세지를 받은 사용자가 인증번호를 입력하면 service에서 동일한지 확인한 후 return
 function verifySmsCode() {
     const smsConfirmNum = document.getElementById('userOuathNum').value;
 

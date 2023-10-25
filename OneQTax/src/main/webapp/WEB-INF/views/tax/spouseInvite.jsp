@@ -203,7 +203,7 @@
             }
         })
     }
-    Kakao.init('b959273014359f70ea6960b0c2a699df'); // 사용하려는 앱의 JavaScript 키 입력
+    Kakao.init(''); // 사용하려는 앱의 JavaScript 키 입력
 
 </script>
 </body>

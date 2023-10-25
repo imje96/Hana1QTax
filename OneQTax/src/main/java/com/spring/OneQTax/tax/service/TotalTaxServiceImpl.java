@@ -52,9 +52,6 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         int income_final = totalInfo.getIncome_final();
         int personal_deduction = totalInfo.getPersonal_deduction();
         int pension_deduction = totalInfo.getPension_deduction();
-//        int health_insurance = totalInfo.getHealth_insurance(); // 연금보험료공제
-//        int employment_insurance = totalInfo.getEmployment_insurance(); // 연금보험료공제
-//        int national_pension = totalInfo.getNational_pension(); // 연금보험료공제
         int other_pension = totalInfo.getOther_pension(); // 기타연금보험
 
         int housing_total = totalInfo.getHousing_total(); //
@@ -187,9 +184,6 @@ public class TotalTaxServiceImpl implements TotalTaxService {
         System.out.println(minimumLimit);
         int calcMedicalTotal = calcMedical + calcMedical2 + calcMedical3 + calcFamily; // 공제대상금액
         totalInfo.setMedical_total(calcMedicalTotal);
-//        calcMedicalTaxCredit = Math.max(calcMedicalTotal - minimumLimit, 0);
-
-//        totalResult.setMedical_taxcredit(calcMedicalTaxCredit);
         totalResult.setMedical_taxcredit(calcMedicalTotal);
 
         /* 교육비 */

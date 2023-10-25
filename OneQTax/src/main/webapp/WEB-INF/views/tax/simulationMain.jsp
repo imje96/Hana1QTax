@@ -324,10 +324,6 @@
     </section>
 </div>
 
-<!-- 약관 동의 모달 -->
-<%--<div id="termsModal">--%>
-<%--    <div style="background: white; padding: 20px; width: 80%; max-width: 600px;">--%>
-
 <div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -351,9 +347,6 @@
                 개인(신용)정보는 서비스 종료일 또는 동의 철회 시까지 보유&#183;이용됩니다
 
                     <br/><br/>
-<%--                    <label>--%>
-<%--                        <input type="checkbox" class="terms-agree-checkbox"> .--%>
-<%--                    </label>--%>
                 </div>
             </div>
 
@@ -388,18 +381,6 @@
 
     </div>
 </div>
-
-<%-- 챗봇 --%>
-<%--<div id="iframeWrapper"--%>
-<%--     style="width: 0; position: fixed; top: 10%; right: 0; height: 80%; overflow-x: hidden; transition: 0.5s;">--%>
-<%--    <iframe--%>
-<%--            id="chatIframe"--%>
-<%--            src="https://www.chatbase.co/chatbot-iframe/aAn7wOmZmfF1MQ-xG1wpb"--%>
-<%--            width="100%"--%>
-<%--            height="100%"--%>
-<%--            frameborder="0">--%>
-<%--    </iframe>--%>
-<%--</div>--%>
 
 <!-- footer-wrapper -->
 <footer>
@@ -442,7 +423,7 @@
         const checkboxes = document.querySelectorAll('.terms-agree-checkbox');
 
         for (let checkbox of checkboxes) {
-            checkbox.checked = true; // 체크박스를 자동으로 선택
+            checkbox.checked = true;
         }
 
         // 모든 약관에 동의한 경우 페이지 이동
@@ -461,52 +442,6 @@
     });
 
 </script>
-<%--<script>--%>
 
-<%--    function toggleAccordion(element) {--%>
-<%--        const content = element.nextElementSibling;--%>
-<%--        if (content.style.maxHeight && content.style.maxHeight !== '0px') {--%>
-<%--            content.style.maxHeight = null;--%>
-<%--        } else {--%>
-<%--            content.style.maxHeight = content.scrollHeight + "px";--%>
-<%--        }--%>
-<%--    }--%>
-
-
-<%--</script>--%>
-<%--<script>--%>
-
-<%--    document.addEventListener("DOMContentLoaded", function() {--%>
-<%--        document.getElementById('linkForModal').addEventListener('click', showTermsModal);--%>
-
-
-<%--        document.getElementById('termsModal').style.display = 'flex';--%>
-
-<%--        document.getElementById('linkForModal').addEventListener('click', showTermsModal, { capture: true });--%>
-
-
-<%--        function showTermsModal(event) {--%>
-<%--            console.log("showTermsModal 함수가 호출되었습니다.");--%>
-<%--            event.preventDefault();--%>
-<%--            document.getElementById('termsModal').style.display = 'flex';--%>
-<%--        }--%>
-
-
-
-<%--    function agreeTermsAndRedirect() {--%>
-<%--        const checkboxes = document.querySelectorAll('.terms-agree-checkbox');--%>
-
-<%--        for (let checkbox of checkboxes) {--%>
-<%--            if (!checkbox.checked) {--%>
-<%--                alert('모든 약관에 동의해주세요.');--%>
-<%--                return;--%>
-<%--            }--%>
-<%--        }--%>
-
-<%--        // 모든 약관에 동의한 경우 페이지 이동--%>
-<%--        window.location.href = "${pageContext.request.contextPath}/taxSimulation";--%>
-<%--    }--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
 </html>

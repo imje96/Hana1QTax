@@ -38,634 +38,633 @@
     </script>
 
 
-
-<style>
-    *, ::after, ::before {
-        box-sizing: inherit;
-    }
-
-    .section2 {
-        width: 1200px;
-        background: #f1f3f5;
-        display: flex;
-        flex-direction: column;
-        margin-top: 50px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .container-left {
-        background-color: #efecec;
-        width: 60%;
-        height: 1000px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-    }
-
-    .container-right {
-        background-color: #efecec;
-        width: 40%;
-        height: 1000px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        padding-right: 25px;
-        /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-    }
-
-    .title {
-        text-align-all: center;
-    }
-
-    .card-box {
-        background-color: #fdfdfd;
-        border-radius: 10px;
-        padding: 20px 0;
-        margin: 25px 25px;
-        width: 90%;
-        height: 674px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 15px solid #00857e;
-        /* transform과 box-shadow 효과를 0.3초 동안 부드럽게 적용 */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card-box:hover {
-        /* hover 시 약간 확대되는 효과 */
-        transform: scale(1.04);
-        /* hover 시 그림자 약간 강화 */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-box2 {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 20px 0;
-        margin: 25px 25px;
-        width: 90%;
-        height: 700px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-box h3 {
-        font-size: 25px;
-    }
-
-    .card-box2 h3 {
-        font-size: 25px;
-        /*margin-top: 23px;*/
-    }
-
-    .carousel-inner {
-        position: relative;
-        width: 350px;
-        overflow: hidden;
-    }
-
-    .carousel img {
-        max-width: 100%;
-        height: auto;
-        margin-top: 15px;
-        margin-bottom: 10px;
-    }
-
-    .carousel-item {
-        width: 100%; /* or any specific width */
-        height: auto; /* or any specific height */
-        position: relative;
-    }
-
-    .carousel-control-prev {
-        left: -55px;
-    }
-
-    .carousel-control-next {
-        right: -55px;
-    }
-
-    .carousel-control-next, .carousel-control-prev {
-        position: absolute;
-        top: 100px;
-        bottom: 0;
-        height: 45px;
-        border-radius: 40%;
-        z-index: 1;
-        background: #00857e;
-        /*display: -ms-flexbox;*/
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        width: 12%;
-        /*color: #343a40;*/
-        text-align: center;
-        /* opacity: .5; */
-        transition: opacity .15s ease;
-    }
-
-
-    .header-container {
-        color: #1A202C;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        font-weight: 600;
-        width: 580px;
-    }
-
-    .section-header {
-        line-height: 24px;
-        font-size: 25px;
-    }
-
-    .date-selector {
-        padding: 10px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        border-radius: 6px;
-        color: #666B85;
-        width: 700px;
-        /*background: #b4cece;*/
-        /*box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);*/
-    }
-
-    .date-selector span {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 15px;
-        width: 100px;
-        background: #b4cece;
-        padding: 14px 14px;
-        border-radius: 6px;
-    }
-
-    .info-box1 {
-        background-color: rgb(255 223 237) !important;
-        /*padding: 10px;*/
-        border-radius: 10px;
-        text-align: center;
-        width: 90%;
-        height: 300px;
-        padding: 20px 16px;
-        margin-top: 20px;
-        /*color: #ffffff;*/
-    }
-
-
-    .info-box2 {
-        /*position: absolute;*/
-        /*top: 10px;*/
-        /*right: 10px;*/
-        background-color: rgb(239, 241, 243) !important;
-        /*padding: 10px;*/
-        border-radius: 10px;
-        text-align: center;
-        width: 90%;
-        height: 300px;
-        padding: 20px 16px;
-        margin-top: 40px;
-    }
-
-    /*   금액 표시 */
-    .price-currency {
-        line-height: 21px;
-        font-size: 14px;
-        font-weight: 600;
-        color: #90A3BF;
-        /*margin-left: 8px;*/
-    }
-
-
-    .detailBtn {
-        display: inline-block;
-        color: #05413d;
-        padding: 7px;
-        width: 150px;
-        border: none;
-        border-radius: 7px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        cursor: pointer;
-        background-color: #fdd0e4;
-        margin-left: 425px;
-        transition: background-color 0.3s, transform 0.3s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .detailBtn:hover {
-        background-color: #fa63a5;
-        /* hover 시 배경색 변경 */
-        transform: scale(1.05);
-        /* hover 시 약간 확대되는 효과 */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        /* hover 시 그림자 약간 강화 */
-    }
-
-    #headerLogo2 {
-        display: flex;
-        align-items: center;
-        width: 1644px;
-        padding: 10px 0 0 250px;
-        justify-content: space-between;
-        font-size: 18px;
-    }
-
-    .upper-section {
-        display: flex;
-        width: 1200px;
-    }
-
-    .lower-section {
-        display: flex;
-        width: 1200px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /*  카드 타이틀  */
-    .card_title {
-        text-align: center;
-        color: #000000;
-        font-size: 22px;
-    }
-
-    .personal_info {
-        text-align: center;
-        color: #7a7a7a;
-        font-size: 17px;
-    }
-
-    .card_subtitle {
-        text-align: center;
-        color: #ffffff;
-        font-size: 18px;
-        background: #e50745;
-        padding: 5px 10px;
-        border-radius: 15px;
-    }
-
-    .card_brand {
-        text-align: center;
-        color: #ffffff;
-        font-size: 18px;
-        background: #afafaf;
-        padding: 5px 10px;
-        border-radius: 15px;
-    }
-
-    .card_number {
-        text-align: center;
-        /*color: #ffffff;*/
-        font-size: 18px;
-        /*background: #e50745;*/
-        /*padding: 5px 10px;*/
-        border-radius: 15px;
-        margin-top: 5px;
-    }
-
-    .card-benefits {
-        color: #000000;
-        font-size: 15px;
-        border: 3px solid #FFFFFF;
-        border-radius: 10px;
-        padding: 10px 0;
-        line-height: 1.8;
-        text-align: left;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 10px 0;
-    }
-
-    .card-benefits2 {
-        color: #000000;
-        font-size: 20px;
-        border: 3px solid #FFFFFF;
-        border-radius: 10px;
-        padding: 10px 0;
-        line-height: 1.8;
-        text-align: left;
-        margin: 10px 0;
-    }
-
-    .point {
-        color: #2a9791;
-        font-weight: bold;
-    }
-
-    .icon-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        font-size: 14px;
-        color: #4f4949;
-    }
-
-    .icon-bg {
-        /*background: #05413d;*/
-        background: #FFFFFF;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-
-    .icon-bg:hover {
-        /* hover 시 약간 확대되는 효과 */
-        transform: scale(1.05);
-        /* hover 시 그림자 약간 강화 */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .icon-bg2 {
-        background: #05413d;
-        /*background: #FFFFFF;*/
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5px;
-    }
-
-    /*  모달창 버튼  */
-    .modalBtn2 {
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        font-size: 15px;
-        cursor: pointer;
-        background: none !important;
-        color: #7a7a7a;
-        transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .modalBtn2:hover {
-        transform: scale(1.05);
-        /* hover 시 약간 확대되는 효과 */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        /* hover 시 그림자 약간 강화 */
-    }
-
-    .modal-content2 {
-        position: relative;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        width: 700px;
-        pointer-events: auto;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid rgba(0, 0, 0, .2);
-        border-radius: 0.3rem;
-        outline: 0;
-    }
-
-    /*  카드사별 한도  */
-    .cards-limit {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px 0;
-        margin: 25px 25px;
-        width: 95%;
-        /*height: 350px;*/
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* 카드사 이용금액 */
-    .flex-box2 {
-        display: flex;
-        align-items: center;
-        width: 700px;
-        justify-content: space-between;
-        cursor: grab;
-    }
-
-    .flex-box3 {
-        display: flex;
-        align-items: center;
-        width: 550px;
-        justify-content: space-between;
-    }
-
-    .flex-box3 h2 {
-        font-size: 27px;
-        color: #00857e;
-    }
-
-    .flex-box4 {
-        display: flex;
-        align-items: center;
-        width: 550px;
-        justify-content: space-between;
-        font-size: 23px;
-        margin: 6px 0;
-    }
-
-    .expense-cover {
-        /*width: 900px;*/
-        /*height: 200px;*/
-        /*background-color: #b8bec4;*/
-        font-weight: 600;
-        font-size: 25px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        border-radius: 15px;
-        /*color: #FFFFFF;*/
-        align-content: space-around;
-        flex-direction: column;
-        justify-content: flex-end;
-    }
-
-    .column-box h5 {
-        color: #777373;
-        font-size: 17px;
-    }
-
-
-    .logo-box {
-        background: #ffffff;
-        border-radius: 50%;
-        width: 94px;
-        height: 94px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 16px;
-        margin-left: 20px;
-        /*border-color: #aaaaaa;*/
-        border: 1px solid rgb(0 0 0 / 18%);
-        /*box-shadow: 1px 5px 27px rgba(0, 0, 0, 0.1);*/
-    }
-
-    .expense-box {
-        margin-bottom: 50px;
-    }
-
-    /*  한도 차트  */
-    /*  막대그래프  */
-    .chart-cover {
-        width: 900px;
-        /*height: 200px;*/
-        /*background-color: #b8bec4;*/
-        font-weight: 600;
-        font-size: 25px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        align-content: space-around;
-        flex-direction: column;
-        justify-content: flex-end;
-
-    }
-
-    .chart-cover2 {
-        width: 600px;
-        background-color: #c8dfde;
-        font-weight: 600;
-        font-size: 25px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        margin: 0 0 20px 99px;
-        padding: 20px 0;
-        align-content: space-around;
-        flex-direction: column;
-        justify-content: flex-end;
-    }
-
-    .progress-sector {
-        width: 700px;
-        display: flex;
-        font-weight: 600;
-        position: relative;
-        justify-content: space-between;
-        /*color: #ffffff;*/
-        margin: 11px 0 20px 0;
-    }
-
-    .progress-sector h5 {
-        color: #6e6969;
-        font-size: 22px;
-    }
-
-    .progress-sector h3 {
-        color: #e3003f;
-        font-size: 28px;
-    }
-
-    .progress-text {
-        font-size: 35px;
-    }
-
-    .progress-container {
-        width: 700px;
-        height: 50px;
-        background-color: #dedede;
-        font-weight: 600;
-        font-size: .8rem;
-        border-radius: 10px;
-        position: relative;
-        /* margin-bottom: 35px; */
-    }
-
-    .progress-container .gauge1 {
-        /*width: 70%;*/
-        height: 50px;
-        text-align: center;
-        background-color: #00847d;
-        border-radius: 10px;
-        color: #111;
-        overflow: hidden;
-    }
-
-    .progress-container .gauge2 {
-        /*width: 40%;*/
-        height: 50px;
-        text-align: center;
-        background-color: #00847d;
-        border-radius: 10px;
-        color: #111;
-        overflow: hidden;
-    }
-
-    .progress-container .gauge3 {
-        /*width: 90%;*/
-        height: 50px;
-        text-align: center;
-        background-color: #00847d;
-        border-radius: 10px;
-        color: #111;
-        overflow: hidden;
-    }
-
-    .flex-text {
-        width: 700px;
-        display: flex;
-        margin-bottom: 5px;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .flex-text h3 {
-        color: #494848;
-        font-size: 25px;
-    }
-
-    .title {
-        text-align-all: center;
-        margin-top: 40px;
-        font-size: 30px;
-        font-weight: 700;
-    }
-
-    /*  카드이용금액 박스 */
-    /*.flex-box2{*/
-    /*    display: flex;*/
-    /*    align-items: center;*/
-    /*    width: 700px;*/
-    /*    justify-content: space-between;*/
-    /*    cursor: grab;*/
-    /*    border: 3px solid #ebe7e7;*/
-    /*    !* border: solid; *!*/
-    /*    margin: 20px;*/
-    /*    padding: 10px 20px;*/
-    /*    border-radius: 10px;*/
-    /*    height: 110px;*/
-    /*    transition: background-color 0.3s, transform 0.5s;*/
-    /*}*/
-</style>
+    <style>
+        *, ::after, ::before {
+            box-sizing: inherit;
+        }
+
+        .section2 {
+            width: 1200px;
+            background: #f1f3f5;
+            display: flex;
+            flex-direction: column;
+            margin-top: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container-left {
+            background-color: #efecec;
+            width: 60%;
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+        }
+
+        .container-right {
+            background-color: #efecec;
+            width: 40%;
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding-right: 25px;
+            /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+        }
+
+        .title {
+            text-align-all: center;
+        }
+
+        .card-box {
+            background-color: #fdfdfd;
+            border-radius: 10px;
+            padding: 20px 0;
+            margin: 25px 25px;
+            width: 90%;
+            height: 674px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 15px solid #00857e;
+            /* transform과 box-shadow 효과를 0.3초 동안 부드럽게 적용 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-box:hover {
+            /* hover 시 약간 확대되는 효과 */
+            transform: scale(1.04);
+            /* hover 시 그림자 약간 강화 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-box2 {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px 0;
+            margin: 25px 25px;
+            width: 90%;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-box h3 {
+            font-size: 25px;
+        }
+
+        .card-box2 h3 {
+            font-size: 25px;
+            /*margin-top: 23px;*/
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 350px;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .carousel-item {
+            width: 100%; /* or any specific width */
+            height: auto; /* or any specific height */
+            position: relative;
+        }
+
+        .carousel-control-prev {
+            left: -55px;
+        }
+
+        .carousel-control-next {
+            right: -55px;
+        }
+
+        .carousel-control-next, .carousel-control-prev {
+            position: absolute;
+            top: 100px;
+            bottom: 0;
+            height: 45px;
+            border-radius: 40%;
+            z-index: 1;
+            background: #00857e;
+            /*display: -ms-flexbox;*/
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 12%;
+            /*color: #343a40;*/
+            text-align: center;
+            /* opacity: .5; */
+            transition: opacity .15s ease;
+        }
+
+
+        .header-container {
+            color: #1A202C;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+            width: 580px;
+        }
+
+        .section-header {
+            line-height: 24px;
+            font-size: 25px;
+        }
+
+        .date-selector {
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-radius: 6px;
+            color: #666B85;
+            width: 700px;
+            /*background: #b4cece;*/
+            /*box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);*/
+        }
+
+        .date-selector span {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 15px;
+            width: 100px;
+            background: #b4cece;
+            padding: 14px 14px;
+            border-radius: 6px;
+        }
+
+        .info-box1 {
+            background-color: rgb(255 223 237) !important;
+            /*padding: 10px;*/
+            border-radius: 10px;
+            text-align: center;
+            width: 90%;
+            height: 300px;
+            padding: 20px 16px;
+            margin-top: 20px;
+            /*color: #ffffff;*/
+        }
+
+
+        .info-box2 {
+            /*position: absolute;*/
+            /*top: 10px;*/
+            /*right: 10px;*/
+            background-color: rgb(239, 241, 243) !important;
+            /*padding: 10px;*/
+            border-radius: 10px;
+            text-align: center;
+            width: 90%;
+            height: 300px;
+            padding: 20px 16px;
+            margin-top: 40px;
+        }
+
+        /*   금액 표시 */
+        .price-currency {
+            line-height: 21px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #90A3BF;
+            /*margin-left: 8px;*/
+        }
+
+
+        .detailBtn {
+            display: inline-block;
+            color: #05413d;
+            padding: 7px;
+            width: 150px;
+            border: none;
+            border-radius: 7px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #fdd0e4;
+            margin-left: 425px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .detailBtn:hover {
+            background-color: #fa63a5;
+            /* hover 시 배경색 변경 */
+            transform: scale(1.05);
+            /* hover 시 약간 확대되는 효과 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            /* hover 시 그림자 약간 강화 */
+        }
+
+        #headerLogo2 {
+            display: flex;
+            align-items: center;
+            width: 1644px;
+            padding: 10px 0 0 250px;
+            justify-content: space-between;
+            font-size: 18px;
+        }
+
+        .upper-section {
+            display: flex;
+            width: 1200px;
+        }
+
+        .lower-section {
+            display: flex;
+            width: 1200px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*  카드 타이틀  */
+        .card_title {
+            text-align: center;
+            color: #000000;
+            font-size: 22px;
+        }
+
+        .personal_info {
+            text-align: center;
+            color: #7a7a7a;
+            font-size: 17px;
+        }
+
+        .card_subtitle {
+            text-align: center;
+            color: #ffffff;
+            font-size: 18px;
+            background: #e50745;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .card_brand {
+            text-align: center;
+            color: #ffffff;
+            font-size: 18px;
+            background: #afafaf;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .card_number {
+            text-align: center;
+            /*color: #ffffff;*/
+            font-size: 18px;
+            /*background: #e50745;*/
+            /*padding: 5px 10px;*/
+            border-radius: 15px;
+            margin-top: 5px;
+        }
+
+        .card-benefits {
+            color: #000000;
+            font-size: 15px;
+            border: 3px solid #FFFFFF;
+            border-radius: 10px;
+            padding: 10px 0;
+            line-height: 1.8;
+            text-align: left;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .card-benefits2 {
+            color: #000000;
+            font-size: 20px;
+            border: 3px solid #FFFFFF;
+            border-radius: 10px;
+            padding: 10px 0;
+            line-height: 1.8;
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .point {
+            color: #2a9791;
+            font-weight: bold;
+        }
+
+        .icon-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 14px;
+            color: #4f4949;
+        }
+
+        .icon-bg {
+            /*background: #05413d;*/
+            background: #FFFFFF;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .icon-bg:hover {
+            /* hover 시 약간 확대되는 효과 */
+            transform: scale(1.05);
+            /* hover 시 그림자 약간 강화 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-bg2 {
+            background: #05413d;
+            /*background: #FFFFFF;*/
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+        }
+
+        /*  모달창 버튼  */
+        .modalBtn2 {
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 15px;
+            cursor: pointer;
+            background: none !important;
+            color: #7a7a7a;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .modalBtn2:hover {
+            transform: scale(1.05);
+            /* hover 시 약간 확대되는 효과 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            /* hover 시 그림자 약간 강화 */
+        }
+
+        .modal-content2 {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 700px;
+            pointer-events: auto;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: 0.3rem;
+            outline: 0;
+        }
+
+        /*  카드사별 한도  */
+        .cards-limit {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px 0;
+            margin: 25px 25px;
+            width: 95%;
+            /*height: 350px;*/
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 카드사 이용금액 */
+        .flex-box2 {
+            display: flex;
+            align-items: center;
+            width: 700px;
+            justify-content: space-between;
+            cursor: grab;
+        }
+
+        .flex-box3 {
+            display: flex;
+            align-items: center;
+            width: 550px;
+            justify-content: space-between;
+        }
+
+        .flex-box3 h2 {
+            font-size: 27px;
+            color: #00857e;
+        }
+
+        .flex-box4 {
+            display: flex;
+            align-items: center;
+            width: 550px;
+            justify-content: space-between;
+            font-size: 23px;
+            margin: 6px 0;
+        }
+
+        .expense-cover {
+            /*width: 900px;*/
+            /*height: 200px;*/
+            /*background-color: #b8bec4;*/
+            font-weight: 600;
+            font-size: 25px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+            /*color: #FFFFFF;*/
+            align-content: space-around;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .column-box h5 {
+            color: #777373;
+            font-size: 17px;
+        }
+
+
+        .logo-box {
+            background: #ffffff;
+            border-radius: 50%;
+            width: 94px;
+            height: 94px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            margin-left: 20px;
+            /*border-color: #aaaaaa;*/
+            border: 1px solid rgb(0 0 0 / 18%);
+            /*box-shadow: 1px 5px 27px rgba(0, 0, 0, 0.1);*/
+        }
+
+        .expense-box {
+            margin-bottom: 50px;
+        }
+
+        /*  한도 차트  */
+        /*  막대그래프  */
+        .chart-cover {
+            width: 900px;
+            /*height: 200px;*/
+            /*background-color: #b8bec4;*/
+            font-weight: 600;
+            font-size: 25px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            align-content: space-around;
+            flex-direction: column;
+            justify-content: flex-end;
+
+        }
+
+        .chart-cover2 {
+            width: 600px;
+            background-color: #c8dfde;
+            font-weight: 600;
+            font-size: 25px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            margin: 0 0 20px 99px;
+            padding: 20px 0;
+            align-content: space-around;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .progress-sector {
+            width: 700px;
+            display: flex;
+            font-weight: 600;
+            position: relative;
+            justify-content: space-between;
+            /*color: #ffffff;*/
+            margin: 11px 0 20px 0;
+        }
+
+        .progress-sector h5 {
+            color: #6e6969;
+            font-size: 22px;
+        }
+
+        .progress-sector h3 {
+            color: #e3003f;
+            font-size: 28px;
+        }
+
+        .progress-text {
+            font-size: 35px;
+        }
+
+        .progress-container {
+            width: 700px;
+            height: 50px;
+            background-color: #dedede;
+            font-weight: 600;
+            font-size: .8rem;
+            border-radius: 10px;
+            position: relative;
+            /* margin-bottom: 35px; */
+        }
+
+        .progress-container .gauge1 {
+            /*width: 70%;*/
+            height: 50px;
+            text-align: center;
+            background-color: #00847d;
+            border-radius: 10px;
+            color: #111;
+            overflow: hidden;
+        }
+
+        .progress-container .gauge2 {
+            /*width: 40%;*/
+            height: 50px;
+            text-align: center;
+            background-color: #00847d;
+            border-radius: 10px;
+            color: #111;
+            overflow: hidden;
+        }
+
+        .progress-container .gauge3 {
+            /*width: 90%;*/
+            height: 50px;
+            text-align: center;
+            background-color: #00847d;
+            border-radius: 10px;
+            color: #111;
+            overflow: hidden;
+        }
+
+        .flex-text {
+            width: 700px;
+            display: flex;
+            margin-bottom: 5px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flex-text h3 {
+            color: #494848;
+            font-size: 25px;
+        }
+
+        .title {
+            text-align-all: center;
+            margin-top: 40px;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        /*  카드이용금액 박스 */
+        /*.flex-box2{*/
+        /*    display: flex;*/
+        /*    align-items: center;*/
+        /*    width: 700px;*/
+        /*    justify-content: space-between;*/
+        /*    cursor: grab;*/
+        /*    border: 3px solid #ebe7e7;*/
+        /*    !* border: solid; *!*/
+        /*    margin: 20px;*/
+        /*    padding: 10px 20px;*/
+        /*    border-radius: 10px;*/
+        /*    height: 110px;*/
+        /*    transition: background-color 0.3s, transform 0.5s;*/
+        /*}*/
+    </style>
 </head>
 
 <body>
@@ -715,13 +714,9 @@
 
 
     <div class="section">
-        <%--            <div class="container-xxl py-5">--%>
-        <%--            <div class="container-title" data-wow-delay="0.1s" style="max-width: 600px;">--%>
+
         <div class="container-title">
-            <%--                <h6 class="text-primary">--%>
-            <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
-            <%--                </h6>--%>
-            <%--                    💰--%>
+
             <h2>나의 카드 목록</h2>
             <br/>
             <span style="color: #615e5e"><h3>마이데이터로 연동한 모든 카드 목록을 확인해보세요</h3></span>
@@ -954,7 +949,8 @@
             </div>
             <div class="lower-section">
                 <div class="cards-limit">
-                    <div class="title">카드사 이용금액</div><br/>
+                    <div class="title">카드사 이용금액</div>
+                    <br/>
                     <span style="color: #6d6969"> 카드사 영역을 클릭해 카드별 사용내역을 확인해보세요</span><br/>
                     <div class="date-selector">
                         <span>📅
@@ -999,11 +995,11 @@
                                         <h3><fmt:formatNumber value="${privateCardTotal[4].totalAmount}"
                                                               groupingUsed="true"/> 원</h3>
                                     </div>
-                                        <div class="flex-box4">
-                                            <h5> 금쪽이 Young Hana+ 체크카드 :</h5>
-                                            <h3><fmt:formatNumber value="${privateCardTotal[6].totalAmount}"
-                                                                  groupingUsed="true"/>0 원</h3>
-                                        </div>
+                                    <div class="flex-box4">
+                                        <h5> 금쪽이 Young Hana+ 체크카드 :</h5>
+                                        <h3><fmt:formatNumber value="${privateCardTotal[6].totalAmount}"
+                                                              groupingUsed="true"/>0 원</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1064,80 +1060,81 @@
                                         <h3><fmt:formatNumber value="${privateCardTotal[1].totalAmount}"
                                                               groupingUsed="true"/> 원</h3>
                                     </div>
-                                        <div class="flex-box4">
-                                            <h5> 청춘대로 티타늄 카드 :</h5>
-                                            <h3><fmt:formatNumber value="${privateCardTotal[2].totalAmount}"
-                                                                  groupingUsed="true"/> 원</h3>
-                                        </div>
+                                    <div class="flex-box4">
+                                        <h5> 청춘대로 티타늄 카드 :</h5>
+                                        <h3><fmt:formatNumber value="${privateCardTotal[2].totalAmount}"
+                                                              groupingUsed="true"/> 원</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
 
-                        </div>
                     </div>
                 </div>
-                <div class="cards-limit">
-                    <div class="title">카드사 한도</div>
+            </div>
+            <div class="cards-limit">
+                <div class="title">카드사 한도</div>
+                <div class="date-selector">
                     <div class="date-selector">
-                        <div class="date-selector">
                         <span>📅
                         <c:set var="now" value="<%= new java.util.Date() %>"/>
                         <fmt:formatDate value="${now}" pattern="yyyy-MM"/>
                         </span>
-                        </div>
                     </div>
-
-                    <br/>
-                    <%--                    차트 --%>
-                    <div class="chart-cover">
-                        <div class="flex-text">
-                            <div><h3>하나카드(주)</h3></div>
-                            <div class="progress-text"> 0%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="gauge1" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-                        </div>
-                        <div class="progress-sector">
-                            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
-                            <h5>총한도</h5>
-                            <h3>1200만원</h3>
-                        </div>
-                    </div>
-
-                    <div class="chart-cover">
-                        <div class="flex-text">
-                            <div><h3>신한카드(주)</h3></div>
-                            <div class="progress-text"> 0%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="gauge2" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-                        </div>
-                        <div class="progress-sector">
-                            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
-                            <h5>총한도</h5>
-                            <h3>500만원</h3>
-                            <%--                        ${cardList[5].limit}--%>
-                        </div>
-                    </div>
-                    <div class="chart-cover">
-                        <div class="flex-text">
-                            <div><h3>(주)KB국민카드</h3></div>
-                            <div class="progress-text"> 0%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="gauge3" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-                        </div>
-                        <div class="progress-sector">
-                            <%--   초기 카드 실적, 이후 동적으로 변화    --%>
-                            <h5>총한도</h5>
-                            <h3>430만원</h3>
-                        </div>
-                    </div><br/>
-                    <p2>※ 위의 한도는 단기카드대출, 장기카드대출, 현금서비스 등을 포함하지 않은 단순 카드이용금액입니다.</p2>
                 </div>
+
+                <br/>
+                <%--                    차트 --%>
+                <div class="chart-cover">
+                    <div class="flex-text">
+                        <div><h3>하나카드(주)</h3></div>
+                        <div class="progress-text"> 0%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="gauge1" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                    </div>
+                    <div class="progress-sector">
+                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                        <h5>총한도</h5>
+                        <h3>1200만원</h3>
+                    </div>
+                </div>
+
+                <div class="chart-cover">
+                    <div class="flex-text">
+                        <div><h3>신한카드(주)</h3></div>
+                        <div class="progress-text"> 0%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="gauge2" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                    </div>
+                    <div class="progress-sector">
+                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                        <h5>총한도</h5>
+                        <h3>500만원</h3>
+                        <%--                        ${cardList[5].limit}--%>
+                    </div>
+                </div>
+                <div class="chart-cover">
+                    <div class="flex-text">
+                        <div><h3>(주)KB국민카드</h3></div>
+                        <div class="progress-text"> 0%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="gauge3" per="0"></div> <!-- 초기 값은 0%로 설정 -->
+                    </div>
+                    <div class="progress-sector">
+                        <%--   초기 카드 실적, 이후 동적으로 변화    --%>
+                        <h5>총한도</h5>
+                        <h3>430만원</h3>
+                    </div>
+                </div>
+                <br/>
+                <p2>※ 위의 한도는 단기카드대출, 장기카드대출, 현금서비스 등을 포함하지 않은 단순 카드이용금액입니다.</p2>
             </div>
         </div>
+    </div>
 </section>
 <div id="myModal" class="modal">
     <div class="modal-content2">
@@ -1199,7 +1196,6 @@
                 </div>
                 &nbsp;&nbsp; 국내 5만원 이상 결제건 <span class="point"> 2~3개월 </span> 무이자 할부<br/>
             </div>
-
 
 
         </div>

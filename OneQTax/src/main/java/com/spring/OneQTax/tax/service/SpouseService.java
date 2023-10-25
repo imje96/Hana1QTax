@@ -18,6 +18,7 @@ public interface SpouseService {
 
     // 조회 (Read)
     public SpouseRelationVO fingMySpouse(int memberId);
+
     public MemberVO getSpouseName(int spouseId);
 
     public List<SpouseRelationVO> getSpouseRealtionStatus(int memberId);
@@ -25,6 +26,7 @@ public interface SpouseService {
 
     // 수정 (Update)
     public void updateFriendRelation(SpouseRelationVO friendRelation);
+
     // 삭제 (Delete)
     public void deleteFriendRelation(int memberId);
 }

@@ -35,35 +35,27 @@ public class MemberController {
         return "member/login";
     }
 
-//    @PostMapping("/login")
-//    public String loginProcess(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
-//        MemberVO memberVO = memberService.loginMember(email, password);
-//        session.setAttribute("currentUser", memberVO);
-//        return "redirect:/";
-//    }
-@PostMapping("/login")
-public String loginProcess(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
-    MemberVO memberVO = memberService.loginMember(email, password);
+    @PostMapping("/login")
+    public String loginProcess(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
+        MemberVO memberVO = memberService.loginMember(email, password);
 
-    // 로그인 실패 처리
-    if (memberVO == null) {
-        // 로그인 실패 관련 메시지나 처리를 여기에 추가하면 됩니다.
-        return "login"; // 로그인 페이지로 리다이렉트 또는 포워드 (에러 메시지와 함께)
+        // 로그인 실패 처리
+        if (memberVO == null) {
+            return "login";
+        }
+
+        // 로그인 성공
+        session.setAttribute("currentUser", memberVO);
+
+        // dest 세션 값이 있는지 확인하고, 있으면 해당 페이지로 리다이렉트
+        String dest = (String) session.getAttribute("dest");
+        if (dest != null) {
+            session.removeAttribute("dest");
+            return "redirect:" + dest;
+        }
+
+        return "redirect:/"; // 기본 페이지로 리다이렉트
     }
-
-    // 로그인 성공
-    session.setAttribute("currentUser", memberVO);
-
-    // dest 세션 값이 있는지 확인하고, 있으면 해당 페이지로 리다이렉트
-    String dest = (String) session.getAttribute("dest");
-    if (dest != null) {
-        session.removeAttribute("dest");
-        return "redirect:" + dest;
-    }
-
-    return "redirect:/"; // 기본 페이지로 리다이렉트
-}
-
 
 
     @GetMapping("/logout")

@@ -153,10 +153,6 @@
                 <a href="${pageContext.request.contextPath}/spouseResult" style="display: block; margin-bottom: 20px;">
                     <div style="color: grey; margin-bottom: 15px;">우리집 돈관리 리포트</div>
                 </a>
-<%--                <hr style="width: 200px; margin-bottom: 15px;">--%>
-<%--                <a href="${pageContext.request.contextPath}/getSpouseInvitation" style="display: block; margin-bottom: 20px;">--%>
-<%--                    <div style="color: grey; margin-bottom: 15px;">임시테스트</div>--%>
-<%--                </a>--%>
             </div>
         </div>
 
@@ -221,9 +217,6 @@
                         </div>
                     </div>
                 </div>
-
-                <%--                   <button class="pointBtn" onclick="acceptInvitation(${relationId})">Accept Invitation</button>--%>
-                <%--                   <button class="pointBtn">초대 수락하기</button>--%>
 
 
             </div>

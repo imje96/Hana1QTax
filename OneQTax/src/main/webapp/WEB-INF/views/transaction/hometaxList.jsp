@@ -6,7 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,149 +33,154 @@
             defer>
     </script>
 
-<style>
-    *, ::after, ::before {
-        box-sizing: inherit;
-    }
+    <style>
+        *, ::after, ::before {
+            box-sizing: inherit;
+        }
 
-    .section2 {
-        width: 1200px;
-        background: #f1f3f5;
-        display: flex;
-        margin-top: 50px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+        .section2 {
+            width: 1200px;
+            background: #f1f3f5;
+            display: flex;
+            margin-top: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    .container-left {
-        background-color: #efecec;
-        width: 60%;
-        height: 1000px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-    }
+        .container-left {
+            background-color: #efecec;
+            width: 60%;
+            height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+        }
 
-    .date-selector span {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 15px;
-    }
+        .date-selector span {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 15px;
+        }
 
 
-    .inner-text {
-        position: absolute;
-        transform: translate(0%, -530%);
-        /*top: 32%;*/
-        /*left: 50%;*/
-        text-align: center;
-        color: #e4003f;
-    }
+        .inner-text {
+            position: absolute;
+            transform: translate(0%, -530%);
+            /*top: 32%;*/
+            /*left: 50%;*/
+            text-align: center;
+            color: #e4003f;
+        }
 
-    /*   금액 표시 */
-    .price-currency {
-        line-height: 21px;
-        font-size: 14px;
-        font-weight: 600;
-        color: #90A3BF;
-        /*margin-left: 8px;*/
-    }
+        /*   금액 표시 */
+        .price-currency {
+            line-height: 21px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #90A3BF;
+            /*margin-left: 8px;*/
+        }
 
-    .transaction-list {
-        width: 1200px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    /*#tranTable{*/
-    /*    width: 800px;*/
-    /*}*/
-    /* 부트스트랩 스타일 무효화 */
+        .transaction-list {
+            width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    h1, h2 {
-        font-weight: 700!important;
-        font-size: 30px!important;
-        margin-top: inherit!important;
-        margin-bottom: inherit!important;
-    }
+        /* 부트스트랩 스타일 무효화 */
 
-    h3, h4, h5, h6 {
-        font-size: inherit!important;
-        font-weight: 700 !important;
-        margin-top: inherit!important;
-        margin-bottom: inherit!important;
-    }
+        h1, h2 {
+            font-weight: 700 !important;
+            font-size: 30px !important;
+            margin-top: inherit !important;
+            margin-bottom: inherit !important;
+        }
 
-    body {
-        font-size: 20px !important;
-        line-height: 1.42857143;
-        color: #333 !important;
-        background-color: #fff;
-    }
+        h3, h4, h5, h6 {
+            font-size: inherit !important;
+            font-weight: 700 !important;
+            margin-top: inherit !important;
+            margin-bottom: inherit !important;
+        }
 
-    .btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
-        display: inherit !important;
-        content: inherit !important;
-    }
+        body {
+            font-size: 20px !important;
+            line-height: 1.42857143;
+            color: #333 !important;
+            background-color: #fff;
+        }
 
-    * {
-        -webkit-box-sizing: inherit !important;
-        /*-moz-box-sizing: border-box;*/
-        box-sizing: inherit;!important;
-    }
-    button{
-        font-family: inherit;
-        /*font-size: 17px !important;*/
-        line-height: inherit;
-        background: #e9efee;
-        /*color: #ffffff !important;*/
-        border-radius: 10px;
-        padding: 0 9px;
-        border-color: #e9efee !important;
-    }
-    button:hover {
-        background-color: #106e69;
-        color: #FFFFFF;
-        /* hover 시 배경색 변경 */
-        transform: scale(1.05);
-        /* hover 시 약간 확대되는 효과 */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        /* hover 시 그림자 약간 강화 */
-    }
-    /*  테이블   */
-    th {
-        color: #454b4b !important;
-        background: #d5dfdf !important;
-        height: 45px !important;
-        border-bottom: 4px solid #cacfcf !important;
-        border-right: 1px solid #d5dfdf !important;
-        font-size: 20px !important;
-        font-weight: 500 !important;
-        text-align: center !important;
-    }
-    table.dataTable {
-        clear: both;
-        margin-top: 15px !important;
-        margin-bottom: 15px !important;
-        max-width: 800px !important;
-        border-collapse: inherit !important;
-    }
-    table.dataTable td, table.dataTable th {
-        -webkit-box-sizing: content-box;
-        box-sizing: content-box;
-        width: 200px !important;
-        padding: 4px !important;
-    }
-    .section3 {
-        width: 1200px;
-        background: #f1f3f5;
-        display: flex;
-        margin-top: 50px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        height: 800px;
-    }
-</style>
+        .btn-group-vertical > .btn-group:after, .btn-group-vertical > .btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+            display: inherit !important;
+            content: inherit !important;
+        }
+
+        * {
+            -webkit-box-sizing: inherit !important;
+            /*-moz-box-sizing: border-box;*/
+            box-sizing: inherit;
+        !important;
+        }
+
+        button {
+            font-family: inherit;
+            /*font-size: 17px !important;*/
+            line-height: inherit;
+            background: #e9efee;
+            /*color: #ffffff !important;*/
+            border-radius: 10px;
+            padding: 0 9px;
+            border-color: #e9efee !important;
+        }
+
+        button:hover {
+            background-color: #106e69;
+            color: #FFFFFF;
+            /* hover 시 배경색 변경 */
+            transform: scale(1.05);
+            /* hover 시 약간 확대되는 효과 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            /* hover 시 그림자 약간 강화 */
+        }
+
+        /*  테이블   */
+        th {
+            color: #454b4b !important;
+            background: #d5dfdf !important;
+            height: 45px !important;
+            border-bottom: 4px solid #cacfcf !important;
+            border-right: 1px solid #d5dfdf !important;
+            font-size: 20px !important;
+            font-weight: 500 !important;
+            text-align: center !important;
+        }
+
+        table.dataTable {
+            clear: both;
+            margin-top: 15px !important;
+            margin-bottom: 15px !important;
+            max-width: 800px !important;
+            border-collapse: inherit !important;
+        }
+
+        table.dataTable td, table.dataTable th {
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            width: 200px !important;
+            padding: 4px !important;
+        }
+
+        .section3 {
+            width: 1200px;
+            background: #f1f3f5;
+            display: flex;
+            margin-top: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 800px;
+        }
+    </style>
 
 </head>
 
@@ -245,12 +249,14 @@
                 </div>
                 <div class="info-item5">
                     <div class="info-item">
-                        <h3><a href="#"><span style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i class="fa fa-caret-down"></i></span></a> 사용금액 :
-                      <fmt:formatNumber value="${hometaxThisMonthSum.totalAmount}" groupingUsed="true"/> 원</h3>
+                        <h3><a href="#"><span style="font-size: 25px;color: #041e1e;font-weight: bold;"> 10 월  <i
+                                class="fa fa-caret-down"></i></span></a> 사용금액 :
+                            <fmt:formatNumber value="${hometaxThisMonthSum.totalAmount}" groupingUsed="true"/> 원</h3>
                     </div>
-                </div><br/>
+                </div>
+                <br/>
                 <!-- 테이블 구조 정의 -->
-                <table id="tranTable" class="display"  data-te-max-height="460"
+                <table id="tranTable" class="display" data-te-max-height="460"
                        data-te-fixed-header="true">
                     <thead>
                     <tr>
@@ -263,7 +269,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- 데이터 행은 DataTables에 의해 여기에 동적으로 추가됩니다. -->
                     </tbody>
                 </table>
 
@@ -278,7 +283,6 @@
 <%-- 통화 표시 --%>
 <script>
     function formatCurrency(amount) {
-        // return amount.toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'});
         return amount.toLocaleString('ko-KR');
     }
 
@@ -305,9 +309,10 @@
                 columns: [
                     {data: "trandate"},
                     {data: "store"},
-                    {data: "amount",
+                    {
+                        data: "amount",
                         render: function (data, type, row) {
-                            return formatCurrency(data); // or formatCurrency(data) depending on your need
+                            return formatCurrency(data);
                         }
                     },
                     {data: "category"},
@@ -319,7 +324,6 @@
         }
     });
 </script>
-
 
 
 <!-- footer-wrapper -->
@@ -343,7 +347,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
-<!-- 엑셀 --> <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<!-- 엑셀 -->
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>

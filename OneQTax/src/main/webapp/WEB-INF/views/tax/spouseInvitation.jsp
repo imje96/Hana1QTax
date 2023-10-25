@@ -199,19 +199,10 @@
                 <h3>서비스 이용을 위해 수락하기 버튼을 눌러주세요</h3><br/>
                 👇 👇<br/>
 
-                <%--                <div class="inviteForm">--%>
-<%--                <form id="spouseInviteForm" method="post">--%>
-<%--                    <button class="pointBtn" type="button" id="submitBtn">초대 수락하기</button>--%>
-<%--                <form id="spouseInviteForm" method="post">--%>
-<%--                    <input type="hidden" id="hiddenMemberId" value="${memberId}"> <!-- 이렇게 memberId를 받아옵니다. -->--%>
-<%--                    <button class="pointBtn" type="button" id="submitBtn">초대 수락하기</button>--%>
-<%--                </form>--%>
-
                 <button class="pointBtn" type="button" id="acceptBtn" data-member-id="${memberId}">수락하기</button>
 
 
                 <br/>
-                <%--                </div>--%>
                 <br/>
                 <br/>
 
@@ -229,11 +220,6 @@
                         </div>
                     </div>
                 </div>
-
-                <%--                   <button class="pointBtn" onclick="acceptInvitation(${relationId})">Accept Invitation</button>--%>
-                <%--                   <button class="pointBtn">초대 수락하기</button>--%>
-
-
             </div>
         </div>
     </section>
@@ -246,22 +232,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    // $(document).ready(function() {
-    //     var memberId = $("#hiddenMemberId").val();
-    //
-    //     $("#submitBtn").click(function() {
-    //         // 초대 수락 로직 실행 요청 보내기
-    //         $.post("/acceptApi/execute/" + memberId, function(data) {
-    //             if(data === "Success") {
-    //                 alert("초대가 수락되었습니다.");
-    //             } else {
-    //                 alert("오류가 발생했습니다. 다시 시도해 주세요.");
-    //             }
-    //         });
-    //     });
-    // });
-
-
     $(document).ready(function() {
         $("#acceptBtn").on("click", function() {
             var memberId = $(this).data('member-id');

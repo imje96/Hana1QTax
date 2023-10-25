@@ -7,13 +7,6 @@
 <%@ page import="com.google.gson.Gson" %>
 <%@ page import="com.spring.oneqtax.transaction.domain.CardTranVO" %>
 <%@ page import="java.util.List" %>
-<%--<%--%>
-<%--    List<CardTranVO> thisTran = (List<CardTranVO>) request.getAttribute("thisTran");--%>
-<%--    Gson gson = new Gson();--%>
-<%--    String jsonData = gson.toJson(thisTran);--%>
-<%--    pageContext.setAttribute("jsonData", jsonData);--%>
-<%--%>--%>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,10 +93,6 @@
         flex-direction: column;
         align-items: center;
     }
-    /*#tranTable{*/
-    /*    width: 800px;*/
-    /*}*/
-    /* 부트스트랩 스타일 무효화 */
 
     h1, h2 {
         font-weight: 700!important;
@@ -149,11 +138,8 @@
     button:hover {
         background-color: #106e69;
         color: #FFFFFF;
-        /* hover 시 배경색 변경 */
         transform: scale(1.05);
-        /* hover 시 약간 확대되는 효과 */
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        /* hover 시 그림자 약간 강화 */
     }
     /*  테이블   */
     th {
@@ -273,7 +259,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- 데이터 행은 DataTables에 의해 여기에 동적으로 추가됩니다. -->
                     </tbody>
                 </table>
 
@@ -303,7 +288,6 @@
     <%-- 통화 표시 --%>
 <script>
     function formatCurrency(amount) {
-            // return amount.toLocaleString('ko-KR', {style: 'currency', currency: 'KRW'});
             return amount.toLocaleString('ko-KR');
     }
 
@@ -332,7 +316,7 @@
                     {data: "store"},
                     {data: "amount",
                         render: function (data, type, row) {
-                            return formatCurrency(data); // or formatCurrency(data) depending on your need
+                            return formatCurrency(data);
                         }
                     },
                     {data: "category"},

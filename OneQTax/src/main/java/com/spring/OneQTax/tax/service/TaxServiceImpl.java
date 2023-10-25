@@ -51,21 +51,18 @@ public class TaxServiceImpl implements TaxService {
                 // 결과를 데이터베이스에 저장
                 insertDeductionResult(result, memberId);
 
-                // 저장된 결과를 반환 (또는 저장 당시의 객체를 반환)
                 return result;
             }
-        } catch (Exception e){
-            // 오류를 무시
-            e.printStackTrace(); // 또는 로깅 등의 오류 처리
-            return null; // 또는 다른 값 또는 예외 처리 로직에 따라 반환
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return null;
         }
     }
 
 
     @Override
     public CardTaxResultVO calculateDeduction(@NotNull TaxInfoVO taxInfo, TransactionVO transaction) {
-//        TaxInfoVO taxInfo = taxMapper.getTaxInfoByMemberId(memberId);
-//        TransactionVO transaction = taxMapper.getTransactionByMemberId(memberId);
 
         // 합산금액
 
@@ -110,11 +107,11 @@ public class TaxServiceImpl implements TaxService {
         }
 
         // 전체 공제가능액
-        double totalDeductible = creditTotal * 0.15 + (debitTotal + cashTotal + cultureTotal1) * 0.3 + (cultureTotal2 + marketTotal1) * 0.4  + marketTotal2 * 0.5 + transportTotal * 0.8;
+        double totalDeductible = creditTotal * 0.15 + (debitTotal + cashTotal + cultureTotal1) * 0.3 + (cultureTotal2 + marketTotal1) * 0.4 + marketTotal2 * 0.5 + transportTotal * 0.8;
         // 공제 제외액
         double except1 = minimumAmount * 0.15;
         double except2 = creditTotal * 0.15 + (minimumAmount - creditTotal) * 0.3;
-        double except3 = creditTotal * 0.15 + (debitTotal + cashTotal + (cultureTotal1+cultureTotal2)) * 0.3 +  (minimumAmount - creditTotal - debitTotal - cashTotal - (cultureTotal1+cultureTotal2)) * 0.4;
+        double except3 = creditTotal * 0.15 + (debitTotal + cashTotal + (cultureTotal1 + cultureTotal2)) * 0.3 + (minimumAmount - creditTotal - debitTotal - cashTotal - (cultureTotal1 + cultureTotal2)) * 0.4;
 
         // 추가공제가능액(additional deductible) 계산
         double result1 = 0;
@@ -134,13 +131,13 @@ public class TaxServiceImpl implements TaxService {
         double tempD2 = result2 - basicLimit;
         double tempD3 = result3 - basicLimit;
         // 만약 tempD 가 음수이면 0으로 초기화
-        if (tempD1 < 0){
+        if (tempD1 < 0) {
             tempD1 = 0;
         }
-        if (tempD2 < 0){
+        if (tempD2 < 0) {
             tempD2 = 0;
         }
-        if (tempD3 < 0){
+        if (tempD3 < 0) {
             tempD3 = 0;
         }
         // Math.min 을 위한 변수. 3가지 이상을 비교해야 할 때, 앞 에 두 개 비교-> tempMin에 저장 + tempMin과 나머지로 다시 비교
@@ -261,8 +258,6 @@ public class TaxServiceImpl implements TaxService {
         resultVO.setRemaining_tax(remaining_tax);
         return resultVO;
     }
-
-
 
 
     public void insertDeductionResult(CardTaxResultVO result, int memberId) {

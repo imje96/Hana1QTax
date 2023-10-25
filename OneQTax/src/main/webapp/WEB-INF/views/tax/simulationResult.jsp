@@ -2116,7 +2116,7 @@
         document.getElementById('outsideDeductionAmount').innerText = deductionAmount.toLocaleString('ko-KR') + "원";
     }
 
-    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updateHousingAmounts 함수를 호출합니다.
+    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updateHousingAmounts 함수를 호출
     document.getElementById('housing_loan_view').addEventListener('input', updateHousingAmounts);
     document.getElementById('housing_account1_view').addEventListener('input', updateHousingAmounts);
     document.getElementById('housing_account2_view').addEventListener('input', updateHousingAmounts);
@@ -2130,7 +2130,6 @@
             return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
         }
 
-        // 각 입력란의 값을 가져옵니다.
         /* 연금계좌 */
         const pension = parseNumber(document.getElementById('pension_amount_view').value);
         const irp = parseNumber(document.getElementById('irp_amount_view').value);
@@ -2148,7 +2147,6 @@
         document.getElementById('outsideIrpPensionDeduction').innerText = irpPensionDeduction.toLocaleString('ko-KR') + "원";
     }
 
-    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updatePensionAmounts 함수를 호출합니다.
     document.getElementById('pension_amount_view').addEventListener('input', updatePensionAmounts);
     document.getElementById('irp_amount_view').addEventListener('input', updatePensionAmounts);
 
@@ -2161,7 +2159,6 @@
             return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
         }
 
-        // 각 입력란의 값을 가져옵니다.
         const medical_expense = parseNumber(document.getElementById('medical_expense_view').value);
         const medical_expense2 = parseNumber(document.getElementById('medical_expense2_view').value);
         const medical_expense3 = parseNumber(document.getElementById('medical_expense3_view').value);
@@ -2180,7 +2177,6 @@
         document.getElementById('outsideMedicalDeduction').innerText = medicalDeduction.toLocaleString('ko-KR') + "원";
     }
 
-    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updatePensionAmounts 함수를 호출합니다.
     document.getElementById('medical_expense_view').addEventListener('input', updateMedicalAmounts);
     document.getElementById('medical_expense2_view').addEventListener('input', updateMedicalAmounts);
     document.getElementById('medical_expense3_view').addEventListener('input', updateMedicalAmounts);
@@ -2195,7 +2191,7 @@
             return parseInt(inputValue.replace(/,/g, ""), 10) || 0;
         }
 
-        // 각 입력란의 값을 가져옵니다.
+        // 각 입력란의 값을 가져오기
         const edu_expense = parseNumber(document.getElementById('edu_expense_view').value);
         const children_edu = parseNumber(document.getElementById('children_edu_view').value);
         const univ_edu = parseNumber(document.getElementById('univ_edu_view').value);
@@ -2214,7 +2210,6 @@
         document.getElementById('outsideEduDeduction').innerText = educationDeduction.toLocaleString('ko-KR') + "원";
     }
 
-    // 각 입력란에 이벤트 리스너를 추가하여 값이 변경될 때마다 updatePensionAmounts 함수를 호출합니다.
     document.getElementById('edu_expense_view').addEventListener('input', updateEduAmounts);
     document.getElementById('children_edu_view').addEventListener('input', updateEduAmounts);
     document.getElementById('univ_edu_view').addEventListener('input', updateEduAmounts);

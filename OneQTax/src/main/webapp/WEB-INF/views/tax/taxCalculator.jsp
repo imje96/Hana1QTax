@@ -80,20 +80,7 @@
                 <output type="number" id="결정세액">
             </td>
         </tr>
-        <!--
-                    <tr>
-                      <th scope="row">기납부세액</th>
-                      <td>
-                        <input type="number" id="기납부세액">
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">차감납부(환급)세액</th>
-                      <td>
-                        <output type="number" name="차감납부세액">
-                      </td>
-                    </tr>H
-        -->
+
         </tbody>
     </table>
     <button name="세액계산" onclick="TaxCalculate()">세액계산</button>

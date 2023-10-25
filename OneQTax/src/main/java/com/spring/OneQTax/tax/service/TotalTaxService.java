@@ -6,11 +6,6 @@ import com.spring.oneqtax.tax.domain.TotalTaxResultVO;
 
 public interface TotalTaxService {
 
-//    TotalTaxResultVO calculateFinalDeudctions(TotalTaxResultVO totalResult);
-
-    //    public TotalInfoVO getTotalInfoById(int member_id);
-
-
     // 기타 세부항목 계산
     public TotalTaxResultVO calculateTotalDeductions(TotalInfoVO totalInfo, CardTaxResultVO cardResult);
 

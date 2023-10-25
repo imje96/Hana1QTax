@@ -1,7 +1,3 @@
-
-
-//변수 선언
-
 function inputNumberFormat(obj) {
     obj.value = comma(uncomma(obj.value));
 }

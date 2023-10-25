@@ -388,11 +388,8 @@
 
     .detailBtn:hover {
         background-color: #fa63a5;
-        /* hover 시 배경색 변경 */
         transform: scale(1.05);
-        /* hover 시 약간 확대되는 효과 */
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        /* hover 시 그림자 약간 강화 */
     }
 
     #headerLogo2 {
@@ -453,13 +450,9 @@
 
 
     <div class="section">
-        <%--            <div class="container-xxl py-5">--%>
-        <%--            <div class="container-title" data-wow-delay="0.1s" style="max-width: 600px;">--%>
+
         <div class="container-title">
-            <%--                <h6 class="text-primary">--%>
-            <%--                    Hana 1QTax <span style="color: #ff328b;">연말정산</span>--%>
-            <%--                </h6>--%>
-            <%--                    💰--%>
+
             <h2>내 소비 모아보기</h2>
             <br/>
             <span style="color: #615e5e"><h3>마이데이터로 연동한 나의 모든 소비 현황을 확인해보세요</h3></span>
@@ -468,15 +461,7 @@
 
         <div class="section2">
 
-
-            <%--            <div class="time" style="text-align: right">--%>
-            <%--                <c:set var="formattedTimestamp" value="${fn:substring(deduction_date, 0, 19)}"/>--%>
-            <%--                ${formattedTimestamp}--%>
-            <%--                <a href=""${pageContext.request.contextPath}/calculateAndInsertDeduction" onclick="window.location.reload(); return false;">--%>
-            <%--                <img src="../../../resources/img/refresh.png" height="30"></a>--%>
-            <%--            </div>--%>
             <div class="container-left">
-                <%--                <p>${deduction_date}</p>--%>
 
                 <div class="card-box">
                     <h5> 내 카드</h5>

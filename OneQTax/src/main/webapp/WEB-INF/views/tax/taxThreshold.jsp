@@ -177,12 +177,6 @@
 
 
         <div class="section">
-            <%--            <div class="container-xxl py-5">--%>
-
-            <%--                <h5>공제 문턱을 넘기기 전엔, 혜택이 많은 카드로!</h5>--%>
-            <%--                <p>소득공제를 받으려면 공제 문턱(총 급여의 25%)을 넘어야 해요<br/>--%>
-            <%--                    공제 문턱까지는 어떤 결제수단이든 상관없으니 혜택이 많은 신용카드를 쓰시는게 어떨까요?</p>--%>
-
             <div class="container-title">
                 <h2>소비 문턱 넘기기</h2>
                 <br/>
@@ -207,7 +201,6 @@
     <div class="progress-container">
 
         <div class="gauge" per="0"></div> <!-- 초기 값은 0%로 설정 -->
-<%--        <div class="progress-text" >0%</div>--%>
         <div class="progress-sector">
             <%--   초기 카드 실적, 이후 동적으로 변화    --%>
             <h5>| 0%</h5>
@@ -224,11 +217,9 @@
                             <div class="info-item2">공제 시작까지 남은 금액:<br/>${formattedValue}원</div>
                         </div>
                     </div>
-<%--                    <script src="../../resources/js/thresholdChart.js"></script>--%>
 
                     <div class="chart-box-inner">
                       <h3>누적 사용금액 확인하기</h3><br/>
-<%--                        <div class="info-box">--%>
                         <div class="info-item3">
                         <h3>🔔 아직 소득공제가 시작되지 않았어요</h3>
                       </div><br/>

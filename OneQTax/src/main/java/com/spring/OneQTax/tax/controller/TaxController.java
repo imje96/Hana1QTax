@@ -38,10 +38,8 @@ public class TaxController {
     private SmsService smsService;
 
 
-
     @Autowired
     private final TaxService taxService;
-    // ObjectMapper 인스턴스 생성
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -56,7 +54,6 @@ public class TaxController {
         MemberVO currentUser = (MemberVO) session.getAttribute("currentUser");
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
 
@@ -88,7 +85,6 @@ public class TaxController {
         MemberVO currentUser = (MemberVO) session.getAttribute("currentUser");
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
 
@@ -103,7 +99,6 @@ public class TaxController {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
         int memberId = currentUser.getMember_id();
@@ -116,11 +111,6 @@ public class TaxController {
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
         CardTaxResultVO result = taxService.getDeductionResult(memberId);
 
-        // Transform the VO objects
-//        DeductionResultVO2 transformedTransaction = transformTransaction(transaction);
-//        DeductionResultVO2 transformedResult = transformDeductionResult(result);
-//
-
 //        추가
         double total1 = (totalIncome > 70000000) ? 4500000 : 6000000;
         double total2 = (totalIncome > 70000000) ? 2500000 : 3000000;
@@ -132,7 +122,7 @@ public class TaxController {
 
         // 그래프를 위한 값
 
-        model.addAttribute("minimumAmount", (int)minimumAmount);
+        model.addAttribute("minimumAmount", (int) minimumAmount);
 
         model.addAttribute("total", (int) total1);
         model.addAttribute("basicTotal", (int) total2);
@@ -147,7 +137,6 @@ public class TaxController {
         model.addAttribute("cash_deduction", (int) result.getCash_deduction());
         model.addAttribute("basic_deduction", (int) result.getBasic_deduction());
         model.addAttribute("additional_deduction", (int) result.getAdditional_deduction());
-//       여기
         model.addAttribute("total_deduction", (int) result.getTotal_deduction());
         model.addAttribute("reducing_tax", (int) result.getReducing_tax());
         model.addAttribute("remaining_tax", (int) result.getRemaining_tax());
@@ -156,34 +145,30 @@ public class TaxController {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
-        model.addAttribute("market_total", (int) (transaction.getMarket_total1()+transaction.getMarket_total2()));
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1() + transaction.getCulture_total2()));
+        model.addAttribute("market_total", (int) (transaction.getMarket_total1() + transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
 
 
         System.out.println("서비스 결과 (컨트롤러): " + result);
-        // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
         model.addAttribute("result", result);
         model.addAttribute("transaction", transaction);
-//        return  "tax/taxResult";
         return "tax/taxResult";
     }
 
 
-// 공제 계산하기
+    // 공제 계산하기
     @PostMapping("/calculateAndInsertDeduction")
     public String calculateAndInsertDeduction(HttpSession session, RedirectAttributes redirectAttributes) {
         // member_id 먼저 가져오기
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 로그인이 되어있지 않으면 로그인 페이지로 리디렉션
             return "redirect:/login"; // 로그인 페이지 URL로 리디렉션
         }
 
         int memberId = currentUser.getMember_id();
 
-        // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
         CardTaxResultVO result = taxService.processDeductionForMember(memberId);
 
         if (result == null) {
@@ -195,7 +180,6 @@ public class TaxController {
         return "tax/taxInfo"; // 이동하려는 JSP 페이지 URL로 리디렉션
     }
 
-    // 스케줄링으로 매일 카드소득공제 계산을 실행하기
 
     // 새로고침으로 공제 계산하기
     @GetMapping("/calculateAndInsertDeduction")
@@ -204,13 +188,11 @@ public class TaxController {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 로그인이 되어있지 않으면 로그인 페이지로 리디렉션
             return "redirect:/login"; // 로그인 페이지 URL로 리디렉션
         }
 
         int memberId = currentUser.getMember_id();
 
-        // calculateDeduction(taxInfo, transaction) 대신 processDeductionForMember(memberId) 호출
         CardTaxResultVO result = taxService.processDeductionForMember(memberId);
 
         if (result == null) {
@@ -254,7 +236,7 @@ public class TaxController {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1() + transaction.getCulture_total2()));
         model.addAttribute("market_total", (int) (transaction.getMarket_total1() + transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
         // 최저사용액
@@ -292,8 +274,6 @@ public class TaxController {
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         double totalIncome = taxInfoVO.getTotal_income();
 
-//        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
-
         model.addAttribute("totalIncome", totalIncome);
 //        model.addAttribute("info", totalInfoVO);
         return "simulationResult";
@@ -305,7 +285,7 @@ public class TaxController {
     }
 
     @GetMapping("/simulationMain")
-    public String simulaitonMain(HttpSession session, Model model){
+    public String simulaitonMain(HttpSession session, Model model) {
         return "tax/simulationMain";
     }
 
@@ -337,13 +317,13 @@ public class TaxController {
         totalInfo.setTotalInfo_id(totalInfoId);
         System.out.println("아이디값 확인2:" + totalInfo.getTotalInfo_id());
         totalInfo = taxFormService.updateForm(totalInfo, bigDTO, cardResult);
-        System.out.println("컨트롤러 update 호출 후: "+totalInfo);
-
+        System.out.println("컨트롤러 update 호출 후: " + totalInfo);
 
 
         response.put("status", "success");
         return response;
     }
+
     // 세부항목 저장 후 2차 계산
     @PostMapping("/saveDetail")
     public String saveTotalInfo(Model model, HttpSession session) {
@@ -362,11 +342,11 @@ public class TaxController {
         CardTaxResultVO cardResult = taxService.getDeductionResult(memberId);
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
 
-        System.out.println("테스트 카드소득공제:" +cardResult);
+        System.out.println("테스트 카드소득공제:" + cardResult);
         // 2차 계산
         TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(totalInfo, cardResult);
 
-        System.out.println("2차 계산:"+ totalResult);
+        System.out.println("2차 계산:" + totalResult);
         int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
         int totalTransaction = (int) (transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total()
                 + transaction.getCulture_total1() + transaction.getCulture_total2() + transaction.getMarket_total1() + transaction.getMarket_total2() + transaction.getTransport_total());
@@ -394,7 +374,7 @@ public class TaxController {
 
 
     @GetMapping("/taxSimulation") // form step1~3 호출
-    public String taxTest(HttpSession session, Model model){
+    public String taxTest(HttpSession session, Model model) {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
@@ -407,8 +387,7 @@ public class TaxController {
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         double totalIncome = taxInfoVO.getTotal_income();
 
-//        TotalInfoVO totalInfoVO = totalTaxService.getTotalInfoById(memberId);
-        model.addAttribute("totalIncome", (int)totalIncome);
+        model.addAttribute("totalIncome", (int) totalIncome);
         model.addAttribute("memberId", memberId);
         return "tax/taxSimulation";
     }
@@ -420,7 +399,6 @@ public class TaxController {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
         int memberId = currentUser.getMember_id();
@@ -433,19 +411,14 @@ public class TaxController {
         // total_income 가져오기
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
         transaction = taxService.getTransactionByMemberId(memberId);
-        // 카드소득공제 결과 가져오기
 
+        // 카드소득공제 결과 가져오기
         cardResult = taxService.getDeductionResult(memberId);
         int calculationId = cardResult.getCalculation_id();
 
-//        if (taxForm != null) { // taxForm 정보가 있다면
-        // 서비스를 호출하여 계산 로직 처리
         totalInfo = taxFormService.calculateForm(totalInfo, taxForm, cardResult);
         // 계산정보 DB에 저장하기
         taxFormService.saveForm(totalInfo);
-//        } else { // taxForm 정보가 없다면
-//            totalInfo = taxFormService.getTotalInfoByCalcId(calculationId);
-//        }
 
         // totalInfo 조회하기
         totalInfo = taxFormService.getTotalInfoByCalcId(calculationId);
@@ -453,8 +426,8 @@ public class TaxController {
         TotalTaxResultVO totalResult = totalTaxService.calculateTotalDeductions(totalInfo, cardResult);
 
         int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
-        int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
-                        +transaction.getCulture_total1()+transaction.getCulture_total2()+transaction.getMarket_total1()+transaction.getMarket_total2()+transaction.getTransport_total());
+        int totalTransaction = (int) (transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total()
+                + transaction.getCulture_total1() + transaction.getCulture_total2() + transaction.getMarket_total1() + transaction.getMarket_total2() + transaction.getTransport_total());
         int totalInfo_id = totalResult.getTotalInfo_id();
         int marketTotal = (int) (transaction.getMarket_total1() + transaction.getMarket_total2());
         int cultureTotal = (int) (transaction.getCulture_total1() + transaction.getCulture_total2());
@@ -479,15 +452,15 @@ public class TaxController {
         return "tax/simulationResult";
     }
 
-// 시뮬레이션 결과만 보기 임시창
+    // 시뮬레이션 결과만 보기 임시창
     @GetMapping("/simulationResult")
-    public String viewSimulationResult(){
+    public String viewSimulationResult() {
 
         return "tax/simulationDetail";
     }
 
     @PostMapping("/simulationResult")
-    public String viewSimulationResult(HttpSession session, Model model){
+    public String viewSimulationResult(HttpSession session, Model model) {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
@@ -506,8 +479,8 @@ public class TaxController {
 
 
         int totalBenefit = totalResult.getTotal_incomeDeduction() + totalResult.getTotal_taxcredit();
-        int totalTransaction = (int) (transaction.getCredit_total()+transaction.getDebit_total()+transaction.getCash_total()
-                +transaction.getCulture_total1()+transaction.getCulture_total2()+transaction.getMarket_total1()+transaction.getMarket_total2()+transaction.getTransport_total());
+        int totalTransaction = (int) (transaction.getCredit_total() + transaction.getDebit_total() + transaction.getCash_total()
+                + transaction.getCulture_total1() + transaction.getCulture_total2() + transaction.getMarket_total1() + transaction.getMarket_total2() + transaction.getTransport_total());
         int totalInfo_id = totalResult.getTotalInfo_id();
         int medical_minimum = (int) (totalInfo.getTotal_income2() * 0.03);
 
@@ -522,7 +495,7 @@ public class TaxController {
         model.addAttribute("totalResult", totalResult);
         model.addAttribute("totalBenefit", totalBenefit);
         model.addAttribute("transaction", transaction);
-        model.addAttribute("memberId",memberId);
+        model.addAttribute("memberId", memberId);
         model.addAttribute("totalTransaction", totalTransaction);
         model.addAttribute("total_deduction", (int) cardResult.getTotal_deduction());
         model.addAttribute("medical_minimum", medical_minimum);
@@ -590,100 +563,47 @@ public class TaxController {
             // 초대를 수락한 후에 문자 메시지를 보내는 로직을 호출
             smsService.checkRelationStatus(memberId);
             return new ResponseEntity<>("Success", HttpStatus.OK);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
 
+    @Controller
+    @RequestMapping("/accept")
+    public class AcceptController2 {
 
-//    @RestController
-//    @RequestMapping("/accept")
-//    public class AcceptController {
+        @GetMapping("/{memberId}")
+        public String acceptInvitation(HttpSession session, HttpServletRequest request, Model model) {
+            MemberVO currentUser = getCurrentUser(session);
 
-//        @GetMapping("/{memberId}")
-//        public ResponseEntity<String> acceptInvitation(@PathVariable int memberId) {
-//            try {
-//                spouseService.acceptInvitation(memberId);
-//                return new ResponseEntity<>("Success", HttpStatus.OK);
-//            } catch (Exception e) {
-//                e.printStackTrace(); // 오류 메시지를 로그에 출력
-//                return new ResponseEntity<>("Failure", HttpStatus.BAD_REQUEST);
-//            }
-//        }
-//
-//        @GetMapping("/getMemberId")
-//        public ResponseEntity<Map<String, Integer>> getMemberId(HttpSession session) {
-//            Map<String, Integer> response = new HashMap<>();
-//
-//            MemberVO currentUser = getCurrentUser(session);
-//            int memberId = currentUser.getMember_id();
-//
-//            response.put("memberId", memberId);
-//            return new ResponseEntity<>(response, HttpStatus.OK);
-//        }
-//    }
-@Controller
-@RequestMapping("/accept")
-public class AcceptController2 {
+            if (currentUser == null) {
+                session.setAttribute("dest", request.getRequestURI());
+                return "redirect:/login";
+            }
 
-    @GetMapping("/{memberId}")
-    public String acceptInvitation(HttpSession session, HttpServletRequest request, Model model) {
-        MemberVO currentUser = getCurrentUser(session);
+            // 로그인 성공 후 원래 방문하려던 페이지로 리다이렉트
+            String dest = (String) session.getAttribute("dest");
+            if (dest != null) {
+                session.removeAttribute("dest");
+                return "redirect:" + dest;
+            }
 
-        if (currentUser == null) {
-            session.setAttribute("dest", request.getRequestURI());
-            return "redirect:/login";
+            String name = currentUser.getName();
+            int memberId = currentUser.getMember_id();
+
+            SpouseRelationVO spouseInfo = spouseService.fingMySpouse(memberId);
+            int spouseId = spouseInfo.getSpouse_id();
+            MemberVO spouseInfo2 = spouseService.getSpouseName(spouseId);
+            String spouseName = spouseInfo2.getName();
+
+            model.addAttribute("name", spouseName);
+            model.addAttribute("memberId", memberId);
+
+            return "tax/spouseInvitation";
         }
-
-        // 로그인 성공 후 원래 방문하려던 페이지로 리다이렉트
-        String dest = (String) session.getAttribute("dest");
-        if (dest != null) {
-            session.removeAttribute("dest");
-            return "redirect:" + dest;
-        }
-
-        String name = currentUser.getName();
-        int memberId = currentUser.getMember_id();
-
-        SpouseRelationVO spouseInfo = spouseService.fingMySpouse(memberId);
-        int spouseId = spouseInfo.getSpouse_id();
-        MemberVO spouseInfo2 = spouseService.getSpouseName(spouseId);
-        String spouseName = spouseInfo2.getName();
-
-        model.addAttribute("name", spouseName);
-        model.addAttribute("memberId", memberId);
-
-        return "tax/spouseInvitation";
     }
-}
-
-//    @Controller
-//    @RequestMapping("/accept")
-//    public class AcceptController2 {
-//
-//        @GetMapping("/{memberId}")
-//        public String acceptInvitation(HttpSession session, Model model) {
-//            MemberVO currentUser = getCurrentUser(session);
-//
-//            if (currentUser == null) {
-//                // 리다이렉트나 에러 메시지 처리
-//                return "redirect:/login";
-//            }
-//            String name = currentUser.getName();
-//            int memberId = currentUser.getMember_id();
-//
-//            SpouseRelationVO spouseInfo = spouseService.fingMySpouse(memberId);
-//            int spouseId = spouseInfo.getSpouse_id();
-//            MemberVO spouseInfo2 = spouseService.getSpouseName(spouseId);
-//            String spouseName = spouseInfo2.getName();
-//
-//            model.addAttribute("name", spouseName);
-//            model.addAttribute("memberId", memberId);
-//            return "tax/spouseInvitation";
-//        }
-//    }
 
 
     @GetMapping("/spouseResult")
@@ -693,7 +613,6 @@ public class AcceptController2 {
         MemberVO currentUser = getCurrentUser(session);
 
         if (currentUser == null) {
-            // 리다이렉트나 에러 메시지 처리
             return "redirect:/login";
         }
         int memberId = currentUser.getMember_id();
@@ -705,8 +624,8 @@ public class AcceptController2 {
         MemberVO spouseInfo2 = spouseService.getSpouseName(spouseId);
         String spouseName = spouseInfo2.getName();
 
-        model.addAttribute("spouseId",spouseId);
-        model.addAttribute("spouseName",spouseName);
+        model.addAttribute("spouseId", spouseId);
+        model.addAttribute("spouseName", spouseName);
 
         // 본인 total_income 가져오기
         TaxInfoVO taxInfoVO = taxService.getTaxInfoByMemberId(memberId);
@@ -725,7 +644,6 @@ public class AcceptController2 {
         CardTaxResultVO result2 = taxService.getDeductionResult(spouseId);
 
 
-//        추가
         double total1 = (totalIncome > 70000000) ? 4500000 : 6000000;
         double total2 = (totalIncome > 70000000) ? 2500000 : 3000000;
 
@@ -743,7 +661,7 @@ public class AcceptController2 {
 
         // 그래프를 위한 값
 
-        model.addAttribute("minimumAmount", (int)minimumAmount);
+        model.addAttribute("minimumAmount", (int) minimumAmount);
 
         model.addAttribute("total", (int) total1);
         model.addAttribute("basicTotal", (int) total2);
@@ -766,12 +684,12 @@ public class AcceptController2 {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
-        model.addAttribute("market_total", (int) (transaction.getMarket_total1()+transaction.getMarket_total2()));
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1() + transaction.getCulture_total2()));
+        model.addAttribute("market_total", (int) (transaction.getMarket_total1() + transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
         // 배우자 그래프를 위한 값
 
-        model.addAttribute("minimumAmount2", (int)minimumAmount2);
+        model.addAttribute("minimumAmount2", (int) minimumAmount2);
 
         model.addAttribute("total2", (int) total3);
         model.addAttribute("basicTotal2", (int) total4);
@@ -793,28 +711,25 @@ public class AcceptController2 {
         model.addAttribute("credit_total2", (int) transaction2.getCredit_total());
         model.addAttribute("debit_total2", (int) transaction2.getDebit_total());
         model.addAttribute("cash_total2", (int) transaction2.getCash_total());
-        model.addAttribute("culture_total2", (int) (transaction2.getCulture_total1()+transaction2.getCulture_total2()));
-        model.addAttribute("market_total2", (int) (transaction2.getMarket_total1()+transaction2.getMarket_total2()));
+        model.addAttribute("culture_total2", (int) (transaction2.getCulture_total1() + transaction2.getCulture_total2()));
+        model.addAttribute("market_total2", (int) (transaction2.getMarket_total1() + transaction2.getMarket_total2()));
         model.addAttribute("transport_total2", (int) transaction2.getTransport_total());
 
         System.out.println("서비스 결과 (컨트롤러): " + result);
-        // 모델에 데이터를 추가하여 뷰에서 사용할 수 있도록 함
         model.addAttribute("result", result);
         model.addAttribute("transaction", transaction);
-//        return  "tax/taxResult";
         return "tax/spouseResult";
     }
-
-
 
 
     @GetMapping("/spouseAgreement")
     public String groupAgreement() throws Exception {
         return "tax/spouseAdd";
     }
-//    초대장 받은 페이지 임시
+
+    //    초대장 받은 페이지 임시
     @GetMapping("/getSpouseInvitation")
-    public String spouseInvitation() throws Exception{
+    public String spouseInvitation() throws Exception {
         return "tax/spouseInvitation";
     }
 
@@ -822,19 +737,17 @@ public class AcceptController2 {
     public String groupAccountDetail() throws Exception {
         return "tax/spouseDeductionDetail";
     }
+
     @GetMapping("/openedAccount")
     public String openedAccount() throws Exception {
         return "tax/openedAccount";
     }
-//    @GetMapping("/spouseInvite")
-//    public String groupInvite() throws Exception {
-//        return "/tax/spouseInvite";
-//    }
+
 
     @GetMapping("/myspouse/{memberId}")
     public String myspouse(@PathVariable int memberId, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
-        session.setAttribute("memberId",memberId);
+        session.setAttribute("memberId", memberId);
         return "tax/myspouse";
     }
 
@@ -844,11 +757,9 @@ public class AcceptController2 {
     }
 
 
-
-
     //임시 추가
     @GetMapping("/dashboard")
-    public String viewDashboard(HttpSession session, Model model){
+    public String viewDashboard(HttpSession session, Model model) {
 
         // memberId 가져오기
         MemberVO currentUser = getCurrentUser(session);
@@ -867,12 +778,6 @@ public class AcceptController2 {
         TransactionVO transaction = taxService.getTransactionByMemberId(memberId);
         CardTaxResultVO result = taxService.getDeductionResult(memberId);
 
-        // Transform the VO objects
-//        DeductionResultVO2 transformedTransaction = transformTransaction(transaction);
-//        DeductionResultVO2 transformedResult = transformDeductionResult(result);
-//
-
-//        추가
         double total1 = (totalIncome > 70000000) ? 4500000 : 6000000;
         double total2 = (totalIncome > 70000000) ? 2500000 : 3000000;
 
@@ -883,7 +788,7 @@ public class AcceptController2 {
 
         // 그래프를 위한 값
 
-        model.addAttribute("minimumAmount", (int)minimumAmount);
+        model.addAttribute("minimumAmount", (int) minimumAmount);
 
         model.addAttribute("total", (int) total1);
         model.addAttribute("basicTotal", (int) total2);
@@ -906,8 +811,8 @@ public class AcceptController2 {
         model.addAttribute("credit_total", (int) transaction.getCredit_total());
         model.addAttribute("debit_total", (int) transaction.getDebit_total());
         model.addAttribute("cash_total", (int) transaction.getCash_total());
-        model.addAttribute("culture_total", (int) (transaction.getCulture_total1()+transaction.getCulture_total2()));
-        model.addAttribute("market_total", (int) (transaction.getMarket_total1()+transaction.getMarket_total2()));
+        model.addAttribute("culture_total", (int) (transaction.getCulture_total1() + transaction.getCulture_total2()));
+        model.addAttribute("market_total", (int) (transaction.getMarket_total1() + transaction.getMarket_total2()));
         model.addAttribute("transport_total", (int) transaction.getTransport_total());
 
 
@@ -920,7 +825,7 @@ public class AcceptController2 {
     }
 
     @GetMapping("/report")
-    public String viewReport(){
+    public String viewReport() {
 
         return "transaction/report";
     }

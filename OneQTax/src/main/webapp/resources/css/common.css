@@ -116,8 +116,7 @@ td {
 }
 
 h1,
-h2
-{
+h2 {
     font-weight: 700;
     font-size: 30px;
 }
@@ -125,8 +124,7 @@ h2
 h3,
 h4,
 h5,
-h6
-{
+h6 {
     font-weight: 700;
     font-size: inherit;
 }
@@ -185,14 +183,6 @@ header {
 p {
     font-size: 15px;
 }
-/*
-.innerheader {padding: 0 60px; height: 90px; transition: all 0.3s;}
-.innerheader {padding: 0 60px; height: 90px; transition: all 0.3s; display: flex; align-items: center; justify-content: space-between;}
-
-.innerheader .logo {width: 200px; height: 36px; float: left; margin-top: 28px; transition: all 0.3s;} */
-/* .innerheader .gnb .logo {width: 200px; height: 36px; margin-top: 0; transition: all 0.3s; display: flex; align-items: center; justify-content: center;}
-.innerheader .gnb .logo a {display: block; width: 100%; }
-.innerheader .gnb .logo a img {width: 80%; height: auto; display: block; margin: 0 auto;} */
 
 
 #headerLogo {
@@ -205,11 +195,6 @@ p {
 
 }
 
-/* .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
 
 /* headerlist1  erlist -nav 윗부분 */
 .headerlist {
@@ -233,28 +218,21 @@ p {
 }
 
 
-
 /* 기본 스타일 */
 #logo {
     flex: 0 0 200px;
-    /* 초기 너비를 200px로 설정 */
     transition: flex 0.3s;
-    /* 부드러운 전환 효과 */
 }
 
-/* 뷰포트 너비가 768px 이상일 때 */
 @media (min-width: 768px) {
     #logo {
         flex: 0 0 300px;
-        /* 너비를 250px로 확장 */
     }
 }
 
-/* 뷰포트 너비가 1024px 이상일 때 */
 @media (min-width: 1024px) {
     #logo {
         flex: 0 0 350px;
-        /* 너비를 300px로 확장 */
     }
 }
 
@@ -269,7 +247,6 @@ p {
     font-size: 25px;
 }
 
-/* Additional styles for the child elements */
 .welcomeMessage {
     margin-right: 0px;
 }
@@ -315,10 +292,6 @@ a.logoutBtn:hover {
 }
 
 
-
-
-
-
 .navbar {
     overflow: hidden;
     display: flex;
@@ -330,9 +303,10 @@ a.logoutBtn:hover {
 
 }
 
-.navbar .drops{
+.navbar .drops {
     display: flex;
 }
+
 /* Links inside the navbar */
 .navbar a {
     font-size: 20px;
@@ -391,7 +365,6 @@ a.logoutBtn:hover {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
 
 
 /*footer*/

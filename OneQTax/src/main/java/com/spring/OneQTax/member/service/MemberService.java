@@ -10,9 +10,6 @@ public interface MemberService {
 
     MemberVO getMemberByEmail(String spouseEmail);
     public List<MemberVO> getAllMember();
-//    Member selectNameOfMember(String email);
-//    Member loginMember(HashMap<String, String> loginData);
 
-//    public void join(MemberVO memberVO);
 
 }

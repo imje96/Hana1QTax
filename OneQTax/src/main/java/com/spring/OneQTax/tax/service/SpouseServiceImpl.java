@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SpouseServiceImpl implements SpouseService{
+public class SpouseServiceImpl implements SpouseService {
 
     private final TaxMapper taxMapper;
     @Autowired
     private final MemberMapper memberMapper;
+
     @Autowired
     protected SpouseServiceImpl(TaxMapper taxMapper, MemberMapper memberMapper) {
         this.taxMapper = taxMapper;
@@ -24,10 +25,6 @@ public class SpouseServiceImpl implements SpouseService{
 
     @Override
     public void acceptFriendInvitation(int relationId) {
-//        SpouseRelation relation = taxMapper.findByRelationId(relationId)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid relationId"));
-//        relation.setStatus("Y");
-//        taxMapper.save(relationId);
     }
 
     @Override
@@ -36,11 +33,7 @@ public class SpouseServiceImpl implements SpouseService{
     }
 
     public void acceptInvitation(int memberId) {
-//        SpouseRelationVO spouseRelation = taxMapper.findByMemberId(memberId);
-//        if(memberId != null) {
-////            spouseRelation.setStatus("Y");
-            taxMapper.updateStatusToY(memberId); // 이 부분은 실제로 어떻게 구현되었는지에 따라 다를 수 있습니다.
-//        }
+        taxMapper.updateStatusToY(memberId);
     }
 
 

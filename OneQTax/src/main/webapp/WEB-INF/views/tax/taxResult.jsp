@@ -462,12 +462,12 @@
                     </div>
                 </div>
                 <br/><br/>
-                    <span style="text-align: center;"><h2>이렇게 쓰면 최대로 공제받을 수 있어요💰</h2></span><br/><br/>
+                    <span style="text-align: center;"><h2>이렇게 쓰면 최대로 공제받을 수 있어요(카드 황금비율)💰</h2></span><br/><br/>
                 <div class="copy-text2">
 
                     * 추가로 아낄 수 있는 세금 : &nbsp;<span
                         style="font-weight: bold; font-size: 28px; color: #ff458b"><fmt:formatNumber
-                        value="${remaining_tax}" groupingUsed="true"/> 원</span>
+                        value="${remaining_tax}" groupingUsed="true"/> 원 </span>
                     <br/>
                     <div class="hover-text2">
                     <h6>카드 황금 비율 </h6>
@@ -483,14 +483,14 @@
                         <h5>체크카드 사용: <span id="ratio1Value"></span>%</h5>
                          <h5> <span
                                  style="font-weight: bold; font-size: 28px; color: #ff458b"><fmt:formatNumber value="${(basicTotal - basic_deduction) / 0.3}"
-                                                                                                              groupingUsed="true"/></span> 만원</h5>
+                                                                                                              groupingUsed="true"/></span> 만원 </h5>이용필요
                           <p>(기본 공제)</p>
                       </div>
                         <div class="percent-box">
                         <h5>신용카드 사용: <span id="ratio2Value"></span>%</h5>
                            <h5> <span
                                    style="font-weight: bold; font-size: 28px; color: #ff458b"><fmt:formatNumber value="${(basicTotal - additional_deduction) / 0.8}"
-                                                                                                                groupingUsed="true"/></span> 만원</h5>
+                                                                                                                groupingUsed="true"/></span> 만원</h5>이용필요
                         <p>(대중교통 업종으로 사용할 시)</p>
                         </div>
                     </div>
@@ -640,9 +640,6 @@
     $(document).ready(function () {
         var ratio1 = ${((basicTotal - basic_deduction) / 0.3) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 100};
         var ratio2 = ${((basicTotal - additional_deduction) / 0.8) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 100};
-
-        <%--var ratio1_10scale = ${((basicTotal - basic_deduction) / 0.3) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 10};--%>
-        <%--var ratio2_10scale = ${((basicTotal - additional_deduction) / 0.8) / (((basicTotal - basic_deduction) / 0.3) + ((basicTotal - additional_deduction) / 0.8)) * 10};--%>
 
         $('.bar1').css('width', ratio1 + '%');
         $('.bar2').css('width', ratio2 + '%');

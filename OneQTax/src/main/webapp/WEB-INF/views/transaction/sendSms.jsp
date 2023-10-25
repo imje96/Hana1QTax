@@ -4,9 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Send Mail</title>
-    <%-- If you need these scripts uncomment them --%>
-    <%-- <script type="text/javascript" src="<c:url value='/scripts/jquery-ui/jquery.min.js'/>"></script> --%>
-    <%-- <script type="text/javascript" src="<c:url value='/scripts/common/common-ui.js'/>"></script> --%>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
