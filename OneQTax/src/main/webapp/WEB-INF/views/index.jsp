@@ -52,6 +52,8 @@
                 </div>
             </c:if>
 
+
+
         </div>
 
         <nav>
@@ -174,7 +176,33 @@
 
 
             <section class="sectors">
+
+
                 <div class="inner">
+                    <a href="${pageContext.request.contextPath}/audioTest">
+                        오디오테스트
+                    </a>
+
+                    <a href="${pageContext.request.contextPath}/videoTest">
+                        비디오테스트
+                    </a>
+
+                    <a href="${pageContext.request.contextPath}/canvasTest">
+                        canvas테스트
+                    </a>
+
+                    <a href="${pageContext.request.contextPath}/headerTest">
+                        header테스트
+                    </a>
+
+                    <a href="${pageContext.request.contextPath}/storageTest">
+                        storageTest테스트
+                    </a>
+
+                    <a href="${pageContext.request.contextPath}/websocket">
+                        websocket테스트
+                    </a>
+
                     <div class="text animate" >
                         <%--                        <p class="tit">이런 서비스 어떠세요</p>--%>
                         <h1 class="title">이런 서비스는 어떠세요</h1>

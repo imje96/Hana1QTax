@@ -336,4 +336,36 @@ public class TranController {
     private MemberVO getCurrentUser(HttpSession session) {
         return (MemberVO) session.getAttribute("currentUser");
     }
+
+
+    @GetMapping("/audioTest")
+    public String testAudio() {
+        return "html5/audioTest";
+    }
+
+    @GetMapping("/videoTest")
+    public String videoTest() {
+        return "html5/videoTest";
+    }
+
+    @GetMapping("/canvasTest")
+    public String canvasTest() {
+        return "html5/canvasTest";
+    }
+
+    @GetMapping("/headerTest")
+    public String headerTest() {
+        return "html5/headerTest";
+    }
+
+    @GetMapping("/storageTest")
+    public String storageTest() {
+        return "html5/storageTest";
+    }
+
+    @GetMapping("/websocket")
+    public String websocket() {
+        return "html5/websocket";
+    }
+
 }
